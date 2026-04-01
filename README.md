@@ -19,14 +19,14 @@ To install, search for [github-panel](https://web.pulsar-edit.dev/packages/githu
 
 Requires [git-panel](https://web.pulsar-edit.dev/packages/git-panel).
 
-> **Note:** This package automatically disables the built-in `github` package to avoid conflicts.
+**Note**: This package automatically disables the built-in `github` package to avoid conflicts.
 
 ## Commands
 
 Commands available in `.workspace`:
 
-- `github-panel:toggle-github-panel-tab`: (`Ctrl+8`) toggle GitHub panel visibility,
-- `github-panel:toggle-github-panel-tab-focus`: (`Ctrl+Shift+8`) toggle and focus the GitHub panel,
+- `github-panel:toggle-github-panel-tab`: <kbd>Ctrl+8</kbd> toggle GitHub panel visibility,
+- `github-panel:toggle-github-panel-tab-focus`: <kbd>Ctrl+Shift+8</kbd> toggle and focus the GitHub panel,
 - `github-panel:open-issue-or-pull-request`: open an issue or PR by URL,
 - `github-panel:create-repository`: create a new GitHub repository,
 - `github-panel:publish-repository`: publish a local repository to GitHub,
