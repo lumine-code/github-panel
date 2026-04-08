@@ -1,7 +1,7 @@
 {
   "name": "github-panel",
   "main": "./lib/index",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A GitHub integration panel",
   "repository": "https://github.com/asiloisad/pulsar-github-panel",
   "license": "MIT",
