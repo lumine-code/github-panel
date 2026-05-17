@@ -6,7 +6,7 @@
   "repository": "https://github.com/asiloisad/pulsar-github-panel",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.100.0"
+    "atom": ">=1.132.0 <2.0.0"
   },
   "dependencies": {
     "classnames": "2.5.1",

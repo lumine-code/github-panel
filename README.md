@@ -32,6 +32,12 @@ Commands available in `.workspace`:
 - `github-panel:publish-repository`: publish a local repository to GitHub,
 - `github-panel:logout`: remove stored GitHub token.
 
+Commands available in `.github-panel-Reviews`:
+
+- `github-panel:more-context`: <kbd>Cmd/Ctrl+=</kbd> show more review context,
+- `github-panel:less-context`: <kbd>Cmd/Ctrl+-</kbd> show less review context,
+- `github-panel:submit-comment`: <kbd>Cmd/Ctrl+Enter</kbd> submit review comment.
+
 ## Contributing
 
 Got ideas to make this package better, found a bug, or want to help add new features? Just drop your thoughts on GitHub. Any feedback is welcome!

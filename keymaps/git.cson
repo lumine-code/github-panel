@@ -10,7 +10,7 @@
 '.github-panel-Dialog input':
   'enter': 'core:confirm'
 
-'body .github-panel-TabbableWrapper':
+'.github-panel-TabbableWrapper':
   'down': 'github-panel:selectbox-down'
   'up': 'github-panel:selectbox-up'
   'enter': 'github-panel:selectbox-enter'
@@ -23,19 +23,9 @@
   'delete': 'github-panel:selectbox-delete'
   'escape': 'github-panel:selectbox-escape'
 
-'.platform-darwin .github-panel-Reviews':
-  'cmd-=': 'github-panel:more-context'
-  'cmd--': 'github-panel:less-context'
-'.platform-win32 .github-panel-Reviews':
-  'ctrl-=': 'github-panel:more-context'
-  'ctrl--': 'github-panel:less-context'
-'.platform-linux .github-panel-Reviews':
-  'ctrl-=': 'github-panel:more-context'
-  'ctrl--': 'github-panel:less-context'
+'.github-panel-Reviews':
+  'cmdorctrl-=': 'github-panel:more-context'
+  'cmdorctrl--': 'github-panel:less-context'
 
-'.platform-darwin .github-panel-Reviews atom-text-editor':
-  'cmd-enter': 'github-panel:submit-comment'
-'.platform-win32 .github-panel-Reviews atom-text-editor':
-  'ctrl-enter': 'github-panel:submit-comment'
-'.platform-linux .github-panel-Reviews atom-text-editor':
-  'ctrl-enter': 'github-panel:submit-comment'
+'.github-panel-Reviews atom-text-editor':
+  'cmdorctrl-enter': 'github-panel:submit-comment'
