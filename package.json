@@ -39,6 +39,11 @@
       "versions": {
         "^1.0.0": "consumeStatusBar"
       }
+    },
+    "github-panel.git-bridge": {
+      "versions": {
+        "^0.1.0": "consumeGitHubBridge"
+      }
     }
   },
   "configSchema": {
