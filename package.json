@@ -1,12 +1,23 @@
 {
   "name": "github-panel",
+  "author": "lumine-code",
   "main": "./lib/index",
-  "version": "1.1.0",
-  "description": "A GitHub integration panel",
-  "repository": "https://github.com/asiloisad/pulsar-github-panel",
+  "version": "2.0.0",
+  "description": "A GitHub integration panel for Lumine.",
+  "repository": "https://github.com/lumine-code/github-panel",
+  "bugs": {
+    "url": "https://github.com/lumine-code/github-panel/issues"
+  },
+  "homepage": "https://github.com/lumine-code/github-panel#readme",
   "license": "MIT",
   "engines": {
-    "atom": ">=1.132.0 <2.0.0"
+    "atom": "*",
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test spec/*.test.js",
+    "lint": "eslint .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "classnames": "2.5.1",
@@ -53,6 +64,7 @@
   },
   "devDependencies": {
     "eslint": "^8.57.1",
-    "eslint-plugin-react": "^7.37.5"
+    "eslint-plugin-react": "^7.37.5",
+    "prettier": "^3.9.5"
   }
 }

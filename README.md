@@ -1,8 +1,8 @@
 # github-panel
 
-A GitHub integration panel.
+A GitHub integration panel for Lumine.
 
-Fork of [github](https://github.com/pulsar-edit/github), but GitHub-specific features only (PRs, reviews, issues).
+Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package, keeping only the GitHub-forge features (pull requests, reviews, issues).
 
 ## Features
 
@@ -15,11 +15,7 @@ Fork of [github](https://github.com/pulsar-edit/github), but GitHub-specific fea
 
 ## Installation
 
-To install, search for [github-panel](https://web.pulsar-edit.dev/packages/github-panel) in the Install pane of the Pulsar settings or run `ppm install github-panel`. Alternatively, run `ppm install asiloisad/pulsar-github-panel` to install directly from the GitHub repository.
-
-Requires [git-panel](https://github.com/asiloisad/pulsar-git-panel).
-
-**Note**: This package automatically disables the built-in `github` package to avoid conflicts.
+`github-panel` is delivered as a bundled Lumine package and does not need to be installed separately. It requires the [git-panel](https://github.com/lumine-code/git-panel) package for Git operations.
 
 ## Commands
 
