@@ -45,6 +45,13 @@
     }
   },
   "configSchema": {
+    "oauthClientId": {
+      "order": 0,
+      "type": "string",
+      "default": "",
+      "title": "GitHub OAuth Client ID",
+      "description": "Client ID of a GitHub OAuth App (with Device Flow enabled) used for browser sign-in. Leave blank to sign in with a personal access token instead."
+    },
     "openGitHubTabOnStart": {
       "order": 1,
       "type": "boolean",
