@@ -8,7 +8,8 @@
 
 // Reviews  ----------------------------------------------
 
-.github-panel-Reviews, .github-panel-StubItem-github-panel-reviews {
+.github-panel-Reviews,
+.github-panel-StubItem-github-panel-reviews {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -16,7 +17,7 @@
   height: 100%;
 
   atom-text-editor {
-    padding: (@component-padding/2);
+    padding: (@component-padding / 2);
     border-top: 1px solid @base-border-color;
     border-bottom: 1px solid @base-border-color;
     border-radius: @component-border-radius;
@@ -39,7 +40,9 @@
 
     .icon.refreshing::before {
       @keyframes github-panel-Reviews-refreshButtonAnimation {
-        100% { transform: rotate(360deg); }
+        100% {
+          transform: rotate(360deg);
+        }
       }
       animation: github-panel-Reviews-refreshButtonAnimation 2s linear 30; // limit to 1min in case something gets stuck
     }
@@ -172,7 +175,7 @@
     display: flex;
   }
 
-  &-icon  {
+  &-icon {
     vertical-align: -3px;
     &.icon-check {
       color: @text-color-success;
@@ -186,7 +189,7 @@
   }
 
   &-avatar {
-    margin-right: .5em;
+    margin-right: 0.5em;
     width: @avatar-size;
     height: @avatar-size;
     border-radius: @component-border-radius;
@@ -194,7 +197,7 @@
   }
 
   &-username {
-    margin-right: .3em;
+    margin-right: 0.3em;
     font-weight: 500;
   }
 
@@ -209,14 +212,13 @@
 
   &-comment {
     position: relative;
-    margin-top: (@component-padding/2);
+    margin-top: (@component-padding / 2);
     margin-left: 7px;
     padding-left: 12px;
     font-size: @font-size-body;
     border-left: 2px solid @base-border-color;
   }
 }
-
 
 // Review Comments  ----------------------------------------------
 
@@ -226,7 +228,9 @@
   border-radius: @component-border-radius;
   background-color: @background-color;
   box-shadow: 0;
-  transition: border-color 0.5s, box-shadow 0.5s;
+  transition:
+    border-color 0.5s,
+    box-shadow 0.5s;
 
   & + & {
     margin-top: @component-padding;
@@ -247,7 +251,7 @@
     cursor: default;
 
     &::-webkit-details-marker {
-      margin-right: (@component-padding/1.5);
+      margin-right: (@component-padding / 1.5);
     }
 
     .resolved & {
@@ -265,7 +269,7 @@
 
   &-file {
     color: @text-color;
-    margin-right: (@component-padding/2);
+    margin-right: (@component-padding / 2);
     font-weight: 500;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -275,12 +279,12 @@
 
   &-lineNr {
     color: @text-color-subtle;
-    margin-right: (@component-padding/2);
+    margin-right: (@component-padding / 2);
   }
 
   &-referenceAvatar {
     margin-left: auto;
-    margin-right: (@component-padding/2);
+    margin-right: (@component-padding / 2);
     width: @avatar-size;
     height: @avatar-size;
     border-radius: @component-border-radius;
@@ -293,7 +297,7 @@
 
   &-referenceTimeAgo {
     color: @text-color-subtle;
-    margin-right: (@component-padding/2);
+    margin-right: (@component-padding / 2);
     .github-panel-Review[open] & {
       display: none;
     }
@@ -337,11 +341,10 @@
     }
   }
 
-
   // Diff ------------------
 
   &-diffLine {
-    padding: 0 (@component-padding/2);
+    padding: 0 (@component-padding / 2);
     line-height: 1.75;
 
     &:last-child {
@@ -350,7 +353,7 @@
 
     &::before {
       content: " ";
-      margin-right: .5em;
+      margin-right: 0.5em;
     }
 
     &.is-added {
@@ -370,9 +373,8 @@
   }
 
   &-diffLineIcon {
-    margin-right: .5em;
+    margin-right: 0.5em;
   }
-
 
   // Comments ------------------
 
@@ -395,13 +397,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: (@component-padding/4);
+    margin-bottom: (@component-padding / 4);
   }
 
   &-avatar {
     position: absolute;
     left: @component-padding;
-    margin-right: .5em;
+    margin-right: 0.5em;
     width: @avatar-size;
     height: @avatar-size;
     border-radius: @component-border-radius;
@@ -409,17 +411,19 @@
   }
 
   &-username {
-    margin-right: .5em;
+    margin-right: 0.5em;
     font-weight: 500;
   }
 
-  &-timeAgo, &-actionsMenu, &-edited {
+  &-timeAgo,
+  &-actionsMenu,
+  &-edited {
     color: @text-color-subtle;
   }
 
   &-actionsMenu::before {
     margin-right: 0;
-    margin-left: (@component-padding/2);
+    margin-left: (@component-padding / 2);
   }
 
   &-pendingBadge {
@@ -430,7 +434,7 @@
     margin-left: @component-padding;
   }
 
-  &-text  {
+  &-text {
     font-size: @font-size-body;
 
     a {
@@ -438,7 +442,8 @@
     }
   }
 
-  &-reply, &-editable {
+  &-reply,
+  &-editable {
     margin-top: @component-padding;
 
     atom-text-editor {
@@ -461,19 +466,18 @@
   &-resolvedText {
     text-align: center;
     margin-bottom: @component-padding;
-    padding: 0 2*@component-padding;
+    padding: 0 2 * @component-padding;
   }
 
   &-editable-footer {
-    margin: (@component-padding/2) 0 @component-padding 0;
+    margin: (@component-padding / 2) 0 @component-padding 0;
     display: flex;
     justify-content: flex-end;
 
     .btn {
-      margin-left: (@component-padding/2);
+      margin-left: (@component-padding / 2);
     }
   }
-
 
   // Footer ------------------
 
@@ -493,5 +497,4 @@
       }
     }
   }
-
 }

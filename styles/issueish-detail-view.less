@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .github-panel-IssueishDetailView {
   position: absolute;
@@ -7,7 +7,6 @@
   bottom: 0;
   left: 0;
   background-color: @base-background-color;
-
 
   // Layout ------------------------
 
@@ -95,13 +94,15 @@
       display: block;
       width: 16px;
       height: 16px;
-      line-height: .9;
+      line-height: 0.9;
       margin-right: 0;
       text-align: center;
     }
     &.refreshing::before {
       @keyframes github-panel-IssueishDetailView-headerRefreshButtonAnimation {
-        100% { transform: rotate(360deg); }
+        100% {
+          transform: rotate(360deg);
+        }
       }
       animation: github-panel-IssueishDetailView-headerRefreshButtonAnimation 2s linear 30; // limit to 1min in case something gets stuck
     }
@@ -113,7 +114,6 @@
     border-radius: @component-border-radius;
   }
 
-
   // Meta ------------------------
 
   &-meta {
@@ -123,7 +123,6 @@
       color: inherit;
     }
   }
-
 
   // Footer ------------------------
 
@@ -153,7 +152,6 @@
     }
   }
 
-
   .github-panel-EmojiReactions {
     padding: 0 (@component-padding*2) @component-padding (@component-padding*2);
   }
@@ -171,7 +169,6 @@
     padding: (@component-padding*2);
   }
 
-
   // Issue Body ------------------------
 
   &-issueBody {
@@ -182,5 +179,4 @@
       padding: (@component-padding*2);
     }
   }
-
 }

@@ -1,10 +1,9 @@
-@import 'variables';
+@import "variables";
 
 @donut-size: 26px;
 @donut-stroke: 4px;
 
 .github-panel-PrStatuses {
-
   &-header {
     display: flex;
     align-items: center;
@@ -22,9 +21,9 @@
       height: @donut-size;
 
       circle {
-        cx: (@donut-size/2);
-        cy: (@donut-size/2);
-        r: (@donut-size/2 - @donut-stroke/2);
+        cx: (@donut-size / 2);
+        cy: (@donut-size / 2);
+        r: (@donut-size / 2 - @donut-stroke / 2);
         stroke-width: @donut-stroke;
       }
     }
@@ -46,7 +45,7 @@
   &-list-item {
     display: flex;
     flex-direction: row;
-    padding: (@component-padding/2) @component-padding;
+    padding: (@component-padding / 2) @component-padding;
     border: 1px solid @base-border-color;
     border-top: none;
 
@@ -62,7 +61,9 @@
       width: @donut-size;
       margin-right: @component-padding;
       text-align: center;
-      .icon::before { margin-right: 0; }
+      .icon::before {
+        margin-right: 0;
+      }
     }
 
     &-name {
@@ -75,7 +76,7 @@
       flex: 1;
       color: @text-color-subtle;
       strong {
-        margin-right: .5em;
+        margin-right: 0.5em;
         color: @text-color-highlight;
       }
     }
@@ -90,14 +91,13 @@
     }
 
     &-details-link {
-      margin-left: .5em;
+      margin-left: 0.5em;
       color: @text-color-info;
       a {
         color: @text-color-info;
       }
     }
   }
-
 
   // States --------------------
 

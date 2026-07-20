@@ -1,4 +1,3 @@
-
 @import "variables";
 
 // Loader
@@ -22,9 +21,10 @@
   font-size: 32px;
   color: @gh-background-color-purple;
 
-  .tooltip & { color: inherit; }
+  .tooltip & {
+    color: inherit;
+  }
 }
-
 
 // Spinner (can be used outside of github-panel-Loader too)
 
@@ -41,7 +41,7 @@
     width: inherit;
     height: inherit;
     content: "\f008";
-    font-family: 'Octicons Regular';
+    font-family: "Octicons Regular";
     font-weight: normal;
     font-style: normal;
     line-height: 2;
@@ -64,11 +64,14 @@
 
     // To limit CPU usage, the animation plays for some time at normal speed,
     // then slows down frame-rate for a while and stops at some point
-    animation: github-panel-Spinner-animation 4s linear 12,
-               github-panel-Spinner-animation 4s 48s steps(12) 100;
+    animation:
+      github-panel-Spinner-animation 4s linear 12,
+      github-panel-Spinner-animation 4s 48s steps(12) 100;
 
     @keyframes github-panel-Spinner-animation {
-      100% { transform: rotate(360deg); }
+      100% {
+        transform: rotate(360deg);
+      }
     }
   }
 }

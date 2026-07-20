@@ -4,7 +4,6 @@
 // Here ALL the overrides when a pane/panel gets used as a dock item
 // It's not too high of a priority, but still good to check (and fix) once in a while
 
-
 // Git Panel (in bottom dock) ----------------------------------------------
 
 atom-dock.bottom {
@@ -36,22 +35,21 @@ atom-dock.bottom {
     max-height: none;
     border-left: 1px solid @base-border-color;
   }
-
 }
-
 
 // GitHub Pane (in left/right dock) ----------------------------------------------
 
 atom-dock.left .github-panel-IssueishDetailView,
 atom-dock.right .github-panel-IssueishDetailView {
-
   // Header
   &-header {
     display: block;
     padding: @component-padding;
     background-color: @tool-panel-background-color;
   }
-  &-avatar { position: absolute; }
+  &-avatar {
+    position: absolute;
+  }
   &-avatarImage {
     width: 20px;
     height: 20px;
@@ -69,15 +67,19 @@ atom-dock.right .github-panel-IssueishDetailView {
     margin: @component-padding 0 0 0;
   }
 
-
-  &-tablist   { flex-wrap: wrap; }
-  &-tab       { padding: (@component-padding/2) @component-padding; }
-  &-tab-icon  { display: none; }
-
+  &-tablist {
+    flex-wrap: wrap;
+  }
+  &-tab {
+    padding: (@component-padding / 2) @component-padding;
+  }
+  &-tab-icon {
+    display: none;
+  }
 
   // [Overview]
   &-overview {
-    font-size: .9em;
+    font-size: 0.9em;
 
     & > .github-panel-DotComMarkdownHtml,
     .timeline-item {
@@ -85,11 +87,14 @@ atom-dock.right .github-panel-IssueishDetailView {
     }
   }
 
-
   // [Build Status]
-  &-buildStatus { padding: 0; }
+  &-buildStatus {
+    padding: 0;
+  }
   .github-panel-PrStatuses {
-    &-header { border-top: none; }
+    &-header {
+      border-top: none;
+    }
     &-header,
     &-list-item {
       border-radius: 0;
@@ -98,13 +103,12 @@ atom-dock.right .github-panel-IssueishDetailView {
     }
   }
 
-
   // [Commits]
   .github-panel-PrCommitsView-commitWrapper {
     padding: 0;
   }
   .github-panel-PrCommitView-container {
-    font-size: .9em;
+    font-size: 0.9em;
     border-left: none;
     border-right: none;
 
@@ -117,16 +121,22 @@ atom-dock.right .github-panel-IssueishDetailView {
       border-radius: 0;
     }
   }
-
 }
-
 
 // Commit Detail (in left/right dock) ----------------------------------------------
 
 atom-dock.left .github-panel-CommitDetailView,
 atom-dock.right .github-panel-CommitDetailView {
-  &-header { background-color: @tool-panel-background-color; }
-  &-commit { padding: @component-padding @component-padding 0 @component-padding; }
-  &-meta { margin-bottom: @component-padding; }
-  &-moreText { padding: @component-padding 0; }
+  &-header {
+    background-color: @tool-panel-background-color;
+  }
+  &-commit {
+    padding: @component-padding @component-padding 0 @component-padding;
+  }
+  &-meta {
+    margin-bottom: @component-padding;
+  }
+  &-moreText {
+    padding: @component-padding 0;
+  }
 }

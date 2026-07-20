@@ -19,7 +19,7 @@
     }
 
     &--number {
-      font-size: .9em;
+      font-size: 0.9em;
       color: @text-color-subtle;
     }
 
@@ -45,8 +45,8 @@
         width: @size;
 
         circle {
-          cx: (@size/2);
-          cy: (@size/2);
+          cx: (@size / 2);
+          cy: (@size / 2);
           r: 5.5;
           stroke-width: 3;
         }
@@ -55,7 +55,7 @@
 
     &--age {
       color: @text-color-subtle;
-      font-size: .9em;
+      font-size: 0.9em;
 
       // Better balance for 3 characters (10M)
       margin-left: 0;
@@ -67,7 +67,6 @@
       color: @text-color-subtle;
       line-height: 1;
     }
-
   }
 
   &-more {
@@ -108,7 +107,7 @@
     }
   }
   &-divider {
-    margin: (@component-padding/1.25) 20%;
+    margin: (@component-padding / 1.25) 20%;
     border-color: @base-border-color;
   }
   &-createPr {
@@ -124,7 +123,7 @@
   &-messages {
     display: flex;
     flex-direction: column;
-    flex-grow: 1
+    flex-grow: 1;
   }
 
   .icon-alert {

@@ -1,13 +1,11 @@
-@import 'variables';
+@import "variables";
 
 @avatar-size: 16px;
 @avatar-spacing: 6px;
 
-
 .github-panel-PrCommentThread {
   padding: @component-padding @component-padding @component-padding 0;
 }
-
 
 .github-panel-PrComment {
   max-width: 60em;
@@ -58,26 +56,53 @@
     vertical-align: middle;
   }
 
-
   // Suggested changes
   .js-suggested-changes-blob {
-    font-size: .9em;
+    font-size: 0.9em;
     border: 1px solid @base-border-color;
     border-radius: @component-border-radius;
 
-    .d-flex { display: flex; }
-    .d-inline-block { display: inline-block; }
-    .flex-auto { flex: 1 1 auto; }
-    .p-1 { padding: (@component-padding/2); }
-    .px-1 { padding-left: (@component-padding/2); padding-right: (@component-padding/2); }
-    .p-2 { padding: @component-padding; }
-    .text-gray { color: @text-color-subtle; }
-    .lh-condensed { line-height: 1.25; }
-    .rounded-1 { border-radius: @component-border-radius; }
-    .border { border: 1px solid; }
-    .border-bottom { border-bottom: 1px solid @base-border-color; }
-    .border-green { border-color: @text-color-success; }
-    .octicon { vertical-align: -4px; fill: currentColor; }
+    .d-flex {
+      display: flex;
+    }
+    .d-inline-block {
+      display: inline-block;
+    }
+    .flex-auto {
+      flex: 1 1 auto;
+    }
+    .p-1 {
+      padding: (@component-padding / 2);
+    }
+    .px-1 {
+      padding-left: (@component-padding / 2);
+      padding-right: (@component-padding / 2);
+    }
+    .p-2 {
+      padding: @component-padding;
+    }
+    .text-gray {
+      color: @text-color-subtle;
+    }
+    .lh-condensed {
+      line-height: 1.25;
+    }
+    .rounded-1 {
+      border-radius: @component-border-radius;
+    }
+    .border {
+      border: 1px solid;
+    }
+    .border-bottom {
+      border-bottom: 1px solid @base-border-color;
+    }
+    .border-green {
+      border-color: @text-color-success;
+    }
+    .octicon {
+      vertical-align: -4px;
+      fill: currentColor;
+    }
 
     .blob-wrapper > table {
       width: 100%;
@@ -88,12 +113,12 @@
 
       td {
         border: none;
-        padding: 0 .5em;
+        padding: 0 0.5em;
       }
     }
 
     .blob-num {
-      padding: 0 .5em;
+      padding: 0 0.5em;
       color: @text-color-subtle;
       &:before {
         content: attr(data-line-number);
@@ -108,7 +133,9 @@
 
     .blob-code {
       &-inner {
-        &:before { margin-right: .5em; }
+        &:before {
+          margin-right: 0.5em;
+        }
         .x {
           &-first {
             border-bottom-left-radius: @component-border-radius;
@@ -123,7 +150,9 @@
 
       &-addition {
         background-color: @github-panel-diff-added;
-        &:before { content: "+"; }
+        &:before {
+          content: "+";
+        }
         .x {
           background-color: @github-panel-diff-added-highlight;
         }
@@ -131,7 +160,9 @@
 
       &-deletion {
         background-color: @github-panel-diff-deleted;
-        &:before { content: "-"; }
+        &:before {
+          content: "-";
+        }
         .x {
           background-color: @github-panel-diff-deleted-highlight;
         }
@@ -149,7 +180,7 @@
         display: none;
         width: max-content;
         max-width: 22em;
-        padding: .5em .6em;
+        padding: 0.5em 0.6em;
         font-weight: 500;
         color: @base-background-color;
         text-align: center;
@@ -202,7 +233,5 @@
         transform: translateX(50%);
       }
     }
-
   }
-
 }

@@ -5,7 +5,6 @@
 @margin: 1em;
 
 .github-panel-DotComMarkdownHtml {
-
   font-size: 1.15em;
   line-height: 1.5;
 
@@ -18,26 +17,48 @@
 
   // Headings --------------------
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     line-height: 1.2;
     margin-top: @margin;
-    margin-bottom: (@margin/3);
+    margin-bottom: (@margin / 3);
     color: @text-color-highlight;
   }
 
-  h1 { font-size: 1.5em; font-weight: 400; }
-  h2 { font-size: 1.3em; font-weight: 400; }
-  h3 { font-size: 1.2em; font-weight: 500; }
-  h4 { font-size: 1.1em; font-weight: 600; }
-  h5 { font-size: 1em;   font-weight: 600; }
-  h6 { font-size: .9em;  font-weight: 600; }
-
+  h1 {
+    font-size: 1.5em;
+    font-weight: 400;
+  }
   h2 {
-    padding-bottom: .25em;
-    margin-bottom: (@margin/2);
-    border-bottom: 1px solid @base-border-color;
+    font-size: 1.3em;
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+  h4 {
+    font-size: 1.1em;
+    font-weight: 600;
+  }
+  h5 {
+    font-size: 1em;
+    font-weight: 600;
+  }
+  h6 {
+    font-size: 0.9em;
+    font-weight: 600;
   }
 
+  h2 {
+    padding-bottom: 0.25em;
+    margin-bottom: (@margin / 2);
+    border-bottom: 1px solid @base-border-color;
+  }
 
   // Emphasis --------------------
 
@@ -49,7 +70,6 @@
     color: @text-color-subtle;
   }
 
-
   // Link --------------------
 
   a,
@@ -57,13 +77,11 @@
     color: @text-color-info;
   }
 
-
   // Images --------------------
 
   img {
     max-width: 100%;
   }
-
 
   // Paragraph --------------------
 
@@ -71,7 +89,6 @@
     margin-top: 0;
     margin-bottom: @margin;
   }
-
 
   // List --------------------
 
@@ -83,8 +100,8 @@
 
   li {
     // font-size: .9em;
-    padding-top: .1em;
-    padding-bottom: .1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
 
     li {
       font-size: 1em;
@@ -105,13 +122,12 @@
 
   blockquote {
     margin: @margin 0;
-    padding: .25em 1em;
+    padding: 0.25em 1em;
     font-size: inherit;
     color: @text-color-subtle;
     border-color: @base-border-color;
     border-width: 3px;
   }
-
 
   // HR --------------------
 
@@ -120,7 +136,6 @@
     border-top: 1px solid @base-border-color;
     background: none;
   }
-
 
   // Table --------------------
 
@@ -134,10 +149,9 @@
 
   th,
   td {
-    padding: .66em 1em;
+    padding: 0.66em 1em;
     border: 1px solid @base-border-color;
   }
-
 
   // Code --------------------
 
@@ -145,7 +159,6 @@
   code {
     color: @text-color-highlight;
     background-color: @background-color-highlight;
-
   }
 
   pre {
@@ -163,7 +176,6 @@
     }
   }
 
-
   // KBD --------------------
 
   kbd {
@@ -179,10 +191,10 @@
     color: @text-color-subtle; // same as .cross-referenced-event-label-number
   }
 
-  .js-suggested-changes-blob { // gets used for suggested changes
+  .js-suggested-changes-blob {
+    // gets used for suggested changes
     margin: @margin 0;
   }
-
 }
 
 .github-panel-EmojiReactions {

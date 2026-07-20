@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .react-tabs {
   flex: 1;
@@ -12,7 +12,7 @@
 }
 
 .github-panel-tab {
-  padding: (@component-padding/2) (@component-padding*1.5);
+  padding: (@component-padding / 2) (@component-padding*1.5);
   text-align: center;
   font-weight: 600;
   color: mix(@text-color, @app-background-color, 75%);
@@ -34,7 +34,7 @@
     color: mix(@text-color, @app-background-color, 33%);
     vertical-align: middle;
     &:before {
-      margin-right: .4em;
+      margin-right: 0.4em;
     }
   }
 
@@ -42,10 +42,9 @@
     display: inline-block;
     background-color: mix(@text-color-subtle, @app-background-color, 20%);
     border-radius: @component-border-radius;
-    padding: 0 .25em;
-    margin-left: (@component-padding/2);
+    padding: 0 0.25em;
+    margin-left: (@component-padding / 2);
   }
-
 
   // Selected tab
   &.react-tabs__tab--selected {
