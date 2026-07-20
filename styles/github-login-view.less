@@ -43,5 +43,27 @@
         margin-bottom: @component-padding;
       }
     }
+
+    .github-panel-GithubLoginView-tokenLink {
+      color: @text-color-info;
+      cursor: pointer;
+    }
+
+    .github-panel-GithubLoginView-device {
+      > p {
+        margin: @component-padding 0;
+      }
+
+      .github-panel-GithubLoginView-userCode {
+        margin: (@component-padding * 2) 0;
+
+        code {
+          display: block;
+          font-size: 1.2em;
+          letter-spacing: 0.15em;
+          margin-bottom: @component-padding;
+        }
+      }
+    }
   }
 }
