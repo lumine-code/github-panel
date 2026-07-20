@@ -1,4 +1,5 @@
 **/__generated__/**
+lib/graphql/queries.js
 node_modules
 test/fixtures
 test/output

@@ -3,3 +3,4 @@
 !/test/fixtures/props/**
 /test/output/transpiled/**/*
 **/__generated__/**
+lib/graphql/queries.js
