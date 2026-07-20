@@ -2,12 +2,17 @@
 
 .react-tabs {
   flex: 1;
+  // Allow this flex child to shrink below its content height; without it the
+  // default `min-height: auto` lets the tab body grow past the container so the
+  // selected panel's `overflow: auto` never gets a bounded height to scroll in.
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
 .react-tabs__tab-panel--selected {
   flex: 1;
+  min-height: 0;
   overflow: auto;
 }
 
