@@ -5,6 +5,7 @@ import {
   pollForAccessToken,
   DeviceFlowError,
   getClientId,
+  DEFAULT_OAUTH_CLIENT_ID,
 } from "../lib/models/github-device-flow";
 
 const endpoint = { getWebRoot: () => "https://github.com" };
@@ -83,8 +84,8 @@ describe("github device flow", () => {
     expect(message).toMatch(/denied/i);
   });
 
-  it("resolves the client id from config, or null when unset", () => {
-    expect(getClientId()).toBe(null);
+  it("resolves the client id from config, falling back to the built-in default", () => {
+    expect(getClientId()).toBe(DEFAULT_OAUTH_CLIENT_ID);
     atom.config.set("github-panel.oauthClientId", "cfg-id");
     try {
       expect(getClientId()).toBe("cfg-id");
