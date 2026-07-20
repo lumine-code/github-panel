@@ -26,7 +26,8 @@ Commands available in `.workspace`:
 - `github-panel:open-issue-or-pull-request`: open an issue or PR by URL,
 - `github-panel:create-repository`: create a new GitHub repository,
 - `github-panel:publish-repository`: publish a local repository to GitHub,
-- `github-panel:logout`: remove stored GitHub token.
+- `github-panel:logout`: remove stored GitHub token,
+- `github-panel:show-rate-limit`: show the current GitHub API rate limit in a notification.
 
 Commands available in `.github-panel-Reviews`:
 
