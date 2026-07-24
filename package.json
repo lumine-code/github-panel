@@ -15,7 +15,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "cd ../lumine && yarn test:only ../github-panel/spec",
+    "test": "cd ../lumine && npm run test:only -- ../github-panel/spec",
     "lint": "eslint .",
     "format:check": "prettier --check ."
   },
