@@ -49,19 +49,16 @@
       "title": "GitHub OAuth Client ID",
       "description": "Client ID of a GitHub OAuth App (with Device Flow enabled) used for browser sign-in. Leave blank to sign in with a personal access token instead.",
       "type": "string",
-      "order": 0,
       "default": ""
     },
     "openGitHubTabOnStart": {
       "description": "Automatically open the GitHub tab when the editor starts",
       "type": "boolean",
-      "order": 1,
       "default": false
     },
     "debug": {
       "description": "Log additional debug information to the console, including caught errors and diagnostics",
       "type": "boolean",
-      "order": 2,
       "default": false
     }
   },
