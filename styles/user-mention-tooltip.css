@@ -1,0 +1,34 @@
+.github-panel-UserMentionTooltip {
+  display: flex;
+}
+.github-panel-UserMentionTooltip-avatar {
+  margin: calc(var(--component-padding) / 2);
+}
+.github-panel-UserMentionTooltip-avatar > img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-UserMentionTooltip-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: calc(var(--component-padding) / 2) var(--component-padding);
+  font-size: var(--font-size);
+  line-height: 20px;
+  text-align: left;
+}
+.github-panel-UserMentionTooltip-info > div {
+  white-space: nowrap;
+}
+.github-panel-UserMentionTooltip-info .icon {
+  color: var(--text-color-subtle);
+  vertical-align: middle;
+}
+.github-panel-UserMentionTooltip-info-username {
+  font-size: 1.2em;
+}
+.github-panel-UserMentionTooltip-info-username strong {
+  font-weight: 600;
+}

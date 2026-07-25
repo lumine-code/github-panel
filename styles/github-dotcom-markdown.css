@@ -1,0 +1,150 @@
+/* This styles Markdown used in issueish panes. */
+.github-panel-DotComMarkdownHtml {
+  font-size: 1.15em;
+  line-height: 1.5;
+}
+.github-panel-DotComMarkdownHtml > *:first-child {
+  margin-top: 0;
+}
+.github-panel-DotComMarkdownHtml > *:last-child {
+  margin-bottom: 0;
+}
+.github-panel-DotComMarkdownHtml h1,
+.github-panel-DotComMarkdownHtml h2,
+.github-panel-DotComMarkdownHtml h3,
+.github-panel-DotComMarkdownHtml h4,
+.github-panel-DotComMarkdownHtml h5,
+.github-panel-DotComMarkdownHtml h6 {
+  line-height: 1.2;
+  margin-top: 1em;
+  margin-bottom: calc(1em / 3);
+  color: var(--text-color-highlight);
+}
+.github-panel-DotComMarkdownHtml h1 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+.github-panel-DotComMarkdownHtml h2 {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.github-panel-DotComMarkdownHtml h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.github-panel-DotComMarkdownHtml h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.github-panel-DotComMarkdownHtml h5 {
+  font-size: 1em;
+  font-weight: 600;
+}
+.github-panel-DotComMarkdownHtml h6 {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+.github-panel-DotComMarkdownHtml h2 {
+  padding-bottom: 0.25em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-DotComMarkdownHtml strong {
+  color: var(--text-color-highlight);
+}
+.github-panel-DotComMarkdownHtml del {
+  color: var(--text-color-subtle);
+}
+.github-panel-DotComMarkdownHtml a,
+.github-panel-DotComMarkdownHtml a code {
+  color: var(--text-color-info);
+}
+.github-panel-DotComMarkdownHtml img {
+  max-width: 100%;
+}
+.github-panel-DotComMarkdownHtml > p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+.github-panel-DotComMarkdownHtml > ul,
+.github-panel-DotComMarkdownHtml > ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+.github-panel-DotComMarkdownHtml li {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+.github-panel-DotComMarkdownHtml li li {
+  font-size: 1em;
+}
+.github-panel-DotComMarkdownHtml .task-list-item {
+  position: relative;
+  /* indent task lists */
+  list-style: none;
+}
+.github-panel-DotComMarkdownHtml .task-list-item .task-list-item-checkbox {
+  position: absolute;
+  margin-left: -20px;
+}
+.github-panel-DotComMarkdownHtml blockquote {
+  margin: 1em 0;
+  padding: 0.25em 1em;
+  font-size: inherit;
+  color: var(--text-color-subtle);
+  border-color: var(--base-border-color);
+  border-width: 3px;
+}
+.github-panel-DotComMarkdownHtml hr {
+  margin: 1.5em 25%;
+  border-top: 1px solid var(--base-border-color);
+  background: none;
+}
+.github-panel-DotComMarkdownHtml table {
+  margin: 1em 0;
+}
+.github-panel-DotComMarkdownHtml th {
+  color: var(--text-color-highlight);
+}
+.github-panel-DotComMarkdownHtml th,
+.github-panel-DotComMarkdownHtml td {
+  padding: 0.66em 1em;
+  border: 1px solid var(--base-border-color);
+}
+.github-panel-DotComMarkdownHtml pre,
+.github-panel-DotComMarkdownHtml code {
+  color: var(--text-color-highlight);
+  background-color: var(--background-color-highlight);
+}
+.github-panel-DotComMarkdownHtml pre {
+  margin: 1em 0;
+}
+.github-panel-DotComMarkdownHtml pre > code {
+  white-space: pre;
+}
+.github-panel-DotComMarkdownHtml .highlight {
+  margin: 1em 0;
+}
+.github-panel-DotComMarkdownHtml .highlight pre {
+  margin: 0;
+}
+.github-panel-DotComMarkdownHtml kbd {
+  color: var(--text-color-highlight);
+  border: 1px solid var(--base-border-color);
+  border-bottom: 2px solid hsl(from var(--base-border-color) h s calc(l - 6));
+  background-color: var(--background-color-highlight);
+}
+.github-panel-DotComMarkdownHtml .issue-link {
+  color: var(--text-color-subtle);
+  /* same as .cross-referenced-event-label-number */
+}
+.github-panel-DotComMarkdownHtml .js-suggested-changes-blob {
+  /* gets used for suggested changes */
+  margin: 1em 0;
+}
+.github-panel-EmojiReactions:empty {
+  display: none;
+}
+.github-panel-EmojiReactionsGroup {
+  margin-right: calc(var(--component-padding) * 2);
+}

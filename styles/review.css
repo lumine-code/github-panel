@@ -1,0 +1,442 @@
+.github-panel-Reviews,
+.github-panel-StubItem-github-panel-reviews {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  height: 100%;
+}
+.github-panel-Reviews atom-text-editor,
+.github-panel-StubItem-github-panel-reviews atom-text-editor {
+  padding: calc(var(--component-padding) / 2);
+  border-top: 1px solid var(--base-border-color);
+  border-bottom: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+}
+.github-panel-Reviews-topHeader,
+.github-panel-StubItem-github-panel-reviews-topHeader {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--component-padding);
+  font-weight: 600;
+  border-bottom: 1px solid var(--panel-heading-border-color);
+  cursor: default;
+  color: var(--text-color-subtle);
+}
+.github-panel-Reviews-topHeader .icon:before,
+.github-panel-StubItem-github-panel-reviews-topHeader .icon:before {
+  margin-right: calc(var(--component-padding) / 1.2);
+}
+.github-panel-Reviews-topHeader .icon.refreshing::before,
+.github-panel-StubItem-github-panel-reviews-topHeader .icon.refreshing::before {
+  animation: github-panel-Reviews-refreshButtonAnimation 2s linear 30;
+  /* limit to 1min in case something gets stuck */
+}
+@keyframes github-panel-Reviews-refreshButtonAnimation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.github-panel-Reviews-headerTitle,
+.github-panel-StubItem-github-panel-reviews-headerTitle {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.github-panel-Reviews-clickable,
+.github-panel-StubItem-github-panel-reviews-clickable {
+  cursor: pointer;
+  font-weight: 400;
+}
+.github-panel-Reviews-clickable:hover,
+.github-panel-StubItem-github-panel-reviews-clickable:hover {
+  color: var(--text-color-highlight);
+  text-decoration: underline;
+}
+.github-panel-Reviews-clickable.icon:hover:before,
+.github-panel-StubItem-github-panel-reviews-clickable.icon:hover:before {
+  color: var(--text-color-highlight);
+}
+.github-panel-Reviews-headerButton,
+.github-panel-StubItem-github-panel-reviews-headerButton {
+  height: 3em;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  background: none;
+}
+.github-panel-Reviews-list,
+.github-panel-StubItem-github-panel-reviews-list {
+  flex: 1 1 0;
+  overflow: auto;
+}
+.github-panel-Reviews-section,
+.github-panel-StubItem-github-panel-reviews-section {
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Reviews-section.resolved-comments,
+.github-panel-StubItem-github-panel-reviews-section.resolved-comments {
+  border-bottom: 0;
+  padding-left: var(--component-padding);
+}
+.github-panel-Reviews-section.resolved-comments .github-panel-Reviews-title,
+.github-panel-StubItem-github-panel-reviews-section.resolved-comments .github-panel-Reviews-title {
+  color: var(--text-color-subtle);
+}
+.github-panel-Reviews-section.resolved-comments .github-panel-Reviews-header,
+.github-panel-StubItem-github-panel-reviews-section.resolved-comments .github-panel-Reviews-header {
+  color: var(--text-color-subtle);
+  padding-top: calc(var(--component-padding) * 0.5);
+}
+.github-panel-Reviews-header,
+.github-panel-StubItem-github-panel-reviews-header {
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  cursor: default;
+}
+.github-panel-Reviews-title,
+.github-panel-StubItem-github-panel-reviews-title {
+  flex: 1;
+  font-size: 1em;
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-color-highlight);
+}
+.github-panel-Reviews-count,
+.github-panel-StubItem-github-panel-reviews-count {
+  color: var(--text-color-subtle);
+}
+.github-panel-Reviews-countNr,
+.github-panel-StubItem-github-panel-reviews-countNr {
+  color: var(--text-color-highlight);
+}
+.github-panel-Reviews-progessBar,
+.github-panel-StubItem-github-panel-reviews-progessBar {
+  width: 5em;
+  margin-left: var(--component-padding);
+}
+.github-panel-Reviews-container,
+.github-panel-StubItem-github-panel-reviews-container {
+  font-size: var(--font-size);
+  padding: var(--component-padding);
+  padding-top: 0;
+}
+.github-panel-Reviews .github-panel-EmojiReactions,
+.github-panel-StubItem-github-panel-reviews .github-panel-EmojiReactions {
+  padding: var(--component-padding) 0 0;
+}
+.github-panel-Reviews-emptyImg,
+.github-panel-StubItem-github-panel-reviews-emptyImg {
+  padding: 1em;
+}
+.github-panel-Reviews-emptyText,
+.github-panel-StubItem-github-panel-reviews-emptyText {
+  font-size: 1.5em;
+  text-align: center;
+}
+.github-panel-Reviews-emptyCallToActionButton,
+.github-panel-StubItem-github-panel-reviews-emptyCallToActionButton {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  display: block;
+}
+.github-panel-Reviews-emptyCallToActionButton a:hover,
+.github-panel-StubItem-github-panel-reviews-emptyCallToActionButton a:hover {
+  text-decoration: none;
+}
+.github-panel-ReviewSummary {
+  padding: var(--component-padding);
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  background-color: color-mix(
+    in srgb,
+    var(--base-background-color) 66%,
+    var(--tool-panel-background-color)
+  );
+}
+.github-panel-ReviewSummary + .github-panel-ReviewSummary {
+  margin-top: var(--component-padding);
+}
+.github-panel-ReviewSummary-header {
+  display: flex;
+}
+.github-panel-ReviewSummary-icon {
+  vertical-align: -3px;
+}
+.github-panel-ReviewSummary-icon.icon-check {
+  color: var(--text-color-success);
+}
+.github-panel-ReviewSummary-icon.icon-alert {
+  color: var(--text-color-warning);
+}
+.github-panel-ReviewSummary-icon.icon-comment {
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewSummary-avatar {
+  margin-right: 0.5em;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--component-border-radius);
+  image-rendering: -webkit-optimize-contrast;
+}
+.github-panel-ReviewSummary-username {
+  margin-right: 0.3em;
+  font-weight: 500;
+}
+.github-panel-ReviewSummary-type {
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewSummary-timeAgo {
+  margin-left: auto;
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewSummary-comment {
+  position: relative;
+  margin-top: calc(var(--component-padding) / 2);
+  margin-left: 7px;
+  padding-left: 12px;
+  font-size: calc(var(--font-size) - 1px);
+  border-left: 2px solid var(--base-border-color);
+}
+.github-panel-Review {
+  position: relative;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  background-color: color-mix(
+    in srgb,
+    var(--base-background-color) 66%,
+    var(--tool-panel-background-color)
+  );
+  box-shadow: 0;
+  transition:
+    border-color 0.5s,
+    box-shadow 0.5s;
+}
+.github-panel-Review + .github-panel-Review {
+  margin-top: var(--component-padding);
+}
+.github-panel-Review--highlight {
+  border-color: var(--button-background-color-selected);
+  box-shadow: 0 0 5px var(--button-background-color-selected);
+}
+.github-panel-Review-reference {
+  display: flex;
+  align-items: center;
+  padding-left: var(--component-padding);
+  height: 2.5em;
+  cursor: default;
+}
+.github-panel-Review-reference::-webkit-details-marker {
+  margin-right: calc(var(--component-padding) / 1.5);
+}
+.resolved .github-panel-Review-reference {
+  opacity: 0.5;
+}
+.github-panel-Review-path {
+  color: var(--text-color-subtle);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+}
+.github-panel-Review-file {
+  color: var(--text-color);
+  margin-right: calc(var(--component-padding) / 2);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+}
+.github-panel-Review-lineNr {
+  color: var(--text-color-subtle);
+  margin-right: calc(var(--component-padding) / 2);
+}
+.github-panel-Review-referenceAvatar {
+  margin-left: auto;
+  margin-right: calc(var(--component-padding) / 2);
+  width: 16px;
+  height: 16px;
+  border-radius: var(--component-border-radius);
+  image-rendering: -webkit-optimize-contrast;
+}
+.github-panel-Review[open] .github-panel-Review-referenceAvatar {
+  display: none;
+}
+.github-panel-Review-referenceTimeAgo {
+  color: var(--text-color-subtle);
+  margin-right: calc(var(--component-padding) / 2);
+}
+.github-panel-Review[open] .github-panel-Review-referenceTimeAgo {
+  display: none;
+}
+.github-panel-Review-nav {
+  display: none;
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-Review[open] .github-panel-Review-nav {
+  display: flex;
+}
+.github-panel-Review-navButton {
+  height: 2.5em;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: default;
+  flex-basis: 50%;
+}
+.github-panel-Review-navButton.outdated {
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Review-navButton:last-child {
+  border-left: 1px solid var(--base-border-color);
+}
+.github-panel-Review-navButton:hover {
+  background-color: var(--background-color-highlight);
+}
+.github-panel-Review-navButton:active {
+  background-color: var(--background-color-selected);
+}
+.github-panel-Review-navButton[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.github-panel-Review-navButton[disabled]:hover {
+  background-color: transparent;
+}
+.github-panel-Review-diffLine {
+  padding: 0 calc(var(--component-padding) / 2);
+  line-height: 1.75;
+}
+.github-panel-Review-diffLine:last-child {
+  font-weight: 500;
+}
+.github-panel-Review-diffLine::before {
+  content: " ";
+  margin-right: 0.5em;
+}
+.github-panel-Review-diffLine.is-added {
+  color: color-mix(in srgb, var(--text-color-success) 25%, var(--text-color-highlight));
+  background-color: color-mix(
+    in srgb,
+    var(--background-color-success) 20%,
+    var(--base-background-color)
+  );
+}
+.github-panel-Review-diffLine.is-added::before {
+  content: "+";
+}
+.github-panel-Review-diffLine.is-deleted {
+  color: color-mix(in srgb, var(--text-color-error) 25%, var(--text-color-highlight));
+  background-color: color-mix(
+    in srgb,
+    var(--background-color-error) 20%,
+    var(--base-background-color)
+  );
+}
+.github-panel-Review-diffLine.is-deleted::before {
+  content: "-";
+}
+.github-panel-Review-diffLineIcon {
+  margin-right: 0.5em;
+}
+.github-panel-Review-comments {
+  padding: var(--component-padding);
+  /* space for avatar */
+  padding-left: calc(var(--component-padding) + 21px);
+}
+.github-panel-Review-comment {
+  margin-bottom: calc(var(--component-padding) * 1.5);
+}
+.github-panel-Review-comment--hidden {
+  color: var(--text-color-subtle);
+  display: flex;
+  align-items: center;
+}
+.github-panel-Review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: calc(var(--component-padding) / 4);
+}
+.github-panel-Review-avatar {
+  position: absolute;
+  left: var(--component-padding);
+  margin-right: 0.5em;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--component-border-radius);
+  image-rendering: -webkit-optimize-contrast;
+}
+.github-panel-Review-username {
+  margin-right: 0.5em;
+  font-weight: 500;
+}
+.github-panel-Review-timeAgo,
+.github-panel-Review-actionsMenu,
+.github-panel-Review-edited {
+  color: var(--text-color-subtle);
+}
+.github-panel-Review-actionsMenu::before {
+  margin-right: 0;
+  margin-left: calc(var(--component-padding) / 2);
+}
+.github-panel-Review-pendingBadge {
+  margin-left: var(--component-padding);
+}
+.github-panel-Review-authorAssociationBadge {
+  margin-left: var(--component-padding);
+}
+.github-panel-Review-text {
+  font-size: calc(var(--font-size) - 1px);
+}
+.github-panel-Review-text a {
+  font-weight: 500;
+}
+.github-panel-Review-reply,
+.github-panel-Review-editable {
+  margin-top: var(--component-padding);
+}
+.github-panel-Review-reply atom-text-editor,
+.github-panel-Review-editable atom-text-editor {
+  width: 100%;
+  min-height: 2.125em;
+  border: 1px solid var(--base-border-color);
+}
+.github-panel-Review-reply--disabled atom-text-editor,
+.github-panel-Review-editable--disabled atom-text-editor {
+  color: var(--text-color-subtle);
+}
+.github-panel-Review-replyButton {
+  margin-left: 21px;
+  /* match left position of the comment editor */
+}
+.github-panel-Review-resolvedText {
+  text-align: center;
+  margin-bottom: var(--component-padding);
+  padding: 0 calc(var(--component-padding) * 2);
+}
+.github-panel-Review-editable-footer {
+  margin: calc(var(--component-padding) / 2) 0 var(--component-padding) 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.github-panel-Review-editable-footer .btn {
+  margin-left: calc(var(--component-padding) / 2);
+}
+.github-panel-Review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--component-padding);
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-Review-resolveButton {
+  margin-left: auto;
+}
+.github-panel-Review-resolveButton.btn.icon:before {
+  font-size: 14px;
+}

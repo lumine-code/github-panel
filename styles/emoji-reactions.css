@@ -1,0 +1,16 @@
+.github-panel-EmojiReactions-add.btn.btn {
+  color: var(--text-color-subtle);
+  border-color: transparent;
+  background: none;
+}
+.github-panel-EmojiReactions-add.btn.btn:first-child {
+  border-color: transparent;
+}
+.github-panel-EmojiReactions-add.btn.btn:focus.btn {
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--text-color-info);
+}
+.github-panel-EmojiReactions-add.btn.btn:hover {
+  color: hsl(from var(--text-color-subtle) h s calc(l + 10));
+}

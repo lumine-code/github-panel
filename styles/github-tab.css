@@ -1,0 +1,57 @@
+.github-panel-StubItem-github,
+.github-panel-root {
+  flex: 1;
+  display: flex;
+}
+.github-panel-GitHub {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  -webkit-user-select: none;
+  cursor: default;
+}
+.github-panel-GitHub-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.github-panel-GitHub-noRemotes,
+.github-panel-GitHub .github-panel-RemoteSelector {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.25em;
+  text-align: center;
+  padding: calc(var(--component-padding) * 3);
+}
+.github-panel-GitHub-noRemotes > *,
+.github-panel-GitHub .github-panel-RemoteSelector > * {
+  margin: var(--component-padding) 0;
+}
+.github-panel-GitHub-noRemotes h1,
+.github-panel-GitHub .github-panel-RemoteSelector h1 {
+  margin-bottom: calc(var(--component-padding) * 3);
+}
+.github-panel-GitHub .github-panel-RemoteSelector ul {
+  list-style: none;
+  padding-left: 0;
+}
+.github-panel-GitHub .github-panel-RemoteSelector ul li:not(:last-child) {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-GitHub .github-panel-RemoteSelector button {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.github-panel-GitHub-LargeIcon:before {
+  margin-right: 0;
+  margin-bottom: calc(var(--component-padding) * 5);
+  width: auto;
+  height: auto;
+  font-size: 8em;
+  color: color-mix(in srgb, var(--base-background-color) 66%, var(--text-color));
+  /* 2/3 of bg color */
+}

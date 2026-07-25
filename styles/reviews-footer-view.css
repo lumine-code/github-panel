@@ -1,0 +1,28 @@
+.github-panel-ReviewsFooterView {
+  margin-right: auto;
+}
+.github-panel-ReviewsFooterView-footer {
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  border-top: 1px solid var(--base-border-color);
+  background-color: var(--app-background-color);
+}
+.github-panel-ReviewsFooterView-footerTitle {
+  font-size: 1.4em;
+  margin: 0 calc(var(--component-padding) * 2) 0 0;
+}
+.github-panel-ReviewsFooterView-openReviewsButton,
+.github-panel-ReviewsFooterView-reviewChangesButton {
+  margin-left: var(--component-padding);
+}
+.github-panel-ReviewsFooterView-commentCount {
+  margin-right: var(--component-padding);
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewsFooterView-commentsResolved {
+  color: var(--text-color-highlight);
+}
+.github-panel-ReviewsFooterView-progessBar {
+  margin-right: var(--component-padding);
+}

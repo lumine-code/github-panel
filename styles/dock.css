@@ -1,0 +1,131 @@
+/* Here ALL the overrides when a pane/panel gets used as a dock item
+ * It's not too high of a priority, but still good to check (and fix) once in a while */
+atom-dock.bottom .github-panel-Git {
+  flex-direction: row;
+}
+atom-dock.bottom .github-panel-StagingView {
+  display: contents;
+  /* make these invisible to layout */
+}
+atom-dock.bottom .github-panel-Git > div {
+  flex: 1;
+}
+atom-dock.bottom .github-panel-StagedChanges {
+  border-left: 1px solid var(--base-border-color);
+  border-right: 1px solid var(--base-border-color);
+}
+atom-dock.bottom .github-panel-StagingView-header {
+  flex-wrap: wrap;
+}
+atom-dock.bottom .github-panel-StagingView-group:first-child .github-panel-StagingView-header {
+  border-top: 1px solid var(--base-border-color);
+}
+atom-dock.bottom .github-panel-RecentCommits {
+  max-height: none;
+  border-left: 1px solid var(--base-border-color);
+}
+atom-dock.left .github-panel-IssueishDetailView-header,
+atom-dock.right .github-panel-IssueishDetailView-header {
+  display: block;
+  padding: var(--component-padding);
+  background-color: var(--tool-panel-background-color);
+}
+atom-dock.left .github-panel-IssueishDetailView-avatar,
+atom-dock.right .github-panel-IssueishDetailView-avatar {
+  position: absolute;
+}
+atom-dock.left .github-panel-IssueishDetailView-avatarImage,
+atom-dock.right .github-panel-IssueishDetailView-avatarImage {
+  width: 20px;
+  height: 20px;
+}
+atom-dock.left .github-panel-IssueishDetailView-headerRow:nth-child(1),
+atom-dock.right .github-panel-IssueishDetailView-headerRow:nth-child(1) {
+  padding-left: 25px;
+  /* space for avatar */
+  overflow: hidden;
+}
+atom-dock.left .github-panel-IssueishDetailView-title,
+atom-dock.right .github-panel-IssueishDetailView-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+atom-dock.left .github-panel-IssueishDetailView-checkoutButton,
+atom-dock.right .github-panel-IssueishDetailView-checkoutButton {
+  margin: var(--component-padding) 0 0 0;
+}
+atom-dock.left .github-panel-IssueishDetailView-tablist,
+atom-dock.right .github-panel-IssueishDetailView-tablist {
+  flex-wrap: wrap;
+}
+atom-dock.left .github-panel-IssueishDetailView-tab,
+atom-dock.right .github-panel-IssueishDetailView-tab {
+  padding: calc(var(--component-padding) / 2) var(--component-padding);
+}
+atom-dock.left .github-panel-IssueishDetailView-tab-icon,
+atom-dock.right .github-panel-IssueishDetailView-tab-icon {
+  display: none;
+}
+atom-dock.left .github-panel-IssueishDetailView-overview,
+atom-dock.right .github-panel-IssueishDetailView-overview {
+  font-size: 0.9em;
+}
+atom-dock.left .github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml,
+atom-dock.right .github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml,
+atom-dock.left .github-panel-IssueishDetailView-overview .timeline-item,
+atom-dock.right .github-panel-IssueishDetailView-overview .timeline-item {
+  padding: var(--component-padding);
+}
+atom-dock.left .github-panel-IssueishDetailView-buildStatus,
+atom-dock.right .github-panel-IssueishDetailView-buildStatus {
+  padding: 0;
+}
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrStatuses-header,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrStatuses-header {
+  border-top: none;
+}
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrStatuses-header,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrStatuses-header,
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrStatuses-list-item,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrStatuses-list-item {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper {
+  padding: 0;
+}
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitView-container,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitView-container {
+  font-size: 0.9em;
+  border-left: none;
+  border-right: none;
+}
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitView-container:first-child,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitView-container:first-child {
+  border-top: none;
+  border-radius: 0;
+}
+atom-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitView-container:last-child,
+atom-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitView-container:last-child {
+  border-bottom: none;
+  border-radius: 0;
+}
+atom-dock.left .github-panel-CommitDetailView-header,
+atom-dock.right .github-panel-CommitDetailView-header {
+  background-color: var(--tool-panel-background-color);
+}
+atom-dock.left .github-panel-CommitDetailView-commit,
+atom-dock.right .github-panel-CommitDetailView-commit {
+  padding: var(--component-padding) var(--component-padding) 0 var(--component-padding);
+}
+atom-dock.left .github-panel-CommitDetailView-meta,
+atom-dock.right .github-panel-CommitDetailView-meta {
+  margin-bottom: var(--component-padding);
+}
+atom-dock.left .github-panel-CommitDetailView-moreText,
+atom-dock.right .github-panel-CommitDetailView-moreText {
+  padding: var(--component-padding) 0;
+}

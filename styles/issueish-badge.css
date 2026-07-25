@@ -1,0 +1,29 @@
+/* Shows the [Open], [Closed], [Merged] state */
+.github-panel-IssueishBadge {
+  display: inline-block;
+  padding: calc(0.4em / 1.5) 0.4em;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: capitalize;
+  border-radius: var(--component-border-radius);
+  white-space: nowrap;
+}
+.github-panel-IssueishBadge .icon::before {
+  font-size: inherit;
+  width: auto;
+  height: auto;
+  margin-right: 0.2em;
+}
+.github-panel-IssueishBadge.open {
+  color: var(--github-panel-text-on-green);
+  background-color: var(--github-panel-color-green);
+}
+.github-panel-IssueishBadge.closed {
+  color: var(--github-panel-text-on-red);
+  background-color: var(--github-panel-color-red);
+}
+.github-panel-IssueishBadge.merged {
+  color: var(--github-panel-text-on-purple);
+  background-color: var(--github-panel-color-purple);
+}

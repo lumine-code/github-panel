@@ -35,6 +35,19 @@ Commands available in `.github-panel-Reviews`:
 - `github-panel:less-context`: show less review context,
 - `github-panel:submit-comment`: submit review comment.
 
+## Customization
+
+Override the package custom properties in your `styles.css` to adjust the issue and pull request state colors and the diff colors of suggested changes:
+
+```css
+:root {
+  --github-panel-color-green: var(--text-color-success);
+  --github-panel-color-purple: var(--text-color-info);
+  --github-panel-diff-added: color-mix(in srgb, var(--syntax-color-added) 22%, transparent);
+  --github-panel-diff-deleted: color-mix(in srgb, var(--syntax-color-removed) 22%, transparent);
+}
+```
+
 ## Contributing
 
 Got ideas to make this package better, found a bug, or want to help add new features? Just drop your thoughts on GitHub. Any feedback is welcome!

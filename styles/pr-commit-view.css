@@ -1,0 +1,82 @@
+.github-panel-PrCommitView-container {
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  font-size: var(--font-size);
+  border: 1px solid var(--base-border-color);
+  border-bottom: none;
+}
+.github-panel-PrCommitView-container:first-child {
+  border-top-left-radius: var(--component-border-radius);
+  border-top-right-radius: var(--component-border-radius);
+}
+.github-panel-PrCommitView-container:last-child {
+  border-bottom: 1px solid var(--base-border-color);
+  border-bottom-left-radius: var(--component-border-radius);
+  border-bottom-right-radius: var(--component-border-radius);
+}
+.github-panel-PrCommitView-commit {
+  flex: 1;
+}
+.github-panel-PrCommitView-messageHeadline.is-button {
+  padding: 0;
+  margin-right: calc(var(--component-padding) / 1.5);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrCommitView-messageHeadline.is-button:hover,
+.github-panel-PrCommitView-messageHeadline.is-button:focus {
+  color: color-mix(in srgb, var(--text-color-highlight), var(--text-color-subtle));
+}
+.github-panel-PrCommitView-title {
+  margin: 0 0 0.25em 0;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+.github-panel-PrCommitView-avatar {
+  border-radius: var(--component-border-radius);
+  height: 16px;
+  margin-right: 0.4em;
+  width: 16px;
+}
+.github-panel-PrCommitView-metaText {
+  line-height: 16px;
+  vertical-align: middle;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrCommitView-moreButton {
+  margin: 0 auto 0 var(--component-padding);
+  padding: 0em 0.2em;
+  color: var(--text-color-subtle);
+  font-style: italic;
+  font-size: 0.8em;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  background-color: var(--button-background-color);
+}
+.github-panel-PrCommitView-moreButton:hover {
+  background-color: var(--button-background-color-hover);
+}
+.github-panel-PrCommitView-moreText {
+  margin-top: calc(var(--component-padding) / 2);
+  padding: 0;
+  font-size: inherit;
+  font-family: var(--editor-font-family);
+  word-wrap: initial;
+  word-break: break-word;
+  white-space: initial;
+  background-color: transparent;
+}
+.github-panel-PrCommitView-sha {
+  margin-left: var(--component-padding);
+  line-height: 16px;
+  vertical-align: middle;
+  color: var(--text-color-info);
+  font-family: var(--editor-font-family);
+}
+.github-panel-PrCommitView-sha a {
+  color: inherit;
+}

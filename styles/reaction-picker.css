@@ -1,0 +1,11 @@
+.github-panel-ReactionPicker {
+  display: flex;
+  flex-direction: column;
+}
+.github-panel-ReactionPicker-row {
+  flex-direction: row;
+  margin: calc(var(--component-padding) / 4) 0;
+}
+.github-panel-ReactionPicker-reaction {
+  margin: 0 calc(var(--component-padding) / 4);
+}

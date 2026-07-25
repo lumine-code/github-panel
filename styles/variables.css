@@ -1,0 +1,37 @@
+/*
+ * The colours the panel paints issue/PR state and diffs with. Each one is a
+ * theme variable so the panel follows the active theme, with GitHub's own
+ * colour as the fallback for a theme that does not define the contract.
+ */
+
+:root {
+  --github-panel-color-yellow: var(--background-color-warning, #ffd93d);
+  --github-panel-color-red: var(--background-color-error, #dc3545);
+  --github-panel-color-purple: var(--syntax-color-keyword, #6f42c1);
+  --github-panel-color-green: var(--background-color-success, #28a745);
+
+  /* Black or white, whichever reads on the badge colour behind it. */
+  --github-panel-text-on-red: lch(
+    from var(--github-panel-color-red) calc((49.44 - l) * infinity) 0 0
+  );
+  --github-panel-text-on-purple: lch(
+    from var(--github-panel-color-purple) calc((49.44 - l) * infinity) 0 0
+  );
+  --github-panel-text-on-green: lch(
+    from var(--github-panel-color-green) calc((49.44 - l) * infinity) 0 0
+  );
+
+  /* Semi-transparent so they read over selections and on any theme. */
+  --github-panel-diff-deleted: color-mix(in srgb, var(--syntax-color-removed) 15%, transparent);
+  --github-panel-diff-added: color-mix(in srgb, var(--syntax-color-added) 15%, transparent);
+  --github-panel-diff-deleted-highlight: color-mix(
+    in srgb,
+    var(--syntax-color-removed) 25%,
+    transparent
+  );
+  --github-panel-diff-added-highlight: color-mix(
+    in srgb,
+    var(--syntax-color-added) 25%,
+    transparent
+  );
+}

@@ -1,0 +1,113 @@
+.github-panel-IssueishList-item {
+  margin: calc(var(--component-padding) / 4);
+}
+.github-panel-IssueishList-item--avatar {
+  border-radius: var(--component-border-radius);
+  height: 16px;
+  width: 16px;
+}
+.github-panel-IssueishList-item--title {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.github-panel-IssueishList-item--number {
+  font-size: 0.9em;
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishList-item--status {
+  text-align: center;
+}
+.github-panel-IssueishList-item--status:before {
+  margin-right: 0;
+  width: 20px;
+}
+.github-panel-IssueishList-item--status.icon-check {
+  color: var(--text-color-success);
+}
+.github-panel-IssueishList-item--status.icon-x {
+  color: var(--text-color-error);
+}
+.github-panel-IssueishList-item--status.icon-dash {
+  color: var(--text-color-subtle);
+}
+svg.github-panel-IssueishList-item--status {
+  height: 20px;
+  width: 20px;
+}
+svg.github-panel-IssueishList-item--status circle {
+  cx: 10px;
+  cy: 10px;
+  r: 5.5;
+  stroke-width: 3;
+}
+.github-panel-IssueishList-item--age {
+  color: var(--text-color-subtle);
+  font-size: 0.9em;
+  /* Better balance for 3 characters (10M) */
+  margin-left: 0;
+  min-width: 3ch;
+  text-align: center;
+}
+.github-panel-IssueishList-item--menu {
+  color: var(--text-color-subtle);
+  line-height: 1;
+}
+.github-panel-IssueishList-more {
+  padding: calc(var(--component-padding) / 2);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-IssueishList-more a {
+  font-style: italic;
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishList-loading {
+  padding: calc(var(--component-padding) / 2);
+  min-height: 29px;
+  /* Magic number: Prevents jumping. */
+  font-style: italic;
+  text-align: center;
+  color: var(--text-color-subtle);
+}
+.github-panel-CreatePullRequestTile-message,
+.github-panel-CreatePullRequestTile-controls {
+  padding: var(--component-padding);
+  text-align: center;
+  margin-bottom: 0;
+}
+.github-panel-CreatePullRequestTile-message + .github-panel-CreatePullRequestTile-controls {
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-CreatePullRequestTile-message .icon {
+  vertical-align: middle;
+}
+.github-panel-CreatePullRequestTile-message .icon:before {
+  width: auto;
+}
+.github-panel-CreatePullRequestTile-divider {
+  margin: calc(var(--component-padding) / 1.25) 20%;
+  border-color: var(--base-border-color);
+}
+.github-panel-CreatePullRequestTile-createPr {
+  width: 100%;
+}
+.github-panel-QueryErrorTile {
+  padding: var(--component-padding);
+  display: flex;
+  color: var(--text-color-error);
+}
+.github-panel-QueryErrorTile-messages {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.github-panel-QueryErrorTile .icon-alert {
+  vertical-align: text-top;
+}
+.github-panel-QueryErrorTile-message {
+  font-weight: bold;
+}

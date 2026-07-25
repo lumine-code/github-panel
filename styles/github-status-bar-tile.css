@@ -3,8 +3,7 @@
   background-color: inherit;
   border: none;
   cursor: default;
-
-  &.icon-mark-github::before {
-    margin-right: 0.2em;
-  }
+}
+.github-panel-StatusBarTile.icon-mark-github::before {
+  margin-right: 0.2em;
 }

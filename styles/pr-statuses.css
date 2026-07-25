@@ -1,0 +1,92 @@
+.github-panel-PrStatuses-header {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--base-border-color);
+  padding: var(--component-padding);
+  border-radius: var(--component-border-radius) var(--component-border-radius) 0 0;
+}
+.github-panel-PrStatuses-donut-chart {
+  margin-right: var(--component-padding);
+}
+.github-panel-PrStatuses-donut-chart svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+.github-panel-PrStatuses-donut-chart svg circle {
+  cx: 13px;
+  cy: 13px;
+  r: 11px;
+  stroke-width: 4px;
+}
+.github-panel-PrStatuses-summary {
+  font-weight: bold;
+  flex: 1;
+}
+.github-panel-PrStatuses-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+.github-panel-PrStatuses-list-item {
+  display: flex;
+  flex-direction: row;
+  padding: calc(var(--component-padding) / 2) var(--component-padding);
+  border: 1px solid var(--base-border-color);
+  border-top: none;
+}
+.github-panel-PrStatuses-list-item--checkRun {
+  padding-left: calc(var(--component-padding) * 2);
+}
+.github-panel-PrStatuses-list-item:last-child {
+  border-radius: 0 0 var(--component-border-radius) var(--component-border-radius);
+}
+.github-panel-PrStatuses-list-item-icon {
+  width: 26px;
+  margin-right: var(--component-padding);
+  text-align: center;
+}
+.github-panel-PrStatuses-list-item-icon .icon::before {
+  margin-right: 0;
+}
+.github-panel-PrStatuses-list-item-name {
+  font-weight: bold;
+  color: var(--text-color-info);
+  margin-right: 0.5em;
+}
+.github-panel-PrStatuses-list-item-context {
+  flex: 1;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrStatuses-list-item-context strong {
+  margin-right: 0.5em;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrStatuses-list-item-title {
+  margin-right: 0.5em;
+}
+.github-panel-PrStatuses-list-item-summary {
+  display: inline-flex;
+  font-size: 90%;
+}
+.github-panel-PrStatuses-list-item-details-link {
+  margin-left: 0.5em;
+  color: var(--text-color-info);
+}
+.github-panel-PrStatuses-list-item-details-link a {
+  color: var(--text-color-info);
+}
+.github-panel-PrStatuses--pending {
+  color: var(--github-panel-color-yellow);
+}
+.github-panel-PrStatuses--success {
+  color: var(--github-panel-color-green);
+}
+.github-panel-PrStatuses--failure {
+  color: var(--github-panel-color-red);
+}
+.github-panel-PrStatuses--neutral {
+  color: var(--text-color-subtle);
+}

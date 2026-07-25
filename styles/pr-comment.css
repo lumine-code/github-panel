@@ -1,0 +1,200 @@
+.github-panel-PrCommentThread {
+  padding: var(--component-padding) var(--component-padding) var(--component-padding) 0;
+}
+.github-panel-PrComment {
+  max-width: 60em;
+  padding: var(--component-padding);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  border: 1px solid var(--base-border-color);
+}
+.github-panel-PrComment:first-child {
+  border-top-left-radius: var(--component-border-radius);
+  border-top-right-radius: var(--component-border-radius);
+}
+.github-panel-PrComment:last-child {
+  border-bottom-left-radius: var(--component-border-radius);
+  border-bottom-right-radius: var(--component-border-radius);
+}
+.github-panel-PrComment + .github-panel-PrComment {
+  border-top: none;
+}
+.github-panel-PrComment-header {
+  color: var(--text-color-subtle);
+  line-height: 16px;
+}
+.github-panel-PrComment-avatar {
+  margin-right: 6px;
+  height: 16px;
+  width: 16px;
+  border-radius: var(--component-border-radius);
+  vertical-align: top;
+}
+.github-panel-PrComment-timeAgo {
+  color: inherit;
+}
+.github-panel-PrComment-body {
+  margin-left: 22px;
+  /* avatar + margin */
+}
+.github-panel-PrComment-hidden {
+  font-size: 14px;
+}
+.github-panel-PrComment-icon {
+  vertical-align: middle;
+}
+.github-panel-PrComment .js-suggested-changes-blob {
+  font-size: 0.9em;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  /* These styles are mostly copied from the Primer tooltips */
+}
+.github-panel-PrComment .js-suggested-changes-blob .d-flex {
+  display: flex;
+}
+.github-panel-PrComment .js-suggested-changes-blob .d-inline-block {
+  display: inline-block;
+}
+.github-panel-PrComment .js-suggested-changes-blob .flex-auto {
+  flex: 1 1 auto;
+}
+.github-panel-PrComment .js-suggested-changes-blob .p-1 {
+  padding: calc(var(--component-padding) / 2);
+}
+.github-panel-PrComment .js-suggested-changes-blob .px-1 {
+  padding-left: calc(var(--component-padding) / 2);
+  padding-right: calc(var(--component-padding) / 2);
+}
+.github-panel-PrComment .js-suggested-changes-blob .p-2 {
+  padding: var(--component-padding);
+}
+.github-panel-PrComment .js-suggested-changes-blob .text-gray {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrComment .js-suggested-changes-blob .lh-condensed {
+  line-height: 1.25;
+}
+.github-panel-PrComment .js-suggested-changes-blob .rounded-1 {
+  border-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .border {
+  border: 1px solid;
+}
+.github-panel-PrComment .js-suggested-changes-blob .border-bottom {
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-PrComment .js-suggested-changes-blob .border-green {
+  border-color: var(--text-color-success);
+}
+.github-panel-PrComment .js-suggested-changes-blob .octicon {
+  vertical-align: -4px;
+  fill: currentColor;
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-wrapper > table {
+  width: 100%;
+  margin: 0;
+  font-family: var(--editor-font-family);
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-wrapper > table td {
+  border: none;
+  padding: 0 0.5em;
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num {
+  padding: 0 0.5em;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num:before {
+  content: attr(data-line-number);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num-addition {
+  background-color: var(--github-panel-diff-added-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num-deletion {
+  background-color: var(--github-panel-diff-deleted-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-inner:before {
+  margin-right: 0.5em;
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-inner .x-first {
+  border-bottom-left-radius: var(--component-border-radius);
+  border-top-left-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-inner .x-last {
+  border-bottom-right-radius: var(--component-border-radius);
+  border-top-right-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-addition {
+  background-color: var(--github-panel-diff-added);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-addition:before {
+  content: "+";
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-addition .x {
+  background-color: var(--github-panel-diff-added-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-deletion {
+  background-color: var(--github-panel-diff-deleted);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-deletion:before {
+  content: "-";
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-deletion .x {
+  background-color: var(--github-panel-diff-deleted-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped {
+  position: relative;
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::after {
+  position: absolute;
+  z-index: 1000000;
+  display: none;
+  width: max-content;
+  max-width: 22em;
+  padding: 0.5em 0.6em;
+  font-weight: 500;
+  color: var(--base-background-color);
+  text-align: center;
+  pointer-events: none;
+  content: attr(aria-label);
+  background: var(--background-color-info);
+  border-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::before {
+  position: absolute;
+  z-index: 1000001;
+  display: none;
+  width: 0;
+  height: 0;
+  color: var(--background-color-info);
+  pointer-events: none;
+  content: "";
+  border: 6px solid transparent;
+}
+/* This will indicate when we'll activate the tooltip */
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:hover::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:active::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:hover::after,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:active::after,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus::after {
+  display: inline-block;
+  text-decoration: none;
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::after {
+  top: 100%;
+  right: 50%;
+  margin-top: 6px;
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::before {
+  top: auto;
+  right: 50%;
+  bottom: -7px;
+  margin-right: -6px;
+  border-bottom-color: var(--background-color-info);
+}
+/* Move the tooltip body to the center of the object. */
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::after {
+  transform: translateX(50%);
+}

@@ -1,0 +1,195 @@
+.github-panel-PrTimeline {
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
+}
+.github-panel-PrTimeline .timeline-item {
+  padding: calc(var(--component-padding) * 1.5) calc(var(--component-padding) * 2);
+  padding-left: calc(var(--component-padding) * 4.5);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
+}
+.github-panel-PrTimeline .emoji,
+.github-panel-PrTimeline g-emoji {
+  margin-right: 0.25em;
+}
+.github-panel-PrTimeline .author-avatar {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-PrTimeline .open-commit-detail-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.github-panel-PrTimeline .open-commit-detail-button:hover,
+.github-panel-PrTimeline .open-commit-detail-button:focus {
+  color: var(--text-color-highlight);
+}
+.github-panel-PrTimeline .open-commit-detail-button:active {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .pre-timeline-item-icon {
+  position: absolute;
+  margin-left: calc(var(--component-padding) * -2.5);
+  text-align: center;
+  margin-top: 2px;
+  color: color-mix(in srgb, var(--text-color) 33%, var(--base-background-color));
+  border-radius: 20px;
+}
+.github-panel-PrTimeline .commits .info-row {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-PrTimeline .commit {
+  display: table-row;
+  align-items: center;
+  margin-left: calc(var(--component-padding) * 2);
+}
+.github-panel-PrTimeline .commit:first-child {
+  padding-top: var(--component-padding);
+}
+.github-panel-PrTimeline .commit:only-child {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: calc(var(--component-padding) * -1);
+}
+.github-panel-PrTimeline .commit + .issue {
+  margin-top: calc(var(--component-padding) / 2);
+}
+.github-panel-PrTimeline .commit .commit-author {
+  position: absolute;
+  display: flex;
+}
+.github-panel-PrTimeline .commit .author-avatar {
+  position: relative;
+  margin-right: -16px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--component-border-radius);
+  background-color: color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
+  box-shadow: 1px 0 var(--base-background-color);
+  transition: margin 0.12s cubic-bezier(0.5, 0.1, 0, 1);
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(1) {
+  z-index: 3;
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(2) {
+  z-index: 2;
+  opacity: 0.7;
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(3) {
+  z-index: 1;
+  opacity: 0.4;
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(n + 4) {
+  display: none;
+}
+.github-panel-PrTimeline .commit .author-avatar:only-child,
+.github-panel-PrTimeline .commit .author-avatar:last-child {
+  box-shadow: none;
+}
+.github-panel-PrTimeline .commit .commit-author:hover .author-avatar {
+  display: inline-block;
+  margin-right: 1px;
+  opacity: 1;
+}
+.github-panel-PrTimeline .commit .commit-message-headline {
+  display: table-cell;
+  line-height: 24px;
+  padding: 0 calc(var(--component-padding) / 3);
+  padding-left: calc(20px + var(--component-padding));
+  max-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  /* this makes sure the ellipsis work in table-cell */
+  width: 100%;
+}
+.github-panel-PrTimeline .commit .commit-sha {
+  display: table-cell;
+  text-align: right;
+  font-family: monospace;
+  padding-left: 5px;
+  color: var(--text-color-info);
+}
+.github-panel-PrTimeline .comment-message-header {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .comment-message-header a {
+  color: inherit;
+}
+.github-panel-PrTimeline .cross-referenced-events {
+  /* provides spacing between cross-referenced-event rows */
+  border-spacing: 0 calc(var(--component-padding) / 2);
+}
+.github-panel-PrTimeline .cross-referenced-events .info-row {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-PrTimeline .cross-referenced-event {
+  display: table-row;
+}
+.github-panel-PrTimeline .cross-referenced-event:last-child {
+  margin-bottom: 0;
+}
+.github-panel-PrTimeline .cross-referenced-event-header {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .cross-referenced-event-label {
+  display: table-cell;
+  width: 100%;
+}
+.github-panel-PrTimeline .cross-referenced-event-label-title {
+  font-weight: bold;
+}
+.github-panel-PrTimeline .cross-referenced-event-label-number {
+  display: inline;
+  margin-left: 5px;
+  white-space: nowrap;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .cross-referenced-event-private {
+  display: table-cell;
+}
+.github-panel-PrTimeline .cross-referenced-event-state {
+  display: table-cell;
+  text-align: right;
+}
+.github-panel-PrTimeline .cross-referenced-event-state .badge {
+  margin-left: 5px;
+}
+.github-panel-PrTimeline .sha {
+  font-family: monospace;
+}
+.github-panel-PrTimeline .merged-event {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  line-height: 1.3;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .merged-event .username,
+.github-panel-PrTimeline .merged-event .merge-ref {
+  font-weight: bold;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrTimeline .merged-event ~ .issue {
+  border-bottom-style: dashed;
+}
+.github-panel-PrTimeline .head-ref-force-pushed-event .username {
+  font-weight: bold;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrTimeline .head-ref-force-pushed-event .sha {
+  font-weight: bold;
+}
+.github-panel-PrTimeline .issue .info-row {
+  margin-bottom: calc(var(--component-padding) / 1.5);
+}
+.github-panel-PrTimeline .issue .github-panel-DotComMarkdownHtml pre > code {
+  white-space: pre;
+}
+.github-panel-PrTimeline-loadMore {
+  margin: 20px auto 0;
+  text-align: center;
+}

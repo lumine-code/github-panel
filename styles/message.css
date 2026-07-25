@@ -1,0 +1,51 @@
+/* Use to show some sort of message, like an error or so */
+/* Usage: ---------------------------------------------
+
+<div className="github-panel-Message">
+  <div className="github-panel-Message-wrapper">
+    <h1 className="github-panel-Message-title">Whooops</h1>
+    <p className="github-panel-Message-description">Bad things happened</p>
+    <p className="github-panel-Message-action">
+      <button className="github-panel-Message-button btn btn-primary">Get me out of here</button>
+    </p>
+  </div>
+</div>
+
+--------------------------------------------------- */
+.github-panel-Message {
+  flex: 1;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.github-panel-Message-wrapper {
+  margin: auto;
+  padding: calc(var(--component-padding) * 2);
+  text-align: center;
+  width: 100%;
+}
+.github-panel-Message-title {
+  color: var(--text-color-highlight);
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.github-panel-Message-description {
+  font-size: 1.2em;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+pre.github-panel-Message-description {
+  text-align: left;
+}
+.github-panel-Message-longDescription {
+  font-size: 1.1em;
+  line-height: 1.4;
+  text-align: left;
+  margin-bottom: 0;
+}
+.github-panel-Message-action {
+  margin-top: calc(var(--component-padding) * 2);
+}
+.github-panel-Message-button {
+  margin: calc(var(--component-padding) / 2);
+}

@@ -1,0 +1,53 @@
+.react-tabs {
+  flex: 1;
+  /* Allow this flex child to shrink below its content height; without it the
+   * default `min-height: auto` lets the tab body grow past the container so the
+   * selected panel's `overflow: auto` never gets a bounded height to scroll in. */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.react-tabs__tab-panel--selected {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.github-panel-tab {
+  padding: calc(var(--component-padding) / 2) calc(var(--component-padding) * 1.5);
+  text-align: center;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--text-color) 75%, var(--app-background-color));
+  cursor: default;
+  user-select: none;
+}
+.github-panel-tablist {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--base-border-color);
+  background-color: var(--app-background-color);
+}
+.github-panel-tab-icon {
+  color: color-mix(in srgb, var(--text-color) 33%, var(--app-background-color));
+  vertical-align: middle;
+}
+.github-panel-tab-icon:before {
+  margin-right: 0.4em;
+}
+.github-panel-tab-count {
+  display: inline-block;
+  background-color: color-mix(in srgb, var(--text-color-subtle) 20%, var(--app-background-color));
+  border-radius: var(--component-border-radius);
+  padding: 0 0.25em;
+  margin-left: calc(var(--component-padding) / 2);
+}
+.github-panel-tab.react-tabs__tab--selected {
+  color: var(--text-color-selected);
+  box-shadow: 0 1px 0 var(--button-background-color-selected);
+}
+.github-panel-tab.react-tabs__tab--selected .github-panel-tab-icon {
+  color: var(--text-color);
+}

@@ -1,0 +1,136 @@
+.github-panel-IssueishDetailView {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--base-background-color);
+}
+.github-panel-IssueishDetailView-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.github-panel-IssueishDetailView-header {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--component-padding) * 1.5) calc(var(--component-padding) * 2);
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-IssueishDetailView-headerColumn.is-flexible {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.github-panel-IssueishDetailView-headerRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2px 0;
+}
+.github-panel-IssueishDetailView-headerRow.is-fullwidth {
+  flex: 1 1 100%;
+}
+.github-panel-IssueishDetailView-avatar {
+  align-self: flex-start;
+  margin-right: var(--component-padding);
+}
+.github-panel-IssueishDetailView-title {
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-color-highlight);
+}
+.github-panel-IssueishDetailView-title:hover,
+.github-panel-IssueishDetailView-title:focus {
+  text-decoration: none;
+}
+.github-panel-IssueishDetailView-headerBadge {
+  margin-right: var(--component-padding);
+  padding: 0 0.75em;
+  line-height: 1.65em;
+}
+.github-panel-IssueishDetailView-headerLink {
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishDetailView-headerStatus {
+  margin-left: var(--component-padding);
+}
+.github-panel-IssueishDetailView-checkoutButton {
+  font-weight: 600;
+  margin-left: var(--component-padding);
+}
+.github-panel-IssueishDetailView-headerRefreshButton {
+  display: inline-block;
+  margin-right: var(--component-padding);
+  color: var(--text-color-subtle);
+  cursor: pointer;
+}
+.github-panel-IssueishDetailView-headerRefreshButton::before {
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 0.9;
+  margin-right: 0;
+  text-align: center;
+}
+.github-panel-IssueishDetailView-headerRefreshButton.refreshing::before {
+  animation: github-panel-IssueishDetailView-headerRefreshButtonAnimation 2s linear 30;
+  /* limit to 1min in case something gets stuck */
+}
+@keyframes github-panel-IssueishDetailView-headerRefreshButtonAnimation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.github-panel-IssueishDetailView-avatarImage {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-IssueishDetailView-meta {
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishDetailView-metaAuthor {
+  color: inherit;
+}
+.github-panel-IssueishDetailView-footer {
+  padding: var(--component-padding);
+  text-align: center;
+  border-top: 1px solid var(--base-border-color);
+  background-color: var(--app-background-color);
+}
+.github-panel-IssueishDetailView-footerLink.icon {
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishDetailView-footerLink.icon:before {
+  vertical-align: -2px;
+}
+.github-panel-IssueishDetailView-overview {
+  max-width: 60em;
+  margin: 0 auto;
+}
+.github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml {
+  padding: calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView .github-panel-EmojiReactions {
+  padding: 0 calc(var(--component-padding) * 2) var(--component-padding)
+    calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView-buildStatus {
+  padding: calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView-buildStatus:empty {
+  display: none;
+}
+.github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper {
+  padding: calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView-issueBody {
+  flex: 1;
+  overflow: auto;
+}
+.github-panel-IssueishDetailView-issueBody > .github-panel-DotComMarkdownHtml {
+  padding: calc(var(--component-padding) * 2);
+}

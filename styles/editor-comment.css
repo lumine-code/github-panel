@@ -1,0 +1,50 @@
+atom-text-editor .line.github-panel-editorCommentHighlight {
+  background-color: color-mix(
+    in srgb,
+    var(--background-color-info) 20%,
+    var(--syntax-background-color)
+  );
+}
+atom-text-editor .line.github-panel-editorCommentHighlight.cursor-line {
+  background-color: color-mix(
+    in srgb,
+    var(--background-color-info) 40%,
+    var(--syntax-selection-color)
+  );
+}
+.gutter[gutter-name="github-comment-icon"] {
+  width: 1.4em;
+}
+.github-panel-editorCommentGutterIcon.decoration {
+  width: 100%;
+}
+.github-panel-editorCommentGutterIcon.react-atom-decoration {
+  width: 100%;
+  text-align: center;
+  padding: 0 calc(var(--component-padding) / 4);
+}
+.github-panel-editorCommentGutterIcon button {
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: middle;
+}
+.github-panel-EditorComment-omitted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--tool-panel-background-color);
+  border-radius: var(--component-border-radius);
+  padding: var(--component-padding);
+  margin: calc(var(--component-padding) / 2) 0;
+}
+.github-panel-EditorComment-omitted p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: calc(var(--component-padding) / 4);
+}
+.github-panel-EditorComment-omitted button {
+  margin-left: var(--component-padding);
+}

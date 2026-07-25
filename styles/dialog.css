@@ -1,0 +1,235 @@
+.github-panel-Dialog {
+  /* A trick to trap keyboard focus within this DOM element.
+   * In JavaScript, attach an event handler to the onTransitionEnd event and reassign focus to the initial element
+   * within the dialog. */
+}
+.github-panel-DialogPrompt {
+  margin: var(--component-padding);
+  text-align: center;
+  font-size: 1.2em;
+  user-select: none;
+}
+.github-panel-DialogForm {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogLabel {
+  flex: 1;
+  margin: calc(var(--component-padding) / 2);
+  position: relative;
+  line-height: 2;
+}
+.github-panel-DialogLabel--horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.github-panel-DialogLabel--horizontal input {
+  margin: 0 var(--component-padding);
+}
+.github-panel-DialogLabel--horizontal input[type="text"],
+.github-panel-DialogLabel--horizontal input[type="password"] {
+  width: 85%;
+}
+.github-panel-DialogLabel .github-panel-AtomTextEditor-container {
+  margin-top: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.github-panel-DialogInfo {
+  display: inline-block;
+  flex-grow: 1;
+  margin: calc(var(--component-padding) / 2);
+  padding: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogInfo li {
+  display: inline-block;
+}
+.github-panel-DialogButtons {
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: calc(var(--component-padding) / 2);
+}
+/* Switch button order on Windows */
+.platform-win32 .github-panel-DialogButtons {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+.github-panel-DialogButtons .btn {
+  margin: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogButtons-leftItem,
+.github-panel-DialogButtons-leftItem.btn {
+  margin: calc(var(--component-padding) / 2);
+  margin-right: auto;
+}
+.github-panel-Dialog--insetButton {
+  position: absolute;
+  background: transparent;
+  right: 1em;
+  top: 0;
+  bottom: 0;
+  border: none;
+  color: var(--text-color-subtle);
+  cursor: pointer;
+}
+.github-panel-Dialog--insetButton:hover {
+  color: var(--text-color-highlight);
+}
+.github-panel-Dialog--insetButton:focus {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-DialogSpinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--component-padding);
+}
+.github-panel-DialogSpinner .loading {
+  margin: var(--component-padding);
+}
+.github-panel-Dialog-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.github-panel-Dialog-row .github-panel-AtomTextEditor-container {
+  flex: 1;
+}
+.github-panel-Dialog atom-text-editor[mini].editor {
+  margin: 0;
+}
+.github-panel-Dialog atom-text-editor[mini].editor[readOnly] {
+  color: var(--text-color-subtle);
+}
+.github-panel-Dialog:not(:focus-within) {
+  padding-bottom: 1px;
+  transition: padding-bottom 0.01s;
+}
+.github-panel-TabbableWrapper {
+  display: flex;
+  flex: 1;
+}
+.github-panel-RepositoryHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.github-panel-RepositoryHome-owner {
+  flex: 1;
+}
+.github-panel-RepositoryHome-owner .Select__control {
+  border-color: var(--button-border-color);
+}
+.github-panel-RepositoryHome-owner .Select__single-value {
+  background: var(--button-background-color);
+  color: var(--text-color);
+}
+.github-panel-RepositoryHome-owner .Select__option {
+  background: var(--button-background-color);
+  color: var(--text-color);
+}
+.github-panel-RepositoryHome-owner .Select__option--is-focused {
+  background: var(--button-background-color-selected);
+}
+.github-panel-RepositoryHome-owner .Select__option--is-disabled {
+  color: var(--text-color-subtle);
+}
+.github-panel-RepositoryHome-ownerOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.github-panel-RepositoryHome-ownerAvatar {
+  flex: 0;
+  border-radius: calc(var(--component-padding) / 4);
+  margin: 0 var(--component-padding) 0 0;
+}
+.github-panel-RepositoryHome-ownerUnwritable {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.github-panel-RepositoryHome-separator {
+  flex: 0;
+  margin: 0 var(--component-padding);
+}
+.github-panel-RepositoryHome .github-panel-AtomTextEditor-container {
+  flex: 1.5;
+}
+.github-panel-RemoteConfiguration-details summary {
+  cursor: default;
+  user-select: none;
+  margin: var(--component-padding) 0;
+}
+.github-panel-RemoteConfiguration-details summary:focus {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-RemoteConfiguration-details main {
+  padding-top: var(--component-padding);
+}
+.github-panel-RemoteConfiguration-protocol {
+  display: inline-flex;
+  align-items: center;
+}
+.github-panel-RemoteConfiguration-protocolHeading {
+  display: inline-block;
+  margin-right: var(--component-padding);
+}
+.github-panel-RemoteConfiguration-protocolOption {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 4);
+  margin-right: var(--component-padding);
+}
+.github-panel-RemoteConfiguration-protocolOption:focus-within {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-RemoteConfiguration-sourceRemote {
+  width: 60%;
+}
+.github-panel-RemoteConfiguration-sourceRemote label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.github-panel-RemoteConfiguration-sourceRemote label .github-panel-AtomTextEditor-container {
+  flex: 1;
+  margin-left: var(--component-padding);
+}
+.github-panel-Create-visibility {
+  display: inline-flex;
+  align-items: center;
+}
+.github-panel-Create-visibilityHeading {
+  display: inline-block;
+  margin-right: calc(var(--component-padding) * 2);
+}
+.github-panel-Create-visibilityOption {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 4);
+  margin-right: var(--component-padding);
+}
+.github-panel-Create-visibilityOption:focus-within {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-Create-visibilityOption span::before {
+  margin-left: calc(var(--component-padding) / 2);
+  margin-right: calc(var(--component-padding) / 2);
+}

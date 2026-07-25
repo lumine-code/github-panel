@@ -1,0 +1,50 @@
+.github-panel-Accordion {
+  cursor: default;
+  user-select: none;
+}
+.github-panel-Accordion-header {
+  font-weight: 600;
+  color: var(--text-color-subtle);
+  padding: calc(var(--component-padding) / 2);
+  border-bottom: 1px solid var(--base-border-color);
+  display: flex;
+  align-items: center;
+}
+.github-panel-Accordion-header::-webkit-details-marker {
+  color: var(--text-color-subtle);
+}
+.github-panel-Accordion--rightTitle,
+.github-panel-Accordion--leftTitle {
+  flex: 1;
+}
+.github-panel-Accordion-content {
+  border-bottom: 1px solid var(--base-border-color);
+  background-color: var(--base-background-color);
+}
+.github-panel-Accordion-content:empty::before {
+  content: "Empty";
+  display: block;
+  font-style: italic;
+  text-align: center;
+  color: var(--text-color-subtle);
+}
+.github-panel-Accordion-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.github-panel-Accordion[open] .github-panel-Accordion-header {
+  color: var(--text-color-highlight);
+}
+.github-panel-Accordion-listItem {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 4);
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Accordion-listItem:last-child {
+  border: none;
+}
+.github-panel-Accordion-listItem:active {
+  background-color: var(--background-color-highlight);
+}
