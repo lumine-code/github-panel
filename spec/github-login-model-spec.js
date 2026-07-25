@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 import GithubLoginModel from "../lib/models/github-login-model";
 import { UNAUTHENTICATED } from "../lib/shared/token-status";
 

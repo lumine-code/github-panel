@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, beforeEach, afterEach, it, expect, jasmine */
 // Ported from pulsar-edit/github test/models/model-observer.test.js (chai/sinon → Jasmine).
 import { Emitter } from "atom";
 import ModelObserver from "../lib/models/model-observer";

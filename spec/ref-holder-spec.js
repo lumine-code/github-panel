@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, afterEach, it, expect, jasmine */
 // Ported from pulsar-edit/github test/models/ref-holder.test.js (chai/sinon → Jasmine).
 import RefHolder from "../lib/models/ref-holder";
 

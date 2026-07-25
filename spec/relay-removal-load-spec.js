@@ -1,6 +1,5 @@
 /** @babel */
-/* global describe, it, expect */
-/* eslint-disable no-console */
+
 import fs from "fs";
 import path from "path";
 

@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, beforeEach, afterEach, it, expect, jasmine */
 // Ported from pulsar-edit/github test/models/refresher.test.js (chai/sinon → Jasmine).
 import Refresher from "../lib/models/refresher";
 

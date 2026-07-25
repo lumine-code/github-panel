@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 // Ported from pulsar-edit/github test/models/search.test.js (chai → Jasmine).
 import Remote, { nullRemote } from "../lib/models/remote";
 import Search from "../lib/models/search";

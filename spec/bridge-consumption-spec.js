@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, afterEach, it, expect */
 import { setGitBridge, getGitBridge } from "../lib/git-bridge";
 
 describe("github-panel git bridge consumption", () => {

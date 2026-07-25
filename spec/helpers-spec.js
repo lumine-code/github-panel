@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 import path from "path";
 import {
   autobind,

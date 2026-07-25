@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, beforeEach, it, expect, jasmine */
 // Ported from pulsar-edit/github test/models/enableable-operation.test.js (chai/sinon → Jasmine).
 // The upstream "does not toggle state if the state has been redundantly toggled"
 // case relies on an intricate (and apparently mis-wired) async-render race and is

@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, afterEach, it, expect */
 import { executeQuery, expectGraphQLQuery, clearGraphQLExpectations } from "../lib/graphql/client";
 import * as queries from "../lib/graphql/queries";
 

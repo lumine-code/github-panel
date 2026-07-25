@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 // Ported from pulsar-edit/github test/models/remote.test.js (chai → Jasmine).
 import Remote, { nullRemote } from "../lib/models/remote";
 

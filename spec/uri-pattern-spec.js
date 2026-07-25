@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 import URIPattern from "../lib/atom/uri-pattern";
 import { getDataFromGithubUrl } from "../lib/views/issueish-link";
 

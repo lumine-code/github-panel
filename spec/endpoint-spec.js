@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, beforeEach, it, expect */
 // Ported from pulsar-edit/github test/models/endpoint.test.js (chai → Jasmine).
 import { getEndpoint } from "../lib/models/endpoint";
 

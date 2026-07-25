@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, afterEach, it, expect */
 import {
   requestDeviceCode,
   pollForAccessToken,

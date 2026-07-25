@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 // Ported from pulsar-edit/github test/models/build-status.test.js (chai → Jasmine).
 import {
   buildStatusFromStatusContext,

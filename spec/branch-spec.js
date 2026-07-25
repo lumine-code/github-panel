@@ -1,5 +1,4 @@
 /** @babel */
-/* global describe, it, expect */
 // Ported from pulsar-edit/github test/models/branch.test.js (chai → Jasmine).
 import Branch, { nullBranch } from "../lib/models/branch";
 
