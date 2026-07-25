@@ -2,7 +2,7 @@
   "name": "github-panel",
   "author": "lumine-code",
   "main": "./lib/index",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "A GitHub integration panel for Lumine.",
   "repository": "https://github.com/lumine-code/github-panel",
   "bugs": {
@@ -41,7 +41,7 @@
     },
     "github-panel.git-bridge": {
       "versions": {
-        "^0.1.0": "consumeGitHubBridge"
+        "^1.0.0": "consumeGitHubBridge"
       }
     }
   },
