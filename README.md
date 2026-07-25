@@ -1,6 +1,6 @@
 # github-panel
 
-A GitHub integration panel for Lumine.
+A GitHub integration panel.
 
 Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package, keeping only the GitHub-forge features (pull requests, reviews, issues).
 
