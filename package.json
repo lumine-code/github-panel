@@ -21,14 +21,14 @@
   },
   "dependencies": {
     "classnames": "2.5.1",
-    "dayjs": "^1.11.19",
-    "dompurify": "3.3.1",
-    "marked": "15.0.7",
+    "dayjs": "^1.11.21",
+    "dompurify": "3.4.12",
+    "marked": "18.0.7",
     "node-emoji": "^2.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-select": "^5.10.2",
-    "react-tabs": "6.1.0",
+    "react-tabs": "6.1.1",
     "what-the-diff": "0.6.0",
     "yubikiri": "2.0.0"
   },

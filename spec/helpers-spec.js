@@ -7,6 +7,7 @@ import {
   toNativePathSep,
   toSentence,
   pushAtKey,
+  renderMarkdown,
 } from "../lib/helpers";
 
 describe("helpers", () => {
@@ -76,6 +77,27 @@ describe("helpers", () => {
 
       expect(map.get("k")).toEqual([1, 2]);
       expect(map.get("other")).toEqual([3]);
+    });
+  });
+
+  // marked and dompurify are both ESM-only, so these also prove the editor
+  // still reaches them through a plain require().
+  describe("renderMarkdown", () => {
+    it("renders GitHub markdown to HTML", () => {
+      expect(renderMarkdown("**bold** and `code`")).toContain(
+        "<strong>bold</strong> and <code>code</code>",
+      );
+    });
+
+    it("strips scripts and event handlers", () => {
+      const html = renderMarkdown('<script>alert(1)</script><img src="x" onerror="alert(2)">');
+
+      expect(html).not.toContain("<script>");
+      expect(html).not.toContain("onerror");
+    });
+
+    it("swallows malformed markdown instead of throwing", () => {
+      expect(() => renderMarkdown("[unclosed](")).not.toThrow();
     });
   });
 });
