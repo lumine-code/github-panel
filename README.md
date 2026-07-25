@@ -6,20 +6,20 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 
 ## Features
 
-- **Pull requests**: Open and inspect pull requests with Overview, Build Status, Commits, and Files Changed tabs.
-- **Code reviews**: View review comments and threads directly in the editor.
-- **Comment decorations**: Show review comments as inline decorations on the current branch.
-- **Issue/PR opener**: Open any issue or pull request by URL.
-- **Repository management**: Create and publish repositories to GitHub.
-- **Status bar**: GitHub icon for quick panel access.
+- **Pull requests**: open and inspect pull requests with Overview, Build Status, Commits, and Files Changed tabs.
+- **Code reviews**: view review comments and threads directly in the editor.
+- **Comment decorations**: show review comments as inline decorations on the current branch.
+- **Issue/PR opener**: open any issue or pull request by URL.
+- **Repository management**: create and publish repositories to GitHub.
+- **Status bar**: reach the panel from a GitHub item in the status bar.
 
 ## Installation
 
-`github-panel` is delivered as a bundled Lumine package and does not need to be installed separately. It requires the [git-panel](https://github.com/lumine-code/git-panel) package for Git operations.
+To install `github-panel` search for *github-panel* in the Install pane of the Lumine settings or run `lumine --install lumine-code/github-panel`. It also needs the [git-panel](https://github.com/lumine-code/git-panel) package, which performs the Git operations.
 
 ## Commands
 
-Commands available in `.workspace`:
+Commands available in `atom-workspace`:
 
 - `github-panel:toggle-github-panel-tab`: toggle GitHub panel visibility,
 - `github-panel:toggle-github-panel-tab-focus`: toggle and focus the GitHub panel,
@@ -47,6 +47,11 @@ Override the package custom properties in your `styles.css` to adjust the issue 
   --github-panel-diff-deleted: color-mix(in srgb, var(--syntax-color-removed) 22%, transparent);
 }
 ```
+
+## Services
+
+- **github-panel.git-bridge** (`^0.1.0`): consumed to reach the repository model, its diffs, and its remotes through git-panel.
+- **status-bar** (`^1.0.0`): consumed to display the GitHub item that opens the panel.
 
 ## Contributing
 
