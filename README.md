@@ -50,8 +50,8 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 
 ## Services
 
-- **git-panel** (`^1.0.0`): consumed to reach the repository model, its diffs, and its remotes through git-panel.
-- **status-bar** (`^1.0.0`): consumed to display the GitHub item that opens the panel.
+- **[git-panel](https://lumine-code.github.io/docs.html#services/git-panel)** (`^1.0.0`): consumed to reach the repository model, its diffs, and its remotes through git-panel.
+- **[status-bar](https://lumine-code.github.io/docs.html#services/status-bar)** (`^1.0.0`): consumed to display the GitHub item that opens the panel.
 
 ## Contributing
 
