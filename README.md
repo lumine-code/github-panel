@@ -50,7 +50,7 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 
 ## Services
 
-- **github-panel.git-bridge** (`^1.0.0`): consumed to reach the repository model, its diffs, and its remotes through git-panel.
+- **git-panel** (`^1.0.0`): consumed to reach the repository model, its diffs, and its remotes through git-panel.
 - **status-bar** (`^1.0.0`): consumed to display the GitHub item that opens the panel.
 
 ## Contributing
