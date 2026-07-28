@@ -15,20 +15,10 @@
   flex-shrink: 0;
   padding: calc(var(--component-padding) * 2) var(--component-padding);
 }
-.github-panel-Blank-LargeIcon:before {
-  margin-right: 0;
-  margin-top: calc(var(--component-padding) * 5);
-  margin-bottom: calc(var(--component-padding) * 5);
-  width: auto;
-  height: auto;
-  font-size: 8em;
-  color: color-mix(in srgb, var(--base-background-color) 66%, var(--text-color));
-  /* 2/3 of bg color */
-}
+/* The mark these views head with is styled in large-icon.css. */
 .github-panel-Blank-banner,
 .github-panel-Blank-context,
-.github-panel-Blank-explanation,
-.github-panel-Blank-LargeIcon {
+.github-panel-Blank-explanation {
   text-align: center;
 }
 .github-panel-Blank-option {

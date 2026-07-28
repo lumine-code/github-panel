@@ -46,12 +46,3 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.github-panel-GitHub-LargeIcon:before {
-  margin-right: 0;
-  margin-bottom: calc(var(--component-padding) * 5);
-  width: auto;
-  height: auto;
-  font-size: 8em;
-  color: color-mix(in srgb, var(--base-background-color) 66%, var(--text-color));
-  /* 2/3 of bg color */
-}

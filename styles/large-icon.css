@@ -1,0 +1,36 @@
+/* The display-sized mark that heads the login, blank and remote-selector
+ * views. Undoing the core icon box (a --component-icon-size square whose
+ * line-height equals its height, anchored text-bottom) is the sanctioned
+ * escape hatch for a glyph drawn this large: leave the line-height behind and
+ * the mark paints 8em tall inside a 16px line, overflowing both ways and
+ * covering whatever follows it. The margin goes too — the icon padding
+ * separates a glyph from the text beside it, and there is none here, so it
+ * only pushed the centred mark half of itself off the centre line.
+ *
+ * The size is relative, so each surface scales the mark through its own
+ * font-size; the tab views run at 1.25em and the blank views at the base.
+ *
+ * Every variant of the mark lives in this file. Package stylesheets load in
+ * directory order with no way to pin it, so a variant kept next to the view
+ * that uses it would sit either side of this rule depending on its file name,
+ * and stay upright only for as long as the two never set the same property. */
+.github-panel-LargeIcon {
+  text-align: center;
+}
+.github-panel-LargeIcon:before {
+  margin-right: 0;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  vertical-align: baseline;
+  font-size: 8em;
+}
+
+/* On the blank views the mark is scene-setting rather than a heading, so it
+ * recedes into the background and stands well clear of the copy below it. */
+.github-panel-Blank .github-panel-LargeIcon:before {
+  margin-top: calc(var(--component-padding) * 5);
+  margin-bottom: calc(var(--component-padding) * 5);
+  color: color-mix(in srgb, var(--base-background-color) 66%, var(--text-color));
+  /* 2/3 of bg color */
+}

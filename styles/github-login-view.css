@@ -65,11 +65,3 @@
   letter-spacing: 0.15em;
   margin-bottom: var(--component-padding);
 }
-/* The "large" GitHub/mirror mark shown by the login and remote-selector views.
- * The class carries a doubled prefix from the rebrand and lost its sizing, so
- * size it like the blank/tab large icons. */
-.github-panel-LargeIcon:before {
-  width: auto;
-  height: auto;
-  font-size: 8em;
-}
