@@ -22,6 +22,9 @@
     "atom": "*",
     "node": ">=20"
   },
+  "backgroundTips": [
+    "You can review pull requests and issues from the GitHub panel with {{ 'github-panel:toggle-github-panel-tab' | keystroke }}"
+  ],
   "scripts": {
     "test": "lumine --test spec",
     "lint": "eslint . --max-warnings 0",
