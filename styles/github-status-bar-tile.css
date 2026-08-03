@@ -1,9 +1,12 @@
-.github-panel-StatusBarTile {
+/* The portal host the React tree renders into. It is not a tile itself, so it
+   carries no `.inline-block`: the button inside is the tile, and a theme insets
+   that. It only needs to sit inline in the bar. */
+.github-panel-StatusBarTileHost {
   display: inline-block;
+}
+
+.github-panel-StatusBarTile {
   background-color: inherit;
   border: none;
   cursor: default;
-}
-.github-panel-StatusBarTile.icon-mark-github::before {
-  margin-right: 0.2em;
 }
