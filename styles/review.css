@@ -400,11 +400,12 @@
 .github-panel-Review-editable {
   margin-top: var(--component-padding);
 }
+/* The box comes from the shared `atom-text-editor[input]` contract; only the
+   size these reply fields want is ours. */
 .github-panel-Review-reply atom-text-editor,
 .github-panel-Review-editable atom-text-editor {
   width: 100%;
   min-height: 2.125em;
-  border: 1px solid var(--base-border-color);
 }
 .github-panel-Review-reply--disabled atom-text-editor,
 .github-panel-Review-editable--disabled atom-text-editor {
