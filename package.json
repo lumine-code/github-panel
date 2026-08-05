@@ -2,6 +2,14 @@
   "name": "github-panel",
   "author": "lumine-code",
   "main": "./lib/index",
+  "files": [
+    "img",
+    "keymaps",
+    "lib",
+    "menus",
+    "spec",
+    "styles"
+  ],
   "version": "1.0.0",
   "description": "A GitHub integration panel.",
   "keywords": [
