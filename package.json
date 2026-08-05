@@ -19,7 +19,7 @@
   "homepage": "https://github.com/lumine-code/github-panel#readme",
   "license": "MIT",
   "engines": {
-    "atom": "*",
+    "lumine": "*",
     "node": ">=20"
   },
   "backgroundTips": [
