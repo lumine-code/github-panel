@@ -28,7 +28,7 @@
   "license": "MIT",
   "engines": {
     "lumine": "^1.0.0",
-    "node": ">=20"
+    "node": ">=24"
   },
   "backgroundTips": [
     "You can review pull requests and issues from the GitHub panel with {{ 'github-panel:toggle-github-panel-tab' | keystroke }}"
