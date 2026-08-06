@@ -45,8 +45,8 @@
     "dompurify": "3.4.13",
     "marked": "18.0.9",
     "node-emoji": "^2.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-select": "^5.10.2",
     "react-tabs": "6.1.1",
     "what-the-diff": "0.6.0",
@@ -93,7 +93,7 @@
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-n": "^18.2.2",
-    "globals": "^17.7.0",
+    "globals": "^17.9.0",
     "prettier": "^3.9.6"
   }
 }
