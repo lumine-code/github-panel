@@ -39,6 +39,9 @@
   "context-menu": {
     ".github-panel-DotComMarkdownHtml .issue-link": [
       {
+        "type": "separator"
+      },
+      {
         "label": "Open in New Tab",
         "command": "github-panel:open-link-in-new-tab"
       },
@@ -49,6 +52,9 @@
       {
         "label": "Open in Browser",
         "command": "github-panel:open-link-in-browser"
+      },
+      {
+        "type": "separator"
       }
     ]
   }
