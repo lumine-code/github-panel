@@ -21,8 +21,8 @@ To install `github-panel` search for _github-panel_ in the Install pane of the L
 
 Commands available in `atom-workspace`:
 
-- `github-panel:toggle-github-panel-tab`: toggle GitHub panel visibility,
-- `github-panel:toggle-github-panel-tab-focus`: toggle and focus the GitHub panel,
+- `github-panel:toggle`: show or hide the GitHub panel,
+- `github-panel:toggle-focus`: focus the GitHub panel, or return focus to the editor,
 - `github-panel:open-issue-or-pull-request`: open an issue or PR by URL,
 - `github-panel:create-repository`: create a new GitHub repository,
 - `github-panel:publish-repository`: publish a local repository to GitHub,

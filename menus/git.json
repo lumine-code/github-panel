@@ -5,7 +5,7 @@
       "submenu": [
         {
           "label": "Toggle GitHub Tab",
-          "command": "github-panel:toggle-github-panel-tab"
+          "command": "github-panel:toggle"
         }
       ]
     },
@@ -17,7 +17,7 @@
           "submenu": [
             {
               "label": "Toggle GitHub Tab",
-              "command": "github-panel:toggle-github-panel-tab"
+              "command": "github-panel:toggle"
             },
             {
               "label": "Open Reviews Tab",

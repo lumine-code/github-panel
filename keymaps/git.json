@@ -1,8 +1,10 @@
 {
-  ".workspace": {
-    "ctrl-8": "github-panel:toggle-github-panel-tab-focus",
-    "ctrl-shift-8": "github-panel:toggle-github-panel-tab",
-    "alt-g r": "github-panel:open-reviews-tab"
+  // `alt-g` is the git family's chord prefix, shared with git-panel,
+  // open-repository, git-diff and git-command. It is never a complete binding
+  // on its own: an exact match alongside a chord prefix stalls every press for
+  // a second while the keymap waits for the rest of the chord.
+  "atom-workspace": {
+    "alt-g h": "github-panel:toggle-focus"
   },
   ".github-panel-Dialog": {
     "tab": "core:focus-next",
