@@ -6,10 +6,6 @@
         {
           "label": "Toggle GitHub Tab",
           "command": "github-panel:toggle-github-panel-tab"
-        },
-        {
-          "label": "Open Reviews Tab",
-          "command": "github-panel:open-reviews-tab"
         }
       ]
     },
