@@ -33,7 +33,7 @@
 .github-panel-DialogLabel--horizontal input[type="password"] {
   width: 85%;
 }
-.github-panel-DialogLabel .github-panel-AtomTextEditor-container {
+.github-panel-DialogLabel .github-panel-LumineTextEditor-container {
   margin-top: calc(var(--component-padding) / 2);
 }
 .github-panel-DialogFooter {
@@ -101,13 +101,13 @@
   flex-direction: row;
   align-items: stretch;
 }
-.github-panel-Dialog-row .github-panel-AtomTextEditor-container {
+.github-panel-Dialog-row .github-panel-LumineTextEditor-container {
   flex: 1;
 }
-.github-panel-Dialog atom-text-editor[mini].editor {
+.github-panel-Dialog lumine-text-editor[mini].editor {
   margin: 0;
 }
-.github-panel-Dialog atom-text-editor[mini].editor[readOnly] {
+.github-panel-Dialog lumine-text-editor[mini].editor[readOnly] {
   color: var(--text-color-subtle);
 }
 .github-panel-Dialog:not(:focus-within) {
@@ -166,7 +166,7 @@
   flex: 0;
   margin: 0 var(--component-padding);
 }
-.github-panel-RepositoryHome .github-panel-AtomTextEditor-container {
+.github-panel-RepositoryHome .github-panel-LumineTextEditor-container {
   flex: 1.5;
 }
 .github-panel-RemoteConfiguration-details summary {
@@ -207,7 +207,7 @@
   align-items: center;
   width: 100%;
 }
-.github-panel-RemoteConfiguration-sourceRemote label .github-panel-AtomTextEditor-container {
+.github-panel-RemoteConfiguration-sourceRemote label .github-panel-LumineTextEditor-container {
   flex: 1;
   margin-left: var(--component-padding);
 }

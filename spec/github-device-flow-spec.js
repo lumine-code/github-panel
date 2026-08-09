@@ -85,11 +85,11 @@ describe("github device flow", () => {
 
   it("resolves the client id from config, falling back to the built-in default", () => {
     expect(getClientId()).toBe(DEFAULT_OAUTH_CLIENT_ID);
-    atom.config.set("github-panel.oauthClientId", "cfg-id");
+    lumine.config.set("github-panel.oauthClientId", "cfg-id");
     try {
       expect(getClientId()).toBe("cfg-id");
     } finally {
-      atom.config.set("github-panel.oauthClientId", "");
+      lumine.config.set("github-panel.oauthClientId", "");
     }
   });
 });

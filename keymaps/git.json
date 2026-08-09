@@ -3,7 +3,7 @@
   // open-repository, git-diff and git-command. It is never a complete binding
   // on its own: an exact match alongside a chord prefix stalls every press for
   // a second while the keymap waits for the rest of the chord.
-  "atom-workspace": {
+  "lumine-workspace": {
     "alt-g h": "github-panel:toggle-focus"
   },
   ".github-panel-Dialog": {
@@ -30,7 +30,7 @@
     "cmdorctrl-=": "github-panel:more-context",
     "cmdorctrl--": "github-panel:less-context"
   },
-  ".github-panel-Reviews atom-text-editor": {
+  ".github-panel-Reviews lumine-text-editor": {
     "cmdorctrl-enter": "github-panel:submit-comment"
   }
 }

@@ -15,7 +15,7 @@ describe("github-panel git bridge consumption", () => {
 
   it("loads every rewired module without reaching into git-panel internals", () => {
     // These modules previously used requireFromGitPanel/getGitPanel; importing
-    // them verifies their new sources (the bridge holder, `atom`'s GitError, the
+    // them verifies their new sources (the bridge holder, `lumine`'s GitError, the
     // local patch-preview view) all resolve.
     const modules = [
       "../lib/git-bridge",

@@ -6,8 +6,8 @@
   overflow-y: hidden;
   height: 100%;
 }
-.github-panel-Reviews atom-text-editor,
-.github-panel-StubItem-github-panel-reviews atom-text-editor {
+.github-panel-Reviews lumine-text-editor,
+.github-panel-StubItem-github-panel-reviews lumine-text-editor {
   padding: calc(var(--component-padding) / 2);
   border-top: 1px solid var(--base-border-color);
   border-bottom: 1px solid var(--base-border-color);
@@ -400,15 +400,15 @@
 .github-panel-Review-editable {
   margin-top: var(--component-padding);
 }
-/* The box comes from the shared `atom-text-editor[input]` contract; only the
+/* The box comes from the shared `lumine-text-editor[input]` contract; only the
    size these reply fields want is ours. */
-.github-panel-Review-reply atom-text-editor,
-.github-panel-Review-editable atom-text-editor {
+.github-panel-Review-reply lumine-text-editor,
+.github-panel-Review-editable lumine-text-editor {
   width: 100%;
   min-height: 2.125em;
 }
-.github-panel-Review-reply--disabled atom-text-editor,
-.github-panel-Review-editable--disabled atom-text-editor {
+.github-panel-Review-reply--disabled lumine-text-editor,
+.github-panel-Review-editable--disabled lumine-text-editor {
   color: var(--text-color-subtle);
 }
 .github-panel-Review-replyButton {

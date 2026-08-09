@@ -1,11 +1,11 @@
-atom-text-editor .line.github-panel-editorCommentHighlight {
+lumine-text-editor .line.github-panel-editorCommentHighlight {
   background-color: color-mix(
     in srgb,
     var(--background-color-info) 20%,
     var(--syntax-background-color)
   );
 }
-atom-text-editor .line.github-panel-editorCommentHighlight.cursor-line {
+lumine-text-editor .line.github-panel-editorCommentHighlight.cursor-line {
   background-color: color-mix(
     in srgb,
     var(--background-color-info) 40%,
@@ -18,7 +18,7 @@ atom-text-editor .line.github-panel-editorCommentHighlight.cursor-line {
 .github-panel-editorCommentGutterIcon.decoration {
   width: 100%;
 }
-.github-panel-editorCommentGutterIcon.react-atom-decoration {
+.github-panel-editorCommentGutterIcon.react-lumine-decoration {
   width: 100%;
   text-align: center;
   padding: 0 calc(var(--component-padding) / 4);

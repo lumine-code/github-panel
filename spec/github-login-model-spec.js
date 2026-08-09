@@ -2,7 +2,7 @@
 import GithubLoginModel from "../lib/models/github-login-model";
 import { UNAUTHENTICATED } from "../lib/shared/token-status";
 
-// A minimal in-memory stand-in for atom.secrets so the model can be exercised
+// A minimal in-memory stand-in for lumine.secrets so the model can be exercised
 // without the OS keychain.
 function fakeSecrets() {
   const map = new Map();
@@ -30,8 +30,8 @@ describe("GithubLoginModel", () => {
 
     await model.setToken(account, "sekret");
     expect(await model.getToken(account)).toBe("sekret");
-    // Namespaced under the atom-github service.
-    expect(await secrets.get("atom-github:test-account")).toBe("sekret");
+    // Namespaced under the lumine-github service.
+    expect(await secrets.get("lumine-github:test-account")).toBe("sekret");
 
     await model.removeToken(account);
     expect(await model.getToken(account)).toBe(UNAUTHENTICATED);

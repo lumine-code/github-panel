@@ -4,7 +4,7 @@ import Remote, { nullRemote } from "../lib/models/remote";
 import Search from "../lib/models/search";
 
 describe("Search", () => {
-  const origin = new Remote("origin", "git@github.com:atom/github.git");
+  const origin = new Remote("origin", "git@github.com:example/project.git");
 
   it("generates a dotcom URL", () => {
     const s = new Search("foo", "repo:smashwilson/remote-repo type:pr something with spaces");
@@ -31,7 +31,7 @@ describe("Search", () => {
       const s = Search.inRemote(origin, "name", "query");
       expect(s.isNull()).toBe(false);
       expect(s.getName()).toBe("name");
-      expect(s.createQuery()).toBe("repo:atom/github query");
+      expect(s.createQuery()).toBe("repo:example/project query");
     });
 
     it("uses a default empty list tile", () => {

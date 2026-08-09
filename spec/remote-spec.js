@@ -5,14 +5,14 @@ import Remote, { nullRemote } from "../lib/models/remote";
 describe("Remote", () => {
   it("detects and extracts information from GitHub repository URLs", () => {
     const urls = [
-      ["git@github.com:atom/github.git", "ssh"],
-      ["git@github.com:/atom/github.git", "ssh"],
-      ["https://github.com/atom/github.git", "https"],
-      ["https://git:pass@github.com/atom/github.git", "https"],
-      ["ssh+https://github.com/atom/github.git", "ssh+https"],
-      ["git://github.com/atom/github", "git"],
-      ["ssh://git@github.com:atom/github.git", "ssh"],
-      ["ssh://git@github.com:/atom/github.git", "ssh"],
+      ["git@github.com:example/project.git", "ssh"],
+      ["git@github.com:/example/project.git", "ssh"],
+      ["https://github.com/example/project.git", "https"],
+      ["https://git:pass@github.com/example/project.git", "https"],
+      ["ssh+https://github.com/example/project.git", "ssh+https"],
+      ["git://github.com/example/project", "git"],
+      ["ssh://git@github.com:example/project.git", "ssh"],
+      ["ssh://git@github.com:/example/project.git", "ssh"],
     ];
 
     for (const [url, proto] of urls) {
@@ -25,14 +25,14 @@ describe("Remote", () => {
       expect(remote.isGithubRepo()).toBe(true);
       expect(remote.getDomain()).toBe("github.com");
       expect(remote.getProtocol()).toBe(proto);
-      expect(remote.getOwner()).toBe("atom");
-      expect(remote.getRepo()).toBe("github");
-      expect(remote.getSlug()).toBe("atom/github");
+      expect(remote.getOwner()).toBe("example");
+      expect(remote.getRepo()).toBe("project");
+      expect(remote.getSlug()).toBe("example/project");
     }
   });
 
   it("detects non-GitHub remotes", () => {
-    const urls = ["git@gitlab.com:atom/github.git", "atom/github"];
+    const urls = ["git@gitlab.com:example/project.git", "example/project"];
 
     for (const url of urls) {
       const remote = new Remote("origin", url);
@@ -82,7 +82,7 @@ describe("Remote", () => {
 
   describe("getEndpoint", () => {
     it("accesses an Endpoint for the corresponding GitHub host", () => {
-      const remote = new Remote("origin", "git@github.com:atom/github.git");
+      const remote = new Remote("origin", "git@github.com:example/project.git");
       expect(remote.getEndpoint().getGraphQLRoot()).toBe("https://api.github.com/graphql");
     });
 
@@ -94,7 +94,7 @@ describe("Remote", () => {
 
   describe("getEndpointOrDotcom", () => {
     it("accesses the same Endpoint for the corresponding GitHub host", () => {
-      const remote = new Remote("origin", "git@github.com:atom/github.git");
+      const remote = new Remote("origin", "git@github.com:example/project.git");
       expect(remote.getEndpointOrDotcom().getGraphQLRoot()).toBe("https://api.github.com/graphql");
     });
 

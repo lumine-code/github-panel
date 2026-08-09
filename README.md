@@ -19,7 +19,7 @@ To install `github-panel` search for _github-panel_ in the Install pane of the L
 
 ## Commands
 
-Commands available in `atom-workspace`:
+Commands available in `lumine-workspace`:
 
 - `github-panel:toggle`: show or hide the GitHub panel,
 - `github-panel:toggle-focus`: focus the GitHub panel, or return focus to the editor,

@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/model-observer.test.js (chai/sinon → Jasmine).
-import { Emitter } from "atom";
+import { Emitter } from "lumine";
 import ModelObserver from "../lib/models/model-observer";
 
 class Model {

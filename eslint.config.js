@@ -5,7 +5,7 @@ const prettier = require("eslint-config-prettier");
 const jsx = require("./eslint-jsx");
 
 // Provided by the Lumine runtime, not resolvable from this manifest.
-const runtimeModules = ["atom", "electron"];
+const runtimeModules = ["lumine", "electron"];
 
 module.exports = [
   {
@@ -27,7 +27,7 @@ module.exports = [
       globals: {
         ...globals.browser,
         ...globals.node,
-        atom: "readonly",
+        lumine: "readonly",
       },
     },
     plugins: { n, jsx },
