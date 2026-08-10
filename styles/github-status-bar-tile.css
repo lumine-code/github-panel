@@ -1,12 +1,18 @@
 /* The portal host the React tree renders into. This is the element handed to
    the status bar, so it is the tile: the bar stamps `.status-bar-item` on it
-   and a theme sizes and insets it from here. The button inside is layout. */
+   and a theme sizes and insets it from here. The button inside is layout, and
+   an inline block at that, so it would sit on the baseline and hang low in a
+   tile a theme has given a fixed height — centre it instead. */
 .github-panel-StatusBarTileHost {
-  display: inline-block;
+  display: flex;
+  align-items: center;
 }
 
 .github-panel-StatusBarTile {
-  background-color: inherit;
+  /* Transparent, never `inherit`: inheriting takes the tile's *computed*
+     background, so on hover the button repaints the tile's translucent colour
+     over itself and the two layers composite into a darker rectangle. */
+  background-color: transparent;
   border: none;
   cursor: default;
 }
