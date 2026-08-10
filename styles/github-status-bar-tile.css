@@ -1,6 +1,6 @@
-/* The portal host the React tree renders into. It is not a tile itself, so it
-   carries no `.inline-block`: the button inside is the tile, and a theme insets
-   that. It only needs to sit inline in the bar. */
+/* The portal host the React tree renders into. This is the element handed to
+   the status bar, so it is the tile: the bar stamps `.status-bar-item` on it
+   and a theme sizes and insets it from here. The button inside is layout. */
 .github-panel-StatusBarTileHost {
   display: inline-block;
 }
