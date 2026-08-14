@@ -15,7 +15,7 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 
 ## Installation
 
-To install `github-panel` search for _github-panel_ in the Install pane of the Lumine settings or run `lumine --install lumine-code/github-panel`. It also needs the [git-panel](https://github.com/lumine-code/git-panel) package, which performs the Git operations.
+To install `github-panel` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/github-panel`. It also needs the [git-panel](https://github.com/lumine-code/git-panel) package, which performs the Git operations.
 
 ## Commands
 
@@ -50,8 +50,8 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 
 ## Services
 
-- **git-panel** (`^1.0.0`): consumed to reach the repository model, its diffs, and its remotes through git-panel.
-- **status-bar** (`^1.0.0`): consumed to display the GitHub item that opens the panel.
+- `git-panel`: consumed to reach the repository model, its diffs, and its remotes through git-panel.
+- `status-bar`: consumed to display the GitHub item that opens the panel.
 
 ## Contributing
 
