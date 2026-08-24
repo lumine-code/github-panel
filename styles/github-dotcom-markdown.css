@@ -57,7 +57,7 @@
 }
 .github-panel-DotComMarkdownHtml a,
 .github-panel-DotComMarkdownHtml a code {
-  color: var(--text-color-info);
+  color: var(--accent-only-text-color);
 }
 .github-panel-DotComMarkdownHtml img {
   max-width: 100%;

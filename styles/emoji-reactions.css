@@ -9,7 +9,7 @@
 .github-panel-EmojiReactions-add.btn.btn:focus.btn {
   border-color: transparent;
   box-shadow: none;
-  color: var(--text-color-info);
+  color: var(--accent-only-text-color);
 }
 .github-panel-EmojiReactions-add.btn.btn:hover {
   color: hsl(from var(--text-color-subtle) h s calc(l + 10));

@@ -53,7 +53,7 @@
 }
 .github-panel-PrStatuses-list-item-name {
   font-weight: bold;
-  color: var(--text-color-info);
+  color: var(--accent-only-text-color);
   margin-right: 0.5em;
 }
 .github-panel-PrStatuses-list-item-context {
@@ -73,10 +73,10 @@
 }
 .github-panel-PrStatuses-list-item-details-link {
   margin-left: 0.5em;
-  color: var(--text-color-info);
+  color: var(--accent-only-text-color);
 }
 .github-panel-PrStatuses-list-item-details-link a {
-  color: var(--text-color-info);
+  color: var(--accent-only-text-color);
 }
 .github-panel-PrStatuses--pending {
   color: var(--github-panel-color-yellow);
