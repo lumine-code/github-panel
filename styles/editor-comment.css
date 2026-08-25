@@ -1,16 +1,5 @@
 lumine-text-editor .line.github-panel-editorCommentHighlight {
-  background-color: color-mix(
-    in srgb,
-    var(--background-color-info) 20%,
-    var(--syntax-background-color)
-  );
-}
-lumine-text-editor .line.github-panel-editorCommentHighlight.cursor-line {
-  background-color: color-mix(
-    in srgb,
-    var(--background-color-info) 40%,
-    var(--syntax-selection-color)
-  );
+  background-color: color-mix(in srgb, var(--background-color-info) 20%, transparent);
 }
 .gutter[gutter-name="github-comment-icon"] {
   width: 1.4em;
