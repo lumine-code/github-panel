@@ -5,6 +5,8 @@ import {
   DeviceFlowError,
   getClientId,
   DEFAULT_OAUTH_CLIENT_ID,
+  OAUTH_CREDENTIAL_KIND,
+  refreshAccessToken,
 } from "../lib/models/github-device-flow";
 
 const endpoint = { getWebRoot: () => "https://github.com" };
@@ -23,15 +25,18 @@ describe("github device flow", () => {
   function mockFetch(responses) {
     originalFetch = globalThis.fetch;
     let i = 0;
-    globalThis.fetch = async () => {
+    const requests = [];
+    globalThis.fetch = async (...args) => {
+      requests.push(args);
       const body = responses[Math.min(i, responses.length - 1)];
       i++;
       return { json: async () => body };
     };
+    return requests;
   }
 
   it("requests a device + user code", async () => {
-    mockFetch([
+    const requests = mockFetch([
       {
         device_code: "dc",
         user_code: "ABCD-1234",
@@ -42,6 +47,7 @@ describe("github device flow", () => {
     ]);
     const data = await requestDeviceCode({ endpoint, clientId: "cid" });
     expect(data.user_code).toBe("ABCD-1234");
+    expect(JSON.parse(requests[0][1].body).scope).toBe("repo read:org user:email offline_access");
   });
 
   it("throws a DeviceFlowError when the device-code request errors", async () => {
@@ -62,14 +68,83 @@ describe("github device flow", () => {
       { error: "authorization_pending" },
       { access_token: "gho_token" },
     ]);
-    const token = await pollForAccessToken({
+    const credential = await pollForAccessToken({
       endpoint,
       clientId: "cid",
       deviceCode: "dc",
       interval: 1,
       poll: instant,
     });
-    expect(token).toBe("gho_token");
+    expect(credential).toEqual({
+      kind: OAUTH_CREDENTIAL_KIND,
+      accessToken: "gho_token",
+      refreshToken: null,
+      expiresAt: null,
+      refreshTokenExpiresAt: null,
+      clientId: "cid",
+      tokenUrl: "https://github.com/login/oauth/access_token",
+    });
+  });
+
+  it("keeps the refresh token and both expirations returned by GitHub", async () => {
+    const startedAt = Date.now();
+    mockFetch([
+      {
+        access_token: "gho_access",
+        expires_in: 28_800,
+        refresh_token: "ghr_refresh",
+        refresh_token_expires_in: 15_897_600,
+      },
+    ]);
+    const credential = await pollForAccessToken({
+      endpoint,
+      clientId: "cid",
+      deviceCode: "dc",
+      interval: 1,
+      poll: instant,
+    });
+
+    expect(credential.accessToken).toBe("gho_access");
+    expect(credential.refreshToken).toBe("ghr_refresh");
+    expect(credential.expiresAt).toBeGreaterThanOrEqual(startedAt + 28_800_000);
+    expect(credential.refreshTokenExpiresAt).toBeGreaterThanOrEqual(startedAt + 15_897_600_000);
+  });
+
+  it("rotates a Device Flow credential without a client secret", async () => {
+    let request = null;
+    originalFetch = globalThis.fetch;
+    globalThis.fetch = async (url, options) => {
+      request = { url, body: JSON.parse(options.body) };
+      return {
+        json: async () => ({
+          access_token: "gho_next",
+          expires_in: 28_800,
+          refresh_token: "ghr_next",
+          refresh_token_expires_in: 15_897_600,
+        }),
+      };
+    };
+
+    const credential = await refreshAccessToken({
+      kind: OAUTH_CREDENTIAL_KIND,
+      accessToken: "gho_old",
+      refreshToken: "ghr_old",
+      expiresAt: 1,
+      refreshTokenExpiresAt: Date.now() + 10_000,
+      clientId: "cid",
+      tokenUrl: "https://github.com/login/oauth/access_token",
+    });
+
+    expect(request).toEqual({
+      url: "https://github.com/login/oauth/access_token",
+      body: {
+        client_id: "cid",
+        grant_type: "refresh_token",
+        refresh_token: "ghr_old",
+      },
+    });
+    expect(credential.accessToken).toBe("gho_next");
+    expect(credential.refreshToken).toBe("ghr_next");
   });
 
   it("maps access_denied to a DeviceFlowError", async () => {
