@@ -43,7 +43,7 @@
     "classnames": "2.5.1",
     "dayjs": "^1.11.23",
     "dompurify": "3.4.14",
-    "marked": "18.0.10",
+    "marked": "18.0.11",
     "node-emoji": "^2.2.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
