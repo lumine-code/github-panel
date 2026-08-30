@@ -195,6 +195,19 @@ describe("GithubLoginModel", () => {
     model.destroy();
   });
 
+  it("uses the renderer's native timers for OAuth refresh scheduling", async () => {
+    jasmine.useRealClock();
+    const secrets = fakeSecrets();
+    const model = new GithubLoginModel({ secrets, now: () => 10_000 });
+    await model.setToken("test-account", oauthCredential({ expiresAt: 1_000_000 }));
+
+    try {
+      expect(await model.getToken("test-account")).toBe("gho_old");
+    } finally {
+      model.destroy();
+    }
+  });
+
   it("asks for sign-in when the refresh token has been rejected", async () => {
     const secrets = fakeSecrets();
     const model = new GithubLoginModel({
