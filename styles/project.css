@@ -7,6 +7,12 @@
 .github-panel-Project-path {
   flex: 1;
   margin-left: var(--component-padding);
+  min-width: 0;
+}
+.github-panel-Project-path .select-box-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .github-panel-Project-avatarBtn {
   height: 23px;
