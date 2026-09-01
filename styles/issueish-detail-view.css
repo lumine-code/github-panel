@@ -65,7 +65,7 @@
   display: inline-block;
   margin-right: var(--component-padding);
   color: var(--text-color-subtle);
-  cursor: pointer;
+  cursor: default;
 }
 .github-panel-IssueishDetailView-headerRefreshButton::before {
   display: block;

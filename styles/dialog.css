@@ -78,7 +78,7 @@
   bottom: 0;
   border: none;
   color: var(--text-color-subtle);
-  cursor: pointer;
+  cursor: default;
 }
 .github-panel-Dialog--insetButton:hover {
   color: var(--text-color-highlight);
