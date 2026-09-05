@@ -1,5 +1,0 @@
-/* The portal host the React tree renders into. It is a target for React rather
-   than a control, so it goes to the status bar as a `<status-bar-tile-group>`:
-   the bar marks the tile rendered into it and leaves this box unmarked, and the
-   status-bar package supplies the group's layout. The tile inside carries no
-   widget box of its own, so nothing is left to say here either. */

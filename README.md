@@ -11,7 +11,6 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 - **Comment decorations**: show review comments as inline decorations on the current branch.
 - **Issue/PR opener**: open any issue or pull request by URL.
 - **Repository management**: create and publish repositories to GitHub.
-- **Status bar**: reach the panel from a GitHub item in the status bar.
 
 ## Installation
 
@@ -53,7 +52,6 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 ## Services
 
 - `git-panel`: consumed to reach the repository model, its diffs, and its remotes through git-panel.
-- `status-bar`: consumed to display the GitHub item that opens the panel.
 
 ## Contributing
 

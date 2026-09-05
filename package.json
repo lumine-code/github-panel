@@ -51,11 +51,6 @@
     "react-tabs": "6.1.1"
   },
   "consumedServices": {
-    "status-bar": {
-      "versions": {
-        "^1.0.0": "consumeStatusBar"
-      }
-    },
     "git-panel": {
       "versions": {
         "^1.0.0": "consumeGitPanel"
