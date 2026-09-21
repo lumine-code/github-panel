@@ -1,5 +1,5 @@
 .github-panel-Reviews,
-.github-panel-StubItem-github-panel-reviews {
+.github-panel-PaneItemHost-github-panel-reviews {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -7,14 +7,14 @@
   height: 100%;
 }
 .github-panel-Reviews lumine-text-editor,
-.github-panel-StubItem-github-panel-reviews lumine-text-editor {
+.github-panel-PaneItemHost-github-panel-reviews lumine-text-editor {
   padding: calc(var(--component-padding) / 2);
   border-top: 1px solid var(--base-border-color);
   border-bottom: 1px solid var(--base-border-color);
   border-radius: var(--component-border-radius);
 }
 .github-panel-Reviews-topHeader,
-.github-panel-StubItem-github-panel-reviews-topHeader {
+.github-panel-PaneItemHost-github-panel-reviews-topHeader {
   display: flex;
   align-items: center;
   padding: 0 var(--component-padding);
@@ -24,11 +24,11 @@
   color: var(--text-color-subtle);
 }
 .github-panel-Reviews-topHeader .icon:before,
-.github-panel-StubItem-github-panel-reviews-topHeader .icon:before {
+.github-panel-PaneItemHost-github-panel-reviews-topHeader .icon:before {
   margin-right: calc(var(--component-padding) / 1.2);
 }
 .github-panel-Reviews-topHeader .icon.refreshing::before,
-.github-panel-StubItem-github-panel-reviews-topHeader .icon.refreshing::before {
+.github-panel-PaneItemHost-github-panel-reviews-topHeader .icon.refreshing::before {
   animation: github-panel-Reviews-refreshButtonAnimation 2s linear 30;
   /* limit to 1min in case something gets stuck */
 }
@@ -38,28 +38,28 @@
   }
 }
 .github-panel-Reviews-headerTitle,
-.github-panel-StubItem-github-panel-reviews-headerTitle {
+.github-panel-PaneItemHost-github-panel-reviews-headerTitle {
   flex: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 .github-panel-Reviews-clickable,
-.github-panel-StubItem-github-panel-reviews-clickable {
+.github-panel-PaneItemHost-github-panel-reviews-clickable {
   cursor: pointer;
   font-weight: 400;
 }
 .github-panel-Reviews-clickable:hover,
-.github-panel-StubItem-github-panel-reviews-clickable:hover {
+.github-panel-PaneItemHost-github-panel-reviews-clickable:hover {
   color: var(--text-color-highlight);
   text-decoration: underline;
 }
 .github-panel-Reviews-clickable.icon:hover:before,
-.github-panel-StubItem-github-panel-reviews-clickable.icon:hover:before {
+.github-panel-PaneItemHost-github-panel-reviews-clickable.icon:hover:before {
   color: var(--text-color-highlight);
 }
 .github-panel-Reviews-headerButton,
-.github-panel-StubItem-github-panel-reviews-headerButton {
+.github-panel-PaneItemHost-github-panel-reviews-headerButton {
   height: 3em;
   border: none;
   padding: 0;
@@ -67,37 +67,39 @@
   background: none;
 }
 .github-panel-Reviews-list,
-.github-panel-StubItem-github-panel-reviews-list {
+.github-panel-PaneItemHost-github-panel-reviews-list {
   flex: 1 1 0;
   overflow: auto;
 }
 .github-panel-Reviews-section,
-.github-panel-StubItem-github-panel-reviews-section {
+.github-panel-PaneItemHost-github-panel-reviews-section {
   border-bottom: 1px solid var(--base-border-color);
 }
 .github-panel-Reviews-section.resolved-comments,
-.github-panel-StubItem-github-panel-reviews-section.resolved-comments {
+.github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments {
   border-bottom: 0;
   padding-left: var(--component-padding);
 }
 .github-panel-Reviews-section.resolved-comments .github-panel-Reviews-title,
-.github-panel-StubItem-github-panel-reviews-section.resolved-comments .github-panel-Reviews-title {
+.github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments
+  .github-panel-Reviews-title {
   color: var(--text-color-subtle);
 }
 .github-panel-Reviews-section.resolved-comments .github-panel-Reviews-header,
-.github-panel-StubItem-github-panel-reviews-section.resolved-comments .github-panel-Reviews-header {
+.github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments
+  .github-panel-Reviews-header {
   color: var(--text-color-subtle);
   padding-top: calc(var(--component-padding) * 0.5);
 }
 .github-panel-Reviews-header,
-.github-panel-StubItem-github-panel-reviews-header {
+.github-panel-PaneItemHost-github-panel-reviews-header {
   display: flex;
   align-items: center;
   padding: var(--component-padding);
   cursor: default;
 }
 .github-panel-Reviews-title,
-.github-panel-StubItem-github-panel-reviews-title {
+.github-panel-PaneItemHost-github-panel-reviews-title {
   flex: 1;
   font-size: 1em;
   margin: 0;
@@ -105,46 +107,46 @@
   color: var(--text-color-highlight);
 }
 .github-panel-Reviews-count,
-.github-panel-StubItem-github-panel-reviews-count {
+.github-panel-PaneItemHost-github-panel-reviews-count {
   color: var(--text-color-subtle);
 }
 .github-panel-Reviews-countNr,
-.github-panel-StubItem-github-panel-reviews-countNr {
+.github-panel-PaneItemHost-github-panel-reviews-countNr {
   color: var(--text-color-highlight);
 }
 .github-panel-Reviews-progessBar,
-.github-panel-StubItem-github-panel-reviews-progessBar {
+.github-panel-PaneItemHost-github-panel-reviews-progessBar {
   width: 5em;
   margin-left: var(--component-padding);
 }
 .github-panel-Reviews-container,
-.github-panel-StubItem-github-panel-reviews-container {
+.github-panel-PaneItemHost-github-panel-reviews-container {
   font-size: var(--font-size);
   padding: var(--component-padding);
   padding-top: 0;
 }
 .github-panel-Reviews .github-panel-EmojiReactions,
-.github-panel-StubItem-github-panel-reviews .github-panel-EmojiReactions {
+.github-panel-PaneItemHost-github-panel-reviews .github-panel-EmojiReactions {
   padding: var(--component-padding) 0 0;
 }
 .github-panel-Reviews-emptyImg,
-.github-panel-StubItem-github-panel-reviews-emptyImg {
+.github-panel-PaneItemHost-github-panel-reviews-emptyImg {
   padding: 1em;
 }
 .github-panel-Reviews-emptyText,
-.github-panel-StubItem-github-panel-reviews-emptyText {
+.github-panel-PaneItemHost-github-panel-reviews-emptyText {
   font-size: 1.5em;
   text-align: center;
 }
 .github-panel-Reviews-emptyCallToActionButton,
-.github-panel-StubItem-github-panel-reviews-emptyCallToActionButton {
+.github-panel-PaneItemHost-github-panel-reviews-emptyCallToActionButton {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2em;
   display: block;
 }
 .github-panel-Reviews-emptyCallToActionButton a:hover,
-.github-panel-StubItem-github-panel-reviews-emptyCallToActionButton a:hover {
+.github-panel-PaneItemHost-github-panel-reviews-emptyCallToActionButton a:hover {
   text-decoration: none;
 }
 .github-panel-ReviewSummary {

@@ -20,10 +20,6 @@
               "command": "github-panel:toggle"
             },
             {
-              "label": "Open Reviews Tab",
-              "command": "github-panel:open-reviews-tab"
-            },
-            {
               "label": "Open Issue or Pull Request",
               "command": "github-panel:open-issue-or-pull-request"
             },
