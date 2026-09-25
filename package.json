@@ -30,14 +30,18 @@
     "lumine": "^1.0.0",
     "node": ">=24"
   },
-  "backgroundTips": [
-    "You can review pull requests and issues from the GitHub panel with {{ 'github-panel:toggle-focus' | keystroke }}"
-  ],
   "scripts": {
     "test": "lumine --test spec",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
+  },
+  "providedServices": {
+    "background-tips.provider": {
+      "versions": {
+        "1.0.0": "provideBackgroundTips"
+      }
+    }
   },
   "dependencies": {
     "classnames": "2.5.1",
