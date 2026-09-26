@@ -1,9 +1,0 @@
-.donut-ring-pending {
-  stroke: var(--github-panel-color-yellow);
-}
-.donut-ring-success {
-  stroke: var(--github-panel-color-green);
-}
-.donut-ring-failure {
-  stroke: var(--github-panel-color-red);
-}

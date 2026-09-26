@@ -1,0 +1,2612 @@
+/* accordion.css */
+.github-panel-Accordion {
+  cursor: default;
+  user-select: none;
+}
+.github-panel-Accordion-header {
+  font-weight: 600;
+  color: var(--text-color-subtle);
+  padding: calc(var(--component-padding) / 2);
+  border-bottom: 1px solid var(--base-border-color);
+  display: flex;
+  align-items: center;
+}
+.github-panel-Accordion-header::-webkit-details-marker {
+  color: var(--text-color-subtle);
+}
+.github-panel-Accordion--rightTitle,
+.github-panel-Accordion--leftTitle {
+  flex: 1;
+}
+.github-panel-Accordion-content {
+  border-bottom: 1px solid var(--base-border-color);
+  background-color: var(--base-background-color);
+}
+.github-panel-Accordion-content:empty::before {
+  content: "Empty";
+  display: block;
+  font-style: italic;
+  text-align: center;
+  color: var(--text-color-subtle);
+}
+.github-panel-Accordion-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.github-panel-Accordion[open] .github-panel-Accordion-header {
+  color: var(--text-color-highlight);
+}
+.github-panel-Accordion-listItem {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 4);
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Accordion-listItem:last-child {
+  border: none;
+}
+.github-panel-Accordion-listItem:active {
+  background-color: var(--background-color-highlight);
+}
+
+/* dialog.css */
+.github-panel-Dialog {
+  /* A trick to trap keyboard focus within this DOM element.
+   * In JavaScript, attach an event handler to the onTransitionEnd event and reassign focus to the initial element
+   * within the dialog. */
+}
+.github-panel-DialogPrompt {
+  margin: var(--component-padding);
+  text-align: center;
+  font-size: 1.2em;
+  user-select: none;
+}
+.github-panel-DialogForm {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogLabel {
+  flex: 1;
+  margin: calc(var(--component-padding) / 2);
+  position: relative;
+  line-height: 2;
+}
+.github-panel-DialogLabel--horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.github-panel-DialogLabel--horizontal input {
+  margin: 0 var(--component-padding);
+}
+.github-panel-DialogLabel--horizontal input[type="text"],
+.github-panel-DialogLabel--horizontal input[type="password"] {
+  width: 85%;
+}
+.github-panel-DialogLabel .github-panel-LumineTextEditor-container {
+  margin-top: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogFooter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.github-panel-DialogInfo {
+  display: inline-block;
+  flex-grow: 1;
+  margin: calc(var(--component-padding) / 2);
+  padding: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogInfo li {
+  display: inline-block;
+}
+.github-panel-DialogButtons {
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: calc(var(--component-padding) / 2);
+}
+/* Switch button order on Windows */
+.platform-win32 .github-panel-DialogButtons {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+.github-panel-DialogButtons .btn {
+  margin: calc(var(--component-padding) / 2);
+}
+.github-panel-DialogButtons-leftItem,
+.github-panel-DialogButtons-leftItem.btn {
+  margin: calc(var(--component-padding) / 2);
+  margin-right: auto;
+}
+.github-panel-Dialog--insetButton {
+  position: absolute;
+  background: transparent;
+  right: 1em;
+  top: 0;
+  bottom: 0;
+  border: none;
+  color: var(--text-color-subtle);
+  cursor: default;
+}
+.github-panel-Dialog--insetButton:hover {
+  color: var(--text-color-highlight);
+}
+.github-panel-Dialog--insetButton:focus {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-DialogSpinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--component-padding);
+}
+.github-panel-DialogSpinner .loading {
+  margin: var(--component-padding);
+}
+.github-panel-Dialog-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+.github-panel-Dialog-row .github-panel-LumineTextEditor-container {
+  flex: 1;
+}
+.github-panel-Dialog lumine-text-editor[mini].editor {
+  margin: 0;
+}
+.github-panel-Dialog lumine-text-editor[mini].editor[readOnly] {
+  color: var(--text-color-subtle);
+}
+.github-panel-Dialog:not(:focus-within) {
+  padding-bottom: 1px;
+  transition: padding-bottom 0.01s;
+}
+.github-panel-TabbableWrapper {
+  display: flex;
+  flex: 1;
+}
+.github-panel-RepositoryHome {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.github-panel-RepositoryHome-owner {
+  flex: 1;
+}
+.github-panel-RepositoryHome-owner .Select__control {
+  border-color: var(--button-border-color);
+}
+.github-panel-RepositoryHome-owner .Select__single-value {
+  background: var(--button-background-color);
+  color: var(--text-color);
+}
+.github-panel-RepositoryHome-owner .Select__option {
+  background: var(--button-background-color);
+  color: var(--text-color);
+}
+.github-panel-RepositoryHome-owner .Select__option--is-focused {
+  background: var(--button-background-color-selected);
+}
+.github-panel-RepositoryHome-owner .Select__option--is-disabled {
+  color: var(--text-color-subtle);
+}
+.github-panel-RepositoryHome-ownerOption {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+.github-panel-RepositoryHome-ownerAvatar {
+  flex: 0;
+  border-radius: calc(var(--component-padding) / 4);
+  margin: 0 var(--component-padding) 0 0;
+}
+.github-panel-RepositoryHome-ownerUnwritable {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+.github-panel-RepositoryHome-separator {
+  flex: 0;
+  margin: 0 var(--component-padding);
+}
+.github-panel-RepositoryHome .github-panel-LumineTextEditor-container {
+  flex: 1.5;
+}
+.github-panel-RemoteConfiguration-details summary {
+  cursor: default;
+  user-select: none;
+  margin: var(--component-padding) 0;
+}
+.github-panel-RemoteConfiguration-details summary:focus {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-RemoteConfiguration-details main {
+  padding-top: var(--component-padding);
+}
+.github-panel-RemoteConfiguration-protocol {
+  display: inline-flex;
+  align-items: center;
+}
+.github-panel-RemoteConfiguration-protocolHeading {
+  display: inline-block;
+  margin-right: var(--component-padding);
+}
+.github-panel-RemoteConfiguration-protocolOption {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 4);
+  margin-right: var(--component-padding);
+}
+.github-panel-RemoteConfiguration-protocolOption:focus-within {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-RemoteConfiguration-sourceRemote {
+  width: 60%;
+}
+.github-panel-RemoteConfiguration-sourceRemote label {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.github-panel-RemoteConfiguration-sourceRemote label .github-panel-LumineTextEditor-container {
+  flex: 1;
+  margin-left: var(--component-padding);
+}
+.github-panel-Create-visibility {
+  display: inline-flex;
+  align-items: center;
+}
+.github-panel-Create-visibilityHeading {
+  display: inline-block;
+  margin-right: calc(var(--component-padding) * 2);
+}
+.github-panel-Create-visibilityOption {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 4);
+  margin-right: var(--component-padding);
+}
+.github-panel-Create-visibilityOption:focus-within {
+  border: solid 1px var(--button-background-color-selected);
+  border-radius: 4px;
+}
+.github-panel-Create-visibilityOption span::before {
+  margin-left: calc(var(--component-padding) / 2);
+  margin-right: calc(var(--component-padding) / 2);
+}
+
+/* dock.css */
+/* Here ALL the overrides when a pane/panel gets used as a dock item
+ * It's not too high of a priority, but still good to check (and fix) once in a while */
+lumine-dock.bottom .github-panel-Git {
+  flex-direction: row;
+}
+lumine-dock.bottom .github-panel-StagingView {
+  display: contents;
+  /* make these invisible to layout */
+}
+lumine-dock.bottom .github-panel-Git > div {
+  flex: 1;
+}
+lumine-dock.bottom .github-panel-StagedChanges {
+  border-left: 1px solid var(--base-border-color);
+  border-right: 1px solid var(--base-border-color);
+}
+lumine-dock.bottom .github-panel-StagingView-header {
+  flex-wrap: wrap;
+}
+lumine-dock.bottom .github-panel-StagingView-group:first-child .github-panel-StagingView-header {
+  border-top: 1px solid var(--base-border-color);
+}
+lumine-dock.bottom .github-panel-RecentCommits {
+  max-height: none;
+  border-left: 1px solid var(--base-border-color);
+}
+lumine-dock.left .github-panel-IssueishDetailView-header,
+lumine-dock.right .github-panel-IssueishDetailView-header {
+  display: block;
+  padding: var(--component-padding);
+  background-color: var(--tool-panel-background-color);
+}
+lumine-dock.left .github-panel-IssueishDetailView-avatar,
+lumine-dock.right .github-panel-IssueishDetailView-avatar {
+  position: absolute;
+}
+lumine-dock.left .github-panel-IssueishDetailView-avatarImage,
+lumine-dock.right .github-panel-IssueishDetailView-avatarImage {
+  width: 20px;
+  height: 20px;
+}
+lumine-dock.left .github-panel-IssueishDetailView-headerRow:nth-child(1),
+lumine-dock.right .github-panel-IssueishDetailView-headerRow:nth-child(1) {
+  padding-left: 25px;
+  /* space for avatar */
+  overflow: hidden;
+}
+lumine-dock.left .github-panel-IssueishDetailView-title,
+lumine-dock.right .github-panel-IssueishDetailView-title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+lumine-dock.left .github-panel-IssueishDetailView-checkoutButton,
+lumine-dock.right .github-panel-IssueishDetailView-checkoutButton {
+  margin: var(--component-padding) 0 0 0;
+}
+lumine-dock.left .github-panel-IssueishDetailView-tablist,
+lumine-dock.right .github-panel-IssueishDetailView-tablist {
+  flex-wrap: wrap;
+}
+lumine-dock.left .github-panel-IssueishDetailView-tab,
+lumine-dock.right .github-panel-IssueishDetailView-tab {
+  padding: calc(var(--component-padding) / 2) var(--component-padding);
+}
+lumine-dock.left .github-panel-IssueishDetailView-tab-icon,
+lumine-dock.right .github-panel-IssueishDetailView-tab-icon {
+  display: none;
+}
+lumine-dock.left .github-panel-IssueishDetailView-overview,
+lumine-dock.right .github-panel-IssueishDetailView-overview {
+  font-size: 0.9em;
+}
+lumine-dock.left .github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml,
+lumine-dock.right .github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml,
+lumine-dock.left .github-panel-IssueishDetailView-overview .timeline-item,
+lumine-dock.right .github-panel-IssueishDetailView-overview .timeline-item {
+  padding: var(--component-padding);
+}
+lumine-dock.left .github-panel-IssueishDetailView-buildStatus,
+lumine-dock.right .github-panel-IssueishDetailView-buildStatus {
+  padding: 0;
+}
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrStatuses-header,
+lumine-dock.right .github-panel-IssueishDetailView .github-panel-PrStatuses-header {
+  border-top: none;
+}
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrStatuses-header,
+lumine-dock.right .github-panel-IssueishDetailView .github-panel-PrStatuses-header,
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrStatuses-list-item,
+lumine-dock.right .github-panel-IssueishDetailView .github-panel-PrStatuses-list-item {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+}
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper,
+lumine-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper {
+  padding: 0;
+}
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitView-container,
+lumine-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitView-container {
+  font-size: 0.9em;
+  border-left: none;
+  border-right: none;
+}
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitView-container:first-child,
+lumine-dock.right
+  .github-panel-IssueishDetailView
+  .github-panel-PrCommitView-container:first-child {
+  border-top: none;
+  border-radius: 0;
+}
+lumine-dock.left .github-panel-IssueishDetailView .github-panel-PrCommitView-container:last-child,
+lumine-dock.right .github-panel-IssueishDetailView .github-panel-PrCommitView-container:last-child {
+  border-bottom: none;
+  border-radius: 0;
+}
+lumine-dock.left .github-panel-CommitDetailView-header,
+lumine-dock.right .github-panel-CommitDetailView-header {
+  background-color: var(--tool-panel-background-color);
+}
+lumine-dock.left .github-panel-CommitDetailView-commit,
+lumine-dock.right .github-panel-CommitDetailView-commit {
+  padding: var(--component-padding) var(--component-padding) 0 var(--component-padding);
+}
+lumine-dock.left .github-panel-CommitDetailView-meta,
+lumine-dock.right .github-panel-CommitDetailView-meta {
+  margin-bottom: var(--component-padding);
+}
+lumine-dock.left .github-panel-CommitDetailView-moreText,
+lumine-dock.right .github-panel-CommitDetailView-moreText {
+  padding: var(--component-padding) 0;
+}
+
+/* donut-chart.css */
+.donut-ring-pending {
+  stroke: var(--github-panel-color-yellow);
+}
+.donut-ring-success {
+  stroke: var(--github-panel-color-green);
+}
+.donut-ring-failure {
+  stroke: var(--github-panel-color-red);
+}
+
+/* editor-comment.css */
+lumine-text-editor .line.github-panel-editorCommentHighlight {
+  background-color: color-mix(in srgb, var(--background-color-info) 20%, transparent);
+}
+.gutter[gutter-name="github-comment-icon"] {
+  width: 1.4em;
+}
+.github-panel-editorCommentGutterIcon.decoration {
+  width: 100%;
+}
+.github-panel-editorCommentGutterIcon.react-lumine-decoration {
+  width: 100%;
+  text-align: center;
+  padding: 0 calc(var(--component-padding) / 4);
+}
+.github-panel-editorCommentGutterIcon button {
+  padding: 0;
+  border: none;
+  background: none;
+  vertical-align: middle;
+}
+.github-panel-EditorComment-omitted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--tool-panel-background-color);
+  border-radius: var(--component-border-radius);
+  padding: var(--component-padding);
+  margin: calc(var(--component-padding) / 2) 0;
+}
+.github-panel-EditorComment-omitted p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: calc(var(--component-padding) / 4);
+}
+.github-panel-EditorComment-omitted button {
+  margin-left: var(--component-padding);
+}
+
+/* emoji-reactions.css */
+.github-panel-EmojiReactions-add.btn.btn {
+  color: var(--text-color-subtle);
+  border-color: transparent;
+  background: none;
+}
+.github-panel-EmojiReactions-add.btn.btn:first-child {
+  border-color: transparent;
+}
+.github-panel-EmojiReactions-add.btn.btn:focus.btn {
+  border-color: transparent;
+  box-shadow: none;
+  color: var(--accent-only-text-color);
+}
+.github-panel-EmojiReactions-add.btn.btn:hover {
+  color: hsl(from var(--text-color-subtle) h s calc(l + 10));
+}
+
+/* github-blank.css */
+.github-panel-Blank {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.github-panel-Blank-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.github-panel-Blank-footer {
+  flex-shrink: 0;
+  padding: calc(var(--component-padding) * 2) var(--component-padding);
+}
+/* The mark these views head with is styled in large-icon.css. */
+.github-panel-Blank-banner,
+.github-panel-Blank-context,
+.github-panel-Blank-explanation {
+  text-align: center;
+}
+.github-panel-Blank-option {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.github-panel-Blank-option--explained {
+  margin-bottom: calc(var(--component-padding) / 2);
+}
+.github-panel-Blank-actionBtn {
+  flex: 1;
+  margin: 0 10%;
+}
+.github-panel-Blank-explanation {
+  margin-left: 5%;
+  margin-right: 5%;
+  color: var(--text-color-subtle);
+}
+.github-panel-Blank-tabLink {
+  margin-left: 0.5em;
+  border-color: inherit;
+  background-color: inherit;
+  border-style: none;
+  border-width: 0;
+  padding: 0;
+  text-decoration: underline;
+}
+.github-panel-Blank-tabLink .icon {
+  padding-right: 0;
+}
+
+/* github-dotcom-markdown.css */
+/* This styles Markdown used in issueish panes. */
+.github-panel-DotComMarkdownHtml {
+  font-size: 1.15em;
+  line-height: 1.5;
+}
+.github-panel-DotComMarkdownHtml > *:first-child {
+  margin-top: 0;
+}
+.github-panel-DotComMarkdownHtml > *:last-child {
+  margin-bottom: 0;
+}
+.github-panel-DotComMarkdownHtml h1,
+.github-panel-DotComMarkdownHtml h2,
+.github-panel-DotComMarkdownHtml h3,
+.github-panel-DotComMarkdownHtml h4,
+.github-panel-DotComMarkdownHtml h5,
+.github-panel-DotComMarkdownHtml h6 {
+  line-height: 1.2;
+  margin-top: 1em;
+  margin-bottom: calc(1em / 3);
+  color: var(--text-color-highlight);
+}
+.github-panel-DotComMarkdownHtml h1 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+.github-panel-DotComMarkdownHtml h2 {
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.github-panel-DotComMarkdownHtml h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.github-panel-DotComMarkdownHtml h4 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+.github-panel-DotComMarkdownHtml h5 {
+  font-size: 1em;
+  font-weight: 600;
+}
+.github-panel-DotComMarkdownHtml h6 {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+.github-panel-DotComMarkdownHtml h2 {
+  padding-bottom: 0.25em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-DotComMarkdownHtml strong {
+  color: var(--text-color-highlight);
+}
+.github-panel-DotComMarkdownHtml del {
+  color: var(--text-color-subtle);
+}
+.github-panel-DotComMarkdownHtml a,
+.github-panel-DotComMarkdownHtml a code {
+  color: var(--accent-only-text-color);
+}
+.github-panel-DotComMarkdownHtml img {
+  max-width: 100%;
+}
+.github-panel-DotComMarkdownHtml > p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+.github-panel-DotComMarkdownHtml > ul,
+.github-panel-DotComMarkdownHtml > ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+.github-panel-DotComMarkdownHtml li {
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+}
+.github-panel-DotComMarkdownHtml li li {
+  font-size: 1em;
+}
+.github-panel-DotComMarkdownHtml .task-list-item {
+  position: relative;
+  /* indent task lists */
+  list-style: none;
+}
+.github-panel-DotComMarkdownHtml .task-list-item .task-list-item-checkbox {
+  position: absolute;
+  margin-left: -20px;
+}
+.github-panel-DotComMarkdownHtml blockquote {
+  margin: 1em 0;
+  padding: 0.25em 1em;
+  font-size: inherit;
+  color: var(--text-color-subtle);
+  border-color: var(--base-border-color);
+  border-width: 3px;
+}
+.github-panel-DotComMarkdownHtml hr {
+  margin: 1.5em 25%;
+  border-top: 1px solid var(--base-border-color);
+  background: none;
+}
+.github-panel-DotComMarkdownHtml table {
+  margin: 1em 0;
+}
+.github-panel-DotComMarkdownHtml th {
+  color: var(--text-color-highlight);
+}
+.github-panel-DotComMarkdownHtml th,
+.github-panel-DotComMarkdownHtml td {
+  padding: 0.66em 1em;
+  border: 1px solid var(--base-border-color);
+}
+.github-panel-DotComMarkdownHtml pre,
+.github-panel-DotComMarkdownHtml code {
+  color: var(--text-color-highlight);
+  background-color: var(--background-color-highlight);
+}
+.github-panel-DotComMarkdownHtml pre {
+  margin: 1em 0;
+}
+.github-panel-DotComMarkdownHtml pre > code {
+  white-space: pre;
+}
+.github-panel-DotComMarkdownHtml .highlight {
+  margin: 1em 0;
+}
+.github-panel-DotComMarkdownHtml .highlight pre {
+  margin: 0;
+}
+.github-panel-DotComMarkdownHtml kbd {
+  color: var(--text-color-highlight);
+  border: 1px solid var(--base-border-color);
+  border-bottom: 2px solid hsl(from var(--base-border-color) h s calc(l - 6));
+  background-color: var(--background-color-highlight);
+}
+.github-panel-DotComMarkdownHtml .issue-link {
+  color: var(--text-color-subtle);
+  /* same as .cross-referenced-event-label-number */
+}
+.github-panel-DotComMarkdownHtml .js-suggested-changes-blob {
+  /* gets used for suggested changes */
+  margin: 1em 0;
+}
+.github-panel-EmojiReactions:empty {
+  display: none;
+}
+.github-panel-EmojiReactionsGroup {
+  margin-right: calc(var(--component-padding) * 2);
+}
+
+/* github-login-view.css */
+.github-panel-GithubLoginView {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25em;
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--component-padding) * 3);
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview > * {
+  margin: var(--component-padding) 0;
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview h1 {
+  margin-bottom: calc(var(--component-padding) * 3);
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview button {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ol {
+  text-align: left;
+  padding: var(--component-padding) 0;
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ol a {
+  color: var(--accent-only-text-color);
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ul {
+  list-style: none;
+  padding-left: 0;
+}
+.github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ul li:not(:last-child) {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-GithubLoginView
+  .github-panel-GithubLoginView-Subview
+  .github-panel-GithubLoginView-tokenLink {
+  color: var(--accent-only-text-color);
+  cursor: pointer;
+}
+.github-panel-GithubLoginView
+  .github-panel-GithubLoginView-Subview
+  .github-panel-GithubLoginView-device
+  > p {
+  margin: var(--component-padding) 0;
+}
+.github-panel-GithubLoginView
+  .github-panel-GithubLoginView-Subview
+  .github-panel-GithubLoginView-device
+  .github-panel-GithubLoginView-userCode {
+  margin: calc(var(--component-padding) * 2) 0;
+}
+.github-panel-GithubLoginView
+  .github-panel-GithubLoginView-Subview
+  .github-panel-GithubLoginView-device
+  .github-panel-GithubLoginView-userCode
+  code {
+  display: block;
+  font-size: 1.2em;
+  letter-spacing: 0.15em;
+  margin-bottom: var(--component-padding);
+}
+
+/* github-tab.css */
+.github-panel-PaneItemHost-github,
+.github-panel-root {
+  flex: 1;
+  display: flex;
+}
+.github-panel-GitHub {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  -webkit-user-select: none;
+  cursor: default;
+}
+.github-panel-GitHub-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.github-panel-GitHub-noRemotes,
+.github-panel-GitHub .github-panel-RemoteSelector {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.25em;
+  text-align: center;
+  padding: calc(var(--component-padding) * 3);
+}
+.github-panel-GitHub-noRemotes > *,
+.github-panel-GitHub .github-panel-RemoteSelector > * {
+  margin: var(--component-padding) 0;
+}
+.github-panel-GitHub-noRemotes h1,
+.github-panel-GitHub .github-panel-RemoteSelector h1 {
+  margin-bottom: calc(var(--component-padding) * 3);
+}
+.github-panel-GitHub .github-panel-RemoteSelector ul {
+  list-style: none;
+  padding-left: 0;
+}
+.github-panel-GitHub .github-panel-RemoteSelector ul li:not(:last-child) {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-GitHub .github-panel-RemoteSelector button {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* issueish-badge.css */
+/* Shows the [Open], [Closed], [Merged] state */
+.github-panel-IssueishBadge {
+  display: inline-block;
+  padding: calc(0.4em / 1.5) 0.4em;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: capitalize;
+  border-radius: var(--component-border-radius);
+  white-space: nowrap;
+}
+.github-panel-IssueishBadge .icon::before {
+  font-size: inherit;
+  width: auto;
+  height: auto;
+  margin-right: 0.2em;
+}
+.github-panel-IssueishBadge.open {
+  color: var(--github-panel-text-on-green);
+  background-color: var(--github-panel-color-green);
+}
+.github-panel-IssueishBadge.closed {
+  color: var(--github-panel-text-on-red);
+  background-color: var(--github-panel-color-red);
+}
+.github-panel-IssueishBadge.merged {
+  color: var(--github-panel-text-on-purple);
+  background-color: var(--github-panel-color-purple);
+}
+
+/* issueish-detail-view.css */
+.github-panel-IssueishDetailView {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--base-background-color);
+}
+.github-panel-IssueishDetailView-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.github-panel-IssueishDetailView-header {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--component-padding) * 1.5) calc(var(--component-padding) * 2);
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-IssueishDetailView-headerColumn.is-flexible {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.github-panel-IssueishDetailView-headerRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 2px 0;
+}
+.github-panel-IssueishDetailView-headerRow.is-fullwidth {
+  flex: 1 1 100%;
+}
+.github-panel-IssueishDetailView-avatar {
+  align-self: flex-start;
+  margin-right: var(--component-padding);
+}
+.github-panel-IssueishDetailView-title {
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--text-color-highlight);
+}
+.github-panel-IssueishDetailView-title:hover,
+.github-panel-IssueishDetailView-title:focus {
+  text-decoration: none;
+}
+.github-panel-IssueishDetailView-headerBadge {
+  margin-right: var(--component-padding);
+  padding: 0 0.75em;
+  line-height: 1.65em;
+}
+.github-panel-IssueishDetailView-headerLink {
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishDetailView-headerStatus {
+  margin-left: var(--component-padding);
+}
+.github-panel-IssueishDetailView-checkoutButton {
+  font-weight: 600;
+  margin-left: var(--component-padding);
+}
+.github-panel-IssueishDetailView-headerRefreshButton {
+  display: inline-block;
+  margin-right: var(--component-padding);
+  color: var(--text-color-subtle);
+  cursor: default;
+}
+.github-panel-IssueishDetailView-headerRefreshButton::before {
+  display: block;
+  width: 16px;
+  height: 16px;
+  line-height: 0.9;
+  margin-right: 0;
+  text-align: center;
+}
+.github-panel-IssueishDetailView-headerRefreshButton.refreshing::before {
+  animation: github-panel-IssueishDetailView-headerRefreshButtonAnimation 2s linear 30;
+  /* limit to 1min in case something gets stuck */
+}
+@keyframes github-panel-IssueishDetailView-headerRefreshButtonAnimation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.github-panel-IssueishDetailView-avatarImage {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-IssueishDetailView-meta {
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishDetailView-metaAuthor {
+  color: inherit;
+}
+.github-panel-IssueishDetailView-footer {
+  padding: var(--component-padding);
+  text-align: center;
+  border-top: 1px solid var(--base-border-color);
+  background-color: var(--app-background-color);
+}
+.github-panel-IssueishDetailView-footerLink.icon {
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishDetailView-footerLink.icon:before {
+  vertical-align: -2px;
+}
+.github-panel-IssueishDetailView-overview {
+  max-width: 60em;
+  margin: 0 auto;
+}
+.github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml {
+  padding: calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView .github-panel-EmojiReactions {
+  padding: 0 calc(var(--component-padding) * 2) var(--component-padding)
+    calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView-buildStatus {
+  padding: calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView-buildStatus:empty {
+  display: none;
+}
+.github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper {
+  padding: calc(var(--component-padding) * 2);
+}
+.github-panel-IssueishDetailView-issueBody {
+  flex: 1;
+  overflow: auto;
+}
+.github-panel-IssueishDetailView-issueBody > .github-panel-DotComMarkdownHtml {
+  padding: calc(var(--component-padding) * 2);
+}
+
+/* issueish-list-view.css */
+.github-panel-IssueishList-item {
+  margin: calc(var(--component-padding) / 4);
+}
+.github-panel-IssueishList-item--avatar {
+  border-radius: var(--component-border-radius);
+  height: 16px;
+  width: 16px;
+}
+.github-panel-IssueishList-item--title {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.github-panel-IssueishList-item--number {
+  font-size: 0.9em;
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishList-item--status {
+  text-align: center;
+}
+.github-panel-IssueishList-item--status:before {
+  margin-right: 0;
+  width: 20px;
+}
+.github-panel-IssueishList-item--status.icon-check {
+  color: var(--text-color-success);
+}
+.github-panel-IssueishList-item--status.icon-x {
+  color: var(--text-color-error);
+}
+.github-panel-IssueishList-item--status.icon-dash {
+  color: var(--text-color-subtle);
+}
+svg.github-panel-IssueishList-item--status {
+  height: 20px;
+  width: 20px;
+}
+svg.github-panel-IssueishList-item--status circle {
+  cx: 10px;
+  cy: 10px;
+  r: 5.5;
+  stroke-width: 3;
+}
+.github-panel-IssueishList-item--age {
+  color: var(--text-color-subtle);
+  font-size: 0.9em;
+  /* Better balance for 3 characters (10M) */
+  margin-left: 0;
+  min-width: 3ch;
+  text-align: center;
+}
+.github-panel-IssueishList-item--menu {
+  color: var(--text-color-subtle);
+  line-height: 1;
+}
+.github-panel-IssueishList-more {
+  padding: calc(var(--component-padding) / 2);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-IssueishList-more a {
+  font-style: italic;
+  color: var(--text-color-subtle);
+}
+.github-panel-IssueishList-loading {
+  padding: calc(var(--component-padding) / 2);
+  min-height: 29px;
+  /* Magic number: Prevents jumping. */
+  font-style: italic;
+  text-align: center;
+  color: var(--text-color-subtle);
+}
+.github-panel-CreatePullRequestTile-message,
+.github-panel-CreatePullRequestTile-controls {
+  padding: var(--component-padding);
+  text-align: center;
+  margin-bottom: 0;
+}
+.github-panel-CreatePullRequestTile-message + .github-panel-CreatePullRequestTile-controls {
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-CreatePullRequestTile-message .icon {
+  vertical-align: middle;
+}
+.github-panel-CreatePullRequestTile-message .icon:before {
+  width: auto;
+}
+.github-panel-CreatePullRequestTile-divider {
+  margin: calc(var(--component-padding) / 1.25) 20%;
+  border-color: var(--base-border-color);
+}
+.github-panel-CreatePullRequestTile-createPr {
+  width: 100%;
+}
+.github-panel-QueryErrorTile {
+  padding: var(--component-padding);
+  display: flex;
+  color: var(--text-color-error);
+}
+.github-panel-QueryErrorTile-messages {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.github-panel-QueryErrorTile .icon-alert {
+  vertical-align: text-top;
+}
+.github-panel-QueryErrorTile-message {
+  font-weight: bold;
+}
+
+/* issueish-search.css */
+.github-panel-IssueishSearch {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* issueish-tooltip.css */
+.github-panel-IssueishTooltip {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--component-padding) / 2);
+  font-size: 0.9em;
+  text-align: left;
+}
+.github-panel-IssueishTooltip .issueish-avatar-and-title {
+  display: flex;
+  align-items: center;
+  margin: calc(var(--component-padding) / 2);
+}
+.github-panel-IssueishTooltip .author-avatar {
+  margin-right: var(--component-padding);
+  flex: 0 0 26px;
+  /* prevent sqeezing */
+  width: 26px;
+  height: 26px;
+  align-self: flex-start;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-IssueishTooltip .issueish-title {
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-color-highlight);
+  white-space: initial;
+}
+.github-panel-IssueishTooltip .issueish-badge-and-link {
+  margin: calc(var(--component-padding) / 2);
+}
+.github-panel-IssueishTooltip .issueish-badge {
+  margin-right: var(--component-padding);
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-IssueishTooltip .issueish-badge.open {
+  color: var(--github-panel-text-on-green);
+  background-color: var(--github-panel-color-green);
+}
+.github-panel-IssueishTooltip .issueish-badge.closed {
+  color: var(--github-panel-text-on-red);
+  background-color: var(--github-panel-color-red);
+}
+.github-panel-IssueishTooltip .issueish-badge.merged {
+  color: var(--github-panel-text-on-purple);
+  background-color: var(--github-panel-color-purple);
+}
+.github-panel-IssueishTooltip .issueish-badge .icon:before {
+  width: auto;
+  font-size: 14px;
+  vertical-align: -1px;
+}
+.github-panel-IssueishTooltip .issueish-link {
+  color: var(--text-color-subtle);
+}
+
+/* large-icon.css */
+/* The display-sized mark that heads the login, blank and remote-selector
+ * views. Undoing the core icon box (a --component-icon-size square whose
+ * line-height equals its height, anchored text-bottom) is the sanctioned
+ * escape hatch for a glyph drawn this large: leave the line-height behind and
+ * the mark paints 8em tall inside a 16px line, overflowing both ways and
+ * covering whatever follows it. The margin goes too — the icon padding
+ * separates a glyph from the text beside it, and there is none here, so it
+ * only pushed the centred mark half of itself off the centre line.
+ *
+ * The size is relative, so each surface scales the mark through its own
+ * font-size; the tab views run at 1.25em and the blank views at the base.
+ *
+ * Every variant of the mark lives in this file. Package stylesheets load in
+ * directory order with no way to pin it, so a variant kept next to the view
+ * that uses it would sit either side of this rule depending on its file name,
+ * and stay upright only for as long as the two never set the same property. */
+.github-panel-LargeIcon {
+  text-align: center;
+}
+.github-panel-LargeIcon:before {
+  margin-right: 0;
+  width: auto;
+  height: auto;
+  line-height: 1;
+  vertical-align: baseline;
+  font-size: 8em;
+}
+
+/* On the blank views the mark is scene-setting rather than a heading, so it
+ * recedes into the background and stands well clear of the copy below it. */
+.github-panel-Blank .github-panel-LargeIcon:before {
+  margin-top: calc(var(--component-padding) * 5);
+  margin-bottom: calc(var(--component-padding) * 5);
+  color: color-mix(in srgb, var(--base-background-color) 66%, var(--text-color));
+  /* 2/3 of bg color */
+}
+
+/* loader.css */
+/* Shows a spinner with an Octoface */
+/* Usage: ---------------------------------------------
+
+<div className="github-panel-Loader">
+  <span className="github-panel-Spinner"></span>
+</div>
+
+--------------------------------------------------- */
+.github-panel-Loader {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: var(--github-panel-color-purple);
+}
+.tooltip .github-panel-Loader {
+  color: inherit;
+}
+.github-panel-Spinner {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 2em;
+  height: 2em;
+}
+.github-panel-Spinner::before {
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  content: "\f008";
+  font-family: "Octicons Regular";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 2;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+.github-panel-Spinner::after {
+  content: "";
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  top: 0;
+  left: 0;
+  border-right: 2px dotted;
+  border-bottom: 2px dotted;
+  border-left: 2px solid transparent;
+  border-radius: 1em;
+  /* To limit CPU usage, the animation plays for some time at normal speed,
+     * then slows down frame-rate for a while and stops at some point */
+  animation:
+    github-panel-Spinner-animation 4s linear 12,
+    github-panel-Spinner-animation 4s 48s steps(12) 100;
+}
+@keyframes github-panel-Spinner-animation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* message.css */
+/* Use to show some sort of message, like an error or so */
+/* Usage: ---------------------------------------------
+
+<div className="github-panel-Message">
+  <div className="github-panel-Message-wrapper">
+    <h1 className="github-panel-Message-title">Whooops</h1>
+    <p className="github-panel-Message-description">Bad things happened</p>
+    <p className="github-panel-Message-action">
+      <button className="github-panel-Message-button btn btn-primary">Get me out of here</button>
+    </p>
+  </div>
+</div>
+
+--------------------------------------------------- */
+.github-panel-Message {
+  flex: 1;
+  display: flex;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.github-panel-Message-wrapper {
+  margin: auto;
+  padding: calc(var(--component-padding) * 2);
+  text-align: center;
+  width: 100%;
+}
+.github-panel-Message-title {
+  color: var(--text-color-highlight);
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+.github-panel-Message-description {
+  font-size: 1.2em;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+pre.github-panel-Message-description {
+  text-align: left;
+}
+.github-panel-Message-longDescription {
+  font-size: 1.1em;
+  line-height: 1.4;
+  text-align: left;
+  margin-bottom: 0;
+}
+.github-panel-Message-action {
+  margin-top: calc(var(--component-padding) * 2);
+}
+.github-panel-Message-button {
+  margin: calc(var(--component-padding) / 2);
+}
+
+/* popover.css */
+/* Popover: Custom tooltip
+ * Used for branch switcher and hovercards */
+.github-panel-Popover.tooltip {
+  max-width: 400px;
+  /* Same as the github-panel-Git */
+  padding-left: var(--component-padding);
+  padding-right: var(--component-padding);
+  box-sizing: border-box;
+}
+.github-panel-Popover .tooltip-inner.tooltip-inner {
+  padding: calc(var(--component-padding) / 2);
+  background-color: var(--tool-panel-background-color);
+  border: 1px solid var(--base-border-color);
+  box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.1);
+  color: var(--text-color);
+}
+.github-panel-Popover.top .tooltip-arrow.tooltip-arrow {
+  width: var(--component-padding);
+  height: var(--component-padding);
+  border-width: 0 0 1px 1px;
+  border-color: var(--base-border-color);
+  background-color: var(--tool-panel-background-color);
+  border-bottom-right-radius: 2px;
+  transform: rotate(-45deg);
+}
+
+/* pr-comment.css */
+.github-panel-PrCommentThread {
+  padding: var(--component-padding) var(--component-padding) var(--component-padding) 0;
+}
+.github-panel-PrComment {
+  max-width: 60em;
+  padding: var(--component-padding);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  border: 1px solid var(--base-border-color);
+}
+.github-panel-PrComment:first-child {
+  border-top-left-radius: var(--component-border-radius);
+  border-top-right-radius: var(--component-border-radius);
+}
+.github-panel-PrComment:last-child {
+  border-bottom-left-radius: var(--component-border-radius);
+  border-bottom-right-radius: var(--component-border-radius);
+}
+.github-panel-PrComment + .github-panel-PrComment {
+  border-top: none;
+}
+.github-panel-PrComment-header {
+  color: var(--text-color-subtle);
+  line-height: 16px;
+}
+.github-panel-PrComment-avatar {
+  margin-right: 6px;
+  height: 16px;
+  width: 16px;
+  border-radius: var(--component-border-radius);
+  vertical-align: top;
+}
+.github-panel-PrComment-timeAgo {
+  color: inherit;
+}
+.github-panel-PrComment-body {
+  margin-left: 22px;
+  /* avatar + margin */
+}
+.github-panel-PrComment-hidden {
+  font-size: 14px;
+}
+.github-panel-PrComment-icon {
+  vertical-align: middle;
+}
+.github-panel-PrComment .js-suggested-changes-blob {
+  font-size: 0.9em;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  /* These styles are mostly copied from the Primer tooltips */
+}
+.github-panel-PrComment .js-suggested-changes-blob .d-flex {
+  display: flex;
+}
+.github-panel-PrComment .js-suggested-changes-blob .d-inline-block {
+  display: inline-block;
+}
+.github-panel-PrComment .js-suggested-changes-blob .flex-auto {
+  flex: 1 1 auto;
+}
+.github-panel-PrComment .js-suggested-changes-blob .p-1 {
+  padding: calc(var(--component-padding) / 2);
+}
+.github-panel-PrComment .js-suggested-changes-blob .px-1 {
+  padding-left: calc(var(--component-padding) / 2);
+  padding-right: calc(var(--component-padding) / 2);
+}
+.github-panel-PrComment .js-suggested-changes-blob .p-2 {
+  padding: var(--component-padding);
+}
+.github-panel-PrComment .js-suggested-changes-blob .text-gray {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrComment .js-suggested-changes-blob .lh-condensed {
+  line-height: 1.25;
+}
+.github-panel-PrComment .js-suggested-changes-blob .rounded-1 {
+  border-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .border {
+  border: 1px solid;
+}
+.github-panel-PrComment .js-suggested-changes-blob .border-bottom {
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-PrComment .js-suggested-changes-blob .border-green {
+  border-color: var(--text-color-success);
+}
+.github-panel-PrComment .js-suggested-changes-blob .octicon {
+  vertical-align: -4px;
+  fill: currentColor;
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-wrapper > table {
+  width: 100%;
+  margin: 0;
+  font-family: var(--editor-font-family);
+  font-size: var(--editor-font-size);
+  line-height: var(--editor-line-height);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-wrapper > table td {
+  border: none;
+  padding: 0 0.5em;
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num {
+  padding: 0 0.5em;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num:before {
+  content: attr(data-line-number);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num-addition {
+  background-color: var(--github-panel-diff-added-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-num-deletion {
+  background-color: var(--github-panel-diff-deleted-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-inner:before {
+  margin-right: 0.5em;
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-inner .x-first {
+  border-bottom-left-radius: var(--component-border-radius);
+  border-top-left-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-inner .x-last {
+  border-bottom-right-radius: var(--component-border-radius);
+  border-top-right-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-addition {
+  background-color: var(--github-panel-diff-added);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-addition:before {
+  content: "+";
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-addition .x {
+  background-color: var(--github-panel-diff-added-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-deletion {
+  background-color: var(--github-panel-diff-deleted);
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-deletion:before {
+  content: "-";
+}
+.github-panel-PrComment .js-suggested-changes-blob .blob-code-deletion .x {
+  background-color: var(--github-panel-diff-deleted-highlight);
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped {
+  position: relative;
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::after {
+  position: absolute;
+  z-index: 1000000;
+  display: none;
+  width: max-content;
+  max-width: 22em;
+  padding: 0.5em 0.6em;
+  font-weight: 500;
+  color: var(--base-background-color);
+  text-align: center;
+  pointer-events: none;
+  content: attr(aria-label);
+  background: var(--background-color-info);
+  border-radius: var(--component-border-radius);
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::before {
+  position: absolute;
+  z-index: 1000001;
+  display: none;
+  width: 0;
+  height: 0;
+  color: var(--background-color-info);
+  pointer-events: none;
+  content: "";
+  border: 6px solid transparent;
+}
+/* This will indicate when we'll activate the tooltip */
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:hover::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:active::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:hover::after,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:active::after,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus::after {
+  display: inline-block;
+  text-decoration: none;
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::after {
+  top: 100%;
+  right: 50%;
+  margin-top: 6px;
+}
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::before {
+  top: auto;
+  right: 50%;
+  bottom: -7px;
+  margin-right: -6px;
+  border-bottom-color: var(--background-color-info);
+}
+/* Move the tooltip body to the center of the object. */
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped::after {
+  transform: translateX(50%);
+}
+
+/* pr-commit-view.css */
+.github-panel-PrCommitView-container {
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  font-size: var(--font-size);
+  border: 1px solid var(--base-border-color);
+  border-bottom: none;
+}
+.github-panel-PrCommitView-container:first-child {
+  border-top-left-radius: var(--component-border-radius);
+  border-top-right-radius: var(--component-border-radius);
+}
+.github-panel-PrCommitView-container:last-child {
+  border-bottom: 1px solid var(--base-border-color);
+  border-bottom-left-radius: var(--component-border-radius);
+  border-bottom-right-radius: var(--component-border-radius);
+}
+.github-panel-PrCommitView-commit {
+  flex: 1;
+}
+.github-panel-PrCommitView-messageHeadline.is-button {
+  padding: 0;
+  margin-right: calc(var(--component-padding) / 1.5);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrCommitView-messageHeadline.is-button:hover,
+.github-panel-PrCommitView-messageHeadline.is-button:focus {
+  color: color-mix(in srgb, var(--text-color-highlight), var(--text-color-subtle));
+}
+.github-panel-PrCommitView-title {
+  margin: 0 0 0.25em 0;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+.github-panel-PrCommitView-avatar {
+  border-radius: var(--component-border-radius);
+  height: 16px;
+  margin-right: 0.4em;
+  width: 16px;
+}
+.github-panel-PrCommitView-metaText {
+  line-height: 16px;
+  vertical-align: middle;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrCommitView-moreButton {
+  margin: 0 auto 0 var(--component-padding);
+  padding: 0em 0.2em;
+  color: var(--text-color-subtle);
+  font-style: italic;
+  font-size: 0.8em;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  background-color: var(--button-background-color);
+}
+.github-panel-PrCommitView-moreButton:hover {
+  background-color: var(--button-background-color-hover);
+}
+.github-panel-PrCommitView-moreText {
+  margin-top: calc(var(--component-padding) / 2);
+  padding: 0;
+  font-size: inherit;
+  font-family: var(--editor-font-family);
+  word-wrap: initial;
+  word-break: break-word;
+  white-space: initial;
+  background-color: transparent;
+}
+.github-panel-PrCommitView-sha {
+  margin-left: var(--component-padding);
+  line-height: 16px;
+  vertical-align: middle;
+  color: var(--accent-only-text-color);
+  font-family: var(--editor-font-family);
+}
+.github-panel-PrCommitView-sha a {
+  color: inherit;
+}
+
+/* pr-statuses.css */
+.github-panel-PrStatuses-header {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--base-border-color);
+  padding: var(--component-padding);
+  border-radius: var(--component-border-radius) var(--component-border-radius) 0 0;
+}
+.github-panel-PrStatuses-donut-chart {
+  margin-right: var(--component-padding);
+}
+.github-panel-PrStatuses-donut-chart svg {
+  display: block;
+  width: 26px;
+  height: 26px;
+}
+.github-panel-PrStatuses-donut-chart svg circle {
+  cx: 13px;
+  cy: 13px;
+  r: 11px;
+  stroke-width: 4px;
+}
+.github-panel-PrStatuses-summary {
+  font-weight: bold;
+  flex: 1;
+}
+.github-panel-PrStatuses-list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+.github-panel-PrStatuses-list-item {
+  display: flex;
+  flex-direction: row;
+  padding: calc(var(--component-padding) / 2) var(--component-padding);
+  border: 1px solid var(--base-border-color);
+  border-top: none;
+}
+.github-panel-PrStatuses-list-item--checkRun {
+  padding-left: calc(var(--component-padding) * 2);
+}
+.github-panel-PrStatuses-list-item:last-child {
+  border-radius: 0 0 var(--component-border-radius) var(--component-border-radius);
+}
+.github-panel-PrStatuses-list-item-icon {
+  width: 26px;
+  margin-right: var(--component-padding);
+  text-align: center;
+}
+.github-panel-PrStatuses-list-item-icon .icon::before {
+  margin-right: 0;
+}
+.github-panel-PrStatuses-list-item-name {
+  font-weight: bold;
+  color: var(--accent-only-text-color);
+  margin-right: 0.5em;
+}
+.github-panel-PrStatuses-list-item-context {
+  flex: 1;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrStatuses-list-item-context strong {
+  margin-right: 0.5em;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrStatuses-list-item-title {
+  margin-right: 0.5em;
+}
+.github-panel-PrStatuses-list-item-summary {
+  display: inline-flex;
+  font-size: 90%;
+}
+.github-panel-PrStatuses-list-item-details-link {
+  margin-left: 0.5em;
+  color: var(--accent-only-text-color);
+}
+.github-panel-PrStatuses-list-item-details-link a {
+  color: var(--accent-only-text-color);
+}
+.github-panel-PrStatuses--pending {
+  color: var(--github-panel-color-yellow);
+}
+.github-panel-PrStatuses--success {
+  color: var(--github-panel-color-green);
+}
+.github-panel-PrStatuses--failure {
+  color: var(--github-panel-color-red);
+}
+.github-panel-PrStatuses--neutral {
+  color: var(--text-color-subtle);
+}
+
+/* pr-timeline.css */
+.github-panel-PrTimeline {
+  position: relative;
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
+}
+.github-panel-PrTimeline .timeline-item {
+  padding: calc(var(--component-padding) * 1.5) calc(var(--component-padding) * 2);
+  padding-left: calc(var(--component-padding) * 4.5);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
+}
+.github-panel-PrTimeline .emoji,
+.github-panel-PrTimeline g-emoji {
+  margin-right: 0.25em;
+}
+.github-panel-PrTimeline .author-avatar {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-PrTimeline .open-commit-detail-button {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+.github-panel-PrTimeline .open-commit-detail-button:hover,
+.github-panel-PrTimeline .open-commit-detail-button:focus {
+  color: var(--text-color-highlight);
+}
+.github-panel-PrTimeline .open-commit-detail-button:active {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .pre-timeline-item-icon {
+  position: absolute;
+  margin-left: calc(var(--component-padding) * -2.5);
+  text-align: center;
+  margin-top: 2px;
+  color: color-mix(in srgb, var(--text-color) 33%, var(--base-background-color));
+  border-radius: 20px;
+}
+.github-panel-PrTimeline .commits .info-row {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-PrTimeline .commit {
+  display: table-row;
+  align-items: center;
+  margin-left: calc(var(--component-padding) * 2);
+}
+.github-panel-PrTimeline .commit:first-child {
+  padding-top: var(--component-padding);
+}
+.github-panel-PrTimeline .commit:only-child {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: calc(var(--component-padding) * -1);
+}
+.github-panel-PrTimeline .commit + .issue {
+  margin-top: calc(var(--component-padding) / 2);
+}
+.github-panel-PrTimeline .commit .commit-author {
+  position: absolute;
+  display: flex;
+}
+.github-panel-PrTimeline .commit .author-avatar {
+  position: relative;
+  margin-right: -16px;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--component-border-radius);
+  background-color: color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
+  box-shadow: 1px 0 var(--base-background-color);
+  transition: margin 0.12s cubic-bezier(0.5, 0.1, 0, 1);
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(1) {
+  z-index: 3;
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(2) {
+  z-index: 2;
+  opacity: 0.7;
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(3) {
+  z-index: 1;
+  opacity: 0.4;
+}
+.github-panel-PrTimeline .commit .author-avatar:nth-child(n + 4) {
+  display: none;
+}
+.github-panel-PrTimeline .commit .author-avatar:only-child,
+.github-panel-PrTimeline .commit .author-avatar:last-child {
+  box-shadow: none;
+}
+.github-panel-PrTimeline .commit .commit-author:hover .author-avatar {
+  display: inline-block;
+  margin-right: 1px;
+  opacity: 1;
+}
+.github-panel-PrTimeline .commit .commit-message-headline {
+  display: table-cell;
+  line-height: 24px;
+  padding: 0 calc(var(--component-padding) / 3);
+  padding-left: calc(20px + var(--component-padding));
+  max-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 0;
+  /* this makes sure the ellipsis work in table-cell */
+  width: 100%;
+}
+.github-panel-PrTimeline .commit .commit-sha {
+  display: table-cell;
+  text-align: right;
+  font-family: monospace;
+  padding-left: 5px;
+  color: var(--accent-only-text-color);
+}
+.github-panel-PrTimeline .comment-message-header {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .comment-message-header a {
+  color: inherit;
+}
+.github-panel-PrTimeline .cross-referenced-events {
+  /* provides spacing between cross-referenced-event rows */
+  border-spacing: 0 calc(var(--component-padding) / 2);
+}
+.github-panel-PrTimeline .cross-referenced-events .info-row {
+  margin-bottom: var(--component-padding);
+}
+.github-panel-PrTimeline .cross-referenced-event {
+  display: table-row;
+}
+.github-panel-PrTimeline .cross-referenced-event:last-child {
+  margin-bottom: 0;
+}
+.github-panel-PrTimeline .cross-referenced-event-header {
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .cross-referenced-event-label {
+  display: table-cell;
+  width: 100%;
+}
+.github-panel-PrTimeline .cross-referenced-event-label-title {
+  font-weight: bold;
+}
+.github-panel-PrTimeline .cross-referenced-event-label-number {
+  display: inline;
+  margin-left: 5px;
+  white-space: nowrap;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .cross-referenced-event-private {
+  display: table-cell;
+}
+.github-panel-PrTimeline .cross-referenced-event-state {
+  display: table-cell;
+  text-align: right;
+}
+.github-panel-PrTimeline .cross-referenced-event-state .badge {
+  margin-left: 5px;
+}
+.github-panel-PrTimeline .sha {
+  font-family: monospace;
+}
+.github-panel-PrTimeline .merged-event {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+  line-height: 1.3;
+  color: var(--text-color-subtle);
+}
+.github-panel-PrTimeline .merged-event .username,
+.github-panel-PrTimeline .merged-event .merge-ref {
+  font-weight: bold;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrTimeline .merged-event ~ .issue {
+  border-bottom-style: dashed;
+}
+.github-panel-PrTimeline .head-ref-force-pushed-event .username {
+  font-weight: bold;
+  color: var(--text-color-highlight);
+}
+.github-panel-PrTimeline .head-ref-force-pushed-event .sha {
+  font-weight: bold;
+}
+.github-panel-PrTimeline .issue .info-row {
+  margin-bottom: calc(var(--component-padding) / 1.5);
+}
+.github-panel-PrTimeline .issue .github-panel-DotComMarkdownHtml pre > code {
+  white-space: pre;
+}
+.github-panel-PrTimeline-loadMore {
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+/* project.css */
+.github-panel-Project {
+  display: flex;
+  align-items: center;
+  padding: calc(var(--component-padding) / 2) var(--component-padding);
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Project-path {
+  flex: 1;
+  margin-left: var(--component-padding);
+  min-width: 0;
+}
+.github-panel-Project-path .select-box-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.github-panel-Project-avatarBtn {
+  height: 23px;
+  width: 23px;
+  padding: 0;
+  border-radius: var(--component-border-radius);
+  background-color: var(--pane-item-background-color);
+  border: none;
+}
+.github-panel-Project-avatar {
+  width: 23px;
+  height: 23px;
+  border-radius: var(--component-border-radius);
+  color: transparent;
+  overflow: hidden;
+}
+.github-panel-Project-lock.btn {
+  width: 40px;
+  height: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: baseline;
+  border: none;
+  background-color: transparent;
+  background-image: none;
+}
+.github-panel-Project-lock.btn:active,
+.github-panel-Project-lock.btn:hover {
+  background-color: transparent;
+  background-image: none;
+}
+.github-panel-Project .icon {
+  padding: 0;
+  margin: 0;
+  line-height: 1em;
+  fill: var(--text-color);
+}
+.github-panel-Project .icon:hover {
+  fill: var(--text-color-highlight);
+}
+.github-panel-Project .icon.icon-unlock {
+  width: 21px;
+  height: 17px;
+  padding-left: 1px;
+}
+
+/* reaction-picker.css */
+.github-panel-ReactionPicker {
+  display: flex;
+  flex-direction: column;
+}
+.github-panel-ReactionPicker-row {
+  flex-direction: row;
+  margin: calc(var(--component-padding) / 4) 0;
+}
+.github-panel-ReactionPicker-reaction {
+  margin: 0 calc(var(--component-padding) / 4);
+}
+
+/* review.css */
+.github-panel-Reviews,
+.github-panel-PaneItemHost-github-panel-reviews {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  height: 100%;
+}
+.github-panel-Reviews lumine-text-editor,
+.github-panel-PaneItemHost-github-panel-reviews lumine-text-editor {
+  padding: calc(var(--component-padding) / 2);
+  border-top: 1px solid var(--base-border-color);
+  border-bottom: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+}
+.github-panel-Reviews-topHeader,
+.github-panel-PaneItemHost-github-panel-reviews-topHeader {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--component-padding);
+  font-weight: 600;
+  border-bottom: 1px solid var(--panel-heading-border-color);
+  cursor: default;
+  color: var(--text-color-subtle);
+}
+.github-panel-Reviews-topHeader .icon:before,
+.github-panel-PaneItemHost-github-panel-reviews-topHeader .icon:before {
+  margin-right: calc(var(--component-padding) / 1.2);
+}
+.github-panel-Reviews-topHeader .icon.refreshing::before,
+.github-panel-PaneItemHost-github-panel-reviews-topHeader .icon.refreshing::before {
+  animation: github-panel-Reviews-refreshButtonAnimation 2s linear 30;
+  /* limit to 1min in case something gets stuck */
+}
+@keyframes github-panel-Reviews-refreshButtonAnimation {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.github-panel-Reviews-headerTitle,
+.github-panel-PaneItemHost-github-panel-reviews-headerTitle {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.github-panel-Reviews-clickable,
+.github-panel-PaneItemHost-github-panel-reviews-clickable {
+  cursor: pointer;
+  font-weight: 400;
+}
+.github-panel-Reviews-clickable:hover,
+.github-panel-PaneItemHost-github-panel-reviews-clickable:hover {
+  color: var(--text-color-highlight);
+  text-decoration: underline;
+}
+.github-panel-Reviews-clickable.icon:hover:before,
+.github-panel-PaneItemHost-github-panel-reviews-clickable.icon:hover:before {
+  color: var(--text-color-highlight);
+}
+.github-panel-Reviews-headerButton,
+.github-panel-PaneItemHost-github-panel-reviews-headerButton {
+  height: 3em;
+  border: none;
+  padding: 0;
+  font-weight: 600;
+  background: none;
+}
+.github-panel-Reviews-list,
+.github-panel-PaneItemHost-github-panel-reviews-list {
+  flex: 1 1 0;
+  overflow: auto;
+}
+.github-panel-Reviews-section,
+.github-panel-PaneItemHost-github-panel-reviews-section {
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Reviews-section.resolved-comments,
+.github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments {
+  border-bottom: 0;
+  padding-left: var(--component-padding);
+}
+.github-panel-Reviews-section.resolved-comments .github-panel-Reviews-title,
+.github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments
+  .github-panel-Reviews-title {
+  color: var(--text-color-subtle);
+}
+.github-panel-Reviews-section.resolved-comments .github-panel-Reviews-header,
+.github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments
+  .github-panel-Reviews-header {
+  color: var(--text-color-subtle);
+  padding-top: calc(var(--component-padding) * 0.5);
+}
+.github-panel-Reviews-header,
+.github-panel-PaneItemHost-github-panel-reviews-header {
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  cursor: default;
+}
+.github-panel-Reviews-title,
+.github-panel-PaneItemHost-github-panel-reviews-title {
+  flex: 1;
+  font-size: 1em;
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-color-highlight);
+}
+.github-panel-Reviews-count,
+.github-panel-PaneItemHost-github-panel-reviews-count {
+  color: var(--text-color-subtle);
+}
+.github-panel-Reviews-countNr,
+.github-panel-PaneItemHost-github-panel-reviews-countNr {
+  color: var(--text-color-highlight);
+}
+.github-panel-Reviews-progessBar,
+.github-panel-PaneItemHost-github-panel-reviews-progessBar {
+  width: 5em;
+  margin-left: var(--component-padding);
+}
+.github-panel-Reviews-container,
+.github-panel-PaneItemHost-github-panel-reviews-container {
+  font-size: var(--font-size);
+  padding: var(--component-padding);
+  padding-top: 0;
+}
+.github-panel-Reviews .github-panel-EmojiReactions,
+.github-panel-PaneItemHost-github-panel-reviews .github-panel-EmojiReactions {
+  padding: var(--component-padding) 0 0;
+}
+.github-panel-Reviews-emptyImg,
+.github-panel-PaneItemHost-github-panel-reviews-emptyImg {
+  padding: 1em;
+}
+.github-panel-Reviews-emptyText,
+.github-panel-PaneItemHost-github-panel-reviews-emptyText {
+  font-size: 1.5em;
+  text-align: center;
+}
+.github-panel-Reviews-emptyCallToActionButton,
+.github-panel-PaneItemHost-github-panel-reviews-emptyCallToActionButton {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  display: block;
+}
+.github-panel-Reviews-emptyCallToActionButton a:hover,
+.github-panel-PaneItemHost-github-panel-reviews-emptyCallToActionButton a:hover {
+  text-decoration: none;
+}
+.github-panel-ReviewSummary {
+  padding: var(--component-padding);
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  background-color: color-mix(
+    in srgb,
+    var(--base-background-color) 66%,
+    var(--tool-panel-background-color)
+  );
+}
+.github-panel-ReviewSummary + .github-panel-ReviewSummary {
+  margin-top: var(--component-padding);
+}
+.github-panel-ReviewSummary-header {
+  display: flex;
+}
+.github-panel-ReviewSummary-icon {
+  vertical-align: -3px;
+}
+.github-panel-ReviewSummary-icon.icon-check {
+  color: var(--text-color-success);
+}
+.github-panel-ReviewSummary-icon.icon-alert {
+  color: var(--text-color-warning);
+}
+.github-panel-ReviewSummary-icon.icon-comment {
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewSummary-avatar {
+  margin-right: 0.5em;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--component-border-radius);
+  image-rendering: -webkit-optimize-contrast;
+}
+.github-panel-ReviewSummary-username {
+  margin-right: 0.3em;
+  font-weight: 500;
+}
+.github-panel-ReviewSummary-type {
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewSummary-timeAgo {
+  margin-left: auto;
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewSummary-comment {
+  position: relative;
+  margin-top: calc(var(--component-padding) / 2);
+  margin-left: 7px;
+  padding-left: 12px;
+  font-size: calc(var(--font-size) - 1px);
+  border-left: 2px solid var(--base-border-color);
+}
+.github-panel-Review {
+  position: relative;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  background-color: color-mix(
+    in srgb,
+    var(--base-background-color) 66%,
+    var(--tool-panel-background-color)
+  );
+  box-shadow: 0;
+  transition:
+    border-color 0.5s,
+    box-shadow 0.5s;
+}
+.github-panel-Review + .github-panel-Review {
+  margin-top: var(--component-padding);
+}
+.github-panel-Review--highlight {
+  border-color: var(--button-background-color-selected);
+  box-shadow: 0 0 5px var(--button-background-color-selected);
+}
+.github-panel-Review-reference {
+  display: flex;
+  align-items: center;
+  padding-left: var(--component-padding);
+  height: 2.5em;
+  cursor: default;
+}
+.github-panel-Review-reference::-webkit-details-marker {
+  margin-right: calc(var(--component-padding) / 1.5);
+}
+.resolved .github-panel-Review-reference {
+  opacity: 0.5;
+}
+.github-panel-Review-path {
+  color: var(--text-color-subtle);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+}
+.github-panel-Review-file {
+  color: var(--text-color);
+  margin-right: calc(var(--component-padding) / 2);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+}
+.github-panel-Review-lineNr {
+  color: var(--text-color-subtle);
+  margin-right: calc(var(--component-padding) / 2);
+}
+.github-panel-Review-referenceAvatar {
+  margin-left: auto;
+  margin-right: calc(var(--component-padding) / 2);
+  width: 16px;
+  height: 16px;
+  border-radius: var(--component-border-radius);
+  image-rendering: -webkit-optimize-contrast;
+}
+.github-panel-Review[open] .github-panel-Review-referenceAvatar {
+  display: none;
+}
+.github-panel-Review-referenceTimeAgo {
+  color: var(--text-color-subtle);
+  margin-right: calc(var(--component-padding) / 2);
+}
+.github-panel-Review[open] .github-panel-Review-referenceTimeAgo {
+  display: none;
+}
+.github-panel-Review-nav {
+  display: none;
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-Review[open] .github-panel-Review-nav {
+  display: flex;
+}
+.github-panel-Review-navButton {
+  height: 2.5em;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: default;
+  flex-basis: 50%;
+}
+.github-panel-Review-navButton.outdated {
+  border-bottom: 1px solid var(--base-border-color);
+}
+.github-panel-Review-navButton:last-child {
+  border-left: 1px solid var(--base-border-color);
+}
+.github-panel-Review-navButton:hover {
+  background-color: var(--background-color-highlight);
+}
+.github-panel-Review-navButton:active {
+  background-color: var(--background-color-selected);
+}
+.github-panel-Review-navButton[disabled] {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+.github-panel-Review-navButton[disabled]:hover {
+  background-color: transparent;
+}
+.github-panel-Review-diffLine {
+  padding: 0 calc(var(--component-padding) / 2);
+  line-height: 1.75;
+}
+.github-panel-Review-diffLine:last-child {
+  font-weight: 500;
+}
+.github-panel-Review-diffLine::before {
+  content: " ";
+  margin-right: 0.5em;
+}
+.github-panel-Review-diffLine.is-added {
+  color: color-mix(in srgb, var(--text-color-success) 25%, var(--text-color-highlight));
+  background-color: color-mix(
+    in srgb,
+    var(--background-color-success) 20%,
+    var(--base-background-color)
+  );
+}
+.github-panel-Review-diffLine.is-added::before {
+  content: "+";
+}
+.github-panel-Review-diffLine.is-deleted {
+  color: color-mix(in srgb, var(--text-color-error) 25%, var(--text-color-highlight));
+  background-color: color-mix(
+    in srgb,
+    var(--background-color-error) 20%,
+    var(--base-background-color)
+  );
+}
+.github-panel-Review-diffLine.is-deleted::before {
+  content: "-";
+}
+.github-panel-Review-diffLineIcon {
+  margin-right: 0.5em;
+}
+.github-panel-Review-comments {
+  padding: var(--component-padding);
+  /* space for avatar */
+  padding-left: calc(var(--component-padding) + 21px);
+}
+.github-panel-Review-comment {
+  margin-bottom: calc(var(--component-padding) * 1.5);
+}
+.github-panel-Review-comment--hidden {
+  color: var(--text-color-subtle);
+  display: flex;
+  align-items: center;
+}
+.github-panel-Review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: calc(var(--component-padding) / 4);
+}
+.github-panel-Review-avatar {
+  position: absolute;
+  left: var(--component-padding);
+  margin-right: 0.5em;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--component-border-radius);
+  image-rendering: -webkit-optimize-contrast;
+}
+.github-panel-Review-username {
+  margin-right: 0.5em;
+  font-weight: 500;
+}
+.github-panel-Review-timeAgo,
+.github-panel-Review-actionsMenu,
+.github-panel-Review-edited {
+  color: var(--text-color-subtle);
+}
+.github-panel-Review-actionsMenu::before {
+  margin-right: 0;
+  margin-left: calc(var(--component-padding) / 2);
+}
+.github-panel-Review-pendingBadge {
+  margin-left: var(--component-padding);
+}
+.github-panel-Review-authorAssociationBadge {
+  margin-left: var(--component-padding);
+}
+.github-panel-Review-text {
+  font-size: calc(var(--font-size) - 1px);
+}
+.github-panel-Review-text a {
+  font-weight: 500;
+}
+.github-panel-Review-reply,
+.github-panel-Review-editable {
+  margin-top: var(--component-padding);
+}
+/* The box comes from the shared `lumine-text-editor[input]` contract; only the
+   size these reply fields want is ours. */
+.github-panel-Review-reply lumine-text-editor,
+.github-panel-Review-editable lumine-text-editor {
+  width: 100%;
+  min-height: 2.125em;
+}
+.github-panel-Review-reply--disabled lumine-text-editor,
+.github-panel-Review-editable--disabled lumine-text-editor {
+  color: var(--text-color-subtle);
+}
+.github-panel-Review-replyButton {
+  margin-left: 21px;
+  /* match left position of the comment editor */
+}
+.github-panel-Review-resolvedText {
+  text-align: center;
+  margin-bottom: var(--component-padding);
+  padding: 0 calc(var(--component-padding) * 2);
+}
+.github-panel-Review-editable-footer {
+  margin: calc(var(--component-padding) / 2) 0 var(--component-padding) 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.github-panel-Review-editable-footer .btn {
+  margin-left: calc(var(--component-padding) / 2);
+}
+.github-panel-Review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--component-padding);
+  border-top: 1px solid var(--base-border-color);
+}
+.github-panel-Review-resolveButton {
+  margin-left: auto;
+}
+.github-panel-Review-resolveButton.btn.icon:before {
+  font-size: 14px;
+}
+
+/* reviews-footer-view.css */
+.github-panel-ReviewsFooterView {
+  margin-right: auto;
+}
+.github-panel-ReviewsFooterView-footer {
+  display: flex;
+  align-items: center;
+  padding: var(--component-padding);
+  border-top: 1px solid var(--base-border-color);
+  background-color: var(--app-background-color);
+}
+.github-panel-ReviewsFooterView-footerTitle {
+  font-size: 1.4em;
+  margin: 0 calc(var(--component-padding) * 2) 0 0;
+}
+.github-panel-ReviewsFooterView-openReviewsButton,
+.github-panel-ReviewsFooterView-reviewChangesButton {
+  margin-left: var(--component-padding);
+}
+.github-panel-ReviewsFooterView-commentCount {
+  margin-right: var(--component-padding);
+  color: var(--text-color-subtle);
+}
+.github-panel-ReviewsFooterView-commentsResolved {
+  color: var(--text-color-highlight);
+}
+.github-panel-ReviewsFooterView-progessBar {
+  margin-right: var(--component-padding);
+}
+
+/* tabs.css */
+.react-tabs {
+  flex: 1;
+  /* Allow this flex child to shrink below its content height; without it the
+   * default `min-height: auto` lets the tab body grow past the container so the
+   * selected panel's `overflow: auto` never gets a bounded height to scroll in. */
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+.react-tabs__tab-panel--selected {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+.github-panel-tab {
+  padding: calc(var(--component-padding) / 2) calc(var(--component-padding) * 1.5);
+  text-align: center;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--text-color) 75%, var(--app-background-color));
+  cursor: default;
+  user-select: none;
+}
+.github-panel-tablist {
+  flex: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--base-border-color);
+  background-color: var(--app-background-color);
+}
+.github-panel-tab-icon {
+  color: color-mix(in srgb, var(--text-color) 33%, var(--app-background-color));
+  vertical-align: middle;
+}
+.github-panel-tab-icon:before {
+  margin-right: 0.4em;
+}
+.github-panel-tab-count {
+  display: inline-block;
+  background-color: color-mix(in srgb, var(--text-color-subtle) 20%, var(--app-background-color));
+  border-radius: var(--component-border-radius);
+  padding: 0 0.25em;
+  margin-left: calc(var(--component-padding) / 2);
+}
+.github-panel-tab.react-tabs__tab--selected {
+  color: var(--text-color-selected);
+  box-shadow: 0 1px 0 var(--button-background-color-selected);
+}
+.github-panel-tab.react-tabs__tab--selected .github-panel-tab-icon {
+  color: var(--text-color);
+}
+
+/* user-mention-tooltip.css */
+.github-panel-UserMentionTooltip {
+  display: flex;
+}
+.github-panel-UserMentionTooltip-avatar {
+  margin: calc(var(--component-padding) / 2);
+}
+.github-panel-UserMentionTooltip-avatar > img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--component-border-radius);
+}
+.github-panel-UserMentionTooltip-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: calc(var(--component-padding) / 2) var(--component-padding);
+  font-size: var(--font-size);
+  line-height: 20px;
+  text-align: left;
+}
+.github-panel-UserMentionTooltip-info > div {
+  white-space: nowrap;
+}
+.github-panel-UserMentionTooltip-info .icon {
+  color: var(--text-color-subtle);
+  vertical-align: middle;
+}
+.github-panel-UserMentionTooltip-info-username {
+  font-size: 1.2em;
+}
+.github-panel-UserMentionTooltip-info-username strong {
+  font-weight: 600;
+}
+
+/* variables.css */
+/*
+ * The colours the panel paints issue/PR state and diffs with. Each one is a
+ * theme variable so the panel follows the active theme, with GitHub's own
+ * colour as the fallback for a theme that does not define the contract.
+ */
+
+:root {
+  --github-panel-color-yellow: var(--background-color-warning, #ffd93d);
+  --github-panel-color-red: var(--background-color-error, #dc3545);
+  --github-panel-color-purple: var(--syntax-color-keyword, #6f42c1);
+  --github-panel-color-green: var(--background-color-success, #28a745);
+
+  /* Black or white, whichever reads on the badge colour behind it. */
+  --github-panel-text-on-red: lch(
+    from var(--github-panel-color-red) calc((49.44 - l) * infinity) 0 0
+  );
+  --github-panel-text-on-purple: lch(
+    from var(--github-panel-color-purple) calc((49.44 - l) * infinity) 0 0
+  );
+  --github-panel-text-on-green: lch(
+    from var(--github-panel-color-green) calc((49.44 - l) * infinity) 0 0
+  );
+
+  /* Semi-transparent so they read over selections and on any theme. */
+  --github-panel-diff-deleted: color-mix(in srgb, var(--syntax-color-removed) 15%, transparent);
+  --github-panel-diff-added: color-mix(in srgb, var(--syntax-color-added) 15%, transparent);
+  --github-panel-diff-deleted-highlight: color-mix(
+    in srgb,
+    var(--syntax-color-removed) 25%,
+    transparent
+  );
+  --github-panel-diff-added-highlight: color-mix(
+    in srgb,
+    var(--syntax-color-added) 25%,
+    transparent
+  );
+}

@@ -4,7 +4,7 @@ import path from "path";
 describe("editor comment styles", () => {
   it("tints comment lines without hiding selections underneath", () => {
     const stylesheet = lumine.themes.requireStylesheet(
-      path.join(__dirname, "..", "styles", "editor-comment.css"),
+      path.join(__dirname, "..", "styles", "main.css"),
     );
     const editor = document.createElement("lumine-text-editor");
     editor.style.setProperty("--background-color-info", "rgb(40, 120, 200)");
