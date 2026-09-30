@@ -93,6 +93,9 @@ jobs:
       - name: Rebuild native modules for Electron
         working-directory: lumine
         run: npm run build
+      - name: Install spec packages
+        working-directory: lumine
+        run: node script/install-spec-packages.js --package ../github-panel --home "$RUNNER_TEMP/github-panel-spec-home" --github-env "$GITHUB_ENV"
       - name: Run the Jasmine spec suite
         working-directory: lumine
         timeout-minutes: 20
