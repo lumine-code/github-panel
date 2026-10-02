@@ -69,10 +69,10 @@ describe("PullRequestPatchContainer fetching", () => {
       endpoint: { getRestURI: (...parts) => `https://api.github.com/${parts.join("/")}` },
       children: () => null,
     });
-    // Control state commits directly so network and React update ordering can
+    // Control state commits directly so network and native update ordering can
     // be exercised without a rendered PR view or a live GitHub connection.
     spyOn(container, "updateState").and.callFake(applyState);
-    spyOn(container, "buildPatch").and.callFake((rawDiff) => ({ rawDiff }));
+    spyOn(container, "buildPatch").and.callFake((rawDiff) => ({ rawDiff, dispose() {} }));
     spyOn(container, "fetchDiff").and.callThrough();
     container.didMount();
   });
@@ -250,13 +250,15 @@ describe("PullRequestPatchContainer fetching", () => {
     expect(console.error).not.toHaveBeenCalled();
   });
 
-  it("rechecks request identity when React commits a queued state update", async () => {
+  it("rechecks request identity when the view commits a queued state update", async () => {
     const queued = [];
     const stateQueued = deferred();
     container.updateState.and.callFake((update, callback) => {
       if (typeof update === "function") {
-        queued.push({ update, callback });
+        const committed = deferred();
+        queued.push({ update, callback, resolve: committed.resolve });
         stateQueued.resolve();
+        return committed.promise;
       } else {
         applyState(update, callback);
       }
@@ -267,6 +269,7 @@ describe("PullRequestPatchContainer fetching", () => {
 
     updateProps({ number: 2 });
     applyState(queued[0].update, queued[0].callback);
+    queued[0].resolve();
     await oldFetch;
     expect(container.state.multiFilePatch).toBeNull();
     expect(container.state.last.url).toBeNull();

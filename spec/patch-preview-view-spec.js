@@ -22,7 +22,7 @@ describe("review patch previews", () => {
     if (root) await flushViews(async () => root.destroy());
     container?.remove();
     for (const patch of patches) {
-      if (!patch.getBuffer().isDestroyed()) patch.getBuffer().release();
+      patch.dispose();
     }
   });
 
@@ -176,5 +176,17 @@ describe("review patch previews", () => {
     expect(ownedBuffer.isDestroyed()).toBe(true);
     expect(patch.getBuffer().isDestroyed()).toBe(false);
     expect(patch.getWordAdditionLayer().getMarkerCount()).toBe(1);
+  });
+
+  it("keeps a borrowed source alive through re-windowing after its creator releases it", async () => {
+    const patch = replacementPatch();
+    const editor = await renderPreview(patch);
+    patch.dispose();
+    expect(patch.isDisposed()).toBe(false);
+    await renderPreview(patch, 4);
+    expect(editor.getText()).toContain("prefix new suffix");
+    await flushViews(() => root.update(null));
+    expect(patch.isDisposed()).toBe(true);
+    expect(patch.getBuffer().isDestroyed()).toBe(true);
   });
 });
