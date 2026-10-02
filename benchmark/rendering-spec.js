@@ -1,4 +1,5 @@
 /** @babel */
+import path from "path";
 import ReviewsView from "../lib/views/reviews-view";
 
 const percentile = (values, fraction) => {
@@ -10,6 +11,9 @@ const elapsed = (start) => Number(process.hrtime.bigint() - start) / 1e6;
 describe("GitHub panel rendering performance", () => {
   for (const count of [10, 100]) {
     it(`measures mounting ${count} collapsed review threads`, async () => {
+      const stylesheet = lumine.themes.requireStylesheet(
+        path.join(__dirname, "..", "styles", "main.css"),
+      );
       const container = document.createElement("div");
       container.style.cssText = "width:700px;height:600px;overflow:auto";
       jasmine.attachToDOM(container);
@@ -81,6 +85,7 @@ describe("GitHub panel rendering performance", () => {
         );
       } finally {
         container.remove();
+        stylesheet.dispose();
       }
     }, 60000);
   }
