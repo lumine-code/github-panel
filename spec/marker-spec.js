@@ -1,34 +1,30 @@
 /** @babel */
-/** @jsx React.createElement */
-import React, { act } from "react";
-import { createRoot } from "react-dom/client";
+/** @jsx h */
+import { h, flushViews, createViewHost } from "./helpers/etch";
 import { Range } from "lumine";
 
 describe("review markers", () => {
-  let container, root, editor, Marker, wasActEnvironment;
+  let container, root, editor, Marker;
 
   beforeEach(async () => {
-    wasActEnvironment = global.IS_REACT_ACT_ENVIRONMENT;
-    global.IS_REACT_ACT_ENVIRONMENT = true;
     const markerModule = require("../lib/lumine/marker");
     Marker = markerModule.default || markerModule;
     container = document.createElement("div");
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createViewHost(container);
     editor = await lumine.workspace.open();
     editor.setText("first\ncommented\nlast\n");
   });
 
   afterEach(async () => {
-    await act(async () => root.unmount());
+    await flushViews(async () => root.destroy());
     container.remove();
-    global.IS_REACT_ACT_ENVIRONMENT = wasActEnvironment;
   });
 
   it("reports editor buffer ranges when an edit moves a comment marker", async () => {
     const changes = [];
-    await act(async () =>
-      root.render(
+    await flushViews(async () =>
+      root.update(
         <Marker
           editor={editor}
           bufferRange={Range.fromObject([

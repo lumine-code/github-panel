@@ -1,14 +1,11 @@
 /** @babel */
-/** @jsx React.createElement */
-import React, { act } from "react";
-import { createRoot } from "react-dom/client";
+/** @jsx h */
+import { h, flushViews, createViewHost } from "./helpers/etch";
 
 describe("review patch previews", () => {
-  let container, root, bridge, PatchPreviewView, patches, wasActEnvironment;
+  let container, root, bridge, PatchPreviewView, patches;
 
   beforeEach(async () => {
-    wasActEnvironment = global.IS_REACT_ACT_ENVIRONMENT;
-    global.IS_REACT_ACT_ENVIRONMENT = true;
     patches = [];
     root = null;
     container = null;
@@ -18,16 +15,15 @@ describe("review patch previews", () => {
     PatchPreviewView = previewModule.default || previewModule;
     container = document.createElement("div");
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createViewHost(container);
   });
 
   afterEach(async () => {
-    if (root) await act(async () => root.unmount());
+    if (root) await flushViews(async () => root.destroy());
     container?.remove();
     for (const patch of patches) {
       if (!patch.getBuffer().isDestroyed()) patch.getBuffer().release();
     }
-    global.IS_REACT_ACT_ENVIRONMENT = wasActEnvironment;
   });
 
   function replacementPatch(oldText = "prefix old suffix", newText = "prefix new suffix") {
@@ -52,8 +48,8 @@ describe("review patch previews", () => {
   }
 
   async function renderPreview(patch, maxRowCount = 2) {
-    await act(async () =>
-      root.render(
+    await flushViews(async () =>
+      root.update(
         <PatchPreviewView
           multiFilePatch={patch}
           fileName="example.txt"
@@ -174,7 +170,7 @@ describe("review patch previews", () => {
     expect(slices[1].isDestroyed()).toBe(true);
     expect(ownedBuffer.isDestroyed()).toBe(false);
 
-    await act(async () => root.render(null));
+    await flushViews(async () => root.update(null));
 
     expect(editor.isDestroyed()).toBe(true);
     expect(ownedBuffer.isDestroyed()).toBe(true);

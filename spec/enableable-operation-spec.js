@@ -11,7 +11,7 @@ class ComponentLike {
     this.beforeRenderPromise = null;
   }
 
-  async setState(changeCb, afterCb) {
+  async updateState(changeCb, afterCb) {
     if (this.beforeRenderPromise) {
       await this.beforeRenderPromise;
     }

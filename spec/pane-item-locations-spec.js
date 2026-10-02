@@ -1,4 +1,5 @@
 /** @babel */
+import { createViewModel } from "./helpers/etch";
 import GitHubTabItem from "../lib/items/github-tab-item";
 import IssueishDetailItem from "../lib/items/issueish-detail-item";
 import ReviewsItem from "../lib/items/reviews-item";
@@ -19,7 +20,7 @@ describe("GitHub pane item locations", () => {
   });
 
   it("serializes the hydrated GitHub panel with its stable URI", () => {
-    const item = new GitHubTabItem({});
+    const item = createViewModel(GitHubTabItem, {});
     const host = PaneItemHost.create("github", {
       uri: GitHubTabItem.buildURI(),
       serializeFallback: () => ({ deserializer: "GithubDockItem" }),

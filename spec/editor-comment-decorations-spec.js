@@ -1,24 +1,21 @@
 /** @babel */
-/** @jsx React.createElement */
-import React, { act } from "react";
-import { createRoot } from "react-dom/client";
+/** @jsx h */
+import { h, flushViews, createViewHost, createViewModel } from "./helpers/etch";
 import EditorCommentDecorationsController from "../lib/controllers/editor-comment-decorations-controller";
 import ReviewsView from "../lib/views/reviews-view";
 import { checkoutStates } from "../lib/controllers/pr-checkout-controller";
 
 describe("review comments positioned in an editor", () => {
-  let editor, container, root, props, wasActEnvironment;
+  let editor, container, root, props;
 
   beforeEach(() => {
-    wasActEnvironment = global.IS_REACT_ACT_ENVIRONMENT;
-    global.IS_REACT_ACT_ENVIRONMENT = true;
     editor = lumine.workspace.buildTextEditor();
     editor.setText("first\nsecond\nthird\nfourth\nfifth\n");
     editor.addGutter({ name: "github-comment-icon" });
     jasmine.attachToDOM(editor.getElement());
     container = document.createElement("div");
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createViewHost(container);
     props = {
       editor,
       workspace: lumine.workspace,
@@ -33,15 +30,14 @@ describe("review comments positioned in an editor", () => {
   });
 
   afterEach(async () => {
-    await act(async () => root.unmount());
+    await flushViews(async () => root.destroy());
     editor.destroy();
     container.remove();
-    global.IS_REACT_ACT_ENVIRONMENT = wasActEnvironment;
   });
 
   async function render(nextProps = props) {
     props = nextProps;
-    await act(async () => root.render(<EditorCommentDecorationsController {...props} />));
+    await flushViews(async () => root.update(<EditorCommentDecorationsController {...props} />));
   }
 
   function commentMarkers() {
@@ -54,7 +50,7 @@ describe("review comments positioned in an editor", () => {
     await render();
     expect(commentMarkers()[0].getBufferRange().start.row).toBe(1);
 
-    await act(async () => editor.getBuffer().insert([0, 0], "inserted\n"));
+    await flushViews(async () => editor.getBuffer().insert([0, 0], "inserted\n"));
     await render({ ...props, number: 2 });
 
     expect(commentMarkers()[0].getBufferRange().start.row).toBe(2);
@@ -104,7 +100,7 @@ describe("review comment navigation positions", () => {
   const rootComment = { path: "a.txt", position: 1 };
 
   function view(translations) {
-    return new ReviewsView({
+    return createViewModel(ReviewsView, {
       commentTranslations: translations,
       checkoutOp: { why: () => checkoutStates.CURRENT },
     });

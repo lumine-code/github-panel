@@ -2482,7 +2482,7 @@ pre.github-panel-Message-description {
 }
 
 /* tabs.css */
-.react-tabs {
+.github-panel-tabs {
   flex: 1;
   /* Allow this flex child to shrink below its content height; without it the
    * default `min-height: auto` lets the tab body grow past the container so the
@@ -2491,12 +2491,14 @@ pre.github-panel-Message-description {
   display: flex;
   flex-direction: column;
 }
-.react-tabs__tab-panel--selected {
+.github-panel-tab-panel:not([hidden]) {
   flex: 1;
   min-height: 0;
   overflow: auto;
 }
 .github-panel-tab {
+  border: 0;
+  background: transparent;
   padding: calc(var(--component-padding) / 2) calc(var(--component-padding) * 1.5);
   text-align: center;
   font-weight: 600;
@@ -2528,11 +2530,11 @@ pre.github-panel-Message-description {
   padding: 0 0.25em;
   margin-left: calc(var(--component-padding) / 2);
 }
-.github-panel-tab.react-tabs__tab--selected {
+.github-panel-tab[aria-selected="true"] {
   color: var(--text-color-selected);
   box-shadow: 0 1px 0 var(--button-background-color-selected);
 }
-.github-panel-tab.react-tabs__tab--selected .github-panel-tab-icon {
+.github-panel-tab[aria-selected="true"] .github-panel-tab-icon {
   color: var(--text-color);
 }
 

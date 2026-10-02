@@ -14,7 +14,7 @@ describe("github-panel git bridge consumption", () => {
     expect(getGitBridge()).toBe(null);
   });
 
-  it("registers cold global commands without waiting for the React root", async () => {
+  it("registers cold global commands without waiting for the view root", async () => {
     let commands;
     const packageInstance = {
       commands: {

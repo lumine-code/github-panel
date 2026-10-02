@@ -1,4 +1,5 @@
 /** @babel */
+import { createViewModel } from "./helpers/etch";
 import PullRequestPatchContainer from "../lib/containers/pr-patch-container";
 
 function deferred() {
@@ -27,7 +28,7 @@ describe("PullRequestPatchContainer fetching", () => {
     const state = typeof update === "function" ? update(container.state, container.props) : update;
     if (state) {
       container.state = { ...container.state, ...state };
-      container.componentDidUpdate(container.props);
+      container.didUpdate(container.props);
     }
     if (callback) {
       callback();
@@ -41,7 +42,7 @@ describe("PullRequestPatchContainer fetching", () => {
   function updateProps(props) {
     const previous = container.props;
     container.props = { ...previous, ...props };
-    container.componentDidUpdate(previous);
+    container.didUpdate(previous);
     return latestFetch();
   }
 
@@ -60,7 +61,7 @@ describe("PullRequestPatchContainer fetching", () => {
       return request.promise;
     });
     spyOn(console, "error");
-    container = new PullRequestPatchContainer({
+    container = createViewModel(PullRequestPatchContainer, {
       owner: "owner",
       repo: "repo",
       number: 1,
@@ -70,13 +71,13 @@ describe("PullRequestPatchContainer fetching", () => {
     });
     // Control state commits directly so network and React update ordering can
     // be exercised without a rendered PR view or a live GitHub connection.
-    spyOn(container, "setState").and.callFake(applyState);
+    spyOn(container, "updateState").and.callFake(applyState);
     spyOn(container, "buildPatch").and.callFake((rawDiff) => ({ rawDiff }));
     spyOn(container, "fetchDiff").and.callThrough();
-    container.componentDidMount();
+    container.didMount();
   });
 
-  afterEach(() => container.componentWillUnmount());
+  afterEach(() => container.willDestroy());
 
   it("reuses the ETag for the same URL and settles a 304 with its cached patch", async () => {
     const patch = await finish(0, "initial");
@@ -227,12 +228,12 @@ describe("PullRequestPatchContainer fetching", () => {
   it("does not read a response after unmounting", async () => {
     const fetchPromise = latestFetch();
     const fetchedResponse = response("unmounted");
-    container.componentWillUnmount();
-    const stateCalls = container.setState.calls.count();
+    container.willDestroy();
+    const stateCalls = container.updateState.calls.count();
     requests[0].resolve(fetchedResponse);
     await fetchPromise;
     expect(fetchedResponse.text).not.toHaveBeenCalled();
-    expect(container.setState.calls.count()).toBe(stateCalls);
+    expect(container.updateState.calls.count()).toBe(stateCalls);
   });
 
   it("does not parse or report a response body after unmounting", async () => {
@@ -242,7 +243,7 @@ describe("PullRequestPatchContainer fetching", () => {
     fetchedResponse.text.and.returnValue(body.promise);
     requests[0].resolve(fetchedResponse);
     await Promise.resolve();
-    container.componentWillUnmount();
+    container.willDestroy();
     body.reject(new Error("body interrupted"));
     await fetchPromise;
     expect(container.buildPatch).not.toHaveBeenCalled();
@@ -252,7 +253,7 @@ describe("PullRequestPatchContainer fetching", () => {
   it("rechecks request identity when React commits a queued state update", async () => {
     const queued = [];
     const stateQueued = deferred();
-    container.setState.and.callFake((update, callback) => {
+    container.updateState.and.callFake((update, callback) => {
       if (typeof update === "function") {
         queued.push({ update, callback });
         stateQueued.resolve();
@@ -270,7 +271,7 @@ describe("PullRequestPatchContainer fetching", () => {
     expect(container.state.multiFilePatch).toBeNull();
     expect(container.state.last.url).toBeNull();
 
-    container.setState.and.callFake(applyState);
+    container.updateState.and.callFake(applyState);
     await finish(1, "new PR");
     expect(container.state.multiFilePatch.rawDiff).toBe("new PR");
   });

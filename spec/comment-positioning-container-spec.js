@@ -1,4 +1,5 @@
 /** @babel */
+import { createViewModel } from "./helpers/etch";
 import CommentPositioningContainer from "../lib/containers/comment-positioning-container";
 import ObserveModel from "../lib/views/observe-model";
 import { toNativePathSep } from "../lib/helpers";
@@ -8,7 +9,7 @@ function threadsAt(path, positions) {
 }
 
 function reconcile(state, commentThreads) {
-  const update = CommentPositioningContainer.getDerivedStateFromProps({ commentThreads }, state);
+  const update = CommentPositioningContainer.deriveState({ commentThreads }, state);
   return update ? { ...state, ...update } : state;
 }
 
@@ -169,7 +170,7 @@ describe("comment position local diff fetching", () => {
   function syncObserver() {
     const previous = observer.props;
     observer.props = container.render().props;
-    observer.componentDidUpdate(previous);
+    observer.didUpdate(previous);
   }
 
   beforeEach(() => {
@@ -185,7 +186,7 @@ describe("comment position local diff fetching", () => {
         return promise;
       }),
     };
-    container = new CommentPositioningContainer({
+    container = createViewModel(CommentPositioningContainer, {
       ...CommentPositioningContainer.defaultProps,
       commentThreads: threadsAt(path, [1]),
       localRepository: repository,
@@ -194,16 +195,16 @@ describe("comment position local diff fetching", () => {
       children: jasmine.createSpy("children").and.callFake((translations) => translations),
     });
     container.state = reconcile(container.state, container.props.commentThreads);
-    observer = new ObserveModel(container.render().props);
-    spyOn(observer, "setState").and.callFake((state) => {
+    observer = createViewModel(ObserveModel, container.render().props);
+    spyOn(observer, "updateState").and.callFake((state) => {
       observer.state = { ...observer.state, ...state };
     });
-    observer.componentDidMount();
+    observer.didMount();
   });
 
   afterEach(() => {
-    observer.componentWillUnmount();
-    container.componentWillUnmount();
+    observer.willDestroy();
+    container.willDestroy();
   });
 
   it("keeps fetch paths stable across renders and comment position changes", () => {
@@ -232,12 +233,12 @@ describe("comment position local diff fetching", () => {
     await oldRefresh;
     expect(observer.state.data.prCommitSha).toBe("old-sha");
     expect(repository.getDiffsForFilePath.calls.argsFor(1)).toEqual([nativePath, "new-sha"]);
-    expect(observer.render()).toBeNull();
+    expect(observer.props.children(observer.state.data)).toBeNull();
     expect(container.state.translationsByFile.get(nativePath).digest).toBeNull();
 
     requests[1].resolve([]);
     await observer.modelObserver.getLastModelDataRefreshPromise();
-    const translations = observer.render();
+    const translations = observer.props.children(observer.state.data);
     expect(translations.get(nativePath).diffToFilePosition.get(1)).toBe(20);
   });
 
@@ -249,14 +250,14 @@ describe("comment position local diff fetching", () => {
     requests[0].resolve([]);
     await oldRefresh;
 
-    expect(observer.render()).toBeNull();
+    expect(observer.props.children(observer.state.data)).toBeNull();
     expect(repository.getDiffsForFilePath.calls.argsFor(1)).toEqual([
       toNativePathSep(nextPath),
       "old-sha",
     ]);
     requests[1].resolve([]);
     await observer.modelObserver.getLastModelDataRefreshPromise();
-    expect(observer.render().has(toNativePathSep(nextPath))).toBe(true);
+    expect(observer.props.children(observer.state.data).has(toNativePathSep(nextPath))).toBe(true);
   });
 
   it("rejects a snapshot from a different local repository", async () => {
