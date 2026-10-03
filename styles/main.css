@@ -975,6 +975,15 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 .github-panel-IssueishDetailView-buildStatus:empty {
   display: none;
 }
+.github-panel-tab-panel.github-panel-IssueishDetailView-filesChanged:not([hidden]) {
+  display: flex;
+  overflow: hidden;
+}
+.github-panel-IssueishDetailView-diff {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+}
 .github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper {
   padding: calc(var(--component-padding) * 2);
 }
@@ -2019,6 +2028,25 @@ pre.github-panel-Message-description {
   border-top: 1px solid var(--base-border-color);
   border-bottom: 1px solid var(--base-border-color);
   border-radius: var(--component-border-radius);
+}
+.github-panel-PatchPreviewView {
+  min-width: 0;
+  margin: var(--component-padding) 0;
+  border: 1px solid var(--base-border-color);
+  border-radius: var(--component-border-radius);
+  overflow: hidden;
+}
+.github-panel-PatchPreviewView .git-panel-ChangesView-header {
+  padding: var(--component-padding);
+}
+.github-panel-PatchPreviewView .git-panel-ChangesView-title {
+  font-size: 1em;
+}
+.github-panel-Reviews .github-panel-PatchPreviewView lumine-text-editor,
+.github-panel-PaneItemHost-github-panel-reviews .github-panel-PatchPreviewView lumine-text-editor {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
 }
 .github-panel-Reviews-topHeader,
 .github-panel-PaneItemHost-github-panel-reviews-topHeader {

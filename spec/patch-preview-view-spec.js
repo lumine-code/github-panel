@@ -3,7 +3,7 @@
 import { h, flushViews, createViewHost } from "./helpers/etch";
 
 describe("review patch previews", () => {
-  let container, root, bridge, PatchPreviewView, patches;
+  let container, root, bridge, PatchPreviewView, patches, setGitBridge;
 
   beforeEach(async () => {
     patches = [];
@@ -11,6 +11,8 @@ describe("review patch previews", () => {
     container = null;
     const pkg = await lumine.packages.activatePackage("git-panel");
     bridge = pkg.mainModule.provideGitPanel();
+    ({ setGitBridge } = require("../lib/git-bridge"));
+    setGitBridge(bridge);
     const previewModule = require("../lib/views/patch-preview-view");
     PatchPreviewView = previewModule.default || previewModule;
     container = document.createElement("div");
@@ -24,6 +26,7 @@ describe("review patch previews", () => {
     for (const patch of patches) {
       patch.dispose();
     }
+    setGitBridge(null);
   });
 
   function replacementPatch(oldText = "prefix old suffix", newText = "prefix new suffix") {
@@ -72,6 +75,71 @@ describe("review patch previews", () => {
     }
     return ranges;
   }
+
+  async function setLayout(mode) {
+    await flushViews(() => container.querySelector(`[data-diff-view="${mode}"]`).click());
+  }
+
+  function editorsBySide() {
+    return Object.fromEntries(
+      [...container.querySelectorAll("[data-diff-side]")].map((column) => [
+        column.dataset.diffSide,
+        column.querySelector("lumine-text-editor").getModel(),
+      ]),
+    );
+  }
+
+  it("defaults to Unified and switches review context to read-only aligned columns", async () => {
+    const patch = replacementPatch();
+    await renderPreview(patch, 4);
+    const preview = container.querySelector(".github-panel-PatchPreviewView");
+    expect(preview.hasAttribute("data-context-menu-boundary")).toBe(true);
+    expect(
+      container.querySelector('[data-diff-view="unified"]').classList.contains("selected"),
+    ).toBe(true);
+    expect(container.querySelector(".git-panel-FilePatchView-controlBlock")).toBeNull();
+
+    await setLayout("side-by-side");
+    const editors = editorsBySide();
+    expect(editors.old.getText()).toBe("context\nprefix old suffix");
+    expect(editors.new.getText()).toBe("context\nprefix new suffix");
+    expect(editors.old.isReadOnly()).toBe(true);
+    expect(editors.new.isReadOnly()).toBe(true);
+    expect(
+      container.querySelector('button[title="Stage File"], button[title="Unstage File"]'),
+    ).toBeNull();
+    expect(container.querySelectorAll(".git-panel-SideBySidePatchView-sharedHeader").length).toBe(
+      0,
+    );
+    const oldBuffer = editors.old.getBuffer();
+    const newBuffer = editors.new.getBuffer();
+    await setLayout("unified");
+    expect(oldBuffer.isDestroyed()).toBe(true);
+    expect(newBuffer.isDestroyed()).toBe(true);
+    expect(container.querySelector("lumine-text-editor").getModel().getText()).toBe(
+      "context\nprefix old suffix\nprefix new suffix",
+    );
+  });
+
+  it("preserves layout while changing review context and a refreshed patch", async () => {
+    const patch = replacementPatch();
+    await renderPreview(patch, 4);
+    await setLayout("side-by-side");
+    await renderPreview(patch, 1);
+    expect(editorsBySide().old.getText()).toBe("");
+    expect(editorsBySide().new.getText()).toBe("prefix new suffix");
+    const next = replacementPatch("prefix old suffix", "prefix changed suffix");
+    await renderPreview(next, 2);
+    expect(editorsBySide().old.getText()).toBe("prefix old suffix");
+    expect(editorsBySide().new.getText()).toBe("prefix changed suffix");
+    expect(
+      container.querySelector('[data-diff-view="side-by-side"]').classList.contains("selected"),
+    ).toBe(true);
+    const buffers = Object.values(editorsBySide()).map((editor) => editor.getBuffer());
+    await flushViews(() => root.update(null));
+    expect(buffers.every((buffer) => buffer.isDestroyed())).toBe(true);
+    expect(next.getBuffer().isDestroyed()).toBe(false);
+  });
 
   it("renders the word layers supplied by the current git-panel bridge", async () => {
     const patch = replacementPatch();
@@ -155,8 +223,8 @@ describe("review patch previews", () => {
   it("releases temporary slices and its owned preview without destroying the source patch", async () => {
     const patch = replacementPatch();
     const slices = [];
-    const getPreview = patch.getPreviewPatchBuffer.bind(patch);
-    spyOn(patch, "getPreviewPatchBuffer").and.callFake((...args) => {
+    const getPreview = patch.createPreviewPatch.bind(patch);
+    spyOn(patch, "createPreviewPatch").and.callFake((...args) => {
       const slice = getPreview(...args);
       slices.push(slice.getBuffer());
       return slice;
@@ -167,13 +235,15 @@ describe("review patch previews", () => {
     await renderPreview(patch, 3);
 
     expect(slices.length).toBe(2);
-    expect(slices[1].isDestroyed()).toBe(true);
+    expect(slices[0].isDestroyed()).toBe(true);
+    expect(slices[1].isDestroyed()).toBe(false);
     expect(ownedBuffer.isDestroyed()).toBe(false);
 
     await flushViews(async () => root.update(null));
 
     expect(editor.isDestroyed()).toBe(true);
     expect(ownedBuffer.isDestroyed()).toBe(true);
+    expect(slices[1].isDestroyed()).toBe(true);
     expect(patch.getBuffer().isDestroyed()).toBe(false);
     expect(patch.getWordAdditionLayer().getMarkerCount()).toBe(1);
   });

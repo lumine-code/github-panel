@@ -6,8 +6,8 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 
 ## Features
 
-- **Pull requests**: open and inspect pull requests with Overview, Build Status, Commits, and Files Changed tabs.
-- **Code reviews**: view review comments and threads directly in the editor.
+- **Pull requests**: open and inspect pull requests with Overview, Build Status, Commits, and Files Changed tabs, with Unified or Side by Side diffs.
+- **Code reviews**: view review comments and threads directly in the editor, with Unified or Side by Side review context.
 - **Comment decorations**: show review comments as inline decorations on the current branch.
 - **Issue/PR opener**: open any issue or pull request by URL.
 - **Repository management**: create and publish repositories to GitHub.
