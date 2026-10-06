@@ -6,7 +6,7 @@
 .github-panel-Accordion-header {
   font-weight: 600;
   color: var(--text-color-subtle);
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
   border-bottom: 1px solid var(--base-border-color);
   display: flex;
   align-items: center;
@@ -40,7 +40,7 @@
 .github-panel-Accordion-listItem {
   display: flex;
   align-items: center;
-  padding: calc(var(--component-padding) / 4);
+  padding: calc(var(--ui-spacing) / 4);
   border-bottom: 1px solid var(--base-border-color);
 }
 .github-panel-Accordion-listItem:last-child {
@@ -57,7 +57,7 @@
    * within the dialog. */
 }
 .github-panel-DialogPrompt {
-  margin: var(--component-padding);
+  margin: var(--ui-spacing);
   text-align: center;
   font-size: 1.2em;
   user-select: none;
@@ -65,11 +65,11 @@
 .github-panel-DialogForm {
   display: flex;
   flex-direction: column;
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
 }
 .github-panel-DialogLabel {
   flex: 1;
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
   position: relative;
   line-height: 2;
 }
@@ -80,14 +80,14 @@
   align-items: center;
 }
 .github-panel-DialogLabel--horizontal input {
-  margin: 0 var(--component-padding);
+  margin: 0 var(--ui-spacing);
 }
 .github-panel-DialogLabel--horizontal input[type="text"],
 .github-panel-DialogLabel--horizontal input[type="password"] {
   width: 85%;
 }
 .github-panel-DialogLabel .github-panel-LumineTextEditor-container {
-  margin-top: calc(var(--component-padding) / 2);
+  margin-top: calc(var(--ui-spacing) / 2);
 }
 .github-panel-DialogFooter {
   display: flex;
@@ -97,8 +97,8 @@
 .github-panel-DialogInfo {
   display: inline-block;
   flex-grow: 1;
-  margin: calc(var(--component-padding) / 2);
-  padding: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
+  padding: calc(var(--ui-spacing) / 2);
 }
 .github-panel-DialogInfo li {
   display: inline-block;
@@ -108,7 +108,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
 }
 /* Switch button order on Windows */
 .platform-win32 .github-panel-DialogButtons {
@@ -116,11 +116,11 @@
   justify-content: flex-start;
 }
 .github-panel-DialogButtons .btn {
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
 }
 .github-panel-DialogButtons-leftItem,
 .github-panel-DialogButtons-leftItem.btn {
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
   margin-right: auto;
 }
 .github-panel-Dialog--insetButton {
@@ -144,10 +144,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
 }
 .github-panel-DialogSpinner .loading {
-  margin: var(--component-padding);
+  margin: var(--ui-spacing);
 }
 .github-panel-Dialog-row {
   display: flex;
@@ -206,8 +206,8 @@
 }
 .github-panel-RepositoryHome-ownerAvatar {
   flex: 0;
-  border-radius: calc(var(--component-padding) / 4);
-  margin: 0 var(--component-padding) 0 0;
+  border-radius: calc(var(--ui-spacing) / 4);
+  margin: 0 var(--ui-spacing) 0 0;
 }
 .github-panel-RepositoryHome-ownerUnwritable {
   display: flex;
@@ -217,7 +217,7 @@
 }
 .github-panel-RepositoryHome-separator {
   flex: 0;
-  margin: 0 var(--component-padding);
+  margin: 0 var(--ui-spacing);
 }
 .github-panel-RepositoryHome .github-panel-LumineTextEditor-container {
   flex: 1.5;
@@ -225,14 +225,14 @@
 .github-panel-RemoteConfiguration-details summary {
   cursor: default;
   user-select: none;
-  margin: var(--component-padding) 0;
+  margin: var(--ui-spacing) 0;
 }
 .github-panel-RemoteConfiguration-details summary:focus {
   border: solid 1px var(--button-background-color-selected);
   border-radius: 4px;
 }
 .github-panel-RemoteConfiguration-details main {
-  padding-top: var(--component-padding);
+  padding-top: var(--ui-spacing);
 }
 .github-panel-RemoteConfiguration-protocol {
   display: inline-flex;
@@ -240,13 +240,13 @@
 }
 .github-panel-RemoteConfiguration-protocolHeading {
   display: inline-block;
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
 }
 .github-panel-RemoteConfiguration-protocolOption {
   display: inline-flex;
   align-items: center;
-  padding: calc(var(--component-padding) / 4);
-  margin-right: var(--component-padding);
+  padding: calc(var(--ui-spacing) / 4);
+  margin-right: var(--ui-spacing);
 }
 .github-panel-RemoteConfiguration-protocolOption:focus-within {
   border: solid 1px var(--button-background-color-selected);
@@ -262,7 +262,7 @@
 }
 .github-panel-RemoteConfiguration-sourceRemote label .github-panel-LumineTextEditor-container {
   flex: 1;
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-Create-visibility {
   display: inline-flex;
@@ -270,21 +270,21 @@
 }
 .github-panel-Create-visibilityHeading {
   display: inline-block;
-  margin-right: calc(var(--component-padding) * 2);
+  margin-right: calc(var(--ui-spacing) * 2);
 }
 .github-panel-Create-visibilityOption {
   display: inline-flex;
   align-items: center;
-  padding: calc(var(--component-padding) / 4);
-  margin-right: var(--component-padding);
+  padding: calc(var(--ui-spacing) / 4);
+  margin-right: var(--ui-spacing);
 }
 .github-panel-Create-visibilityOption:focus-within {
   border: solid 1px var(--button-background-color-selected);
   border-radius: 4px;
 }
 .github-panel-Create-visibilityOption span::before {
-  margin-left: calc(var(--component-padding) / 2);
-  margin-right: calc(var(--component-padding) / 2);
+  margin-left: calc(var(--ui-spacing) / 2);
+  margin-right: calc(var(--ui-spacing) / 2);
 }
 
 /* dock.css */
@@ -317,7 +317,7 @@ lumine-dock.bottom .github-panel-RecentCommits {
 lumine-dock.left .github-panel-IssueishDetailView-header,
 lumine-dock.right .github-panel-IssueishDetailView-header {
   display: block;
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   background-color: var(--tool-panel-background-color);
 }
 lumine-dock.left .github-panel-IssueishDetailView-avatar,
@@ -343,7 +343,7 @@ lumine-dock.right .github-panel-IssueishDetailView-title {
 }
 lumine-dock.left .github-panel-IssueishDetailView-checkoutButton,
 lumine-dock.right .github-panel-IssueishDetailView-checkoutButton {
-  margin: var(--component-padding) 0 0 0;
+  margin: var(--ui-spacing) 0 0 0;
 }
 lumine-dock.left .github-panel-IssueishDetailView-tablist,
 lumine-dock.right .github-panel-IssueishDetailView-tablist {
@@ -351,7 +351,7 @@ lumine-dock.right .github-panel-IssueishDetailView-tablist {
 }
 lumine-dock.left .github-panel-IssueishDetailView-tab,
 lumine-dock.right .github-panel-IssueishDetailView-tab {
-  padding: calc(var(--component-padding) / 2) var(--component-padding);
+  padding: calc(var(--ui-spacing) / 2) var(--ui-spacing);
 }
 lumine-dock.left .github-panel-IssueishDetailView-tab-icon,
 lumine-dock.right .github-panel-IssueishDetailView-tab-icon {
@@ -365,7 +365,7 @@ lumine-dock.left .github-panel-IssueishDetailView-overview > .github-panel-DotCo
 lumine-dock.right .github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml,
 lumine-dock.left .github-panel-IssueishDetailView-overview .timeline-item,
 lumine-dock.right .github-panel-IssueishDetailView-overview .timeline-item {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
 }
 lumine-dock.left .github-panel-IssueishDetailView-buildStatus,
 lumine-dock.right .github-panel-IssueishDetailView-buildStatus {
@@ -411,15 +411,15 @@ lumine-dock.right .github-panel-CommitDetailView-header {
 }
 lumine-dock.left .github-panel-CommitDetailView-commit,
 lumine-dock.right .github-panel-CommitDetailView-commit {
-  padding: var(--component-padding) var(--component-padding) 0 var(--component-padding);
+  padding: var(--ui-spacing) var(--ui-spacing) 0 var(--ui-spacing);
 }
 lumine-dock.left .github-panel-CommitDetailView-meta,
 lumine-dock.right .github-panel-CommitDetailView-meta {
-  margin-bottom: var(--component-padding);
+  margin-bottom: var(--ui-spacing);
 }
 lumine-dock.left .github-panel-CommitDetailView-moreText,
 lumine-dock.right .github-panel-CommitDetailView-moreText {
-  padding: var(--component-padding) 0;
+  padding: var(--ui-spacing) 0;
 }
 
 /* donut-chart.css */
@@ -446,7 +446,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 .github-panel-editorCommentGutterIcon.react-lumine-decoration {
   width: 100%;
   text-align: center;
-  padding: 0 calc(var(--component-padding) / 4);
+  padding: 0 calc(var(--ui-spacing) / 4);
 }
 .github-panel-editorCommentGutterIcon button {
   padding: 0;
@@ -459,19 +459,19 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   flex-direction: column;
   align-items: center;
   background-color: var(--tool-panel-background-color);
-  border-radius: var(--component-border-radius);
-  padding: var(--component-padding);
-  margin: calc(var(--component-padding) / 2) 0;
+  border-radius: var(--ui-border-radius);
+  padding: var(--ui-spacing);
+  margin: calc(var(--ui-spacing) / 2) 0;
 }
 .github-panel-EditorComment-omitted p {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: calc(var(--component-padding) / 4);
+  margin: calc(var(--ui-spacing) / 4);
 }
 .github-panel-EditorComment-omitted button {
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 
 /* emoji-reactions.css */
@@ -486,7 +486,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 .github-panel-EmojiReactions-add.btn.btn:focus.btn {
   border-color: transparent;
   box-shadow: none;
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
 }
 .github-panel-EmojiReactions-add.btn.btn:hover {
   color: hsl(from var(--text-color-subtle) h s calc(l + 10));
@@ -508,7 +508,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 }
 .github-panel-Blank-footer {
   flex-shrink: 0;
-  padding: calc(var(--component-padding) * 2) var(--component-padding);
+  padding: calc(var(--ui-spacing) * 2) var(--ui-spacing);
 }
 /* The mark these views head with is styled in large-icon.css. */
 .github-panel-Blank-banner,
@@ -522,7 +522,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   align-items: center;
 }
 .github-panel-Blank-option--explained {
-  margin-bottom: calc(var(--component-padding) / 2);
+  margin-bottom: calc(var(--ui-spacing) / 2);
 }
 .github-panel-Blank-actionBtn {
   flex: 1;
@@ -606,7 +606,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 }
 .github-panel-DotComMarkdownHtml a,
 .github-panel-DotComMarkdownHtml a code {
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
 }
 .github-panel-DotComMarkdownHtml img {
   max-width: 100%;
@@ -695,7 +695,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   display: none;
 }
 .github-panel-EmojiReactionsGroup {
-  margin-right: calc(var(--component-padding) * 2);
+  margin-right: calc(var(--ui-spacing) * 2);
 }
 
 /* github-login-view.css */
@@ -711,13 +711,13 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  padding: calc(var(--component-padding) * 3);
+  padding: calc(var(--ui-spacing) * 3);
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview > * {
-  margin: var(--component-padding) 0;
+  margin: var(--ui-spacing) 0;
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview h1 {
-  margin-bottom: calc(var(--component-padding) * 3);
+  margin-bottom: calc(var(--ui-spacing) * 3);
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview button {
   width: 100%;
@@ -726,35 +726,35 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ol {
   text-align: left;
-  padding: var(--component-padding) 0;
+  padding: var(--ui-spacing) 0;
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ol a {
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ul {
   list-style: none;
   padding-left: 0;
 }
 .github-panel-GithubLoginView .github-panel-GithubLoginView-Subview ul li:not(:last-child) {
-  margin-bottom: var(--component-padding);
+  margin-bottom: var(--ui-spacing);
 }
 .github-panel-GithubLoginView
   .github-panel-GithubLoginView-Subview
   .github-panel-GithubLoginView-tokenLink {
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
   cursor: pointer;
 }
 .github-panel-GithubLoginView
   .github-panel-GithubLoginView-Subview
   .github-panel-GithubLoginView-device
   > p {
-  margin: var(--component-padding) 0;
+  margin: var(--ui-spacing) 0;
 }
 .github-panel-GithubLoginView
   .github-panel-GithubLoginView-Subview
   .github-panel-GithubLoginView-device
   .github-panel-GithubLoginView-userCode {
-  margin: calc(var(--component-padding) * 2) 0;
+  margin: calc(var(--ui-spacing) * 2) 0;
 }
 .github-panel-GithubLoginView
   .github-panel-GithubLoginView-Subview
@@ -764,7 +764,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   display: block;
   font-size: 1.2em;
   letter-spacing: 0.15em;
-  margin-bottom: var(--component-padding);
+  margin-bottom: var(--ui-spacing);
 }
 
 /* github-tab.css */
@@ -794,22 +794,22 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   justify-content: center;
   font-size: 1.25em;
   text-align: center;
-  padding: calc(var(--component-padding) * 3);
+  padding: calc(var(--ui-spacing) * 3);
 }
 .github-panel-GitHub-noRemotes > *,
 .github-panel-GitHub .github-panel-RemoteSelector > * {
-  margin: var(--component-padding) 0;
+  margin: var(--ui-spacing) 0;
 }
 .github-panel-GitHub-noRemotes h1,
 .github-panel-GitHub .github-panel-RemoteSelector h1 {
-  margin-bottom: calc(var(--component-padding) * 3);
+  margin-bottom: calc(var(--ui-spacing) * 3);
 }
 .github-panel-GitHub .github-panel-RemoteSelector ul {
   list-style: none;
   padding-left: 0;
 }
 .github-panel-GitHub .github-panel-RemoteSelector ul li:not(:last-child) {
-  margin-bottom: var(--component-padding);
+  margin-bottom: var(--ui-spacing);
 }
 .github-panel-GitHub .github-panel-RemoteSelector button {
   width: 100%;
@@ -826,7 +826,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   font-weight: 500;
   line-height: 1;
   text-transform: capitalize;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   white-space: nowrap;
 }
 .github-panel-IssueishBadge .icon::before {
@@ -865,7 +865,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 .github-panel-IssueishDetailView-header {
   display: flex;
   align-items: center;
-  padding: calc(var(--component-padding) * 1.5) calc(var(--component-padding) * 2);
+  padding: calc(var(--ui-spacing) * 1.5) calc(var(--ui-spacing) * 2);
   border-bottom: 1px solid var(--base-border-color);
 }
 .github-panel-IssueishDetailView-headerColumn.is-flexible {
@@ -884,7 +884,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 }
 .github-panel-IssueishDetailView-avatar {
   align-self: flex-start;
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
 }
 .github-panel-IssueishDetailView-title {
   margin: 0;
@@ -898,7 +898,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   text-decoration: none;
 }
 .github-panel-IssueishDetailView-headerBadge {
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
   padding: 0 0.75em;
   line-height: 1.65em;
 }
@@ -906,15 +906,15 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   color: var(--text-color-subtle);
 }
 .github-panel-IssueishDetailView-headerStatus {
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-IssueishDetailView-checkoutButton {
   font-weight: 600;
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-IssueishDetailView-headerRefreshButton {
   display: inline-block;
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
   color: var(--text-color-subtle);
   cursor: default;
 }
@@ -938,7 +938,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 .github-panel-IssueishDetailView-avatarImage {
   width: 40px;
   height: 40px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-IssueishDetailView-meta {
   color: var(--text-color-subtle);
@@ -947,7 +947,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   color: inherit;
 }
 .github-panel-IssueishDetailView-footer {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   text-align: center;
   border-top: 1px solid var(--base-border-color);
   background-color: var(--app-background-color);
@@ -963,14 +963,13 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   margin: 0 auto;
 }
 .github-panel-IssueishDetailView-overview > .github-panel-DotComMarkdownHtml {
-  padding: calc(var(--component-padding) * 2);
+  padding: calc(var(--ui-spacing) * 2);
 }
 .github-panel-IssueishDetailView .github-panel-EmojiReactions {
-  padding: 0 calc(var(--component-padding) * 2) var(--component-padding)
-    calc(var(--component-padding) * 2);
+  padding: 0 calc(var(--ui-spacing) * 2) var(--ui-spacing) calc(var(--ui-spacing) * 2);
 }
 .github-panel-IssueishDetailView-buildStatus {
-  padding: calc(var(--component-padding) * 2);
+  padding: calc(var(--ui-spacing) * 2);
 }
 .github-panel-IssueishDetailView-buildStatus:empty {
   display: none;
@@ -985,22 +984,22 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   min-height: 0;
 }
 .github-panel-IssueishDetailView .github-panel-PrCommitsView-commitWrapper {
-  padding: calc(var(--component-padding) * 2);
+  padding: calc(var(--ui-spacing) * 2);
 }
 .github-panel-IssueishDetailView-issueBody {
   flex: 1;
   overflow: auto;
 }
 .github-panel-IssueishDetailView-issueBody > .github-panel-DotComMarkdownHtml {
-  padding: calc(var(--component-padding) * 2);
+  padding: calc(var(--ui-spacing) * 2);
 }
 
 /* issueish-list-view.css */
 .github-panel-IssueishList-item {
-  margin: calc(var(--component-padding) / 4);
+  margin: calc(var(--ui-spacing) / 4);
 }
 .github-panel-IssueishList-item--avatar {
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   height: 16px;
   width: 16px;
 }
@@ -1053,7 +1052,7 @@ svg.github-panel-IssueishList-item--status circle {
   line-height: 1;
 }
 .github-panel-IssueishList-more {
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1064,7 +1063,7 @@ svg.github-panel-IssueishList-item--status circle {
   color: var(--text-color-subtle);
 }
 .github-panel-IssueishList-loading {
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
   min-height: 29px;
   /* Magic number: Prevents jumping. */
   font-style: italic;
@@ -1073,7 +1072,7 @@ svg.github-panel-IssueishList-item--status circle {
 }
 .github-panel-CreatePullRequestTile-message,
 .github-panel-CreatePullRequestTile-controls {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   text-align: center;
   margin-bottom: 0;
 }
@@ -1087,14 +1086,14 @@ svg.github-panel-IssueishList-item--status circle {
   width: auto;
 }
 .github-panel-CreatePullRequestTile-divider {
-  margin: calc(var(--component-padding) / 1.25) 20%;
+  margin: calc(var(--ui-spacing) / 1.25) 20%;
   border-color: var(--base-border-color);
 }
 .github-panel-CreatePullRequestTile-createPr {
   width: 100%;
 }
 .github-panel-QueryErrorTile {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   display: flex;
   color: var(--text-color-error);
 }
@@ -1123,23 +1122,23 @@ svg.github-panel-IssueishList-item--status circle {
 .github-panel-IssueishTooltip {
   display: flex;
   flex-direction: column;
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
   font-size: 0.9em;
   text-align: left;
 }
 .github-panel-IssueishTooltip .issueish-avatar-and-title {
   display: flex;
   align-items: center;
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
 }
 .github-panel-IssueishTooltip .author-avatar {
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
   flex: 0 0 26px;
   /* prevent sqeezing */
   width: 26px;
   height: 26px;
   align-self: flex-start;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-IssueishTooltip .issueish-title {
   margin: 0;
@@ -1150,13 +1149,13 @@ svg.github-panel-IssueishList-item--status circle {
   white-space: initial;
 }
 .github-panel-IssueishTooltip .issueish-badge-and-link {
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
 }
 .github-panel-IssueishTooltip .issueish-badge {
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
   font-weight: 500;
   text-transform: capitalize;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-IssueishTooltip .issueish-badge.open {
   color: var(--github-panel-text-on-green);
@@ -1181,7 +1180,7 @@ svg.github-panel-IssueishList-item--status circle {
 
 /* large-icon.css */
 /* The display-sized mark that heads the login, blank and remote-selector
- * views. Undoing the core icon box (a --component-icon-size square whose
+ * views. Undoing the core icon box (a --ui-icon-size square whose
  * line-height equals its height, anchored text-bottom) is the sanctioned
  * escape hatch for a glyph drawn this large: leave the line-height behind and
  * the mark paints 8em tall inside a 16px line, overflowing both ways and
@@ -1211,8 +1210,8 @@ svg.github-panel-IssueishList-item--status circle {
 /* On the blank views the mark is scene-setting rather than a heading, so it
  * recedes into the background and stands well clear of the copy below it. */
 .github-panel-Blank .github-panel-LargeIcon:before {
-  margin-top: calc(var(--component-padding) * 5);
-  margin-bottom: calc(var(--component-padding) * 5);
+  margin-top: calc(var(--ui-spacing) * 5);
+  margin-bottom: calc(var(--ui-spacing) * 5);
   color: color-mix(in srgb, var(--base-background-color) 66%, var(--text-color));
   /* 2/3 of bg color */
 }
@@ -1302,7 +1301,7 @@ svg.github-panel-IssueishList-item--status circle {
 }
 .github-panel-Message-wrapper {
   margin: auto;
-  padding: calc(var(--component-padding) * 2);
+  padding: calc(var(--ui-spacing) * 2);
   text-align: center;
   width: 100%;
 }
@@ -1326,10 +1325,10 @@ pre.github-panel-Message-description {
   margin-bottom: 0;
 }
 .github-panel-Message-action {
-  margin-top: calc(var(--component-padding) * 2);
+  margin-top: calc(var(--ui-spacing) * 2);
 }
 .github-panel-Message-button {
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
 }
 
 /* popover.css */
@@ -1338,20 +1337,20 @@ pre.github-panel-Message-description {
 .github-panel-Popover.tooltip {
   max-width: 400px;
   /* Same as the github-panel-Git */
-  padding-left: var(--component-padding);
-  padding-right: var(--component-padding);
+  padding-left: var(--ui-spacing);
+  padding-right: var(--ui-spacing);
   box-sizing: border-box;
 }
 .github-panel-Popover .tooltip-inner.tooltip-inner {
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
   background-color: var(--tool-panel-background-color);
   border: 1px solid var(--base-border-color);
   box-shadow: 0 4px 8px hsla(0, 0%, 0%, 0.1);
   color: var(--text-color);
 }
 .github-panel-Popover.top .tooltip-arrow.tooltip-arrow {
-  width: var(--component-padding);
-  height: var(--component-padding);
+  width: var(--ui-spacing);
+  height: var(--ui-spacing);
   border-width: 0 0 1px 1px;
   border-color: var(--base-border-color);
   background-color: var(--tool-panel-background-color);
@@ -1361,22 +1360,22 @@ pre.github-panel-Message-description {
 
 /* pr-comment.css */
 .github-panel-PrCommentThread {
-  padding: var(--component-padding) var(--component-padding) var(--component-padding) 0;
+  padding: var(--ui-spacing) var(--ui-spacing) var(--ui-spacing) 0;
 }
 .github-panel-PrComment {
   max-width: 60em;
-  padding: var(--component-padding);
-  font-family: var(--font-family);
-  font-size: var(--font-size);
+  padding: var(--ui-spacing);
+  font-family: var(--ui-font-family);
+  font-size: var(--ui-font-size);
   border: 1px solid var(--base-border-color);
 }
 .github-panel-PrComment:first-child {
-  border-top-left-radius: var(--component-border-radius);
-  border-top-right-radius: var(--component-border-radius);
+  border-top-left-radius: var(--ui-border-radius);
+  border-top-right-radius: var(--ui-border-radius);
 }
 .github-panel-PrComment:last-child {
-  border-bottom-left-radius: var(--component-border-radius);
-  border-bottom-right-radius: var(--component-border-radius);
+  border-bottom-left-radius: var(--ui-border-radius);
+  border-bottom-right-radius: var(--ui-border-radius);
 }
 .github-panel-PrComment + .github-panel-PrComment {
   border-top: none;
@@ -1389,7 +1388,7 @@ pre.github-panel-Message-description {
   margin-right: 6px;
   height: 16px;
   width: 16px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   vertical-align: top;
 }
 .github-panel-PrComment-timeAgo {
@@ -1408,7 +1407,7 @@ pre.github-panel-Message-description {
 .github-panel-PrComment .js-suggested-changes-blob {
   font-size: 0.9em;
   border: 1px solid var(--base-border-color);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   /* These styles are mostly copied from the Primer tooltips */
 }
 .github-panel-PrComment .js-suggested-changes-blob .d-flex {
@@ -1421,14 +1420,14 @@ pre.github-panel-Message-description {
   flex: 1 1 auto;
 }
 .github-panel-PrComment .js-suggested-changes-blob .p-1 {
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
 }
 .github-panel-PrComment .js-suggested-changes-blob .px-1 {
-  padding-left: calc(var(--component-padding) / 2);
-  padding-right: calc(var(--component-padding) / 2);
+  padding-left: calc(var(--ui-spacing) / 2);
+  padding-right: calc(var(--ui-spacing) / 2);
 }
 .github-panel-PrComment .js-suggested-changes-blob .p-2 {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
 }
 .github-panel-PrComment .js-suggested-changes-blob .text-gray {
   color: var(--text-color-subtle);
@@ -1437,7 +1436,7 @@ pre.github-panel-Message-description {
   line-height: 1.25;
 }
 .github-panel-PrComment .js-suggested-changes-blob .rounded-1 {
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-PrComment .js-suggested-changes-blob .border {
   border: 1px solid;
@@ -1480,12 +1479,12 @@ pre.github-panel-Message-description {
   margin-right: 0.5em;
 }
 .github-panel-PrComment .js-suggested-changes-blob .blob-code-inner .x-first {
-  border-bottom-left-radius: var(--component-border-radius);
-  border-top-left-radius: var(--component-border-radius);
+  border-bottom-left-radius: var(--ui-border-radius);
+  border-top-left-radius: var(--ui-border-radius);
 }
 .github-panel-PrComment .js-suggested-changes-blob .blob-code-inner .x-last {
-  border-bottom-right-radius: var(--component-border-radius);
-  border-top-right-radius: var(--component-border-radius);
+  border-bottom-right-radius: var(--ui-border-radius);
+  border-top-right-radius: var(--ui-border-radius);
 }
 .github-panel-PrComment .js-suggested-changes-blob .blob-code-addition {
   background-color: var(--github-panel-diff-added);
@@ -1521,7 +1520,7 @@ pre.github-panel-Message-description {
   pointer-events: none;
   content: attr(aria-label);
   background: var(--background-color-info);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-PrComment .js-suggested-changes-blob .tooltipped::before {
   position: absolute;
@@ -1565,26 +1564,26 @@ pre.github-panel-Message-description {
 .github-panel-PrCommitView-container {
   display: flex;
   align-items: center;
-  padding: var(--component-padding);
-  font-size: var(--font-size);
+  padding: var(--ui-spacing);
+  font-size: var(--ui-font-size);
   border: 1px solid var(--base-border-color);
   border-bottom: none;
 }
 .github-panel-PrCommitView-container:first-child {
-  border-top-left-radius: var(--component-border-radius);
-  border-top-right-radius: var(--component-border-radius);
+  border-top-left-radius: var(--ui-border-radius);
+  border-top-right-radius: var(--ui-border-radius);
 }
 .github-panel-PrCommitView-container:last-child {
   border-bottom: 1px solid var(--base-border-color);
-  border-bottom-left-radius: var(--component-border-radius);
-  border-bottom-right-radius: var(--component-border-radius);
+  border-bottom-left-radius: var(--ui-border-radius);
+  border-bottom-right-radius: var(--ui-border-radius);
 }
 .github-panel-PrCommitView-commit {
   flex: 1;
 }
 .github-panel-PrCommitView-messageHeadline.is-button {
   padding: 0;
-  margin-right: calc(var(--component-padding) / 1.5);
+  margin-right: calc(var(--ui-spacing) / 1.5);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -1601,7 +1600,7 @@ pre.github-panel-Message-description {
   line-height: 1.4;
 }
 .github-panel-PrCommitView-avatar {
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   height: 16px;
   margin-right: 0.4em;
   width: 16px;
@@ -1612,20 +1611,20 @@ pre.github-panel-Message-description {
   color: var(--text-color-subtle);
 }
 .github-panel-PrCommitView-moreButton {
-  margin: 0 auto 0 var(--component-padding);
+  margin: 0 auto 0 var(--ui-spacing);
   padding: 0em 0.2em;
   color: var(--text-color-subtle);
   font-style: italic;
   font-size: 0.8em;
   border: 1px solid var(--base-border-color);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   background-color: var(--button-background-color);
 }
 .github-panel-PrCommitView-moreButton:hover {
   background-color: var(--button-background-color-hover);
 }
 .github-panel-PrCommitView-moreText {
-  margin-top: calc(var(--component-padding) / 2);
+  margin-top: calc(var(--ui-spacing) / 2);
   padding: 0;
   font-size: inherit;
   font-family: var(--editor-font-family);
@@ -1635,10 +1634,10 @@ pre.github-panel-Message-description {
   background-color: transparent;
 }
 .github-panel-PrCommitView-sha {
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
   line-height: 16px;
   vertical-align: middle;
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
   font-family: var(--editor-font-family);
 }
 .github-panel-PrCommitView-sha a {
@@ -1650,11 +1649,11 @@ pre.github-panel-Message-description {
   display: flex;
   align-items: center;
   border: 1px solid var(--base-border-color);
-  padding: var(--component-padding);
-  border-radius: var(--component-border-radius) var(--component-border-radius) 0 0;
+  padding: var(--ui-spacing);
+  border-radius: var(--ui-border-radius) var(--ui-border-radius) 0 0;
 }
 .github-panel-PrStatuses-donut-chart {
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
 }
 .github-panel-PrStatuses-donut-chart svg {
   display: block;
@@ -1681,19 +1680,19 @@ pre.github-panel-Message-description {
 .github-panel-PrStatuses-list-item {
   display: flex;
   flex-direction: row;
-  padding: calc(var(--component-padding) / 2) var(--component-padding);
+  padding: calc(var(--ui-spacing) / 2) var(--ui-spacing);
   border: 1px solid var(--base-border-color);
   border-top: none;
 }
 .github-panel-PrStatuses-list-item--checkRun {
-  padding-left: calc(var(--component-padding) * 2);
+  padding-left: calc(var(--ui-spacing) * 2);
 }
 .github-panel-PrStatuses-list-item:last-child {
-  border-radius: 0 0 var(--component-border-radius) var(--component-border-radius);
+  border-radius: 0 0 var(--ui-border-radius) var(--ui-border-radius);
 }
 .github-panel-PrStatuses-list-item-icon {
   width: 26px;
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
   text-align: center;
 }
 .github-panel-PrStatuses-list-item-icon .icon::before {
@@ -1701,7 +1700,7 @@ pre.github-panel-Message-description {
 }
 .github-panel-PrStatuses-list-item-name {
   font-weight: bold;
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
   margin-right: 0.5em;
 }
 .github-panel-PrStatuses-list-item-context {
@@ -1721,10 +1720,10 @@ pre.github-panel-Message-description {
 }
 .github-panel-PrStatuses-list-item-details-link {
   margin-left: 0.5em;
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
 }
 .github-panel-PrStatuses-list-item-details-link a {
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
 }
 .github-panel-PrStatuses--pending {
   color: var(--github-panel-color-yellow);
@@ -1745,8 +1744,8 @@ pre.github-panel-Message-description {
   border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
 }
 .github-panel-PrTimeline .timeline-item {
-  padding: calc(var(--component-padding) * 1.5) calc(var(--component-padding) * 2);
-  padding-left: calc(var(--component-padding) * 4.5);
+  padding: calc(var(--ui-spacing) * 1.5) calc(var(--ui-spacing) * 2);
+  padding-left: calc(var(--ui-spacing) * 4.5);
   border-top: 1px solid color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
 }
 .github-panel-PrTimeline .emoji,
@@ -1757,7 +1756,7 @@ pre.github-panel-Message-description {
   width: 20px;
   height: 20px;
   margin-right: 5px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-PrTimeline .open-commit-detail-button {
   padding: 0;
@@ -1773,30 +1772,30 @@ pre.github-panel-Message-description {
 }
 .github-panel-PrTimeline .pre-timeline-item-icon {
   position: absolute;
-  margin-left: calc(var(--component-padding) * -2.5);
+  margin-left: calc(var(--ui-spacing) * -2.5);
   text-align: center;
   margin-top: 2px;
   color: color-mix(in srgb, var(--text-color) 33%, var(--base-background-color));
   border-radius: 20px;
 }
 .github-panel-PrTimeline .commits .info-row {
-  margin-bottom: var(--component-padding);
+  margin-bottom: var(--ui-spacing);
 }
 .github-panel-PrTimeline .commit {
   display: table-row;
   align-items: center;
-  margin-left: calc(var(--component-padding) * 2);
+  margin-left: calc(var(--ui-spacing) * 2);
 }
 .github-panel-PrTimeline .commit:first-child {
-  padding-top: var(--component-padding);
+  padding-top: var(--ui-spacing);
 }
 .github-panel-PrTimeline .commit:only-child {
   padding-top: 0;
   padding-bottom: 0;
-  margin-left: calc(var(--component-padding) * -1);
+  margin-left: calc(var(--ui-spacing) * -1);
 }
 .github-panel-PrTimeline .commit + .issue {
-  margin-top: calc(var(--component-padding) / 2);
+  margin-top: calc(var(--ui-spacing) / 2);
 }
 .github-panel-PrTimeline .commit .commit-author {
   position: absolute;
@@ -1807,7 +1806,7 @@ pre.github-panel-Message-description {
   margin-right: -16px;
   width: 20px;
   height: 20px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   background-color: color-mix(in srgb, var(--text-color) 15%, var(--base-background-color));
   box-shadow: 1px 0 var(--base-background-color);
   transition: margin 0.12s cubic-bezier(0.5, 0.1, 0, 1);
@@ -1838,8 +1837,8 @@ pre.github-panel-Message-description {
 .github-panel-PrTimeline .commit .commit-message-headline {
   display: table-cell;
   line-height: 24px;
-  padding: 0 calc(var(--component-padding) / 3);
-  padding-left: calc(20px + var(--component-padding));
+  padding: 0 calc(var(--ui-spacing) / 3);
+  padding-left: calc(20px + var(--ui-spacing));
   max-height: 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1853,7 +1852,7 @@ pre.github-panel-Message-description {
   text-align: right;
   font-family: monospace;
   padding-left: 5px;
-  color: var(--accent-only-text-color);
+  color: var(--accent-link-color);
 }
 .github-panel-PrTimeline .comment-message-header {
   color: var(--text-color-subtle);
@@ -1863,10 +1862,10 @@ pre.github-panel-Message-description {
 }
 .github-panel-PrTimeline .cross-referenced-events {
   /* provides spacing between cross-referenced-event rows */
-  border-spacing: 0 calc(var(--component-padding) / 2);
+  border-spacing: 0 calc(var(--ui-spacing) / 2);
 }
 .github-panel-PrTimeline .cross-referenced-events .info-row {
-  margin-bottom: var(--component-padding);
+  margin-bottom: var(--ui-spacing);
 }
 .github-panel-PrTimeline .cross-referenced-event {
   display: table-row;
@@ -1926,7 +1925,7 @@ pre.github-panel-Message-description {
   font-weight: bold;
 }
 .github-panel-PrTimeline .issue .info-row {
-  margin-bottom: calc(var(--component-padding) / 1.5);
+  margin-bottom: calc(var(--ui-spacing) / 1.5);
 }
 .github-panel-PrTimeline .issue .github-panel-DotComMarkdownHtml pre > code {
   white-space: pre;
@@ -1940,12 +1939,12 @@ pre.github-panel-Message-description {
 .github-panel-Project {
   display: flex;
   align-items: center;
-  padding: calc(var(--component-padding) / 2) var(--component-padding);
+  padding: calc(var(--ui-spacing) / 2) var(--ui-spacing);
   border-bottom: 1px solid var(--base-border-color);
 }
 .github-panel-Project-path {
   flex: 1;
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
   min-width: 0;
 }
 .github-panel-Project-path .select-box-label {
@@ -1957,14 +1956,14 @@ pre.github-panel-Message-description {
   height: 23px;
   width: 23px;
   padding: 0;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   background-color: var(--pane-item-background-color);
   border: none;
 }
 .github-panel-Project-avatar {
   width: 23px;
   height: 23px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   color: transparent;
   overflow: hidden;
 }
@@ -2007,10 +2006,10 @@ pre.github-panel-Message-description {
 }
 .github-panel-ReactionPicker-row {
   flex-direction: row;
-  margin: calc(var(--component-padding) / 4) 0;
+  margin: calc(var(--ui-spacing) / 4) 0;
 }
 .github-panel-ReactionPicker-reaction {
-  margin: 0 calc(var(--component-padding) / 4);
+  margin: 0 calc(var(--ui-spacing) / 4);
 }
 
 /* review.css */
@@ -2024,20 +2023,20 @@ pre.github-panel-Message-description {
 }
 .github-panel-Reviews lumine-text-editor,
 .github-panel-PaneItemHost-github-panel-reviews lumine-text-editor {
-  padding: calc(var(--component-padding) / 2);
+  padding: calc(var(--ui-spacing) / 2);
   border-top: 1px solid var(--base-border-color);
   border-bottom: 1px solid var(--base-border-color);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-PatchPreviewView {
   min-width: 0;
-  margin: var(--component-padding) 0;
+  margin: var(--ui-spacing) 0;
   border: 1px solid var(--base-border-color);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   overflow: hidden;
 }
 .github-panel-PatchPreviewView .git-panel-ChangesView-header {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
 }
 .github-panel-PatchPreviewView .git-panel-ChangesView-title {
   font-size: 1em;
@@ -2052,7 +2051,7 @@ pre.github-panel-Message-description {
 .github-panel-PaneItemHost-github-panel-reviews-topHeader {
   display: flex;
   align-items: center;
-  padding: 0 var(--component-padding);
+  padding: 0 var(--ui-spacing);
   font-weight: 600;
   border-bottom: 1px solid var(--panel-heading-border-color);
   cursor: default;
@@ -2060,7 +2059,7 @@ pre.github-panel-Message-description {
 }
 .github-panel-Reviews-topHeader .icon:before,
 .github-panel-PaneItemHost-github-panel-reviews-topHeader .icon:before {
-  margin-right: calc(var(--component-padding) / 1.2);
+  margin-right: calc(var(--ui-spacing) / 1.2);
 }
 .github-panel-Reviews-topHeader .icon.refreshing::before,
 .github-panel-PaneItemHost-github-panel-reviews-topHeader .icon.refreshing::before {
@@ -2113,7 +2112,7 @@ pre.github-panel-Message-description {
 .github-panel-Reviews-section.resolved-comments,
 .github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments {
   border-bottom: 0;
-  padding-left: var(--component-padding);
+  padding-left: var(--ui-spacing);
 }
 .github-panel-Reviews-section.resolved-comments .github-panel-Reviews-title,
 .github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments
@@ -2124,13 +2123,13 @@ pre.github-panel-Message-description {
 .github-panel-PaneItemHost-github-panel-reviews-section.resolved-comments
   .github-panel-Reviews-header {
   color: var(--text-color-subtle);
-  padding-top: calc(var(--component-padding) * 0.5);
+  padding-top: calc(var(--ui-spacing) * 0.5);
 }
 .github-panel-Reviews-header,
 .github-panel-PaneItemHost-github-panel-reviews-header {
   display: flex;
   align-items: center;
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   cursor: default;
 }
 .github-panel-Reviews-title,
@@ -2152,17 +2151,17 @@ pre.github-panel-Message-description {
 .github-panel-Reviews-progessBar,
 .github-panel-PaneItemHost-github-panel-reviews-progessBar {
   width: 5em;
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-Reviews-container,
 .github-panel-PaneItemHost-github-panel-reviews-container {
-  font-size: var(--font-size);
-  padding: var(--component-padding);
+  font-size: var(--ui-font-size);
+  padding: var(--ui-spacing);
   padding-top: 0;
 }
 .github-panel-Reviews .github-panel-EmojiReactions,
 .github-panel-PaneItemHost-github-panel-reviews .github-panel-EmojiReactions {
-  padding: var(--component-padding) 0 0;
+  padding: var(--ui-spacing) 0 0;
 }
 .github-panel-Reviews-emptyImg,
 .github-panel-PaneItemHost-github-panel-reviews-emptyImg {
@@ -2185,9 +2184,9 @@ pre.github-panel-Message-description {
   text-decoration: none;
 }
 .github-panel-ReviewSummary {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   border: 1px solid var(--base-border-color);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   background-color: color-mix(
     in srgb,
     var(--base-background-color) 66%,
@@ -2195,7 +2194,7 @@ pre.github-panel-Message-description {
   );
 }
 .github-panel-ReviewSummary + .github-panel-ReviewSummary {
-  margin-top: var(--component-padding);
+  margin-top: var(--ui-spacing);
 }
 .github-panel-ReviewSummary-header {
   display: flex;
@@ -2216,7 +2215,7 @@ pre.github-panel-Message-description {
   margin-right: 0.5em;
   width: 16px;
   height: 16px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   image-rendering: -webkit-optimize-contrast;
 }
 .github-panel-ReviewSummary-username {
@@ -2232,16 +2231,16 @@ pre.github-panel-Message-description {
 }
 .github-panel-ReviewSummary-comment {
   position: relative;
-  margin-top: calc(var(--component-padding) / 2);
+  margin-top: calc(var(--ui-spacing) / 2);
   margin-left: 7px;
   padding-left: 12px;
-  font-size: calc(var(--font-size) - 1px);
+  font-size: calc(var(--ui-font-size) - 1px);
   border-left: 2px solid var(--base-border-color);
 }
 .github-panel-Review {
   position: relative;
   border: 1px solid var(--base-border-color);
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   background-color: color-mix(
     in srgb,
     var(--base-background-color) 66%,
@@ -2253,7 +2252,7 @@ pre.github-panel-Message-description {
     box-shadow 0.5s;
 }
 .github-panel-Review + .github-panel-Review {
-  margin-top: var(--component-padding);
+  margin-top: var(--ui-spacing);
 }
 .github-panel-Review--highlight {
   border-color: var(--button-background-color-selected);
@@ -2262,12 +2261,12 @@ pre.github-panel-Message-description {
 .github-panel-Review-reference {
   display: flex;
   align-items: center;
-  padding-left: var(--component-padding);
+  padding-left: var(--ui-spacing);
   height: 2.5em;
   cursor: default;
 }
 .github-panel-Review-reference::-webkit-details-marker {
-  margin-right: calc(var(--component-padding) / 1.5);
+  margin-right: calc(var(--ui-spacing) / 1.5);
 }
 .resolved .github-panel-Review-reference {
   opacity: 0.5;
@@ -2281,7 +2280,7 @@ pre.github-panel-Message-description {
 }
 .github-panel-Review-file {
   color: var(--text-color);
-  margin-right: calc(var(--component-padding) / 2);
+  margin-right: calc(var(--ui-spacing) / 2);
   font-weight: 500;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -2290,14 +2289,14 @@ pre.github-panel-Message-description {
 }
 .github-panel-Review-lineNr {
   color: var(--text-color-subtle);
-  margin-right: calc(var(--component-padding) / 2);
+  margin-right: calc(var(--ui-spacing) / 2);
 }
 .github-panel-Review-referenceAvatar {
   margin-left: auto;
-  margin-right: calc(var(--component-padding) / 2);
+  margin-right: calc(var(--ui-spacing) / 2);
   width: 16px;
   height: 16px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   image-rendering: -webkit-optimize-contrast;
 }
 .github-panel-Review[open] .github-panel-Review-referenceAvatar {
@@ -2305,7 +2304,7 @@ pre.github-panel-Message-description {
 }
 .github-panel-Review-referenceTimeAgo {
   color: var(--text-color-subtle);
-  margin-right: calc(var(--component-padding) / 2);
+  margin-right: calc(var(--ui-spacing) / 2);
 }
 .github-panel-Review[open] .github-panel-Review-referenceTimeAgo {
   display: none;
@@ -2345,7 +2344,7 @@ pre.github-panel-Message-description {
   background-color: transparent;
 }
 .github-panel-Review-diffLine {
-  padding: 0 calc(var(--component-padding) / 2);
+  padding: 0 calc(var(--ui-spacing) / 2);
   line-height: 1.75;
 }
 .github-panel-Review-diffLine:last-child {
@@ -2381,12 +2380,12 @@ pre.github-panel-Message-description {
   margin-right: 0.5em;
 }
 .github-panel-Review-comments {
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   /* space for avatar */
-  padding-left: calc(var(--component-padding) + 21px);
+  padding-left: calc(var(--ui-spacing) + 21px);
 }
 .github-panel-Review-comment {
-  margin-bottom: calc(var(--component-padding) * 1.5);
+  margin-bottom: calc(var(--ui-spacing) * 1.5);
 }
 .github-panel-Review-comment--hidden {
   color: var(--text-color-subtle);
@@ -2397,15 +2396,15 @@ pre.github-panel-Message-description {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: calc(var(--component-padding) / 4);
+  margin-bottom: calc(var(--ui-spacing) / 4);
 }
 .github-panel-Review-avatar {
   position: absolute;
-  left: var(--component-padding);
+  left: var(--ui-spacing);
   margin-right: 0.5em;
   width: 16px;
   height: 16px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   image-rendering: -webkit-optimize-contrast;
 }
 .github-panel-Review-username {
@@ -2419,23 +2418,23 @@ pre.github-panel-Message-description {
 }
 .github-panel-Review-actionsMenu::before {
   margin-right: 0;
-  margin-left: calc(var(--component-padding) / 2);
+  margin-left: calc(var(--ui-spacing) / 2);
 }
 .github-panel-Review-pendingBadge {
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-Review-authorAssociationBadge {
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-Review-text {
-  font-size: calc(var(--font-size) - 1px);
+  font-size: calc(var(--ui-font-size) - 1px);
 }
 .github-panel-Review-text a {
   font-weight: 500;
 }
 .github-panel-Review-reply,
 .github-panel-Review-editable {
-  margin-top: var(--component-padding);
+  margin-top: var(--ui-spacing);
 }
 /* The box comes from the shared `lumine-text-editor[input]` contract; only the
    size these reply fields want is ours. */
@@ -2454,22 +2453,22 @@ pre.github-panel-Message-description {
 }
 .github-panel-Review-resolvedText {
   text-align: center;
-  margin-bottom: var(--component-padding);
-  padding: 0 calc(var(--component-padding) * 2);
+  margin-bottom: var(--ui-spacing);
+  padding: 0 calc(var(--ui-spacing) * 2);
 }
 .github-panel-Review-editable-footer {
-  margin: calc(var(--component-padding) / 2) 0 var(--component-padding) 0;
+  margin: calc(var(--ui-spacing) / 2) 0 var(--ui-spacing) 0;
   display: flex;
   justify-content: flex-end;
 }
 .github-panel-Review-editable-footer .btn {
-  margin-left: calc(var(--component-padding) / 2);
+  margin-left: calc(var(--ui-spacing) / 2);
 }
 .github-panel-Review-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   border-top: 1px solid var(--base-border-color);
 }
 .github-panel-Review-resolveButton {
@@ -2486,27 +2485,27 @@ pre.github-panel-Message-description {
 .github-panel-ReviewsFooterView-footer {
   display: flex;
   align-items: center;
-  padding: var(--component-padding);
+  padding: var(--ui-spacing);
   border-top: 1px solid var(--base-border-color);
   background-color: var(--app-background-color);
 }
 .github-panel-ReviewsFooterView-footerTitle {
   font-size: 1.4em;
-  margin: 0 calc(var(--component-padding) * 2) 0 0;
+  margin: 0 calc(var(--ui-spacing) * 2) 0 0;
 }
 .github-panel-ReviewsFooterView-openReviewsButton,
 .github-panel-ReviewsFooterView-reviewChangesButton {
-  margin-left: var(--component-padding);
+  margin-left: var(--ui-spacing);
 }
 .github-panel-ReviewsFooterView-commentCount {
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
   color: var(--text-color-subtle);
 }
 .github-panel-ReviewsFooterView-commentsResolved {
   color: var(--text-color-highlight);
 }
 .github-panel-ReviewsFooterView-progessBar {
-  margin-right: var(--component-padding);
+  margin-right: var(--ui-spacing);
 }
 
 /* tabs.css */
@@ -2527,7 +2526,7 @@ pre.github-panel-Message-description {
 .github-panel-tab {
   border: 0;
   background: transparent;
-  padding: calc(var(--component-padding) / 2) calc(var(--component-padding) * 1.5);
+  padding: calc(var(--ui-spacing) / 2) calc(var(--ui-spacing) * 1.5);
   text-align: center;
   font-weight: 600;
   color: color-mix(in srgb, var(--text-color) 75%, var(--app-background-color));
@@ -2554,9 +2553,9 @@ pre.github-panel-Message-description {
 .github-panel-tab-count {
   display: inline-block;
   background-color: color-mix(in srgb, var(--text-color-subtle) 20%, var(--app-background-color));
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
   padding: 0 0.25em;
-  margin-left: calc(var(--component-padding) / 2);
+  margin-left: calc(var(--ui-spacing) / 2);
 }
 .github-panel-tab[aria-selected="true"] {
   color: var(--text-color-selected);
@@ -2571,20 +2570,20 @@ pre.github-panel-Message-description {
   display: flex;
 }
 .github-panel-UserMentionTooltip-avatar {
-  margin: calc(var(--component-padding) / 2);
+  margin: calc(var(--ui-spacing) / 2);
 }
 .github-panel-UserMentionTooltip-avatar > img {
   width: 60px;
   height: 60px;
-  border-radius: var(--component-border-radius);
+  border-radius: var(--ui-border-radius);
 }
 .github-panel-UserMentionTooltip-info {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: calc(var(--component-padding) / 2) var(--component-padding);
-  font-size: var(--font-size);
+  margin: calc(var(--ui-spacing) / 2) var(--ui-spacing);
+  font-size: var(--ui-font-size);
   line-height: 20px;
   text-align: left;
 }
