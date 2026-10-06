@@ -161,17 +161,20 @@ describe("PR Changed Files diff layouts", () => {
     expect(props.localRepository.applyPatchToIndex).not.toHaveBeenCalled();
   });
 
-  it("keeps Side by Side after a refresh and releases superseded native buffers", async () => {
+  it("keeps Side by Side and its native buffers through a refresh", async () => {
     const firstPatch = await finish(0);
     await setLayout("side-by-side");
     const previousEditors = [editor("old"), editor("new")];
     const previousBuffers = previousEditors.map((model) => model.getBuffer());
     await refresh();
-    expect(previousEditors.every((model) => model.isDestroyed())).toBe(true);
-    expect(previousBuffers.every((buffer) => buffer.isDestroyed())).toBe(true);
-    expect(navigation.size).toBe(0);
+    expect(previousEditors.every((model) => model.isDestroyed())).toBe(false);
+    expect(previousBuffers.every((buffer) => buffer.isDestroyed())).toBe(false);
+    expect([editor("old"), editor("new")]).toEqual(previousEditors);
+    expect(navigation.size).toBe(1);
     const nextPatch = await finish(1, 2);
     expect(firstPatch.isDisposed()).toBe(true);
+    expect([editor("old"), editor("new")]).toEqual(previousEditors);
+    expect(previousEditors.map((model) => model.getBuffer())).toEqual(previousBuffers);
     expect(editor("new").getText()).toContain("new value 2");
     expect(props.refPatchController.get().getDiffView()).toBe("side-by-side");
     expect(navigation.size).toBe(1);

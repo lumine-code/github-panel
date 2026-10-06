@@ -12,6 +12,14 @@ function deferred() {
   return { promise, resolve, reject };
 }
 
+async function until(predicate) {
+  for (let tick = 0; tick < 10000; tick++) {
+    if (predicate()) return;
+    await Promise.resolve();
+  }
+  throw new Error("Model refresh did not finish");
+}
+
 class Model {
   constructor(a, b) {
     this.a = a;
@@ -130,12 +138,12 @@ describe("ModelObserver", () => {
 
     expect(didUpdateStub.calls.count()).toBe(0);
     await observer.lastFetchDataPromise;
-    expect(didUpdateStub.calls.count()).toBe(1);
+    expect(didUpdateStub.calls.count()).toBe(0);
     // second fetchData started immediately after the previous one ends
     expect(fetchDataStub.calls.count()).toBe(2);
 
     await observer.lastFetchDataPromise;
-    expect(didUpdateStub.calls.count()).toBe(2);
+    expect(didUpdateStub.calls.count()).toBe(1);
   });
 
   it("enqueues at most one pending fetch", async () => {
@@ -162,14 +170,114 @@ describe("ModelObserver", () => {
 
     expect(didUpdateStub.calls.count()).toBe(0);
     await observer.lastFetchDataPromise;
-    expect(didUpdateStub.calls.count()).toBe(1);
+    expect(didUpdateStub.calls.count()).toBe(0);
     // second fetchData started immediately after the previous one ends
     expect(fetchDataStub.calls.count()).toBe(2);
 
     await observer.lastFetchDataPromise;
-    expect(didUpdateStub.calls.count()).toBe(2);
+    expect(didUpdateStub.calls.count()).toBe(1);
     // none of the other 9 updates trigger, as they were essentially duplicates
     expect(fetchDataStub.calls.count()).toBe(2);
+  });
+
+  it("keeps accepted repository data while a queued update supersedes an older local diff", async () => {
+    await observer.setActiveModel(model1);
+    const accepted = observer.getActiveModelData();
+    const stale = deferred();
+    const latest = deferred();
+    fetchDataStub.and.returnValues(stale.promise, latest.promise);
+    didUpdateStub.calls.reset();
+    model1.didUpdate();
+    model1.didUpdate();
+    stale.resolve({ a: "old local diff", b: "unchanged file and PR SHA" });
+    await until(() => fetchDataStub.calls.count() === 3);
+
+    expect(observer.getActiveModelData()).toBe(accepted);
+    expect(didUpdateStub).not.toHaveBeenCalled();
+    latest.resolve({ a: "current local diff", b: "unchanged file and PR SHA" });
+    await observer.getLastModelDataRefreshPromise();
+    expect(observer.getActiveModelData().a).toBe("current local diff");
+    expect(didUpdateStub).toHaveBeenCalledOnceWith(model1);
+  });
+
+  for (const error of [
+    Object.assign(new Error("Repository read was superseded"), { code: "ABORT_ERR" }),
+    Object.assign(new Error("Repository read was superseded"), { name: "AbortError" }),
+  ]) {
+    it(`keeps accepted data during a live ${error.code || error.name} and publishes its pending replacement`, async () => {
+      await observer.setActiveModel(model1);
+      const accepted = observer.getActiveModelData();
+      const superseded = deferred();
+      const latest = deferred();
+      fetchDataStub.and.returnValues(superseded.promise, latest.promise);
+      didUpdateStub.calls.reset();
+      spyOn(console, "error");
+      model1.didUpdate();
+      model1.didUpdate();
+      superseded.reject(error);
+      await until(() => fetchDataStub.calls.count() === 3);
+
+      expect(observer.getActiveModelData()).toBe(accepted);
+      expect(didUpdateStub).not.toHaveBeenCalled();
+      expect(console.error).not.toHaveBeenCalled();
+      latest.resolve({ a: "latest", b: "valid repository" });
+      await observer.getLastModelDataRefreshPromise();
+      expect(observer.getActiveModelData()).toEqual({ a: "latest", b: "valid repository" });
+      expect(didUpdateStub).toHaveBeenCalledOnceWith(model1);
+    });
+  }
+
+  it("does not retry a live aborted read without a newer model update", async () => {
+    await observer.setActiveModel(model1);
+    const accepted = observer.getActiveModelData();
+    const error = Object.assign(new Error("Read canceled"), { name: "AbortError" });
+    fetchDataStub.and.callFake(() => Promise.reject(error));
+    didUpdateStub.calls.reset();
+    spyOn(console, "error");
+    await observer.refreshModelData();
+
+    expect(observer.getActiveModelData()).toBe(accepted);
+    expect(didUpdateStub).not.toHaveBeenCalled();
+    expect(fetchDataStub).toHaveBeenCalledTimes(2);
+    expect(console.error).not.toHaveBeenCalled();
+  });
+
+  it("clears accepted data for a terminal repository failure with an abort name and pending read", async () => {
+    await observer.setActiveModel(model1);
+    const terminal = deferred();
+    const replacement = deferred();
+    fetchDataStub.and.returnValues(terminal.promise, replacement.promise);
+    didUpdateStub.calls.reset();
+    model1.didUpdate();
+    model1.didUpdate();
+    terminal.reject(
+      Object.assign(new Error("Repository removed"), {
+        code: "ERR_GIT_REPOSITORY_UNAVAILABLE",
+        name: "AbortError",
+      }),
+    );
+    await until(() => fetchDataStub.calls.count() === 3);
+
+    expect(observer.getActiveModelData()).toBeNull();
+    expect(didUpdateStub).toHaveBeenCalledOnceWith(model1);
+    replacement.resolve({ a: "replacement", b: "repository" });
+    await observer.getLastModelDataRefreshPromise();
+    expect(observer.getActiveModelData().a).toBe("replacement");
+  });
+
+  it("does not restore an aborted model after a different model has published data", async () => {
+    await observer.setActiveModel(model1);
+    const old = deferred();
+    fetchDataStub.and.returnValues(old.promise, Promise.resolve({ a: "current", b: "account" }));
+    const oldRefresh = observer.refreshModelData();
+    await observer.setActiveModel(model2);
+    didUpdateStub.calls.reset();
+    old.reject(Object.assign(new Error("Previous read canceled"), { code: "ABORT_ERR" }));
+    await oldRefresh;
+
+    expect(observer.getActiveModel()).toBe(model2);
+    expect(observer.getActiveModelData()).toEqual({ a: "current", b: "account" });
+    expect(didUpdateStub).not.toHaveBeenCalled();
   });
 
   it("clears any pending update and fetches immediately when the active model is set", async () => {

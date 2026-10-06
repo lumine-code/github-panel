@@ -17,15 +17,14 @@ function diff(version) {
 }
 
 describe("mounted PR patch snapshot ownership", () => {
-  let container, requests, patches, bridge, build, fetches, MultiFilePatchView, props;
+  let container, requests, patches, bridge, build, fetches, ChangesView, props;
 
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-text");
     const git = await lumine.packages.startPackage("git-panel");
     bridge = git.mainModule.provideGitPanel();
     setGitBridge(bridge);
-    const loaded = require(require("path").join(git.path, "lib", "views", "multi-file-patch-view"));
-    MultiFilePatchView = loaded.default || loaded;
+    ChangesView = bridge.ChangesView;
     patches = [];
     requests = [];
     const actualBuild = bridge.buildMultiFilePatch;
@@ -48,8 +47,9 @@ describe("mounted PR patch snapshot ownership", () => {
       endpoint: { getRestURI: (...parts) => `https://api.github.com/${parts.join("/")}` },
       children: (_error, patch) =>
         patch
-          ? h(MultiFilePatchView, {
+          ? h(ChangesView, {
               multiFilePatch: patch,
+              readOnly: true,
               workspace: lumine.workspace,
               commands: lumine.commands,
               config: lumine.config,
@@ -103,16 +103,22 @@ describe("mounted PR patch snapshot ownership", () => {
 
   it("releases superseded snapshots over 20 refreshes and closes the final native buffer", async () => {
     await finish(0, diff(0));
+    const editor = container.element.querySelector("lumine-text-editor").getModel();
+    const buffer = editor.getBuffer();
     for (let cycle = 1; cycle <= 20; cycle++) {
       await refresh();
       await finish(cycle, diff(cycle));
       expect(patches.filter((patch) => !patch.isDisposed()).length).toBe(1);
       expect(container.ownedPatches.size).toBe(1);
+      expect(container.element.querySelector("lumine-text-editor").getModel()).toBe(editor);
+      expect(editor.getBuffer()).toBe(buffer);
       expect(container.element.querySelector("lumine-text-editor").getModel().getText()).toContain(
         `new value ${cycle}`,
       );
     }
     await container.destroy();
+    expect(editor.isDestroyed()).toBe(true);
+    expect(buffer.isDestroyed()).toBe(true);
     expect(patches.every((patch) => patch.isDisposed())).toBe(true);
     expect(patches.every((patch) => patch.getBuffer().isDestroyed())).toBe(true);
     expect(container.ownedPatches.size).toBe(0);

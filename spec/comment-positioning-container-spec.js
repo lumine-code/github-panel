@@ -220,7 +220,7 @@ describe("comment position local diff fetching", () => {
     expect(repository.getDiffsForFilePath.calls.count()).toBe(1);
   });
 
-  it("waits for current-SHA diffs when ObserveModel publishes a queued older result", async () => {
+  it("waits for current-SHA diffs without publishing a queued older result", async () => {
     const oldRefresh = observer.modelObserver.getLastModelDataRefreshPromise();
     setProps({
       prCommitSha: "new-sha",
@@ -231,7 +231,7 @@ describe("comment position local diff fetching", () => {
 
     requests[0].resolve([]);
     await oldRefresh;
-    expect(observer.state.data.prCommitSha).toBe("old-sha");
+    expect(observer.state.data).toBeNull();
     expect(repository.getDiffsForFilePath.calls.argsFor(1)).toEqual([nativePath, "new-sha"]);
     expect(observer.props.children(observer.state.data)).toBeNull();
     expect(container.state.translationsByFile.get(nativePath).digest).toBeNull();

@@ -83,7 +83,7 @@ describe("PullRequestPatchContainer fetching", () => {
     const patch = await finish(0, "initial");
     const fetchPromise = updateProps({ refetch: true });
     expect(window.fetch.calls.mostRecent().args[1].headers["If-None-Match"]).toBe("etag");
-    expect(container.state.multiFilePatch).toBeNull();
+    expect(container.state.multiFilePatch).toBe(patch);
 
     requests[1].resolve(response(null, { status: 304 }));
     await fetchPromise;
