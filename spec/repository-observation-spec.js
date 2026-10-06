@@ -316,9 +316,7 @@ describe("GitHub repository observation ownership", () => {
     pane.addItem(placeholder);
     pane.activateItem(placeholder);
     const wasActive = lumine.packages.isPackageActive("git-panel");
-    const provider = await lumine.packages.startPackage(
-      path.resolve(__dirname, "..", "..", "git-panel"),
-    );
+    const provider = await lumine.packages.startPackage("git-panel");
     const bridge = provider.mainModule.provideGitPanel();
     const pool = bridge.getContextPool();
     expect(pool.retain).toEqual(jasmine.any(Function));

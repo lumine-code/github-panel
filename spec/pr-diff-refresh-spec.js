@@ -49,11 +49,10 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
     patches = [];
     previousScrollPastEnd = lumine.config.inspect("editor.scrollPastEnd");
     await lumine.packages.activatePackage("language-text");
-    const gitPath = path.resolve(__dirname, "..", "..", "git-panel");
-    const git = await lumine.packages.startPackage(gitPath);
+    const git = await lumine.packages.startPackage("git-panel");
     bridge = git.mainModule.provideGitPanel();
     setGitBridge(bridge);
-    stylesheet = lumine.themes.requireStylesheet(path.join(gitPath, "styles", "main.css"));
+    stylesheet = lumine.themes.requireStylesheet(path.join(git.path, "styles", "main.css"));
     lumine.config.set("editor.scrollPastEnd", true);
     requests = [];
     const actualBuild = bridge.buildMultiFilePatch;
