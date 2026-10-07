@@ -137,7 +137,7 @@
   color: var(--text-color-highlight);
 }
 .github-panel-Dialog--insetButton:focus {
-  border: solid 1px var(--button-background-color-selected);
+  border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
 .github-panel-DialogSpinner {
@@ -193,7 +193,8 @@
   color: var(--text-color);
 }
 .github-panel-RepositoryHome-owner .Select__option--is-focused {
-  background: var(--button-background-color-selected);
+  color: var(--accent-foreground-color);
+  background: var(--accent-background-color);
 }
 .github-panel-RepositoryHome-owner .Select__option--is-disabled {
   color: var(--text-color-subtle);
@@ -228,7 +229,7 @@
   margin: var(--ui-spacing) 0;
 }
 .github-panel-RemoteConfiguration-details summary:focus {
-  border: solid 1px var(--button-background-color-selected);
+  border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
 .github-panel-RemoteConfiguration-details main {
@@ -249,7 +250,7 @@
   margin-right: var(--ui-spacing);
 }
 .github-panel-RemoteConfiguration-protocolOption:focus-within {
-  border: solid 1px var(--button-background-color-selected);
+  border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
 .github-panel-RemoteConfiguration-sourceRemote {
@@ -279,7 +280,7 @@
   margin-right: var(--ui-spacing);
 }
 .github-panel-Create-visibilityOption:focus-within {
-  border: solid 1px var(--button-background-color-selected);
+  border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
 .github-panel-Create-visibilityOption span::before {
@@ -1515,7 +1516,7 @@ pre.github-panel-Message-description {
   max-width: 22em;
   padding: 0.5em 0.6em;
   font-weight: 500;
-  color: var(--base-background-color);
+  color: var(--text-color-on-info);
   text-align: center;
   pointer-events: none;
   content: attr(aria-label);
@@ -2255,8 +2256,8 @@ pre.github-panel-Message-description {
   margin-top: var(--ui-spacing);
 }
 .github-panel-Review--highlight {
-  border-color: var(--button-background-color-selected);
-  box-shadow: 0 0 5px var(--button-background-color-selected);
+  border-color: var(--accent-indicator-color);
+  box-shadow: 0 0 5px var(--accent-indicator-color);
 }
 .github-panel-Review-reference {
   display: flex;
@@ -2355,23 +2356,15 @@ pre.github-panel-Message-description {
   margin-right: 0.5em;
 }
 .github-panel-Review-diffLine.is-added {
-  color: color-mix(in srgb, var(--text-color-success) 25%, var(--text-color-highlight));
-  background-color: color-mix(
-    in srgb,
-    var(--background-color-success) 20%,
-    var(--base-background-color)
-  );
+  color: color-mix(in srgb, var(--text-color-added) 25%, var(--text-color-highlight));
+  background-color: color-mix(in srgb, var(--text-color-added) 20%, var(--base-background-color));
 }
 .github-panel-Review-diffLine.is-added::before {
   content: "+";
 }
 .github-panel-Review-diffLine.is-deleted {
-  color: color-mix(in srgb, var(--text-color-error) 25%, var(--text-color-highlight));
-  background-color: color-mix(
-    in srgb,
-    var(--background-color-error) 20%,
-    var(--base-background-color)
-  );
+  color: color-mix(in srgb, var(--text-color-removed) 25%, var(--text-color-highlight));
+  background-color: color-mix(in srgb, var(--text-color-removed) 20%, var(--base-background-color));
 }
 .github-panel-Review-diffLine.is-deleted::before {
   content: "-";
@@ -2559,7 +2552,7 @@ pre.github-panel-Message-description {
 }
 .github-panel-tab[aria-selected="true"] {
   color: var(--text-color-selected);
-  box-shadow: 0 1px 0 var(--button-background-color-selected);
+  box-shadow: 0 1px 0 var(--accent-indicator-color);
 }
 .github-panel-tab[aria-selected="true"] .github-panel-tab-icon {
   color: var(--text-color);
