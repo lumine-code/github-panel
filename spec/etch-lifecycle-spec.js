@@ -286,7 +286,7 @@ describe("github-panel native Etch lifecycle", () => {
   });
 
   it("composes and destroys a native Git child using a distinct Etch copy", async () => {
-    const gitPackage = await lumine.packages.startPackage("git-panel");
+    const gitPackage = await lumine.packages.startPackage("patch-view");
     const gitRuntime = require(path.join(gitPackage.path, "lib", "etch", "view"));
     const gitEtch = require(path.join(gitPackage.path, "node_modules", "@lumine-code", "etch"));
     expect(gitEtch).not.toBe(require("@lumine-code/etch"));
@@ -344,7 +344,7 @@ describe("github-panel native Etch lifecycle", () => {
   });
 
   it("shares supplied editor and marker holders across the two native package copies", async () => {
-    const gitPackage = await lumine.packages.startPackage("git-panel");
+    const gitPackage = await lumine.packages.startPackage("patch-view");
     const GitEditor = moduleDefault(
       path.join(gitPackage.path, "lib", "lumine", "lumine-text-editor"),
     );
@@ -465,7 +465,7 @@ describe("github-panel native Etch lifecycle", () => {
   });
 
   it("opens, closes and unloads fresh native pane generations repeatedly", async () => {
-    await lumine.packages.startPackage("git-panel");
+    await lumine.packages.startPackage("patch-view");
     // Keep OS credentials outside the stress test while tracking the real
     // login model's subscription to its service for every package generation.
     spyOn(lumine.secrets, "get").and.resolveTo(null);
@@ -485,6 +485,7 @@ describe("github-panel native Etch lifecycle", () => {
       if (lumine.packages.isPackageLoaded("github-panel"))
         await lumine.packages.unloadPackage("github-panel");
       const loadedPackage = await lumine.packages.startPackage(packagePath);
+      await loadedPackage.mainModule.loginModel.getToken("https://api.github.com");
       await lumine.commands.dispatch(workspaceElement, "github-panel:toggle-focus");
       // Specs freeze timers; explicitly complete the same lazy native boundary
       // that the package's idle callback completes in a running window.

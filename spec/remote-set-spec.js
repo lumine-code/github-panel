@@ -76,7 +76,7 @@ describe("RemoteSet", () => {
         new Remote("two", "https://github.com/aaa/ccc.git"),
         new Remote("four", "git@github.com:aaa/bbb.git"),
         new Remote("five", "git@github.com:ddd/zzz.git"),
-        new Remote("six", "ssh://git@github.com:aaa/bbb.git"),
+        new Remote("six", "ssh://git@github.com/aaa/bbb.git"),
       ]);
       expect(set.mostUsedProtocol(["https", "ssh"])).toBe("ssh");
     });

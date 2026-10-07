@@ -1,6 +1,5 @@
 /** @babel */
 import { createViewModel } from "./helpers/etch";
-import PullRequestPatchContainer from "../lib/containers/pr-patch-container";
 
 function deferred() {
   let resolve, reject;
@@ -22,7 +21,7 @@ function response(rawDiff, { status = 200, statusText = "OK", etag = "etag" } = 
 }
 
 describe("PullRequestPatchContainer fetching", () => {
-  let container, requests;
+  let container, requests, holder, previousProvider;
 
   function applyState(update, callback) {
     const state = typeof update === "function" ? update(container.state, container.props) : update;
@@ -54,6 +53,12 @@ describe("PullRequestPatchContainer fetching", () => {
   }
 
   beforeEach(() => {
+    const loaded = require("../lib/containers/pr-patch-container");
+    const PullRequestPatchContainer = loaded.default || loaded;
+    holder = require("../lib/patch-view");
+    previousProvider = holder.getPatchView();
+    // Parsing is stubbed below; this fixture still declares a live renderer edge.
+    holder.setPatchView({});
     requests = [];
     spyOn(window, "fetch").and.callFake(() => {
       const request = deferred();
@@ -77,7 +82,10 @@ describe("PullRequestPatchContainer fetching", () => {
     container.didMount();
   });
 
-  afterEach(() => container.willDestroy());
+  afterEach(() => {
+    container.willDestroy();
+    holder.setPatchView(previousProvider);
+  });
 
   it("reuses the ETag for the same URL and settles a 304 with its cached patch", async () => {
     const patch = await finish(0, "initial");

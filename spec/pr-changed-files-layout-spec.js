@@ -24,15 +24,15 @@ function diff(version = 1) {
 }
 
 describe("PR Changed Files diff layouts", () => {
-  let host, element, view, props, bridge, setGitBridge, requests, patches, navigation;
+  let host, element, view, props, bridge, setPatchView, requests, patches, navigation;
   let ChangedFiles, PatchContainer, RefHolder, fetches;
 
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-text");
-    const git = await lumine.packages.startPackage("git-panel");
-    bridge = git.mainModule.provideGitPanel();
-    ({ setGitBridge } = require("../lib/git-bridge"));
-    setGitBridge(bridge);
+    const git = await lumine.packages.startPackage("patch-view");
+    bridge = git.mainModule.providePatchView();
+    ({ setPatchView } = require("../lib/patch-view"));
+    setPatchView(bridge);
     const changedFilesModule = require("../lib/containers/pr-changed-files-container");
     ChangedFiles = changedFilesModule.default || changedFilesModule;
     const patchContainerModule = require("../lib/containers/pr-patch-container");
@@ -92,7 +92,7 @@ describe("PR Changed Files diff layouts", () => {
     await flushViews(() => host?.destroy());
     element?.remove();
     patches.forEach((patch) => patch.dispose());
-    setGitBridge(null);
+    setPatchView(null);
   });
 
   async function finish(index, version = 1, status = 200) {
@@ -128,7 +128,7 @@ describe("PR Changed Files diff layouts", () => {
       .findCommands({ target })
       .map(({ name }) => name)
       .filter((name) =>
-        /^(?:git-panel:(?:discard-selected-lines|stage-file-mode-change|unstage-file-mode-change|stage-symlink-change|unstage-symlink-change)|core:confirm)$/.test(
+        /^(?:patch-view:(?:discard-selected-lines|stage-file-mode-change|unstage-file-mode-change|stage-symlink-change|unstage-symlink-change)|core:confirm)$/.test(
           name,
         ),
       );
@@ -136,11 +136,13 @@ describe("PR Changed Files diff layouts", () => {
 
   it("offers the shared header control and keeps remote diffs read-only in both layouts", async () => {
     await finish(0);
-    expect(element.querySelector(".git-panel-ChangesView-title").textContent).toBe("Changed Files");
+    expect(element.querySelector(".patch-view-ChangesView-title").textContent).toBe(
+      "Changed Files",
+    );
     expect(element.querySelector('[data-diff-view="unified"]').classList.contains("selected")).toBe(
       true,
     );
-    expect(element.querySelector(".git-panel-HunkHeaderView-stageButton")).toBeNull();
+    expect(element.querySelector(".patch-view-HunkHeaderView-stageButton")).toBeNull();
     expect(
       element.querySelector('button[title="Stage File"], button[title="Unstage File"]'),
     ).toBeNull();
@@ -154,9 +156,9 @@ describe("PR Changed Files diff layouts", () => {
     expect(editor("old").isReadOnly()).toBe(true);
     expect(editor("new").isReadOnly()).toBe(true);
     expect(
-      element.querySelectorAll(".git-panel-SideBySidePatchView-sharedHeader--file").length,
+      element.querySelectorAll(".patch-view-SideBySidePatchView-sharedHeader--file").length,
     ).toBe(1);
-    expect(element.querySelector(".git-panel-HunkHeaderView-stageButton")).toBeNull();
+    expect(element.querySelector(".patch-view-HunkHeaderView-stageButton")).toBeNull();
     expect(mutationCommands()).toEqual([]);
     expect(props.localRepository.applyPatchToIndex).not.toHaveBeenCalled();
   });

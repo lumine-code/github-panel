@@ -4,6 +4,9 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import RepositoryObservation from "../lib/repository-observation";
+import RepositoryPool from "../lib/repository-pool";
+import { execFile } from "child_process";
+import { promisify } from "util";
 import ReviewsItem from "../lib/items/reviews-item";
 import IssueishDetailItem from "../lib/items/issueish-detail-item";
 import GitHubRootController from "../lib/controllers/github-root-controller";
@@ -15,7 +18,7 @@ import GithubPackage from "../lib/github-package";
 import PaneItemHost from "../lib/items/pane-item-host";
 import { createViewModel, flushViews, h } from "./helpers/etch";
 import { mount } from "../lib/etch/view";
-import { getGitBridge, setGitBridge } from "../lib/git-bridge";
+import { getPatchView, setPatchView } from "../lib/patch-view";
 
 function deferred() {
   let resolve;
@@ -80,14 +83,14 @@ describe("GitHub repository observation ownership", () => {
   let previousBridge;
 
   beforeEach(() => {
-    previousBridge = getGitBridge();
-    setGitBridge({ getAbsentRepository: () => ({ isAbsent: () => true }) });
+    previousBridge = getPatchView();
+    setPatchView({ getAbsentRepository: () => ({ isAbsent: () => true }) });
   });
 
   afterEach(async () => {
     for (const view of views) await view.destroy();
     views.clear();
-    setGitBridge(previousBridge);
+    setPatchView(previousBridge);
   });
 
   function view(Type, props) {
@@ -258,7 +261,7 @@ describe("GitHub repository observation ownership", () => {
     }
   });
 
-  it("releases a mounted root edge when its provider disappears and reacquires on return", async () => {
+  it("keeps a mounted repository observation when its renderer disappears and returns", async () => {
     const pool = poolFixture(["/repository"]);
     pool.contexts.get("/repository").ready = deferred().promise;
     const element = document.createElement("div");
@@ -272,7 +275,6 @@ describe("GitHub repository observation ownership", () => {
     const owner = {
       element,
       _roots: roots,
-      gitPanelWaiters: [],
       subscriptions: { add() {}, remove() {} },
       rerender() {
         if (roots.has(element)) return;
@@ -291,18 +293,22 @@ describe("GitHub repository observation ownership", () => {
       },
     };
     const provider = () => ({ onDidUpdate: () => new Disposable() });
-    const first = GithubPackage.prototype.consumeGitPanel.call(owner, provider());
+    const first = GithubPackage.prototype.consumePatchView.call(owner, provider());
     try {
       expect(pool.counts.get("/repository")).toBe(1);
+      const root = roots.get(element);
       first.dispose();
-      expect(pool.counts.get("/repository")).toBe(0);
-      const returned = GithubPackage.prototype.consumeGitPanel.call(owner, provider());
+      expect(pool.counts.get("/repository")).toBe(1);
+      expect(roots.get(element)).toBe(root);
+      const returned = GithubPackage.prototype.consumePatchView.call(owner, provider());
       expect(pool.counts.get("/repository")).toBe(1);
       returned.dispose();
-      expect(pool.counts.get("/repository")).toBe(0);
+      expect(pool.counts.get("/repository")).toBe(1);
+      expect(roots.get(element)).toBe(root);
     } finally {
       first.dispose();
-      roots.get(element)?.destroy();
+      await roots.get(element)?.destroy();
+      expect(pool.counts.get("/repository")).toBe(0);
       element.remove();
     }
   });
@@ -315,11 +321,7 @@ describe("GitHub repository observation ownership", () => {
     };
     pane.addItem(placeholder);
     pane.activateItem(placeholder);
-    const wasActive = lumine.packages.isPackageActive("git-panel");
-    const provider = await lumine.packages.startPackage("git-panel");
-    const bridge = provider.mainModule.provideGitPanel();
-    const pool = bridge.getContextPool();
-    expect(pool.retain).toEqual(jasmine.any(Function));
+    const pool = new RepositoryPool();
     const directory = fs.realpathSync.native(
       fs.mkdtempSync(path.join(os.tmpdir(), "github-observation-resume-")),
     );
@@ -331,30 +333,24 @@ describe("GitHub repository observation ownership", () => {
       first.select(pool, directory);
       await first.ready;
       const model = first.repository;
-      const context = first.lease.context;
       expect((await model.getRemotes()).withName("origin").getUrl()).toBe(
         "https://github.com/previous/repository.git",
       );
-      expect((await model.getCurrentBranch()).getName()).toBe("main");
+      expect((await model.getBranches()).getHeadBranch().getName()).toBe("main");
       first.dispose();
-      await globalThis.conditionPromise(() => context.getChangeObserver() === null);
       expect(core.statusSnapshotSubscriberCount).toBe(0);
       expect(core.refsSnapshotSubscriberCount).toBe(0);
-      await lumine.repositories.executeGit([
-        "-C",
-        directory,
-        "remote",
-        "set-url",
-        "origin",
-        "https://github.com/current/repository.git",
-      ]);
-      await lumine.repositories.executeGit([
-        "-C",
-        directory,
-        "symbolic-ref",
-        "HEAD",
-        "refs/heads/after-close",
-      ]);
+      const git = promisify(execFile);
+      await git(
+        lumine.config.get("git.path") || "git",
+        ["remote", "set-url", "origin", "https://github.com/current/repository.git"],
+        { cwd: directory },
+      );
+      await git(
+        lumine.config.get("git.path") || "git",
+        ["symbolic-ref", "HEAD", "refs/heads/after-close"],
+        { cwd: directory },
+      );
 
       reopened.select(pool, directory);
       await reopened.ready;
@@ -362,13 +358,12 @@ describe("GitHub repository observation ownership", () => {
       expect((await model.getRemotes()).withName("origin").getUrl()).toBe(
         "https://github.com/current/repository.git",
       );
-      expect((await model.getCurrentBranch()).getName()).toBe("after-close");
+      expect((await model.getBranches()).getHeadBranch().getName()).toBe("after-close");
     } finally {
       first.dispose();
       reopened.dispose();
-      pool.remove(directory);
+      pool.clear();
       lumine.repositories.forget(core);
-      if (!wasActive) await lumine.packages.deactivatePackage("git-panel");
       await pane.destroyItem(placeholder, true);
       await fs.promises.rm(directory, {
         recursive: true,

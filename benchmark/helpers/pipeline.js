@@ -56,7 +56,7 @@ export function rawReplacement({ files = 1, pairs = 8, lineBytes = 0, tokens = 0
 }
 
 export function profilePipeline(gitRoot) {
-  const { parseDiff } = require(path.join(gitRoot, "lib", "git-shell-out-strategy"));
+  const { parseDiff } = require(path.join(gitRoot, "lib", "parse-diff"));
   const { buildMultiFilePatch } = require(path.join(gitRoot, "lib", "models", "patch"));
   const wordDiff = require(path.join(gitRoot, "lib", "models", "patch", "word-diff"));
   const loaded = require(path.join(gitRoot, "lib", "models", "patch", "multi-file-patch"));

@@ -51,7 +51,10 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 
 ## Services
 
-- `git-panel`: consumed to reach the repository model, its diffs, and its remotes through git-panel.
+- `background-tips.provider`: provided to teach the package's headline workflow on the empty workspace.
+- `git-panel`: consumed optionally to open the local Git tab and its init and clone dialogs.
+- `patch-view`: consumed to render pull request changes and review context in shared native layouts.
+- [`git.commit-links`](docs/git.commit-links.md): provided to resolve GitHub commit URLs from core remote records.
 
 ## Contributing
 

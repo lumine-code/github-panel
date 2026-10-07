@@ -1,42 +1,31 @@
 /** @babel */
-import { CompositeDisposable, Disposable } from "lumine";
+import { CompositeDisposable } from "lumine";
 import GithubPackage from "../lib/github-package";
-import { getGitBridge, setGitBridge } from "../lib/git-bridge";
+import { getPatchView, setPatchView } from "../lib/patch-view";
 
-describe("native GitHub bridge edge ownership", () => {
+describe("native GitHub patch-view edge ownership", () => {
   it("disposes a disconnected provider without removing a replacement bridge", () => {
-    const previous = getGitBridge();
+    const previous = getPatchView();
     const subscriptions = new CompositeDisposable();
-    const owner = { subscriptions, gitPanelWaiters: [], rerender: jasmine.createSpy("rerender") };
-    const provider = () => {
-      const callbacks = new Set();
-      return {
-        callbacks,
-        onDidUpdate: (callback) => {
-          callbacks.add(callback);
-          return new Disposable(() => callbacks.delete(callback));
-        },
-      };
-    };
+    const owner = { subscriptions, rerender: jasmine.createSpy("rerender") };
+    const provider = () => ({});
     try {
       const first = provider(),
         next = provider();
-      const oldEdge = GithubPackage.prototype.consumeGitPanel.call(owner, first);
-      const newEdge = GithubPackage.prototype.consumeGitPanel.call(owner, next);
+      const oldEdge = GithubPackage.prototype.consumePatchView.call(owner, first);
+      const newEdge = GithubPackage.prototype.consumePatchView.call(owner, next);
       oldEdge.dispose();
-      expect(first.callbacks.size).toBe(0);
-      expect(getGitBridge()).toBe(next);
+      expect(getPatchView()).toBe(next);
       newEdge.dispose();
-      expect(next.callbacks.size).toBe(0);
-      expect(getGitBridge()).toBeNull();
+      expect(getPatchView()).toBeNull();
     } finally {
       subscriptions.dispose();
-      setGitBridge(previous);
+      setPatchView(previous);
     }
   });
 
-  it("tears down provider-dependent observations and remounts when a provider returns", () => {
-    const previous = getGitBridge();
+  it("keeps the forge root and observations mounted while the renderer disappears and returns", () => {
+    const previous = getPatchView();
     const subscriptions = new CompositeDisposable();
     const element = document.createElement("div");
     const roots = new WeakMap();
@@ -44,7 +33,6 @@ describe("native GitHub bridge edge ownership", () => {
     const created = [];
     const owner = {
       subscriptions,
-      gitPanelWaiters: [],
       element,
       _roots: roots,
       controller: {},
@@ -59,50 +47,58 @@ describe("native GitHub bridge edge ownership", () => {
         }
       },
     };
-    const provider = () => ({ onDidUpdate: () => new Disposable() });
+    const provider = () => ({});
     try {
-      const first = GithubPackage.prototype.consumeGitPanel.call(owner, provider());
+      const first = GithubPackage.prototype.consumePatchView.call(owner, provider());
       expect(active).toBe(1);
+      const root = roots.get(element);
+      const controller = owner.controller;
       first.dispose();
-      expect(active).toBe(0);
-      expect(created[0].destroy).toHaveBeenCalledTimes(1);
-      expect(owner.controller).toBeNull();
-      expect(getGitBridge()).toBeNull();
+      expect(active).toBe(1);
+      expect(root.destroy).not.toHaveBeenCalled();
+      expect(owner.controller).toBe(controller);
+      expect(getPatchView()).toBeNull();
 
-      const returned = GithubPackage.prototype.consumeGitPanel.call(owner, provider());
+      const returned = GithubPackage.prototype.consumePatchView.call(owner, provider());
       expect(active).toBe(1);
       returned.dispose();
-      expect(active).toBe(0);
-      expect(created[1].destroy).toHaveBeenCalledTimes(1);
+      expect(active).toBe(1);
+      expect(created.length).toBe(1);
+      expect(roots.get(element)).toBe(root);
+      expect(root.destroy).not.toHaveBeenCalled();
     } finally {
+      roots.get(element)?.destroy();
       subscriptions.dispose();
-      setGitBridge(previous);
+      setPatchView(previous);
     }
   });
 
-  it("rejects a pending mount when the provider disappears before its callback", async () => {
-    const previous = getGitBridge();
+  it("finishes a pending forge mount even when its renderer disappears before the callback", async () => {
+    const previous = getPatchView();
     const subscriptions = new CompositeDisposable();
+    let mountReady;
     const owner = {
       activated: true,
       activationGeneration: 0,
       subscriptions,
-      gitPanelWaiters: [],
-      waitForGitPanel: GithubPackage.prototype.waitForGitPanel,
-      rerender: jasmine.createSpy("rerender"),
+      rerender: jasmine.createSpy("rerender").and.callFake((callback) => {
+        if (callback) mountReady = callback;
+      }),
     };
-    const bridge = { onDidUpdate: () => new Disposable() };
-    const edge = GithubPackage.prototype.consumeGitPanel.call(owner, bridge);
+    const bridge = {};
+    const edge = GithubPackage.prototype.consumePatchView.call(owner, bridge);
     try {
       const pending = GithubPackage.prototype.ensureRootController.call(owner);
-      const result = expectAsync(pending).toBeRejectedWithError("Git panel provider disappeared");
-      await globalThis.conditionPromise(() => typeof owner.controllerReadyReject === "function");
+      await globalThis.conditionPromise(() => typeof mountReady === "function");
       edge.dispose();
-      await result;
+      const controller = {};
+      owner.controller = controller;
+      mountReady();
+      expect(await pending).toBe(controller);
     } finally {
       edge.dispose();
       subscriptions.dispose();
-      setGitBridge(previous);
+      setPatchView(previous);
     }
   });
 });

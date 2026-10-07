@@ -4,6 +4,7 @@
   "main": "./lib/index",
   "files": [
     "benchmark",
+    "docs",
     "img",
     "keymaps",
     "lib",
@@ -43,6 +44,11 @@
       "versions": {
         "1.0.0": "provideBackgroundTips"
       }
+    },
+    "git.commit-links": {
+      "versions": {
+        "1.0.0": "provideCommitLinks"
+      }
     }
   },
   "dependencies": {
@@ -58,10 +64,15 @@
       "versions": {
         "^1.0.0": "consumeGitPanel"
       }
+    },
+    "patch-view": {
+      "versions": {
+        "^1.0.0": "consumePatchView"
+      }
     }
   },
   "specPackages": [
-    "git-panel"
+    "patch-view"
   ],
   "configSchema": {
     "oauthClientId": {

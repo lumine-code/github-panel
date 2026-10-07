@@ -1,4 +1,5 @@
 /** @babel */
+require("../lib/index");
 import path from "path";
 import ReviewsView from "../lib/views/reviews-view";
 

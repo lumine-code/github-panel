@@ -9,10 +9,9 @@ describe("Remote", () => {
       ["git@github.com:/example/project.git", "ssh"],
       ["https://github.com/example/project.git", "https"],
       ["https://git:pass@github.com/example/project.git", "https"],
-      ["ssh+https://github.com/example/project.git", "ssh+https"],
       ["git://github.com/example/project", "git"],
-      ["ssh://git@github.com:example/project.git", "ssh"],
-      ["ssh://git@github.com:/example/project.git", "ssh"],
+      ["ssh://git@github.com/example/project.git", "ssh"],
+      ["ssh://alice@github.com:2222/example/project.git", "ssh"],
     ];
 
     for (const [url, proto] of urls) {
@@ -32,7 +31,14 @@ describe("Remote", () => {
   });
 
   it("detects non-GitHub remotes", () => {
-    const urls = ["git@gitlab.com:example/project.git", "example/project"];
+    const urls = [
+      "git@gitlab.com:example/project.git",
+      "example/project",
+      "ssh+https://github.com/example/project.git",
+      "ssh://git@github.com:example/project.git",
+      "https://notgithub.com/example/project.git",
+      "https://github.com.example/example/project.git",
+    ];
 
     for (const url of urls) {
       const remote = new Remote("origin", url);

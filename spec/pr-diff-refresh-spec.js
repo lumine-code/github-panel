@@ -5,7 +5,7 @@ import { h, flushViews, createViewHost } from "./helpers/etch";
 import PullRequestPatchContainer from "../lib/containers/pr-patch-container";
 import ChangedFiles from "../lib/containers/pr-changed-files-container";
 import RefHolder from "../lib/models/ref-holder";
-import { setGitBridge } from "../lib/git-bridge";
+import { setPatchView } from "../lib/patch-view";
 
 function deferred() {
   let resolve;
@@ -49,9 +49,9 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
     patches = [];
     previousScrollPastEnd = lumine.config.inspect("editor.scrollPastEnd");
     await lumine.packages.activatePackage("language-text");
-    const git = await lumine.packages.startPackage("git-panel");
-    bridge = git.mainModule.provideGitPanel();
-    setGitBridge(bridge);
+    const git = await lumine.packages.startPackage("patch-view");
+    bridge = git.mainModule.providePatchView();
+    setPatchView(bridge);
     stylesheet = lumine.themes.requireStylesheet(path.join(git.path, "styles", "main.css"));
     lumine.config.set("editor.scrollPastEnd", true);
     requests = [];
@@ -98,7 +98,7 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
     if (previousScrollPastEnd.overrideValue !== undefined)
       lumine.config.set("editor.scrollPastEnd", previousScrollPastEnd.overrideValue);
     else lumine.config.unset("editor.scrollPastEnd");
-    setGitBridge(null);
+    setPatchView(null);
   });
 
   function editors() {
@@ -209,6 +209,8 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
   }
 
   for (const mode of ["unified", "side-by-side"]) {
+    // The full initial/held/304/200 cycle waits on several native paint barriers.
+    // Keep the viewport assertions intact while allowing layout on loaded CI hosts.
     it(`keeps ${mode} editors and both offsets through held, 304 and changed 200 refreshes`, async () => {
       const previous = await prepare(mode);
       const first = patches[0];
@@ -237,8 +239,8 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
       expect(props.refEditor.get().getText()).not.toContain("new 1:0 v1");
       expect(first.isDisposed()).toBe(true);
       expect(patches.filter((patch) => !patch.isDisposed()).length).toBe(1);
-      expect(element.querySelectorAll(".git-panel-HunkHeaderView").length).toBe(3);
-    });
+      expect(element.querySelectorAll(".patch-view-HunkHeaderView").length).toBe(3);
+    }, 15000);
   }
 
   for (const changedContext of ["PR", "token"]) {

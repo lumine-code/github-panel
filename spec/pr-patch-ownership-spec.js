@@ -1,7 +1,7 @@
 /** @babel */
 import { h, flushViews } from "./helpers/etch";
 import PullRequestPatchContainer from "../lib/containers/pr-patch-container";
-import { setGitBridge } from "../lib/git-bridge";
+import { setPatchView } from "../lib/patch-view";
 
 function deferred() {
   let resolve, reject;
@@ -21,9 +21,9 @@ describe("mounted PR patch snapshot ownership", () => {
 
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-text");
-    const git = await lumine.packages.startPackage("git-panel");
-    bridge = git.mainModule.provideGitPanel();
-    setGitBridge(bridge);
+    const git = await lumine.packages.startPackage("patch-view");
+    bridge = git.mainModule.providePatchView();
+    setPatchView(bridge);
     ChangesView = bridge.ChangesView;
     patches = [];
     requests = [];
@@ -79,7 +79,7 @@ describe("mounted PR patch snapshot ownership", () => {
     await container?.destroy();
     await flushViews(() => {});
     for (const patch of patches) patch.dispose();
-    setGitBridge(null);
+    setPatchView(null);
   });
 
   async function finish(index, text, status = 200) {
