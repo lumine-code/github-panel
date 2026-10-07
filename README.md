@@ -16,7 +16,7 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 
 To install `github-panel` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/github-panel`.
 
-Install the [git-panel](https://github.com/lumine-code/git-panel) package too; it performs the Git operations.
+Git operations use the editor's repository API, and pull request diffs use the bundled patch-view renderer.
 
 ## Commands
 

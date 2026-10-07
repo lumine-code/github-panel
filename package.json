@@ -75,6 +75,16 @@
     "patch-view"
   ],
   "configSchema": {
+    "remoteFetchProtocol": {
+      "title": "Remote Fetch Protocol",
+      "description": "Protocol used when cloning or publishing a repository on GitHub.",
+      "type": "string",
+      "enum": [
+        "https",
+        "ssh"
+      ],
+      "default": "https"
+    },
     "oauthClientId": {
       "title": "GitHub OAuth Client ID",
       "description": "Client ID of a GitHub OAuth App (with Device Flow enabled) used for browser sign-in. Leave blank to sign in with a personal access token instead.",
@@ -82,11 +92,13 @@
       "default": ""
     },
     "openGitHubTabOnStart": {
+      "title": "Open GitHub Tab on Start",
       "description": "Automatically open the GitHub tab when the editor starts",
       "type": "boolean",
       "default": false
     },
     "debug": {
+      "title": "Debug Logging",
       "description": "Log additional debug information to the console, including caught errors and diagnostics",
       "type": "boolean",
       "default": false
