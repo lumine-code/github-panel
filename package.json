@@ -72,7 +72,8 @@
     }
   },
   "specPackages": [
-    "patch-view"
+    "patch-view",
+    "git-panel"
   ],
   "configSchema": {
     "remoteFetchProtocol": {
