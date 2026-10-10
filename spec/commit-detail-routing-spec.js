@@ -21,7 +21,6 @@ describe("GitHub commit navigation into the Git panel", () => {
       Promise.reject(new Error("Unexpected HTTP request")),
     );
     await lumine.packages.activatePackage("git-panel");
-    await lumine.packages.activatePackage("git-panel");
     const gitPack = lumine.packages.getActivePackage("git-panel");
     const authorModule = require(path.join(gitPack.path, "lib/models/author"));
     const Author = authorModule.default || authorModule;
@@ -73,13 +72,15 @@ describe("GitHub commit navigation into the Git panel", () => {
     scratch = coreRepository = view = null;
   });
 
-  it("opens the selected local commit in the registered commit-detail pane", async () => {
+  it("opens the selected local commit through the Git panel's public patch URI service", async () => {
     const status = await coreRepository.refreshStatusSnapshot();
     const sha = status.head.oid;
     const gitPack = lumine.packages.getActivePackage("git-panel");
-    const itemModule = require(path.join(gitPack.path, "lib/items/commit-detail-item"));
-    const CommitDetailItem = itemModule.default || itemModule;
-    const expectedURI = CommitDetailItem.buildURI(scratch, sha);
+    const expectedURI = gitPack.mainModule.provideDiff().buildPatchURI({
+      kind: "commit",
+      workingDirectory: scratch,
+      sha,
+    });
     await view.openCommit({ sha });
     const item = lumine.workspace
       .getPaneItems()
@@ -90,5 +91,14 @@ describe("GitHub commit navigation into the Git panel", () => {
     expect(detail.getWorkingDirectory()).toBe(scratch);
     expect(detail.getSha()).toBe(sha);
     expect(lumine.workspace.paneForItem(item)).not.toBeNull();
+  });
+
+  it("explains the missing renderer when the Git panel provider is inactive", async () => {
+    await lumine.packages.deactivatePackage("git-panel");
+    const warning = spyOn(lumine.notifications, "addWarning");
+    const open = spyOn(lumine.workspace, "open");
+    await view.openCommit({ sha: "inactive-provider-commit" });
+    expect(open).not.toHaveBeenCalled();
+    expect(warning).toHaveBeenCalledOnceWith("Enable Git Panel to view this local commit.");
   });
 });
