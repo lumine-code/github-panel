@@ -21,9 +21,9 @@ import {
 describe("expanded GitHub review pipeline benchmark", () => {
   for (const count of [1, 20, 100]) {
     it(`profiles ${count} expanded reviews through patch refreshes and native preview disposal`, async () => {
-      const gitPackage = await lumine.packages.startPackage("patch-view");
+      const gitPackage = await lumine.packages.startPackage("git-panel");
       require("../lib/index");
-      require("../lib/patch-view").setPatchView(gitPackage.mainModule.providePatchView());
+      require("../lib/diff-service").setDiffService(gitPackage.mainModule.provideDiff());
       await lumine.packages.activatePackage("language-text");
       const restoreScheduling = normalEditorScheduling();
       const loadedView = require("../lib/views/reviews-view");

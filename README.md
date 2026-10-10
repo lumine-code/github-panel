@@ -16,7 +16,7 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 
 To install `github-panel` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/github-panel`.
 
-Git operations use the editor's repository API, and pull request diffs use the bundled patch-view renderer.
+Git operations use the editor's repository API, and pull request diffs use the renderer provided by git-panel.
 
 ## Commands
 
@@ -53,7 +53,7 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 
 - `background-tips.provider`: provided to teach the package's headline workflow on the empty workspace.
 - `git-panel`: consumed optionally to open the local Git tab and its init and clone dialogs.
-- `patch-view`: consumed to render pull request changes and review context in shared native layouts.
+- `git-panel.diff`: consumed to render pull request changes and review context in shared native layouts.
 - [`git.commit-links`](docs/git.commit-links.md): provided to resolve GitHub commit URLs from core remote records.
 
 ## Contributing

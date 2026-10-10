@@ -65,14 +65,13 @@
         "^1.0.0": "consumeGitPanel"
       }
     },
-    "patch-view": {
+    "git-panel.diff": {
       "versions": {
-        "^1.0.0": "consumePatchView"
+        "^1.0.0": "consumeDiff"
       }
     }
   },
   "specPackages": [
-    "patch-view",
     "git-panel"
   ],
   "configSchema": {

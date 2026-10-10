@@ -90,11 +90,11 @@ describe("native review thread ownership", () => {
   });
 
   it("switches an open thread's context and preserves its Open Diff navigation", async () => {
-    const git = await lumine.packages.startPackage("patch-view");
-    const bridge = git.mainModule.providePatchView();
-    const { getPatchView, setPatchView } = require("../lib/patch-view");
-    const previous = getPatchView();
-    setPatchView(bridge);
+    const git = await lumine.packages.startPackage("git-panel");
+    const bridge = git.mainModule.provideDiff();
+    const { getDiffService, setDiffService } = require("../lib/diff-service");
+    const previous = getDiffService();
+    setDiffService(bridge);
     const rawDiff = [
       "diff --git a/example.txt b/example.txt",
       "--- a/example.txt",
@@ -145,7 +145,7 @@ describe("native review thread ownership", () => {
     } finally {
       await flushViews(() => host.update(null));
       patch.dispose();
-      setPatchView(previous);
+      setDiffService(previous);
     }
   });
 });

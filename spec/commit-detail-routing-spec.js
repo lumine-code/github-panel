@@ -20,7 +20,7 @@ describe("GitHub commit navigation into the Git panel", () => {
     spyOn(globalThis, "fetch").and.callFake(() =>
       Promise.reject(new Error("Unexpected HTTP request")),
     );
-    await lumine.packages.activatePackage("patch-view");
+    await lumine.packages.activatePackage("git-panel");
     await lumine.packages.activatePackage("git-panel");
     const gitPack = lumine.packages.getActivePackage("git-panel");
     const authorModule = require(path.join(gitPack.path, "lib/models/author"));

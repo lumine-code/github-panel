@@ -20,7 +20,7 @@ describe("GitHub review pane URI working-directory spelling", () => {
     spyOn(globalThis, "fetch").and.callFake(() =>
       Promise.reject(new Error("Unexpected network request")),
     );
-    await lumine.packages.activatePackage("patch-view");
+    await lumine.packages.activatePackage("git-panel");
     await lumine.packages.activatePackage("github-panel");
     pack = lumine.packages.getActivePackage("github-panel");
     await pack.mainModule.ensureRootController();

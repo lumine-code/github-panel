@@ -286,7 +286,7 @@ describe("github-panel native Etch lifecycle", () => {
   });
 
   it("composes and destroys a native Git child using a distinct Etch copy", async () => {
-    const gitPackage = await lumine.packages.startPackage("patch-view");
+    const gitPackage = await lumine.packages.startPackage("git-panel");
     const gitRuntime = require(path.join(gitPackage.path, "lib", "etch", "view"));
     const gitEtch = require(path.join(gitPackage.path, "node_modules", "@lumine-code", "etch"));
     expect(gitEtch).not.toBe(require("@lumine-code/etch"));
@@ -344,7 +344,7 @@ describe("github-panel native Etch lifecycle", () => {
   });
 
   it("shares supplied editor and marker holders across the two native package copies", async () => {
-    const gitPackage = await lumine.packages.startPackage("patch-view");
+    const gitPackage = await lumine.packages.startPackage("git-panel");
     const GitEditor = moduleDefault(
       path.join(gitPackage.path, "lib", "lumine", "lumine-text-editor"),
     );
@@ -465,7 +465,7 @@ describe("github-panel native Etch lifecycle", () => {
   });
 
   it("opens, closes and unloads fresh native pane generations repeatedly", async () => {
-    await lumine.packages.startPackage("patch-view");
+    await lumine.packages.startPackage("git-panel");
     // Keep OS credentials outside the stress test while tracking the real
     // login model's subscription to its service for every package generation.
     spyOn(lumine.secrets, "get").and.resolveTo(null);

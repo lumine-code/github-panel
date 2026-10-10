@@ -18,7 +18,7 @@ import GithubPackage from "../lib/github-package";
 import PaneItemHost from "../lib/items/pane-item-host";
 import { createViewModel, flushViews, h } from "./helpers/etch";
 import { mount } from "../lib/etch/view";
-import { getPatchView, setPatchView } from "../lib/patch-view";
+import { getDiffService, setDiffService } from "../lib/diff-service";
 
 function deferred() {
   let resolve;
@@ -83,14 +83,14 @@ describe("GitHub repository observation ownership", () => {
   let previousBridge;
 
   beforeEach(() => {
-    previousBridge = getPatchView();
-    setPatchView({ getAbsentRepository: () => ({ isAbsent: () => true }) });
+    previousBridge = getDiffService();
+    setDiffService({ getAbsentRepository: () => ({ isAbsent: () => true }) });
   });
 
   afterEach(async () => {
     for (const view of views) await view.destroy();
     views.clear();
-    setPatchView(previousBridge);
+    setDiffService(previousBridge);
   });
 
   function view(Type, props) {
@@ -293,14 +293,14 @@ describe("GitHub repository observation ownership", () => {
       },
     };
     const provider = () => ({ onDidUpdate: () => new Disposable() });
-    const first = GithubPackage.prototype.consumePatchView.call(owner, provider());
+    const first = GithubPackage.prototype.consumeDiff.call(owner, provider());
     try {
       expect(pool.counts.get("/repository")).toBe(1);
       const root = roots.get(element);
       first.dispose();
       expect(pool.counts.get("/repository")).toBe(1);
       expect(roots.get(element)).toBe(root);
-      const returned = GithubPackage.prototype.consumePatchView.call(owner, provider());
+      const returned = GithubPackage.prototype.consumeDiff.call(owner, provider());
       expect(pool.counts.get("/repository")).toBe(1);
       returned.dispose();
       expect(pool.counts.get("/repository")).toBe(1);

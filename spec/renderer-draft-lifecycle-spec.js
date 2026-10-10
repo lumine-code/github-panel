@@ -22,6 +22,7 @@ const RAW_DIFF =
 
 describe("GitHub drafts without the patch renderer", () => {
   let host, element, owner, controller, patch, requests, restReads, service, edge, previous;
+  let initialService;
   let packageMethods, holder, PatchContainer, ReviewsController, reviewProps;
 
   function moduleDefault(file) {
@@ -32,12 +33,13 @@ describe("GitHub drafts without the patch renderer", () => {
   beforeEach(async () => {
     await lumine.packages.activatePackage("language-text");
     packageMethods = moduleDefault("../lib/github-package").prototype;
-    holder = require("../lib/patch-view");
+    holder = require("../lib/diff-service");
     PatchContainer = moduleDefault("../lib/containers/pr-patch-container");
     ReviewsController = moduleDefault("../lib/controllers/reviews-controller");
-    previous = holder.getPatchView();
-    const provider = await lumine.packages.startPackage("patch-view");
-    service = provider.mainModule.providePatchView();
+    previous = holder.getDiffService();
+    const provider = await lumine.packages.startPackage("git-panel");
+    service = provider.mainModule.provideDiff();
+    initialService = service;
     requests = [];
     restReads = 0;
     spyOn(lumine.window, "isSpecMode").and.returnValue(false);
@@ -141,7 +143,7 @@ describe("GitHub drafts without the patch renderer", () => {
         );
       },
     };
-    edge = packageMethods.consumePatchView.call(owner, service);
+    edge = packageMethods.consumeDiff.call(owner, service);
     await flushViews(() => {});
     await globalThis.conditionPromise(() => patch && replyEditor());
     spyOn(controller, "addSingleComment").and.callThrough();
@@ -151,7 +153,11 @@ describe("GitHub drafts without the patch renderer", () => {
   afterEach(async () => {
     await host?.destroy();
     edge?.dispose();
-    holder.setPatchView(previous);
+    holder.setDiffService(
+      previous === initialService
+        ? (lumine.packages.getActivePackage("git-panel")?.mainModule.provideDiff() ?? null)
+        : previous,
+    );
     element?.remove();
     for (let pass = 0; pass < 5; pass++) {
       const pending = requests.filter((request) => !request.settled);
@@ -169,15 +175,15 @@ describe("GitHub drafts without the patch renderer", () => {
     edge.dispose();
     await flushViews(() => {});
     await globalThis.conditionPromise(() => patch === null);
-    await lumine.packages.unloadPackage("patch-view");
+    await lumine.packages.unloadPackage("git-panel");
   }
 
   async function restoreRenderer() {
-    const provider = await lumine.packages.startPackage("patch-view");
-    const current = provider.mainModule.providePatchView();
+    const provider = await lumine.packages.startPackage("git-panel");
+    const current = provider.mainModule.provideDiff();
     expect(current).not.toBe(service);
     service = current;
-    edge = packageMethods.consumePatchView.call(owner, current);
+    edge = packageMethods.consumeDiff.call(owner, current);
     await flushViews(() => {});
     await globalThis.conditionPromise(() => patch !== null);
   }

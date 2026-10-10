@@ -55,10 +55,10 @@ describe("PullRequestPatchContainer fetching", () => {
   beforeEach(() => {
     const loaded = require("../lib/containers/pr-patch-container");
     const PullRequestPatchContainer = loaded.default || loaded;
-    holder = require("../lib/patch-view");
-    previousProvider = holder.getPatchView();
+    holder = require("../lib/diff-service");
+    previousProvider = holder.getDiffService();
     // Parsing is stubbed below; this fixture still declares a live renderer edge.
-    holder.setPatchView({});
+    holder.setDiffService({});
     requests = [];
     spyOn(window, "fetch").and.callFake(() => {
       const request = deferred();
@@ -84,7 +84,7 @@ describe("PullRequestPatchContainer fetching", () => {
 
   afterEach(() => {
     container.willDestroy();
-    holder.setPatchView(previousProvider);
+    holder.setDiffService(previousProvider);
   });
 
   it("reuses the ETag for the same URL and settles a 304 with its cached patch", async () => {

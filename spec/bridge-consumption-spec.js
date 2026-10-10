@@ -1,17 +1,17 @@
 /** @babel */
-import { setPatchView, getPatchView } from "../lib/patch-view";
+import { setDiffService, getDiffService } from "../lib/diff-service";
 import GithubPackage from "../lib/github-package";
 
-describe("github-panel git bridge consumption", () => {
-  afterEach(() => setPatchView(null));
+describe("github-panel diff service consumption", () => {
+  afterEach(() => setDiffService(null));
 
-  it("holds and returns the consumed git bridge", () => {
-    expect(getPatchView()).toBe(null);
+  it("holds and returns the consumed diff service", () => {
+    expect(getDiffService()).toBe(null);
     const bridge = { marker: true };
-    setPatchView(bridge);
-    expect(getPatchView()).toBe(bridge);
-    setPatchView(null);
-    expect(getPatchView()).toBe(null);
+    setDiffService(bridge);
+    expect(getDiffService()).toBe(bridge);
+    setDiffService(null);
+    expect(getDiffService()).toBe(null);
   });
 
   it("registers cold global commands without waiting for the view root", async () => {
@@ -47,12 +47,12 @@ describe("github-panel git bridge consumption", () => {
     expect(packageInstance.invokeRootController).toHaveBeenCalledWith("openCreateDialog");
   });
 
-  it("loads every rewired module without reaching into patch-view internals", () => {
+  it("loads every rewired module without reaching into git-panel internals", () => {
     // These modules previously used requireFromGitPanel/getGitPanel; importing
-    // them verifies their new sources (the bridge holder, `lumine`'s GitError, the
+    // them verifies their new sources (the diff service holder, `lumine`'s GitError, the
     // local patch-preview view) all resolve.
     const modules = [
-      "../lib/patch-view",
+      "../lib/diff-service",
       "../lib/github-package",
       "../lib/views/patch-preview-view",
       "../lib/controllers/github-tab-header-controller",

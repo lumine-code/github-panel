@@ -2036,10 +2036,10 @@ pre.github-panel-Message-description {
   border-radius: var(--ui-border-radius);
   overflow: hidden;
 }
-.github-panel-PatchPreviewView .patch-view-ChangesView-header {
+.github-panel-PatchPreviewView .git-panel-ChangesView-header {
   padding: var(--ui-spacing);
 }
-.github-panel-PatchPreviewView .patch-view-ChangesView-title {
+.github-panel-PatchPreviewView .git-panel-ChangesView-title {
   font-size: 1em;
 }
 .github-panel-Reviews .github-panel-PatchPreviewView lumine-text-editor,

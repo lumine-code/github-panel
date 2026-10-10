@@ -3,16 +3,16 @@
 import { h, flushViews, createViewHost } from "./helpers/etch";
 
 describe("review patch previews", () => {
-  let container, root, bridge, PatchPreviewView, patches, setPatchView;
+  let container, root, bridge, PatchPreviewView, patches, setDiffService;
 
   beforeEach(async () => {
     patches = [];
     root = null;
     container = null;
-    const pkg = await lumine.packages.activatePackage("patch-view");
-    bridge = pkg.mainModule.providePatchView();
-    ({ setPatchView } = require("../lib/patch-view"));
-    setPatchView(bridge);
+    const pkg = await lumine.packages.activatePackage("git-panel");
+    bridge = pkg.mainModule.provideDiff();
+    ({ setDiffService } = require("../lib/diff-service"));
+    setDiffService(bridge);
     const previewModule = require("../lib/views/patch-preview-view");
     PatchPreviewView = previewModule.default || previewModule;
     container = document.createElement("div");
@@ -26,7 +26,7 @@ describe("review patch previews", () => {
     for (const patch of patches) {
       patch.dispose();
     }
-    setPatchView(null);
+    setDiffService(null);
   });
 
   function replacementPatch(oldText = "prefix old suffix", newText = "prefix new suffix") {
@@ -66,7 +66,7 @@ describe("review patch previews", () => {
   }
 
   function wordRanges(editor, kind) {
-    const className = `patch-view-FilePatchView-word--${kind}`;
+    const className = `git-panel-FilePatchView-word--${kind}`;
     const ranges = [];
     for (const [layer, decorations] of editor.decorationManager.layerDecorationsByMarkerLayer) {
       if ([...decorations].some((decoration) => decoration.getProperties().class === className)) {
@@ -97,7 +97,7 @@ describe("review patch previews", () => {
     expect(
       container.querySelector('[data-diff-view="unified"]').classList.contains("selected"),
     ).toBe(true);
-    expect(container.querySelector(".patch-view-FilePatchView-controlBlock")).toBeNull();
+    expect(container.querySelector(".git-panel-FilePatchView-controlBlock")).toBeNull();
 
     await setLayout("side-by-side");
     const editors = editorsBySide();
@@ -108,7 +108,7 @@ describe("review patch previews", () => {
     expect(
       container.querySelector('button[title="Stage File"], button[title="Unstage File"]'),
     ).toBeNull();
-    expect(container.querySelectorAll(".patch-view-SideBySidePatchView-sharedHeader").length).toBe(
+    expect(container.querySelectorAll(".git-panel-SideBySidePatchView-sharedHeader").length).toBe(
       0,
     );
     const oldBuffer = editors.old.getBuffer();
@@ -141,7 +141,7 @@ describe("review patch previews", () => {
     expect(next.getBuffer().isDestroyed()).toBe(false);
   });
 
-  it("renders the word layers supplied by the current patch-view bridge", async () => {
+  it("renders the word layers supplied by the current git-panel.diff bridge", async () => {
     const patch = replacementPatch();
     const editor = await renderPreview(patch);
 
