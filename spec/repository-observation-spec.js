@@ -346,7 +346,8 @@ describe("GitHub repository observation ownership", () => {
     jasmine.useRealClock();
     const pane = lumine.workspace.getCenter().getActivePane();
     const placeholder = {
-      isSingleton: () => true,
+      element: document.createElement("div"),
+      canCopy: () => false,
       getTitle: () => "Repository observation test",
       getURI: () => "lumine-test://repository-observation",
     };

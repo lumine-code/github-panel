@@ -70,8 +70,8 @@ describe("GitHub pane item locations", () => {
       const host = factory.call(packageInstance, options);
       expect(host.getHydrationState()).toBe("pending");
       expect(host.serialize()).toEqual(jasmine.objectContaining({ deserializer }));
-      if (host.isSingleton()) {
-        expect(() => host.copy()).toThrowError(/singleton/);
+      if (!host.canCopy()) {
+        expect(host.copy()).toBeNull();
       } else {
         const copy = host.copy();
         expect(copy).not.toBe(host);
