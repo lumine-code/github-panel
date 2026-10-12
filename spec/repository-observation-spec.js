@@ -119,6 +119,36 @@ describe("GitHub repository observation ownership", () => {
     expect(pool.counts.get("/repository")).toBe(0);
   });
 
+  it("copies the current issue resource and tab and detects navigation back to the original URI", async () => {
+    const pool = poolFixture(["/repository"]);
+    const issue = view(IssueishDetailItem, {
+      host: "github.com",
+      workingDirectory: "/repository",
+      workdirContextPool: pool,
+      owner: "first",
+      repo: "repo",
+      issueishNumber: 1,
+    });
+    const packageInstance = { controller: null };
+    const host = GithubPackage.prototype.createIssueishPaneItem.call(packageInstance, {
+      uri: issue.getURI(),
+    });
+    const firstURI = host.getURI();
+    host.hydrate(issue);
+    issue.onTabSelected(IssueishDetailItem.tabs.FILES);
+    await issue.switchToIssueish("next", "repo", 2);
+    const copy = host.copy();
+    expect(copy.getURI()).toContain("/next/repo/2?");
+    expect(copy.getHydrationProps().initSelectedTab).toBe(IssueishDetailItem.tabs.FILES);
+    expect(host.serialize().uri).toBe(copy.getURI());
+    await issue.switchToIssueish("first", "repo", 1);
+    expect(host.getURI()).toBe(firstURI);
+    expect(host.getPaneItemRevision()).toBeGreaterThan(0);
+    copy.destroy();
+    host.destroy();
+    expect(pool.counts.get("/repository")).toBe(0);
+  });
+
   it("waits for fresh resumed data before exposing the review model", async () => {
     const pool = poolFixture(["/repository"]);
     const ready = deferred();
@@ -316,6 +346,7 @@ describe("GitHub repository observation ownership", () => {
     jasmine.useRealClock();
     const pane = lumine.workspace.getCenter().getActivePane();
     const placeholder = {
+      isSingleton: () => true,
       getTitle: () => "Repository observation test",
       getURI: () => "lumine-test://repository-observation",
     };

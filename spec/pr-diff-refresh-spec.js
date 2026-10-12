@@ -80,6 +80,7 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
       tooltips: { add: () => new Disposable(), addComposite: () => new Disposable() },
       refEditor: new RefHolder(),
       refPatchController: new RefHolder(),
+      refPatchView: new RefHolder(),
       localRepository: {},
     };
     element = document.createElement("div");
@@ -209,6 +210,41 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
   }
 
   for (const mode of ["unified", "side-by-side"]) {
+    it(`copies the accepted ${mode} snapshot and viewport while its fresh network read is pending`, async () => {
+      await prepare(mode);
+      const view = props.refPatchView.get();
+      const presentationState = view.capturePresentationState();
+      const copySnapshot = view.captureCopySnapshot();
+      const copiedElement = document.createElement("div");
+      copiedElement.style.cssText = element.style.cssText;
+      jasmine.attachToDOM(copiedElement);
+      const copiedHost = createViewHost(copiedElement);
+      const copiedProps = {
+        ...props,
+        copySnapshot,
+        presentationState,
+        refEditor: new RefHolder(),
+        refPatchController: new RefHolder(),
+        refPatchView: new RefHolder(),
+      };
+      try {
+        await flushViews(() => copiedHost.update(h(ChangedFiles, copiedProps)));
+        expect(copySnapshot.isAvailable()).toBe(false);
+        expect(copiedProps.refPatchController.get().getDiffView()).toBe(mode);
+        expect(copiedProps.refEditor.get().getBuffer()).not.toBe(props.refEditor.get().getBuffer());
+        expect(copiedProps.refEditor.get().getText()).toBe(props.refEditor.get().getText());
+        expect(copiedProps.refPatchView.get().capturePresentationState().selectionRanges).toEqual(
+          presentationState.selectionRanges,
+        );
+        expect(requests.length).toBe(2);
+      } finally {
+        await copiedHost.destroy();
+        copySnapshot.dispose();
+        copiedElement.remove();
+      }
+      expect(props.refEditor.get().isDestroyed()).toBe(false);
+    });
+
     // The full initial/held/304/200 cycle waits on several native paint barriers.
     // Keep the viewport assertions intact while allowing layout on loaded CI hosts.
     it(`keeps ${mode} editors and both offsets through held, 304 and changed 200 refreshes`, async () => {

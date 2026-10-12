@@ -62,8 +62,11 @@ describe("github-panel reactivation", () => {
     expect(item.getURI()).toBe(uri);
     expect(item.serialize()).toEqual(jasmine.objectContaining({ deserializer: "GithubDockItem" }));
 
-    pane.moveItemToPane(item, lumine.workspace.getCenter().getActivePane());
-    expect(lumine.workspace.paneForURI(uri).getContainer().getLocation()).toBe("center");
+    await expectAsync(
+      lumine.workspace.movePaneItem(item, {
+        targetPane: lumine.workspace.getCenter().getActivePane(),
+      }),
+    ).toBeRejectedWith(jasmine.objectContaining({ code: "ITEM_LOCATION" }));
 
     await lumine.commands.dispatch(workspaceElement, "github-panel:toggle-focus");
     expect(lumine.workspace.paneForURI(uri).getContainer().getLocation()).toBe("right");
