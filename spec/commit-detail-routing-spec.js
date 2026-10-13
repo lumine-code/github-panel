@@ -2,6 +2,7 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const os = require("node:os");
+const requireCurrent = require("node:module").createRequire(__filename);
 
 describe("GitHub commit navigation into the Git panel", () => {
   let scratch, scratchParent, coreRepository, view;
@@ -22,7 +23,7 @@ describe("GitHub commit navigation into the Git panel", () => {
     );
     await lumine.packages.activatePackage("git-panel");
     const gitPack = lumine.packages.getActivePackage("git-panel");
-    const authorModule = require(path.join(gitPack.path, "lib/models/author"));
+    const authorModule = requireCurrent(path.join(gitPack.path, "lib/models/author"));
     const Author = authorModule.default || authorModule;
     spyOn(Author.prototype, "getAvatarUrl").and.returnValue("");
     await gitPack.mainModule.ensureRootController();
@@ -42,7 +43,7 @@ describe("GitHub commit navigation into the Git panel", () => {
     await operations.stageFiles(["payload.txt"]);
     await operations.commit("Create owned commit navigation source");
     const githubPack = lumine.packages.getActivePackage("github-panel");
-    const module = require(
+    const module = requireCurrent(
       path.join(githubPack.path, "lib/controllers/issueish-detail-controller"),
     );
     view = new module.BareIssueishDetailController({

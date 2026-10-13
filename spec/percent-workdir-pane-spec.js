@@ -2,6 +2,7 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 const os = require("node:os");
+const requireCurrent = require("node:module").createRequire(__filename);
 
 describe("GitHub review pane URI working-directory spelling", () => {
   let scratch, scratchParent, coreRepository, pack;
@@ -50,7 +51,7 @@ describe("GitHub review pane URI working-directory spelling", () => {
     const workdir = path.join(scratch, directoryName);
     await fs.mkdir(workdir);
     coreRepository = await lumine.repositories.initialize(workdir, { initialBranch: "main" });
-    const loaded = require(path.join(pack.path, "lib/items/reviews-item"));
+    const loaded = requireCurrent(path.join(pack.path, "lib/items/reviews-item"));
     const ReviewsItem = loaded.default || loaded;
     const uri = ReviewsItem.buildURI({
       host: "github.com",

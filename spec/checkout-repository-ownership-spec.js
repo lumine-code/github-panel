@@ -3,6 +3,7 @@ const fs = require("node:fs/promises");
 const path = require("node:path");
 const os = require("node:os");
 const { pathToFileURL } = require("node:url");
+const requireCurrent = require("node:module").createRequire(__filename);
 
 describe("accepted pull-request checkout repository ownership", () => {
   let scratch, scratchParent, coreRepositories, locals, view, Controller, release;
@@ -17,11 +18,11 @@ describe("accepted pull-request checkout repository ownership", () => {
     );
     await lumine.packages.activatePackage("github-panel");
     const pack = lumine.packages.getActivePackage("github-panel");
-    const controllerModule = require(
+    const controllerModule = requireCurrent(
       path.join(pack.path, "lib/controllers/pr-checkout-controller"),
     );
     Controller = controllerModule.BarePullRequestCheckoutController;
-    const localModule = require(path.join(pack.path, "lib/local-repository"));
+    const localModule = requireCurrent(path.join(pack.path, "lib/local-repository"));
     const LocalRepository = localModule.default || localModule;
     scratchParent = await fs.realpath(os.tmpdir());
     scratch = await fs.realpath(

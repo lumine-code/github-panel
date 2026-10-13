@@ -1,5 +1,6 @@
 /** @babel */
 const path = require("path");
+const requireCurrent = require("node:module").createRequire(__filename);
 
 const PACKAGE_NAME = "github-panel";
 const PACKAGE_PATH = path.join(__dirname, "..");
@@ -12,7 +13,7 @@ describe("github-panel reactivation", () => {
       await lumine.packages.unloadPackage(PACKAGE_NAME);
     }
     await lumine.packages.startPackage(PACKAGE_PATH);
-    const tabTrackerModule = require("../lib/controllers/tab-tracker");
+    const tabTrackerModule = requireCurrent("../lib/controllers/tab-tracker");
     const TabTracker = tabTrackerModule.default || tabTrackerModule;
     spyOn(TabTracker.prototype, "toggle").and.resolveTo();
   });
