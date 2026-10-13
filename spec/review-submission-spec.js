@@ -1,6 +1,6 @@
 /** @babel */
-import { h, createViewHost, flushViews } from "./helpers/etch";
-import ReviewsController from "../lib/controllers/reviews-controller";
+import { h, createViewHost, flushViews } from "./helpers/etch.js";
+import ReviewsController from "../lib/controllers/reviews-controller.js";
 
 function deferred() {
   let resolve;

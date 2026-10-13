@@ -1,7 +1,7 @@
 /** @babel */
 import { CompositeDisposable } from "lumine";
-import GithubPackage from "../lib/github-package";
-import { getDiffService, setDiffService } from "../lib/diff-service";
+import GithubPackage from "../lib/github-package.js";
+import { getDiffService, setDiffService } from "../lib/diff-service.js";
 
 describe("native GitHub git-panel.diff edge ownership", () => {
   it("keeps a newer edge when the provider reuses its service object", () => {

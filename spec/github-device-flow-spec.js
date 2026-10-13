@@ -7,7 +7,7 @@ import {
   DEFAULT_OAUTH_CLIENT_ID,
   OAUTH_CREDENTIAL_KIND,
   refreshAccessToken,
-} from "../lib/models/github-device-flow";
+} from "../lib/models/github-device-flow.js";
 
 const endpoint = { getWebRoot: () => "https://github.com" };
 const instant = () => Promise.resolve();

@@ -1,7 +1,7 @@
 /** @babel */
-import { h, flushViews } from "./helpers/etch";
-import PullRequestPatchContainer from "../lib/containers/pr-patch-container";
-import { setDiffService } from "../lib/diff-service";
+import { h, flushViews } from "./helpers/etch.js";
+import PullRequestPatchContainer from "../lib/containers/pr-patch-container.js";
+import { setDiffService } from "../lib/diff-service.js";
 
 function deferred() {
   let resolve, reject;

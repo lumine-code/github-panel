@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/endpoint.test.js (chai → Jasmine).
-import { getEndpoint } from "../lib/models/endpoint";
+import { getEndpoint } from "../lib/models/endpoint.js";
 
 describe("Endpoint", () => {
   describe("on dotcom", () => {

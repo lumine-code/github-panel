@@ -1,7 +1,9 @@
 /** @babel */
-import { setDiffService, getDiffService } from "../lib/diff-service";
-import GithubPackage from "../lib/github-package";
+import { createRequire } from "node:module";
+import { setDiffService, getDiffService } from "../lib/diff-service.js";
+import GithubPackage from "../lib/github-package.js";
 
+const require = createRequire(import.meta.url);
 describe("github-panel diff service consumption", () => {
   afterEach(() => setDiffService(null));
 

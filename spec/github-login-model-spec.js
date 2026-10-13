@@ -1,7 +1,7 @@
 /** @babel */
-import GithubLoginModel from "../lib/models/github-login-model";
-import { DeviceFlowError, OAUTH_CREDENTIAL_KIND } from "../lib/models/github-device-flow";
-import { UNAUTHENTICATED, UNAUTHORIZED } from "../lib/shared/token-status";
+import GithubLoginModel from "../lib/models/github-login-model.js";
+import { DeviceFlowError, OAUTH_CREDENTIAL_KIND } from "../lib/models/github-device-flow.js";
+import { UNAUTHENTICATED, UNAUTHORIZED } from "../lib/shared/token-status.js";
 
 // A minimal in-memory stand-in for lumine.secrets so the model can be exercised
 // without the OS keychain.

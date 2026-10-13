@@ -1,10 +1,10 @@
 /** @babel */
 import { Emitter } from "lumine";
-import GitHubTabContainer from "../lib/containers/github-tab-container";
-import CommentDecorationsContainer from "../lib/containers/comment-decorations-container";
-import RemoteSet from "../lib/models/remote-set";
-import { getEndpoint } from "../lib/models/endpoint";
-import { createViewModel, createViewHost, flushViews, h } from "./helpers/etch";
+import GitHubTabContainer from "../lib/containers/github-tab-container.js";
+import CommentDecorationsContainer from "../lib/containers/comment-decorations-container.js";
+import RemoteSet from "../lib/models/remote-set.js";
+import { getEndpoint } from "../lib/models/endpoint.js";
+import { createViewModel, createViewHost, flushViews, h } from "./helpers/etch.js";
 
 function deferred() {
   let resolve;

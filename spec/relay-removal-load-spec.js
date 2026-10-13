@@ -1,8 +1,10 @@
 /** @babel */
 
+import { createRequire } from "node:module";
 import fs from "fs";
 import path from "path";
 
+const require = createRequire(import.meta.url);
 function walk(dir, out) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
     const full = path.join(dir, entry.name);
@@ -17,7 +19,7 @@ function walk(dir, out) {
 
 describe("github-panel after the Relay removal", () => {
   it("requires every lib module without error", () => {
-    const libDir = path.join(__dirname, "..", "lib");
+    const libDir = path.join(import.meta.dirname, "..", "lib");
     const failures = [];
     for (const file of walk(libDir, [])) {
       try {

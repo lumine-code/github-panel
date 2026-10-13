@@ -1,7 +1,9 @@
 /** @babel */
 /** @jsx h */
-import { h, flushViews, createViewHost } from "./helpers/etch";
+import { createRequire } from "node:module";
+import { h, flushViews, createViewHost } from "./helpers/etch.js";
 
+const require = createRequire(import.meta.url);
 describe("review patch previews", () => {
   let container, root, bridge, PatchPreviewView, patches, setDiffService;
 

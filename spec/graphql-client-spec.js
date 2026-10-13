@@ -1,6 +1,10 @@
 /** @babel */
-import { executeQuery, expectGraphQLQuery, clearGraphQLExpectations } from "../lib/graphql/client";
-import * as queries from "../lib/graphql/queries";
+import {
+  executeQuery,
+  expectGraphQLQuery,
+  clearGraphQLExpectations,
+} from "../lib/graphql/client.js";
+import * as queries from "../lib/graphql/queries.js";
 
 function fakeEndpoint() {
   return { getGraphQLRoot: () => "https://api.github.com/graphql" };

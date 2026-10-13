@@ -1,5 +1,5 @@
 /** @babel */
-import { translateLinesGivenDiff, diffPositionToFilePosition } from "../lib/whats-my-line";
+import { translateLinesGivenDiff, diffPositionToFilePosition } from "../lib/whats-my-line.js";
 
 describe("review comment line translation", () => {
   it("translates structured local diff records and invalidates deleted rows", () => {

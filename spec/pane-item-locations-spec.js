@@ -1,10 +1,10 @@
 /** @babel */
-import { createViewModel } from "./helpers/etch";
-import GitHubTabItem from "../lib/items/github-tab-item";
-import IssueishDetailItem from "../lib/items/issueish-detail-item";
-import ReviewsItem from "../lib/items/reviews-item";
-import PaneItemHost from "../lib/items/pane-item-host";
-import GithubPanelPackage from "../lib/github-package";
+import { createViewModel } from "./helpers/etch.js";
+import GitHubTabItem from "../lib/items/github-tab-item.js";
+import IssueishDetailItem from "../lib/items/issueish-detail-item.js";
+import ReviewsItem from "../lib/items/reviews-item.js";
+import PaneItemHost from "../lib/items/pane-item-host.js";
+import GithubPanelPackage from "../lib/github-package.js";
 
 describe("GitHub pane item locations", () => {
   it("keeps the main GitHub and review panels in the side docks", () => {

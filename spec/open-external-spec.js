@@ -1,6 +1,6 @@
 /** @babel */
 
-import openExternal from "../lib/open-external";
+import openExternal from "../lib/open-external.js";
 
 describe("openExternal", () => {
   it("uses the constrained Lumine shell service", async () => {

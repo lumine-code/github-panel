@@ -1,9 +1,9 @@
 /** @babel */
 /** @jsx h */
-import { h, flushViews, createViewHost, createViewModel } from "./helpers/etch";
-import EditorCommentDecorationsController from "../lib/controllers/editor-comment-decorations-controller";
-import ReviewsView from "../lib/views/reviews-view";
-import { checkoutStates } from "../lib/controllers/pr-checkout-controller";
+import { h, flushViews, createViewHost, createViewModel } from "./helpers/etch.js";
+import EditorCommentDecorationsController from "../lib/controllers/editor-comment-decorations-controller.js";
+import ReviewsView from "../lib/views/reviews-view.js";
+import { checkoutStates } from "../lib/controllers/pr-checkout-controller.js";
 
 describe("review comments positioned in an editor", () => {
   let editor, container, root, props;

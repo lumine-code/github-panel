@@ -1,6 +1,8 @@
 /** @babel */
-import { h, createViewHost, flushViews } from "./helpers/etch";
+import { createRequire } from "node:module";
+import { h, createViewHost, flushViews } from "./helpers/etch.js";
 
+const require = createRequire(import.meta.url);
 function deferred() {
   let resolve;
   const promise = new Promise((finish) => {

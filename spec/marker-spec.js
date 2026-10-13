@@ -1,8 +1,10 @@
 /** @babel */
 /** @jsx h */
-import { h, flushViews, createViewHost } from "./helpers/etch";
+import { createRequire } from "node:module";
+import { h, flushViews, createViewHost } from "./helpers/etch.js";
 import { Range } from "lumine";
 
+const require = createRequire(import.meta.url);
 describe("review markers", () => {
   let container, root, editor, Marker;
 

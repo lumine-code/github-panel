@@ -1,7 +1,9 @@
 /** @babel */
-import { h, createViewHost, flushViews } from "./helpers/etch";
-import { checkoutStates } from "../lib/controllers/pr-checkout-controller";
+import { createRequire } from "node:module";
+import { h, createViewHost, flushViews } from "./helpers/etch.js";
+import { checkoutStates } from "../lib/controllers/pr-checkout-controller.js";
 
+const require = createRequire(import.meta.url);
 describe("native review thread ownership", () => {
   let host, element, props, view, ReviewsView;
   beforeEach(async () => {

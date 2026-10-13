@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/author.test.js (chai → Jasmine).
-import Author, { nullAuthor, NO_REPLY_GITHUB_EMAIL } from "../lib/models/author";
+import Author, { nullAuthor, NO_REPLY_GITHUB_EMAIL } from "../lib/models/author.js";
 
 describe("Author", () => {
   it("recognizes the no-reply GitHub email address", () => {

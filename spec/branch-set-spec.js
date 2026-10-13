@@ -1,7 +1,7 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/branch-set.test.js (chai → Jasmine).
-import BranchSet from "../lib/models/branch-set";
-import Branch, { nullBranch } from "../lib/models/branch";
+import BranchSet from "../lib/models/branch-set.js";
+import Branch, { nullBranch } from "../lib/models/branch.js";
 
 describe("BranchSet", () => {
   it("earmarks HEAD", () => {

@@ -1,7 +1,7 @@
 /** @babel */
-require("../lib/index");
+import "../lib/index.js";
 import path from "path";
-import ReviewsView from "../lib/views/reviews-view";
+import ReviewsView from "../lib/views/reviews-view.js";
 
 const percentile = (values, fraction) => {
   const sorted = [...values].sort((a, b) => a - b);
@@ -13,7 +13,7 @@ describe("GitHub panel rendering performance", () => {
   for (const count of [10, 100]) {
     it(`measures mounting ${count} collapsed review threads`, async () => {
       const stylesheet = lumine.themes.requireStylesheet(
-        path.join(__dirname, "..", "styles", "main.css"),
+        path.join(import.meta.dirname, "..", "styles", "main.css"),
       );
       const container = document.createElement("div");
       container.style.cssText = "width:700px;height:600px;overflow:auto";

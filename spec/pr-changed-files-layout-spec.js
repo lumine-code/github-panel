@@ -1,8 +1,10 @@
 /** @babel */
 /** @jsx h */
+import { createRequire } from "node:module";
 import { Disposable } from "lumine";
-import { h, flushViews, createViewHost } from "./helpers/etch";
+import { h, flushViews, createViewHost } from "./helpers/etch.js";
 
+const require = createRequire(import.meta.url);
 function deferred() {
   let resolve;
   const promise = new Promise((yes) => (resolve = yes));

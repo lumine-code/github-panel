@@ -1,7 +1,9 @@
 /** @babel */
+import { createRequire } from "node:module";
 import path from "path";
 import { TextBuffer, Disposable } from "lumine";
 
+const require = createRequire(import.meta.url);
 describe("github-panel native Etch lifecycle", () => {
   let View, h, mount, Editor, Commands, Command, RefHolder, MarkerLayer, Marker, Decoration;
   let container;
@@ -476,7 +478,7 @@ describe("github-panel native Etch lifecycle", () => {
       secretEdges.push(subscription);
       return subscription;
     });
-    const packagePath = path.join(__dirname, "..");
+    const packagePath = path.join(import.meta.dirname, "..");
     const uri = "lumine-github://dock-item/github";
     const workspaceElement = lumine.views.getView(lumine.workspace);
     jasmine.attachToDOM(workspaceElement);

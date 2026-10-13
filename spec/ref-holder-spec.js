@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/ref-holder.test.js (chai/sinon → Jasmine).
-import RefHolder from "../lib/models/ref-holder";
+import RefHolder from "../lib/models/ref-holder.js";
 
 describe("RefHolder", () => {
   let sub;

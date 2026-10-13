@@ -1,11 +1,11 @@
 /** @babel */
 import path from "path";
 import { Disposable } from "lumine";
-import { h, flushViews, createViewHost } from "./helpers/etch";
-import PullRequestPatchContainer from "../lib/containers/pr-patch-container";
-import ChangedFiles from "../lib/containers/pr-changed-files-container";
-import RefHolder from "../lib/models/ref-holder";
-import { setDiffService } from "../lib/diff-service";
+import { h, flushViews, createViewHost } from "./helpers/etch.js";
+import PullRequestPatchContainer from "../lib/containers/pr-patch-container.js";
+import ChangedFiles from "../lib/containers/pr-changed-files-container.js";
+import RefHolder from "../lib/models/ref-holder.js";
+import { setDiffService } from "../lib/diff-service.js";
 
 function deferred() {
   let resolve;

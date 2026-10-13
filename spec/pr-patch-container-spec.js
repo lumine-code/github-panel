@@ -1,6 +1,8 @@
 /** @babel */
-import { createViewModel } from "./helpers/etch";
+import { createRequire } from "node:module";
+import { createViewModel } from "./helpers/etch.js";
 
+const require = createRequire(import.meta.url);
 function deferred() {
   let resolve, reject;
   const promise = new Promise((resolvePromise, rejectPromise) => {

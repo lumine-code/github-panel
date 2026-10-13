@@ -1,8 +1,8 @@
 /** @babel */
-import { createViewModel } from "./helpers/etch";
-import CommentPositioningContainer from "../lib/containers/comment-positioning-container";
-import ObserveModel from "../lib/views/observe-model";
-import { toNativePathSep } from "../lib/helpers";
+import { createViewModel } from "./helpers/etch.js";
+import CommentPositioningContainer from "../lib/containers/comment-positioning-container.js";
+import ObserveModel from "../lib/views/observe-model.js";
+import { toNativePathSep } from "../lib/helpers.js";
 
 function threadsAt(path, positions) {
   return positions.map((position) => ({ comments: [{ path, position }] }));

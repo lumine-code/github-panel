@@ -1,10 +1,10 @@
 /** @babel */
-import { h, View, createViewHost, flushViews } from "./helpers/etch";
-import GraphQLQuery from "../lib/graphql/query";
-import createPaginationView from "../lib/graphql/pagination";
-import createRefetchView from "../lib/graphql/refetch";
-import EmojiReactionsController from "../lib/controllers/emoji-reactions-controller";
-import ObserveModel from "../lib/views/observe-model";
+import { h, View, createViewHost, flushViews } from "./helpers/etch.js";
+import GraphQLQuery from "../lib/graphql/query.js";
+import createPaginationView from "../lib/graphql/pagination.js";
+import createRefetchView from "../lib/graphql/refetch.js";
+import EmojiReactionsController from "../lib/controllers/emoji-reactions-controller.js";
+import ObserveModel from "../lib/views/observe-model.js";
 import { Disposable } from "lumine";
 
 function deferred() {

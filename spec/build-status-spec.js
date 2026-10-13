@@ -4,7 +4,7 @@ import {
   buildStatusFromStatusContext,
   buildStatusFromCheckResult,
   combineBuildStatuses,
-} from "../lib/models/build-status";
+} from "../lib/models/build-status.js";
 
 describe("BuildStatus", () => {
   it("interprets an EXPECTED status context", () => {

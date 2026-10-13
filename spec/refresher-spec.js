@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/refresher.test.js (chai/sinon → Jasmine).
-import Refresher from "../lib/models/refresher";
+import Refresher from "../lib/models/refresher.js";
 
 describe("Refresher", () => {
   let refresher;

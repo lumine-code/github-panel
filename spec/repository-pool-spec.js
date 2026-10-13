@@ -1,5 +1,5 @@
 /** @babel */
-import RepositoryPool from "../lib/repository-pool";
+import RepositoryPool from "../lib/repository-pool.js";
 
 function deferred() {
   let resolve;

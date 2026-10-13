@@ -1,8 +1,10 @@
 /** @babel */
+import { createRequire } from "node:module";
 import path from "path";
 import os from "os";
-import { createViewModel } from "./helpers/etch";
+import { createViewModel } from "./helpers/etch.js";
 
+const require = createRequire(import.meta.url);
 describe("GitHub create dialog protocol ownership", () => {
   let controller, request, config, packageMetadata;
 

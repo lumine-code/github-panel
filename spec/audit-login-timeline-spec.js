@@ -2,12 +2,12 @@
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import GithubLoginModel from "../lib/models/github-login-model";
-import { OAUTH_CREDENTIAL_KIND } from "../lib/models/github-device-flow";
-import { UNAUTHENTICATED } from "../lib/shared/token-status";
-import IssueTimeline from "../lib/controllers/issue-timeline-controller";
-import PullRequestTimeline from "../lib/controllers/pr-timeline-controller";
-import { flushViews } from "./helpers/etch";
+import GithubLoginModel from "../lib/models/github-login-model.js";
+import { OAUTH_CREDENTIAL_KIND } from "../lib/models/github-device-flow.js";
+import { UNAUTHENTICATED } from "../lib/shared/token-status.js";
+import IssueTimeline from "../lib/controllers/issue-timeline-controller.js";
+import PullRequestTimeline from "../lib/controllers/pr-timeline-controller.js";
+import { flushViews } from "./helpers/etch.js";
 
 function deferred() {
   let resolve;

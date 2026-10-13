@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/remote.test.js (chai → Jasmine).
-import Remote, { nullRemote } from "../lib/models/remote";
+import Remote, { nullRemote } from "../lib/models/remote.js";
 
 describe("Remote", () => {
   it("detects and extracts information from GitHub repository URLs", () => {

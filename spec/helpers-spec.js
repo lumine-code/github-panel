@@ -8,7 +8,7 @@ import {
   toSentence,
   pushAtKey,
   renderMarkdown,
-} from "../lib/helpers";
+} from "../lib/helpers.js";
 
 describe("helpers", () => {
   describe("autobind", () => {

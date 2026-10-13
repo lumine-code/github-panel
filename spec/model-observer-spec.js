@@ -1,7 +1,7 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/model-observer.test.js (chai/sinon → Jasmine).
 import { Emitter } from "lumine";
-import ModelObserver from "../lib/models/model-observer";
+import ModelObserver from "../lib/models/model-observer.js";
 
 function deferred() {
   let resolve, reject;

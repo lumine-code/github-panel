@@ -1,6 +1,6 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/branch.test.js (chai → Jasmine).
-import Branch, { nullBranch } from "../lib/models/branch";
+import Branch, { nullBranch } from "../lib/models/branch.js";
 
 describe("Branch", () => {
   it("creates a branch with no upstream", () => {

@@ -1,4 +1,5 @@
 /** @babel */
+import { createRequire } from "node:module";
 import path from "path";
 import {
   profilePipeline,
@@ -16,8 +17,9 @@ import {
   disposable,
   normalEditorScheduling,
   ensureNormalEditors,
-} from "./helpers/pipeline";
+} from "./helpers/pipeline.js";
 
+const require = createRequire(import.meta.url);
 describe("expanded GitHub review pipeline benchmark", () => {
   for (const count of [1, 20, 100]) {
     it(`profiles ${count} expanded reviews through patch refreshes and native preview disposal`, async () => {
@@ -32,7 +34,7 @@ describe("expanded GitHub review pipeline benchmark", () => {
       const tracker = trackBuffers();
       const legacyReleased = new Set();
       const stylesheet = lumine.themes.requireStylesheet(
-        path.join(__dirname, "..", "styles", "main.css"),
+        path.join(import.meta.dirname, "..", "styles", "main.css"),
       );
       const container = document.createElement("div");
       container.style.cssText = "width:950px;height:600px;overflow:auto";
@@ -166,7 +168,7 @@ describe("expanded GitHub review pipeline benchmark", () => {
           memoryClosed,
           compositorMeasured: false,
           nativeSamples: frames,
-          baselinePath: __dirname.includes("large-diff-baseline"),
+          baselinePath: import.meta.dirname.includes("large-diff-baseline"),
         });
         expect(container.querySelectorAll("lumine-text-editor").length).toBe(0);
       } finally {

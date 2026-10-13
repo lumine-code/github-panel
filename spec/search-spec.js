@@ -1,7 +1,7 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/search.test.js (chai → Jasmine).
-import Remote, { nullRemote } from "../lib/models/remote";
-import Search from "../lib/models/search";
+import Remote, { nullRemote } from "../lib/models/remote.js";
+import Search from "../lib/models/search.js";
 
 describe("Search", () => {
   const origin = new Remote("origin", "git@github.com:example/project.git");

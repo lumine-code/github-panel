@@ -1,6 +1,6 @@
 /** @babel */
-import URIPattern from "../lib/lumine/uri-pattern";
-import { getDataFromGithubUrl } from "../lib/views/issueish-link";
+import URIPattern from "../lib/lumine/uri-pattern.js";
+import { getDataFromGithubUrl } from "../lib/views/issueish-link.js";
 
 // The real PaneItem patterns registered by the item classes. These route every
 // `lumine-github://` workspace item, so the WHATWG-URL migration of URIPattern

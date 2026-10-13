@@ -1,7 +1,7 @@
 /** @babel */
 // Ported from pulsar-edit/github test/models/remote-set.test.js (chai → Jasmine).
-import RemoteSet from "../lib/models/remote-set";
-import Remote from "../lib/models/remote";
+import RemoteSet from "../lib/models/remote-set.js";
+import Remote from "../lib/models/remote.js";
 
 describe("RemoteSet", () => {
   const remotes = [

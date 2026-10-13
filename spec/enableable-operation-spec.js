@@ -3,7 +3,7 @@
 // The upstream "does not toggle state if the state has been redundantly toggled"
 // case relies on an intricate (and apparently mis-wired) async-render race and is
 // omitted rather than ported unfaithfully.
-import EnableableOperation from "../lib/models/enableable-operation";
+import EnableableOperation from "../lib/models/enableable-operation.js";
 
 class ComponentLike {
   constructor() {

@@ -1,5 +1,5 @@
 /** @babel */
-import GraphQLRequest from "../lib/graphql/request";
+import GraphQLRequest from "../lib/graphql/request.js";
 
 export function deferred() {
   let resolve, reject;
