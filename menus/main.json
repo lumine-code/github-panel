@@ -4,8 +4,13 @@
       "label": "View",
       "submenu": [
         {
-          "label": "Toggle GitHub Tab",
-          "command": "github-panel:toggle"
+          "label": "Toggle View",
+          "submenu": [
+            {
+              "label": "GitHub Panel",
+              "command": "github-panel:toggle"
+            }
+          ]
         }
       ]
     },
