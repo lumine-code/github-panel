@@ -12,6 +12,8 @@ Derived from Pulsar's [`github`](https://github.com/pulsar-edit/github) package,
 - **Issue/PR opener**: open any issue or pull request by URL.
 - **Repository management**: create and publish repositories to GitHub.
 
+![Read a public upstream issue and its discussion without leaving the editor.](.github/demo.png)
+
 ## Installation
 
 To install `github-panel` search for it in the Install pane of the Lumine settings, or run the command `lumine --install lumine-code/github-panel`.

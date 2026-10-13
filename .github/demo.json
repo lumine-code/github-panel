@@ -1,0 +1,17 @@
+{
+  "title": "github-panel",
+  "description": "Read a public upstream issue and its discussion without leaving the editor.",
+  "recordedOn": "2026-10-13",
+  "sourceRevision": "6eb8630a0e273461d82b1b6162d652229440a14b",
+  "mode": "normal",
+  "fontSettings": "default",
+  "themeSourceRevision": "6564a9e21899b5541e9c8f8006f9be6d6d72e6ad",
+  "images": [
+    {
+      "file": "demo.png",
+      "label": "Read a public upstream issue and its discussion without leaving the editor.",
+      "width": 1200,
+      "height": 880
+    }
+  ]
+}
