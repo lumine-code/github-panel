@@ -1,17 +1,61 @@
 {
   "title": "github-panel",
   "description": "Read a public upstream issue and its discussion without leaving the editor.",
-  "recordedOn": "2026-10-13",
-  "sourceRevision": "6eb8630a0e273461d82b1b6162d652229440a14b",
+  "recordedOn": "2026-10-14",
+  "sourceRevision": "3593ef42343cf7930fde498c16b0cff3046d90af",
+  "themeSourceRevision": "7fbd047a87ecf1367c896b19ff270cdc28d319f7",
   "mode": "normal",
   "fontSettings": "default",
-  "themeSourceRevision": "6564a9e21899b5541e9c8f8006f9be6d6d72e6ad",
+  "scenario": "demo.js",
+  "recipeHash": "822ca6d48be5aae0103ba410865c3418c663b9ae9f6c8be4601d83beead7bc26",
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "electron": "44.7.0",
+    "chrome": "152.0.7977.130",
+    "devicePixelRatio": 1,
+    "locale": "en-GB",
+    "fontFamily": "Fira Code, Menlo, DejaVu Sans Mono, Consolas, monospace",
+    "fontSize": 14,
+    "themes": ["one-day-syntax", "one-day-ui"]
+  },
+  "viewport": { "width": 1200, "height": 880 },
+  "cornerRadius": 10,
+  "sources": {
+    "editor": {
+      "revision": "d0b1751fffac65f10a405545e5f01cf7ad05c0bb",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "package": {
+      "revision": "3593ef42343cf7930fde498c16b0cff3046d90af",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "github-panel": {
+      "revision": "3593ef42343cf7930fde498c16b0cff3046d90af",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "one-theme": {
+      "revision": "7fbd047a87ecf1367c896b19ff270cdc28d319f7",
+      "dirty": false,
+      "workingTreeHash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  },
+  "fixtures": [
+    {
+      "file": "github-example/README.md",
+      "sha256": "510ea6f749db92c7b6a11314de0bf66d78ae3da269635fbfcaac18ccc8405861"
+    }
+  ],
   "images": [
     {
       "file": "demo.png",
       "label": "Read a public upstream issue and its discussion without leaving the editor.",
       "width": 1200,
-      "height": 880
+      "height": 880,
+      "sha256": "90cca7953885bd38df3ab38c4d637ff96a62ae2a480306ef0abcce9d5050c05f"
     }
   ]
 }
