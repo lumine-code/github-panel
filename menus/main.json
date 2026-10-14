@@ -1,6 +1,26 @@
 {
   "menu": [
     {
+      "label": "Git",
+      "submenu": [
+        {
+          "label": "GitHub",
+          "group": "extensions",
+          "order": 20,
+          "submenu": [
+            {
+              "label": "Toggle GitHub Panel",
+              "command": "github-panel:toggle"
+            },
+            {
+              "label": "Open Issue or Pull Request…",
+              "command": "github-panel:open-issue-or-pull-request"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "label": "View",
       "submenu": [
         {
@@ -27,7 +47,7 @@
               "command": "github-panel:toggle"
             },
             {
-              "label": "Open Issue or Pull Request",
+              "label": "Open Issue or Pull Request…",
               "command": "github-panel:open-issue-or-pull-request"
             },
             {
