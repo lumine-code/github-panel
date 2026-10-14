@@ -78,6 +78,7 @@ module.exports = [
       ".dev/**",
       // Operation texts extracted from the schema by scripts/extract-queries.js.
       "lib/graphql/queries.js",
+      "demo/**",
     ],
   },
   js.configs.recommended,
