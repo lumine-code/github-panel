@@ -30,7 +30,7 @@
     "cmdorctrl-=": "github-panel:more-context",
     "cmdorctrl--": "github-panel:less-context"
   },
-  ".github-panel-Reviews lumine-text-editor": {
+  ".github-panel-Reviews lumine-text-editor[input]": {
     "cmdorctrl-enter": "github-panel:submit-comment"
   }
 }
