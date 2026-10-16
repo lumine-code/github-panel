@@ -48,9 +48,13 @@ describe("GithubLoginModel", () => {
     // A non-URL account skips the network scope check, exercising just storage.
     const account = "test-account";
 
+    expect(model.hasCredential(account)).toBeUndefined();
+
     expect(await model.getToken(account)).toBe(UNAUTHENTICATED);
+    expect(model.hasCredential(account)).toBe(false);
 
     await model.setToken(account, "sekret");
+    expect(model.hasCredential(account)).toBe(true);
     expect(await model.getToken(account)).toBe("sekret");
     expect(JSON.parse(await secrets.get("lumine-github:test-account"))).toEqual({
       kind: "github-pat",
@@ -58,6 +62,7 @@ describe("GithubLoginModel", () => {
     });
 
     await model.removeToken(account);
+    expect(model.hasCredential(account)).toBe(false);
     expect(await model.getToken(account)).toBe(UNAUTHENTICATED);
 
     model.destroy();
