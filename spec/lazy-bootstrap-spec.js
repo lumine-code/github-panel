@@ -17,9 +17,9 @@ describe("github-panel lazy bootstrap", () => {
       const api = require(${JSON.stringify(eventKit)});
       let runtimeLoads = 0, activations = 0, invocations = 0, connected = null, retireOnConnect = false;
       class Runtime {
-        activate(state, context) {
+        activate(context) {
           assert.equal(context.entryPointsRegistered, true);
-          assert.equal(state.marker, 'saved');
+          assert.equal(context.marker, 'context');
           
           this.activated = true;
           activations++;
@@ -61,7 +61,7 @@ describe("github-panel lazy bootstrap", () => {
       assert.equal(main.config, undefined);
       assert.equal(main.restoreState, undefined);
       main.initialize();
-      main.activate({marker: 'saved'});
+      main.activate({marker: 'context'});
       const lease = main.consumeGitPanel({ marker: true }); const diff = main.consumeDiff({ marker: true });
       assert.equal(runtimeLoads, 0);
       assert.equal(registrations, 1);
@@ -77,7 +77,7 @@ describe("github-panel lazy bootstrap", () => {
       (async () => {
         await main.deactivate();
         assert.equal(registrations, 0);
-        main.activate({marker: 'saved'});
+        main.activate({marker: 'context'});
         assert.equal(runtimeLoads, 1);
         assert.equal(activations, 2);
         await main.deactivate();
