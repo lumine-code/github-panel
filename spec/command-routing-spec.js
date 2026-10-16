@@ -62,6 +62,16 @@ describe("GitHub command routing and availability", () => {
     expect(a.view.submitCurrentComment).toHaveBeenCalledTimes(1);
     expect(b.view.submitCurrentComment).not.toHaveBeenCalled();
   });
+  it("targets draft validity invalidation without rerendering command registrations", () => {
+    const a = review("A"),
+      buffer = a.view.getReplyBuffer("A");
+    const invalidate = spyOn(lumine.commands, "invalidateAvailability").and.callThrough();
+    const render = spyOn(a.view, "invalidate");
+    buffer.setText("draft");
+    expect(invalidate).toHaveBeenCalledOnceWith({ target: a.view.rootHolder.getOr(null) });
+    expect(render).not.toHaveBeenCalled();
+  });
+
   it("uses cached draft validity and disables a pending submission", async () => {
     let finish;
     const request = new Promise((resolve) => (finish = resolve)),
