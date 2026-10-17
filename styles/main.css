@@ -495,7 +495,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   color: var(--accent-link-color);
 }
 .github-panel-EmojiReactions-add.btn.btn:hover {
-  color: hsl(from var(--text-color-subtle) h s calc(l + 10));
+  color: var(--text-color-highlight);
 }
 
 /* github-blank.css */
@@ -2648,4 +2648,18 @@ pre.github-panel-Message-description {
     var(--syntax-color-added) 25%,
     transparent
   );
+}
+
+/* Respect reduced motion while retaining visible status indicators. */
+@media (prefers-reduced-motion: reduce) {
+  .github-panel-Spinner::after,
+  .github-panel-IssueishDetailView-headerRefreshButton.refreshing::before,
+  .github-panel-Reviews-topHeader .icon.refreshing::before,
+  .github-panel-PaneItemHost-github-panel-reviews-topHeader .icon.refreshing::before {
+    animation: none;
+  }
+  .github-panel-PrTimeline .commit .author-avatar,
+  .github-panel-Review {
+    transition: none;
+  }
 }
