@@ -17,6 +17,21 @@ describe("GitHub panel theme roles", () => {
     stylesheet.dispose();
   });
 
+  it("colors the GitHub loading mark and its ring from the current theme accent", () => {
+    container.innerHTML =
+      '<div class="github-panel-Loader"><span class="github-panel-Spinner"></span></div>';
+    const spinner = container.querySelector(".github-panel-Spinner");
+    const mark = () => getComputedStyle(spinner, "::before");
+    const ring = () => getComputedStyle(spinner, "::after");
+
+    expect(mark().color).toBe("rgb(10, 20, 30)");
+    expect(ring().borderRightColor).toBe("rgb(10, 20, 30)");
+
+    container.style.setProperty("--accent-indicator-color", "rgb(80, 100, 120)");
+    expect(mark().color).toBe("rgb(80, 100, 120)");
+    expect(ring().borderRightColor).toBe("rgb(80, 100, 120)");
+  });
+
   it("pairs focused owner options and keeps focus indicators independent of button fills", () => {
     container.innerHTML =
       '<div class="github-panel-RepositoryHome-owner"><div class="Select__option Select__option--is-focused">Owner</div></div><button class="github-panel-Dialog--insetButton">Focus</button><div class="github-panel-Review github-panel-Review--highlight"></div>';

@@ -1232,7 +1232,7 @@ svg.github-panel-IssueishList-item--status circle {
   align-items: center;
   justify-content: center;
   font-size: 32px;
-  color: var(--github-panel-color-purple);
+  color: var(--accent-indicator-color);
 }
 .tooltip .github-panel-Loader {
   color: inherit;
