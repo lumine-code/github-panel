@@ -1,3 +1,8 @@
+/* Center the GitHub glyph's ink inside the tab icon's box. */
+.tab-bar .title.icon-mark-github::before {
+  translate: 0 -1px;
+}
+
 /* accordion.css */
 .github-panel-Accordion {
   cursor: default;
