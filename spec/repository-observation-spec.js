@@ -279,11 +279,11 @@ describe("GitHub repository observation ownership", () => {
     const host = PaneItemHost.create("github", { uri: GitHubTabItem.buildURI() });
     host.hydrate(item);
     try {
-      expect(item.element.classList.contains("github-panel-Loader")).toBe(true);
+      expect(item.element.querySelector(".github-panel-Loader")).not.toBeNull();
       await flushViews(() => item.update({ repositoryIsReady: true }));
-      expect(item.element.classList.contains("ready-repository")).toBe(true);
+      expect(item.element.querySelector(".ready-repository")).not.toBeNull();
       await flushViews(() => item.update({ repositoryIsReady: false }));
-      expect(item.element.classList.contains("github-panel-Loader")).toBe(true);
+      expect(item.element.querySelector(".github-panel-Loader")).not.toBeNull();
       expect(host.getHydratedView()).toBe(item);
       expect(host.isDestroyed()).toBe(false);
     } finally {

@@ -54,10 +54,12 @@ describe("token observer account identity", () => {
   for (const kind of ["tab", "comment decorations"]) {
     function makeRenderer(loginModel, renderToken) {
       if (kind === "tab") {
-        container = createViewModel(GitHubTabContainer, { loginModel });
+        const repository = { isLoading: () => false };
+        container = createViewModel(GitHubTabContainer, { loginModel, repository });
         container.renderToken = renderToken;
         return (currentRemote) =>
           container.renderRepositoryData({
+            repository,
             allRemotes: new RemoteSet(
               Array.from(allRemotes, (existing) =>
                 existing.getName() === currentRemote.getName() ? currentRemote : existing,
