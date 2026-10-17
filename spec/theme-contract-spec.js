@@ -17,6 +17,15 @@ describe("GitHub panel theme roles", () => {
     stylesheet.dispose();
   });
 
+  it("keeps resolved review references readable without fading their child controls", () => {
+    container.style.setProperty("--text-color-subtle", "rgb(100,110,120)");
+    container.innerHTML =
+      '<details class="resolved"><summary class="github-panel-Review-reference"><span class="github-panel-Review-file">source.js</span></summary></details>';
+    const reference = container.querySelector("summary");
+    expect(getComputedStyle(reference).opacity).toBe("1");
+    expect(getComputedStyle(reference).color).toBe("rgb(100, 110, 120)");
+  });
+
   it("colors the GitHub loading mark and its ring from the current theme accent", () => {
     container.innerHTML =
       '<div class="github-panel-Loader"><span class="github-panel-Spinner"></span></div>';

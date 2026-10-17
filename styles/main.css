@@ -2287,7 +2287,7 @@ pre.github-panel-Message-description {
   margin-right: calc(var(--ui-spacing) / 1.5);
 }
 .resolved .github-panel-Review-reference {
-  opacity: 0.5;
+  color: var(--text-color-subtle);
 }
 .github-panel-Review-path {
   color: var(--text-color-subtle);
