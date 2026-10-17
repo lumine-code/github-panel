@@ -32,6 +32,38 @@ describe("GitHub panel theme roles", () => {
     expect(ring().borderRightColor).toBe("rgb(80, 100, 120)");
   });
 
+  it("centers the loader both directly in the pane host and inside the GitHub content", async () => {
+    const module = require("../lib/views/loading-view");
+    const LoadingView = module.default || module;
+    const loader = new LoadingView();
+    const host = document.createElement("div");
+    host.className = "github-panel-PaneItemHost-github";
+    host.style.cssText = "width: 320px; height: 240px";
+    container.appendChild(host);
+    host.appendChild(loader.element);
+
+    const expectCentered = () => {
+      const mark = loader.element.querySelector(".github-panel-Spinner").getBoundingClientRect();
+      const pane = host.getBoundingClientRect();
+      expect(Math.abs(mark.x + mark.width / 2 - (pane.x + pane.width / 2))).toBeLessThan(1);
+      expect(Math.abs(mark.y + mark.height / 2 - (pane.y + pane.height / 2))).toBeLessThan(1);
+    };
+
+    try {
+      expectCentered();
+      const panel = document.createElement("div");
+      panel.className = "github-panel-GitHub";
+      const content = document.createElement("div");
+      content.className = "github-panel-GitHub-content";
+      panel.appendChild(content);
+      host.appendChild(panel);
+      content.appendChild(loader.element);
+      expectCentered();
+    } finally {
+      await loader.destroy();
+    }
+  });
+
   it("pairs focused owner options and keeps focus indicators independent of button fills", () => {
     container.innerHTML =
       '<div class="github-panel-RepositoryHome-owner"><div class="Select__option Select__option--is-focused">Owner</div></div><button class="github-panel-Dialog--insetButton">Focus</button><div class="github-panel-Review github-panel-Review--highlight"></div>';
