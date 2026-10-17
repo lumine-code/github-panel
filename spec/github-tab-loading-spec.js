@@ -18,7 +18,7 @@ function deferred() {
 }
 
 describe("GitHub tab initial presentation", () => {
-  let item, repository, emitter, requests, token, remotes;
+  let item, repository, emitter, requests, token, remotes, pushing;
   const workdir = "C:/github-loading-spec";
   const viewer = {
     viewer: { email: "user@example.com", name: "User", login: "user", avatarUrl: null },
@@ -29,6 +29,7 @@ describe("GitHub tab initial presentation", () => {
     requests = new Map();
     token = deferred();
     remotes = deferred();
+    pushing = false;
     const tracking = Branch.createRemoteTracking(
       "refs/remotes/origin/feature",
       "origin",
@@ -47,7 +48,7 @@ describe("GitHub tab initial presentation", () => {
       getConfig: async () => "origin",
       getAheadCount: async () => 0,
       getOperationStates: () => ({
-        isPushInProgress: () => false,
+        isPushInProgress: () => pushing,
         isPullInProgress: () => false,
         isFetchInProgress: () => false,
       }),
@@ -168,6 +169,55 @@ describe("GitHub tab initial presentation", () => {
     expect(item.element.getAttribute("aria-busy")).toBe("false");
     expect(item.element.querySelector(".github-panel-GitHubTabItem-content").hidden).toBe(false);
     expect(requests.size).toBe(0);
+  });
+
+  it("refreshes both PR lists after a Git operation while keeping the accepted panel mounted", async () => {
+    await mount();
+    remotes.resolve(new RemoteSet([new Remote("origin", "https://github.com/owner/repo.git")]));
+    token.resolve("token");
+    const metadata = {
+      repository: { id: "repo", defaultBranchRef: { prefix: "refs/heads/", name: "main" } },
+    };
+    const current = {
+      repository: { ref: { associatedPullRequests: { totalCount: 0, nodes: [] } } },
+    };
+    const search = { search: { issueCount: 0, nodes: [] } };
+    await answer("githubTabHeaderContainerQuery", viewer);
+    await answer("remoteContainerQuery", metadata);
+    await answer("issueishSearchContainerQuery", search);
+    await answer("currentPullRequestContainerQuery", current);
+    await globalThis.conditionPromise(() => item.element.getAttribute("aria-busy") === "false");
+    const sections = [...item.element.querySelectorAll(".github-panel-Accordion")];
+    expect(sections.length).toBe(2);
+
+    pushing = true;
+    emitter.emit("did-update");
+    await flushViews(async () => {});
+    requests.clear();
+    pushing = false;
+    emitter.emit("did-update");
+    await globalThis.conditionPromise(
+      () =>
+        requests.has("remoteContainerQuery") &&
+        requests.has("issueishSearchContainerQuery") &&
+        requests.has("currentPullRequestContainerQuery"),
+    );
+
+    expect(item.element.getAttribute("aria-busy")).toBe("false");
+    expect(item.element.querySelectorAll(".github-panel-Accordion").length).toBe(2);
+    for (const [index, section] of item.element
+      .querySelectorAll(".github-panel-Accordion")
+      .entries())
+      expect(section).toBe(sections[index]);
+    expect(item.element.querySelector(".github-panel-IssueishList-loading")).toBeNull();
+    await answer("remoteContainerQuery", metadata);
+    await answer("issueishSearchContainerQuery", search);
+    await answer("currentPullRequestContainerQuery", current);
+    expect(item.element.querySelectorAll(".github-panel-Accordion").length).toBe(2);
+    for (const [index, section] of item.element
+      .querySelectorAll(".github-panel-Accordion")
+      .entries())
+      expect(section).toBe(sections[index]);
   });
 
   it("shows an initial read failure and retries without leaving the loader stuck", async () => {
