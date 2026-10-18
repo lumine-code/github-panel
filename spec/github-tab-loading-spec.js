@@ -5,6 +5,7 @@ import Remote from "../lib/models/remote.js";
 import RemoteSet from "../lib/models/remote-set.js";
 import Branch from "../lib/models/branch.js";
 import BranchSet from "../lib/models/branch-set.js";
+import TabPresentation from "../lib/models/tab-presentation.js";
 import { UNAUTHENTICATED } from "../lib/shared/token-status.js";
 import { flushViews } from "./helpers/etch.js";
 
@@ -18,7 +19,7 @@ function deferred() {
 }
 
 describe("GitHub tab initial presentation", () => {
-  let item, repository, emitter, requests, token, remotes, pushing;
+  let item, repository, emitter, requests, token, remotes, pushing, loginModel;
   const workdir = "C:/github-loading-spec";
   const viewer = {
     viewer: { email: "user@example.com", name: "User", login: "user", avatarUrl: null },
@@ -29,6 +30,7 @@ describe("GitHub tab initial presentation", () => {
     requests = new Map();
     token = deferred();
     remotes = deferred();
+    loginModel = { getToken: () => token.promise, onDidUpdate: () => new Disposable() };
     pushing = false;
     const tracking = Branch.createRemoteTracking(
       "refs/remotes/origin/feature",
@@ -75,7 +77,7 @@ describe("GitHub tab initial presentation", () => {
       currentWorkDir: workdir,
       workspace: lumine.workspace,
       commands: lumine.commands,
-      loginModel: { getToken: () => token.promise, onDidUpdate: () => new Disposable() },
+      loginModel,
       getCurrentWorkDirs: () => [workdir],
       onDidChangeWorkDirs: () => new Disposable(),
       ...props,
@@ -169,6 +171,78 @@ describe("GitHub tab initial presentation", () => {
     expect(item.element.getAttribute("aria-busy")).toBe("false");
     expect(item.element.querySelector(".github-panel-GitHubTabItem-content").hidden).toBe(false);
     expect(requests.size).toBe(0);
+  });
+
+  it("restores the complete panel before painting while reopened reads refresh in the background", async () => {
+    const presentationCache = new TabPresentation();
+    await mount({ presentationCache });
+    remotes.resolve(new RemoteSet([new Remote("origin", "https://github.com/owner/repo.git")]));
+    token.resolve("token");
+    const metadata = {
+      repository: { id: "repo", defaultBranchRef: { prefix: "refs/heads/", name: "main" } },
+    };
+    const current = {
+      repository: { ref: { associatedPullRequests: { totalCount: 0, nodes: [] } } },
+    };
+    const search = { search: { issueCount: 0, nodes: [] } };
+    await answer("githubTabHeaderContainerQuery", viewer);
+    await answer("remoteContainerQuery", metadata);
+    await answer("issueishSearchContainerQuery", search);
+    await answer("currentPullRequestContainerQuery", current);
+    await globalThis.conditionPromise(() => item.element.getAttribute("aria-busy") === "false");
+    const previous = item;
+    await item.destroy();
+    requests.clear();
+    token = deferred();
+    remotes = deferred();
+
+    // Inspect the constructor's first presentation, before any queued render.
+    item = new GitHubTabItem({ ...previous.props, presentationCache });
+    jasmine.attachToDOM(item.element);
+    expect(item).not.toBe(previous);
+    expect(previous.destroyed).toBe(true);
+    expect(item.element.getAttribute("aria-busy")).toBe("false");
+    expect(item.element.querySelector(".github-panel-GitHubTabItem-content").hidden).toBe(false);
+    expect(item.element.querySelector(".github-panel-Loader")).toBeNull();
+    expect(item.element.querySelectorAll(".github-panel-Accordion").length).toBe(2);
+    expect(item.element.querySelector(".github-panel-Project-avatar").title).toBe("@user");
+
+    await flushViews(async () => {});
+    expect(repository.getRemotes).toHaveBeenCalledTimes(2);
+    expect(item.element.querySelector(".github-panel-Loader")).toBeNull();
+    token.resolve("token");
+    remotes.resolve(new RemoteSet([new Remote("origin", "https://github.com/owner/repo.git")]));
+    await answer("githubTabHeaderContainerQuery", {
+      viewer: { ...viewer.viewer, login: "refreshed" },
+    });
+    await answer("remoteContainerQuery", metadata);
+    await answer("issueishSearchContainerQuery", search);
+    await answer("currentPullRequestContainerQuery", current);
+    expect(item.element.querySelector(".github-panel-Project-avatar").title).toBe("@refreshed");
+    expect(item.element.querySelector(".github-panel-Loader")).toBeNull();
+  });
+
+  it("keeps initial loading when reopening an incomplete or invalidated presentation", async () => {
+    const presentationCache = new TabPresentation();
+    await mount({ presentationCache });
+    remotes.resolve(new RemoteSet());
+    token.resolve("token");
+    await globalThis.conditionPromise(() => requests.has("githubTabHeaderContainerQuery"));
+    const props = item.props;
+    await item.destroy();
+    item = new GitHubTabItem(props);
+    expect(item.element.getAttribute("aria-busy")).toBe("true");
+    expect(item.element.querySelector(".github-panel-Loader")).not.toBeNull();
+    await answer("githubTabHeaderContainerQuery", viewer);
+    await globalThis.conditionPromise(() => item.element.getAttribute("aria-busy") === "false");
+
+    await item.destroy();
+    presentationCache.clear();
+    remotes = deferred();
+    token = deferred();
+    item = new GitHubTabItem(props);
+    expect(item.element.getAttribute("aria-busy")).toBe("true");
+    expect(item.element.querySelector(".github-panel-Project-avatar")).toBeNull();
   });
 
   it("refreshes both PR lists after a Git operation while keeping the accepted panel mounted", async () => {

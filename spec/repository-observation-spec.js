@@ -1,5 +1,5 @@
 /** @babel */
-import { Disposable } from "lumine";
+import { Disposable, Emitter } from "lumine";
 import fs from "fs";
 import os from "os";
 import path from "path";
@@ -340,6 +340,57 @@ describe("GitHub repository observation ownership", () => {
       await roots.get(element)?.destroy();
       expect(pool.counts.get("/repository")).toBe(0);
       element.remove();
+    }
+  });
+  it("invalidates tab snapshots when credentials or the active repository change", async () => {
+    spyOn(GitHubRootController.prototype, "renderCommands").and.returnValue(null);
+    spyOn(GitHubRootController.prototype, "renderCommentDecorations").and.returnValue(null);
+    const pool = poolFixture(["/first", "/second"]);
+    const emitter = new Emitter();
+    const subscriptions = [];
+    const loginModel = {
+      onDidUpdate: (callback) => {
+        const subscription = emitter.on("did-update", callback);
+        spyOn(subscription, "dispose").and.callThrough();
+        subscriptions.push(subscription);
+        return subscription;
+      },
+    };
+    const props = {
+      workspace: {
+        getPaneItems: () => [],
+        onDidAddPaneItem: () => new Disposable(),
+        onDidDestroyPaneItem: () => new Disposable(),
+        addOpener: () => new Disposable(),
+      },
+      currentWorkDir: "/first",
+      repository: pool.contexts.get("/first").repository,
+      workdirContextPool: pool,
+      loginModel,
+    };
+    const root = new GitHubRootController(props);
+    views.add(root);
+    try {
+      await flushViews(async () => {});
+      root.tabPresentation.writeModel("token", loginModel, [], "token");
+      expect(root.tabPresentation.readModel("token", loginModel, []).data).toBe("token");
+      emitter.emit("did-update");
+      expect(root.tabPresentation.readModel("token", loginModel, [])).toBeNull();
+
+      root.tabPresentation.writeModel("token", loginModel, [], "replacement");
+      await flushViews(() =>
+        root.update({
+          ...props,
+          currentWorkDir: "/second",
+          repository: pool.contexts.get("/second").repository,
+        }),
+      );
+      expect(root.tabPresentation.readModel("token", loginModel, [])).toBeNull();
+      expect(subscriptions.length).toBe(1);
+      await root.destroy();
+      expect(subscriptions[0].dispose).toHaveBeenCalledTimes(1);
+    } finally {
+      emitter.dispose();
     }
   });
   it("reopens the same resident model with external Git changes refreshed", async () => {
