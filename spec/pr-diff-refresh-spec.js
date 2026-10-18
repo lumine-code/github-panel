@@ -149,6 +149,9 @@ describe("mounted PR diff refreshes through the shared ChangesView", () => {
     const node = editor.getElement();
     const row = mode === "side-by-side" ? 50 : 100;
     node.setScrollTop(node.getComponent().pixelPositionBeforeBlocksForRow(row) + 7);
+    // New visible rows can reset native display geometry. Wait for that
+    // measurement before horizontal scroll synchronization resumes.
+    await settle();
     node.setScrollLeft(180);
     await settle();
     return editors().map((editor) => ({
