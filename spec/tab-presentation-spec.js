@@ -50,6 +50,9 @@ describe("GitHub tab presentation snapshots", () => {
     }
     expect(cache.readModel("repository", model, [])).toBeNull();
     expect(cache.readQuery(environment, "query", {})).toBeNull();
+    cache.writeModel("repository", model, [], { restored: true });
+    cache.writeModel("repository", model, [], null);
+    expect(cache.readModel("repository", model, [])).toBeNull();
   });
 
   it("evicts the least recently read or written query after 64 identities", () => {
