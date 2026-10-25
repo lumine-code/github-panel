@@ -2,10 +2,36 @@
 /** @jsx h */
 import { h, flushViews, createViewHost, createViewModel } from "./helpers/etch.js";
 import EditorCommentDecorationsController from "../lib/controllers/editor-comment-decorations-controller.js";
+import { BareCommentDecorationsController } from "../lib/controllers/comment-decorations-controller.js";
 import ReviewsView from "../lib/views/reviews-view.js";
 import { checkoutStates } from "../lib/controllers/pr-checkout-controller.js";
 
 describe("review comments positioned in an editor", () => {
+  it("omits source editor decorations for None", async () => {
+    const pkg = await lumine.packages.activatePackage("language-text");
+    await pkg.resourceLoadPromise;
+    const grammar = lumine.grammars.grammarForId("text.plain");
+    const source = await lumine.workspace.open();
+    source.setGrammar(grammar);
+    source.getBuffer().setPath("review.txt");
+    const controller = createViewModel(BareCommentDecorationsController, {
+      workspace: lumine.workspace,
+    });
+    controller.updateState = (state) => Object.assign(controller.state, state);
+    controller.didMount();
+    const threads = new Map([[source.getPath(), [{}]]]);
+    try {
+      expect(controller.getOpenEditorsWithCommentThreads(threads)).toEqual([source]);
+      source.setGrammar(lumine.grammars.nullGrammar);
+      expect(controller.getOpenEditorsWithCommentThreads(threads)).toEqual([]);
+      source.setGrammar(grammar);
+      expect(controller.getOpenEditorsWithCommentThreads(threads)).toEqual([source]);
+    } finally {
+      controller.willDestroy();
+      source.destroy();
+    }
+  });
+
   let editor, container, root, props;
 
   beforeEach(() => {
