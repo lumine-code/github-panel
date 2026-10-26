@@ -38,6 +38,10 @@ Commands available in `.github-panel-Reviews`:
 - `github-panel:less-context`: show less review context,
 - `github-panel:submit-comment`: submit review comment.
 
+## Usage
+
+Review drafts retain their complete source while editing. Posting accepts up to 65,536 UTF-16 units per comment; repository names, remote names and URLs accept 4,096 units, and local paths accept 32,768. Oversized fields show an error and disable submission until shortened. Collapsing a review preserves its draft, and a failed or superseded submission never replaces a newer edit.
+
 ## Customization
 
 Override the package custom properties in your `styles.css` to adjust the issue and pull request state colors and the diff colors of suggested changes:

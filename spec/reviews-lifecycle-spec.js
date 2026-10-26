@@ -91,6 +91,29 @@ describe("native review thread ownership", () => {
     expect(buffer.isDestroyed()).toBe(true);
   });
 
+  it("keeps giant reply drafts source-backed, disables posting and resumes after shrinking", async () => {
+    const { TextBuffer } = require("lumine");
+    let source = TextBuffer.createTextSnapshot("x".repeat(32768));
+    for (let index = 0; index < 15; index++)
+      source = source.replace(source.length, source.length, source);
+    await flushViews(() => props.showThreadID("thread"));
+    const buffer = view.getReplyBuffer("thread");
+    const read = spyOn(buffer, "getText").and.throwError("giant draft read");
+    await flushViews(() => buffer.setText(source));
+    expect(buffer.getTextSnapshot().equals(source)).toBe(true);
+    expect(view.replyValidity.get("thread")).toBe(false);
+    expect(element.querySelector("[role=alert]").textContent).toContain("input limit");
+    expect(await view.submitReply(null, { id: "thread" }, {})).toBe(false);
+    await flushViews(() => props.hideThreadID("thread"));
+    await flushViews(() => props.showThreadID("thread"));
+    expect(view.getReplyBuffer("thread")).toBe(buffer);
+    expect(read).not.toHaveBeenCalled();
+    read.and.callThrough();
+    await flushViews(() => buffer.setText("small comment"));
+    expect(view.replyValidity.get("thread")).toBe(true);
+    expect(element.querySelector("[role=alert]")).toBeNull();
+  });
+
   it("switches an open thread's context and preserves its Open Diff navigation", async () => {
     const git = await lumine.packages.startPackage("git-panel");
     const bridge = git.mainModule.provideDiff();

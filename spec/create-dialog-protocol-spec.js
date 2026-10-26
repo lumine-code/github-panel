@@ -40,6 +40,25 @@ describe("GitHub create dialog protocol ownership", () => {
     expect(request.accept.calls.mostRecent().args[0].protocol).toBe("https");
   });
 
+  it("preserves an oversized repository draft without reading or submitting it and recovers", async () => {
+    const { TextBuffer } = require("lumine");
+    let source = TextBuffer.createTextSnapshot("x".repeat(32768));
+    for (let index = 0; index < 15; index++)
+      source = source.replace(source.length, source.length, source);
+    const read = spyOn(controller.repoName, "getText").and.throwError("oversized draft read");
+    controller.repoName.setText(source);
+    expect(controller.repoName.getTextSnapshot().equals(source)).toBe(true);
+    expect(controller.acceptIsEnabled()).toBe(false);
+    expect(controller.inputError().message).toContain("Repository name");
+    await controller.accept();
+    expect(read).not.toHaveBeenCalled();
+    expect(request.accept).not.toHaveBeenCalled();
+    read.and.callThrough();
+    controller.repoName.setText("valid-repository");
+    expect(controller.inputError()).toBeNull();
+    expect(controller.acceptIsEnabled()).toBe(true);
+  });
+
   it("saves a selected protocol only in the GitHub package and passes it to publishing", async () => {
     config.set("git-panel.remoteFetchProtocol", "https");
     const set = spyOn(config, "set").and.callThrough();
