@@ -100,6 +100,30 @@ describe("GitHub panel theme roles", () => {
     expect(tooltip.backgroundColor).toBe("rgb(40, 50, 60)");
   });
 
+  it("preserves outline and shadow theme rings on the add-reaction button", () => {
+    container.innerHTML =
+      '<input type="text"><button class="btn github-panel-EmojiReactions-add">Add reaction</button>';
+    const button = container.querySelector("button");
+    container.querySelector("input").focus();
+    button.focus();
+    expect(button.matches(":focus-visible")).toBe(true);
+    for (const [declarations, ringProperty] of [
+      ["outline: 2px solid rgb(10, 20, 30); box-shadow: none", "outlineColor"],
+      ["outline: none; box-shadow: 0 0 0 2px rgb(10, 20, 30)", "boxShadow"],
+    ]) {
+      const theme = lumine.styles.addStyleSheet(
+        `.btn:focus-visible { border-color: rgb(10, 20, 30); ${declarations}; }`,
+      );
+      try {
+        const style = getComputedStyle(button);
+        expect(style[ringProperty]).toContain("rgb(10, 20, 30)");
+        expect(style.borderTopColor).toBe("rgb(10, 20, 30)");
+      } finally {
+        theme.dispose();
+      }
+    }
+  });
+
   it("uses Git status colors for review diff lines instead of diagnostic colors", () => {
     container.style.setProperty("--text-color-removed", "rgb(140,30,20)");
     container.style.setProperty("--text-color-error", "rgb(10,20,180)");

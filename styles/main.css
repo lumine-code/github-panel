@@ -483,15 +483,13 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 /* emoji-reactions.css */
 .github-panel-EmojiReactions-add.btn.btn {
   color: var(--text-color-subtle);
-  border-color: transparent;
   background: none;
 }
-.github-panel-EmojiReactions-add.btn.btn:first-child {
+.github-panel-EmojiReactions-add.btn.btn:not(:focus-visible),
+.github-panel-EmojiReactions-add.btn.btn:first-child:not(:focus-visible) {
   border-color: transparent;
 }
 .github-panel-EmojiReactions-add.btn.btn:focus-visible.btn {
-  border-color: transparent;
-  box-shadow: none;
   color: var(--accent-link-color);
 }
 .github-panel-EmojiReactions-add.btn.btn:hover {
