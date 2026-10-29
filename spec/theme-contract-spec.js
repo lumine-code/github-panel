@@ -75,12 +75,14 @@ describe("GitHub panel theme roles", () => {
 
   it("pairs focused owner options and keeps focus indicators independent of button fills", () => {
     container.innerHTML =
-      '<div class="github-panel-RepositoryHome-owner"><div class="Select__option Select__option--is-focused">Owner</div></div><button class="github-panel-Dialog--insetButton">Focus</button><div class="github-panel-Review github-panel-Review--highlight"></div>';
+      '<input><div class="github-panel-RepositoryHome-owner"><div class="Select__option Select__option--is-focused">Owner</div></div><button class="github-panel-Dialog--insetButton">Focus</button><div class="github-panel-Review github-panel-Review--highlight"></div>';
     const option = getComputedStyle(container.querySelector(".Select__option"));
     expect(option.color).toBe("rgb(230, 240, 250)");
     expect(option.backgroundColor).toBe("rgb(40, 50, 60)");
     const button = container.querySelector("button");
+    container.querySelector("input").focus();
     button.focus();
+    expect(button.matches(":focus-visible")).toBe(true);
     expect(getComputedStyle(button).borderTopColor).toBe("rgb(10, 20, 30)");
     expect(getComputedStyle(container.querySelector(".github-panel-Review")).borderTopColor).toBe(
       "rgb(10, 20, 30)",

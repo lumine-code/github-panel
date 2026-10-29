@@ -141,7 +141,7 @@
 .github-panel-Dialog--insetButton:hover {
   color: var(--text-color-highlight);
 }
-.github-panel-Dialog--insetButton:focus {
+.github-panel-Dialog--insetButton:focus-visible {
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
@@ -233,7 +233,7 @@
   user-select: none;
   margin: var(--ui-spacing) 0;
 }
-.github-panel-RemoteConfiguration-details summary:focus {
+.github-panel-RemoteConfiguration-details summary:focus-visible {
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
@@ -254,7 +254,7 @@
   padding: calc(var(--ui-spacing) / 4);
   margin-right: var(--ui-spacing);
 }
-.github-panel-RemoteConfiguration-protocolOption:focus-within {
+.github-panel-RemoteConfiguration-protocolOption:has(:focus-visible) {
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
@@ -284,7 +284,7 @@
   padding: calc(var(--ui-spacing) / 4);
   margin-right: var(--ui-spacing);
 }
-.github-panel-Create-visibilityOption:focus-within {
+.github-panel-Create-visibilityOption:has(:focus-visible) {
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
@@ -489,7 +489,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
 .github-panel-EmojiReactions-add.btn.btn:first-child {
   border-color: transparent;
 }
-.github-panel-EmojiReactions-add.btn.btn:focus.btn {
+.github-panel-EmojiReactions-add.btn.btn:focus-visible.btn {
   border-color: transparent;
   box-shadow: none;
   color: var(--accent-link-color);
@@ -909,7 +909,7 @@ lumine-text-editor .line.github-panel-editorCommentHighlight {
   color: var(--text-color-highlight);
 }
 .github-panel-IssueishDetailView-title:hover,
-.github-panel-IssueishDetailView-title:focus {
+.github-panel-IssueishDetailView-title:focus-visible {
   text-decoration: none;
 }
 .github-panel-IssueishDetailView-headerBadge {
@@ -1554,10 +1554,10 @@ pre.github-panel-Message-description {
 /* This will indicate when we'll activate the tooltip */
 .github-panel-PrComment .js-suggested-changes-blob .tooltipped:hover::before,
 .github-panel-PrComment .js-suggested-changes-blob .tooltipped:active::before,
-.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus::before,
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus-visible::before,
 .github-panel-PrComment .js-suggested-changes-blob .tooltipped:hover::after,
 .github-panel-PrComment .js-suggested-changes-blob .tooltipped:active::after,
-.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus::after {
+.github-panel-PrComment .js-suggested-changes-blob .tooltipped:focus-visible::after {
   display: inline-block;
   text-decoration: none;
 }
@@ -1609,7 +1609,7 @@ pre.github-panel-Message-description {
   color: var(--text-color-highlight);
 }
 .github-panel-PrCommitView-messageHeadline.is-button:hover,
-.github-panel-PrCommitView-messageHeadline.is-button:focus {
+.github-panel-PrCommitView-messageHeadline.is-button:focus-visible {
   color: color-mix(in srgb, var(--text-color-highlight), var(--text-color-subtle));
 }
 .github-panel-PrCommitView-title {
@@ -1782,7 +1782,7 @@ pre.github-panel-Message-description {
   border: none;
 }
 .github-panel-PrTimeline .open-commit-detail-button:hover,
-.github-panel-PrTimeline .open-commit-detail-button:focus {
+.github-panel-PrTimeline .open-commit-detail-button:focus-visible {
   color: var(--text-color-highlight);
 }
 .github-panel-PrTimeline .open-commit-detail-button:active {
