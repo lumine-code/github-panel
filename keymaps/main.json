@@ -17,14 +17,12 @@
     "down": "github-panel:selectbox-down",
     "up": "github-panel:selectbox-up",
     "enter": "github-panel:selectbox-enter",
-    "tab": "github-panel:selectbox-tab",
     "backspace": "github-panel:selectbox-backspace",
     "pageup": "github-panel:selectbox-pageup",
     "pagedown": "github-panel:selectbox-pagedown",
     "end": "github-panel:selectbox-end",
     "home": "github-panel:selectbox-home",
-    "delete": "github-panel:selectbox-delete",
-    "escape": "github-panel:selectbox-escape"
+    "delete": "github-panel:selectbox-delete"
   },
   ".github-panel-Reviews": {
     "cmdorctrl-=": "github-panel:more-context",

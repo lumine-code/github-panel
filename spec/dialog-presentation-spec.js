@@ -7,13 +7,18 @@ import os from "node:os";
 import path from "node:path";
 
 describe("GitHub issue dialog presentation", () => {
-  let host, root, view, request;
+  let host, root, view, request, bindings;
 
   beforeEach(() => {
+    jasmine.useRealClock();
     jasmine.attachToDOM(lumine.workspace.getElement());
     host = document.createElement("div");
     document.body.append(host);
     root = createViewHost(host);
+    bindings = lumine.keymaps.add(
+      "github-dialog-presentation-spec",
+      lumine.keymaps.readKeymap(path.join(import.meta.dirname, "../keymaps/main.json")),
+    );
     request = {
       accept: jasmine.createSpy("accept").and.resolveTo(undefined),
       cancel: jasmine.createSpy("cancel"),
@@ -23,6 +28,7 @@ describe("GitHub issue dialog presentation", () => {
   afterEach(async () => {
     await flushViews(async () => root.destroy());
     host.remove();
+    bindings.dispose();
   });
 
   function render(inProgress = false, error = null) {
@@ -67,6 +73,9 @@ describe("GitHub issue dialog presentation", () => {
     expect(editor.isReadOnly()).toBe(true);
     expect(input.hasFocus()).toBe(true);
     expect(accept.disabled).toBe(true);
+    expect(cancel.disabled).toBe(true);
+    await lumine.commands.dispatch(input, "core:cancel");
+    expect(request.cancel).not.toHaveBeenCalled();
     await lumine.commands.dispatch(input, "core:confirm");
     expect(request.accept).not.toHaveBeenCalled();
 
@@ -116,6 +125,35 @@ describe("GitHub issue dialog presentation", () => {
       "Local path",
       "Source remote name",
     ]);
+    const owner = form.querySelector(".github-panel-RepositoryHome-owner");
+    owner.click();
+    await flushViews(async () => {});
+    const popup = document.querySelector(".select-box-context-view");
+    expect(popup).not.toBeNull();
+    expect(form.closest("lumine-panel").style.display).not.toBe("none");
+    expect(request.cancel).not.toHaveBeenCalled();
+    popup.querySelector('[role="option"]').click();
+    await flushViews(async () => {});
+    owner.focus();
+    lumine.keymaps.handleKeyboardEvent(
+      lumine.keymaps.constructor.buildKeydownEvent("Tab", { target: owner }),
+    );
+    await flushViews(async () => {});
+    expect(inputs[0].hasFocus()).toBe(true);
+    let chooseFolder;
+    spyOn(lumine.window, "pickFolder").and.returnValue(
+      new Promise((resolve) => (chooseFolder = resolve)),
+    );
+    const windowFocused = spyOn(document, "hasFocus").and.returnValue(false);
+    form.querySelector(".github-panel-Dialog-rightBumper").click();
+    inputs[0].dispatchEvent(new FocusEvent("focusout", { bubbles: true, relatedTarget: null }));
+    window.dispatchEvent(new Event("blur"));
+    await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    expect(form.closest("lumine-panel").style.display).not.toBe("none");
+    expect(request.cancel).not.toHaveBeenCalled();
+    chooseFolder([localPath]);
+    await flushViews(async () => {});
+    windowFocused.and.callThrough();
     await flushViews(async () => controller.repoName.setText("published-name"));
     await publish(true);
     expect(editors.every((editor) => editor.isReadOnly())).toBe(true);
@@ -137,5 +175,35 @@ describe("GitHub issue dialog presentation", () => {
     expect(submitted.localPath).toBe(localPath);
     expect(submitted.sourceRemoteName).toBe("origin");
     expect(submitted.ownerID).toBe("owner");
+    owner.focus();
+    lumine.keymaps.handleKeyboardEvent(
+      lumine.keymaps.constructor.buildKeydownEvent("Escape", { target: owner }),
+    );
+    expect(request.cancel).toHaveBeenCalledTimes(1);
+  });
+
+  it("dismisses an idle outside click but preserves a pending request", async () => {
+    await render(true);
+    const form = document.querySelector(".github-panel-Dialog");
+    const panel = lumine.workspace
+      .getModalPanels()
+      .find((item) => item.getElement().contains(form));
+    const outside = document.createElement("button");
+    document.body.append(outside);
+    const clickOutside = async () => {
+      outside.dispatchEvent(new MouseEvent("mousedown", { bubbles: true, cancelable: true }));
+      await new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    };
+    try {
+      await clickOutside();
+      expect(panel.isVisible()).toBe(true);
+      expect(request.cancel).not.toHaveBeenCalled();
+      await render(false);
+      await clickOutside();
+      expect(panel.isVisible()).toBe(false);
+      expect(request.cancel).toHaveBeenCalledTimes(1);
+    } finally {
+      outside.remove();
+    }
   });
 });
