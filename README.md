@@ -27,8 +27,8 @@ Commands available in `lumine-workspace`:
 - `github-panel:toggle`: show or hide the GitHub panel,
 - `github-panel:toggle-focus`: focus the GitHub panel, or return focus to the editor,
 - `github-panel:open-issue-or-pull-request`: open an issue or PR by URL,
-- `github-panel:create-repository`: create a new GitHub repository,
-- `github-panel:publish-repository`: publish a local repository to GitHub,
+- `github-panel:create-repository`: create a new GitHub repository and clone it into a new local folder,
+- `github-panel:publish-repository`: publish the selected folder or the center document's repository to GitHub,
 - `github-panel:logout`: remove stored GitHub token,
 - `github-panel:show-rate-limit`: show the current GitHub API rate limit in a notification.
 
@@ -39,6 +39,8 @@ Commands available in `.github-panel-Reviews`:
 - `github-panel:submit-comment`: submit review comment.
 
 ## Usage
+
+Create GitHub Repository creates an empty repository on GitHub and clones it locally. Publish Repository on GitHub uses the selected Tree View folder when the tree has focus, or the path of the center document, including notebooks and other file-backed views. A selected file uses its containing folder; a folder inside an existing Git repository uses that repository's root. Several selected folders require choosing one in the dialog. With no path, choose the local folder manually. Publishing initializes a folder when needed, adds the new GitHub remote and pushes existing commits; it never creates a commit, and a repository without commits is left ready for its first commit and push.
 
 Review drafts retain their complete source while editing. Posting accepts up to 65,536 UTF-16 units per comment; repository names, remote names and URLs accept 4,096 units, and local paths accept 32,768. Oversized fields show an error and disable submission until shortened. Collapsing a review preserves its draft, and a failed or superseded submission never replaces a newer edit.
 
@@ -58,7 +60,9 @@ Override the package custom properties in your `styles.css` to adjust the issue 
 ## Services
 
 - `background-tips.provider`: provided to teach the package's headline workflow on the empty workspace.
-- `git-panel`: consumed optionally to open the local Git tab and its init and clone dialogs.
+- `git-center.repository-setup`: consumed optionally to open the local initialize and clone dialogs.
+- `tree-view.selection`: consumed optionally to capture the selected paths for publishing.
+- `git-panel`: consumed optionally to open the local Git tab.
 - `git-panel.diff`: consumed to render pull request changes and review context in shared native layouts.
 - [`git.commit-links`](docs/git.commit-links.md): provided to resolve GitHub commit URLs from core remote records.
 

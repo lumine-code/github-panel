@@ -61,6 +61,16 @@
     "node-emoji": "^2.2.0"
   },
   "consumedServices": {
+    "git-center.repository-setup": {
+      "versions": {
+        "^1.0.0": "consumeRepositorySetup"
+      }
+    },
+    "tree-view.selection": {
+      "versions": {
+        "^1.0.0": "consumeTreeViewSelection"
+      }
+    },
     "git-panel": {
       "versions": {
         "^1.0.0": "consumeGitPanel"

@@ -343,7 +343,6 @@ describe("GitHub repository observation ownership", () => {
     }
   });
   it("invalidates tab snapshots when credentials or the active repository change", async () => {
-    spyOn(GitHubRootController.prototype, "renderCommands").and.returnValue(null);
     spyOn(GitHubRootController.prototype, "renderCommentDecorations").and.returnValue(null);
     const pool = poolFixture(["/first", "/second"]);
     const emitter = new Emitter();

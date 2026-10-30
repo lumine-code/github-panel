@@ -15,6 +15,14 @@
             {
               "label": "Open Issue or Pull Request…",
               "command": "github-panel:open-issue-or-pull-request"
+            },
+            {
+              "label": "Create GitHub Repository…",
+              "command": "github-panel:create-repository"
+            },
+            {
+              "label": "Publish Repository on GitHub…",
+              "command": "github-panel:publish-repository"
             }
           ]
         }
@@ -49,6 +57,18 @@
             {
               "label": "Open Issue or Pull Request…",
               "command": "github-panel:open-issue-or-pull-request"
+            },
+            {
+              "label": "Create GitHub Repository…",
+              "command": "github-panel:create-repository"
+            },
+            {
+              "label": "Publish Repository on GitHub…",
+              "command": "github-panel:publish-repository"
+            },
+            {
+              "label": "Show Rate Limit",
+              "command": "github-panel:show-rate-limit"
             },
             {
               "label": "Log Out",

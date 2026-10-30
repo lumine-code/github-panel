@@ -44,7 +44,7 @@ describe("github-panel diff service consumption", () => {
 
     expect(packageInstance.githubTabTracker.toggleFocus).toHaveBeenCalled();
     expect(commands["github-panel:create-repository"].description).toBe(
-      "Create a repository on GitHub from a local folder.",
+      "Create a repository on GitHub and clone it to a new local folder.",
     );
     expect(packageInstance.invokeRootController).toHaveBeenCalledWith("openCreateDialog");
   });

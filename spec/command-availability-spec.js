@@ -20,6 +20,7 @@ describe("GitHub command availability without local repositories", () => {
     expect(commands["github-panel:toggle"].isAvailable).toBeUndefined();
     expect(commands["github-panel:open-issue-or-pull-request"].isAvailable).toBeUndefined();
     expect(commands["github-panel:create-repository"].isAvailable({})).toBe(true);
+    expect(commands["github-panel:publish-repository"].isAvailable({})).toBe(true);
     expect(loadRuntime).not.toHaveBeenCalled();
   });
 
@@ -28,6 +29,7 @@ describe("GitHub command availability without local repositories", () => {
       loginModel: { hasCredential: jasmine.createSpy("cached credential").and.returnValue(false) },
     };
     expect(commands["github-panel:logout"].isAvailable({})).toBe(false);
+    expect(commands["github-panel:publish-repository"].isAvailable({})).toBe(false);
     cached.loginModel.hasCredential.and.returnValue(true);
     expect(commands["github-panel:logout"].isAvailable({})).toBe(true);
     expect(loadRuntime).not.toHaveBeenCalled();

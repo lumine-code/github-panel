@@ -16,6 +16,7 @@ describe("github-panel lazy bootstrap", () => {
       const Module = require('node:module');
       const api = require(${JSON.stringify(eventKit)});
       let runtimeLoads = 0, activations = 0, invocations = 0, connected = null, retireOnConnect = false;
+      let repositorySetup = null, treeSelection = null;
       class Runtime {
         activate(context) {
           assert.equal(context.entryPointsRegistered, true);
@@ -26,6 +27,14 @@ describe("github-panel lazy bootstrap", () => {
         }
         consumeBusySignal() { return new api.Disposable(); }
         consumeGitPanel() { return new api.Disposable(); }
+        consumeRepositorySetup(service) {
+          repositorySetup = service;
+          return new api.Disposable(() => { if (repositorySetup === service) repositorySetup = null; });
+        }
+        consumeTreeViewSelection(service) {
+          treeSelection = service;
+          return new api.Disposable(() => { if (treeSelection === service) treeSelection = null; });
+        }
         consumeDiff(service) {
           connected = service;
           if (retireOnConnect) main.deactivate();
@@ -63,8 +72,12 @@ describe("github-panel lazy bootstrap", () => {
       main.initialize();
       main.activate({marker: 'context'});
       const lease = main.consumeGitPanel({ marker: true }); const diff = main.consumeDiff({ marker: true });
+      const setupProvider = {marker: 'setup'}, selectionProvider = {marker: 'selection'};
+      const setupLease = main.consumeRepositorySetup(setupProvider);
+      const selectionLease = main.consumeTreeViewSelection(selectionProvider);
       assert.equal(runtimeLoads, 0);
       assert.equal(registrations, 1);
+      assert.equal(typeof commands['github-panel:publish-repository'].didDispatch, 'function');
       
       assert.equal(commands['github-panel:show-rate-limit'].description.length > 0, true);
       lease.dispose();
@@ -73,6 +86,11 @@ describe("github-panel lazy bootstrap", () => {
       assert.equal(activations, 1);
       assert.equal(invocations, 1);
       assert.equal(registrations, 1);
+      assert.equal(repositorySetup, setupProvider);
+      assert.equal(treeSelection, selectionProvider);
+      setupLease.dispose(); selectionLease.dispose();
+      assert.equal(repositorySetup, null);
+      assert.equal(treeSelection, null);
       retireOnConnect = true; main.consumeDiff({marker: 'retired'}); assert.equal(connected, null); retireOnConnect = false;
       (async () => {
         await main.deactivate();
