@@ -140,25 +140,24 @@
 .github-panel-RemoteConfiguration-details summary {
   cursor: default;
   user-select: none;
-  margin: var(--ui-spacing) 0;
+  margin: 0;
 }
 .github-panel-RemoteConfiguration-details summary:focus-visible {
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
+.github-panel-RemoteConfiguration-details > .dialog-body {
+  margin-top: var(--ui-spacing);
+}
 .github-panel-RemoteConfiguration-protocol {
   display: inline-flex;
   align-items: center;
-}
-.github-panel-RemoteConfiguration-protocolHeading {
-  display: inline-block;
-  margin-right: var(--ui-spacing);
+  gap: var(--ui-spacing);
 }
 .github-panel-RemoteConfiguration-protocolOption {
   display: inline-flex;
   align-items: center;
   padding: calc(var(--ui-spacing) / 4);
-  margin-right: var(--ui-spacing);
 }
 .github-panel-RemoteConfiguration-protocolOption:has(:focus-visible) {
   border: solid 1px var(--accent-indicator-color);
@@ -167,16 +166,12 @@
 .github-panel-Create-visibility {
   display: inline-flex;
   align-items: center;
-}
-.github-panel-Create-visibilityHeading {
-  display: inline-block;
-  margin-right: calc(var(--ui-spacing) * 2);
+  gap: var(--ui-spacing);
 }
 .github-panel-Create-visibilityOption {
   display: inline-flex;
   align-items: center;
   padding: calc(var(--ui-spacing) / 4);
-  margin-right: var(--ui-spacing);
 }
 .github-panel-Create-visibilityOption:has(:focus-visible) {
   border: solid 1px var(--accent-indicator-color);
