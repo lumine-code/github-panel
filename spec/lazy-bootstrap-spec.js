@@ -42,6 +42,8 @@ describe("github-panel lazy bootstrap", () => {
         }
         invokeGitController() { invocations++; }
         invokeRootController() { invocations++; }
+        createIssueishPaneItem({uri}) { return {kind: 'issueish', uri}; }
+        createReviewsPaneItem({uri}) { return {kind: 'reviews', uri}; }
         deactivate() { this.activated = false; return Promise.resolve(); }
       }
       const originalLoad = Module._load;
@@ -52,7 +54,7 @@ describe("github-panel lazy bootstrap", () => {
         if(request === './diff-service') return {setDiffService(service) {connected = service;}};
         return originalLoad.call(this, request, ...args);
       };
-      let commands, registrations = 0;
+      let commands, opener, registrations = 0;
       global.lumine = {
         views: {}, config: {get: () => false},
         repositories: { getActiveRepositoryContext: () => ({workingDirectory: 'current', pinned: true}) },
@@ -62,7 +64,7 @@ describe("github-panel lazy bootstrap", () => {
           commands = entries; registrations++;
           return new api.Disposable(() => registrations--);
         }},
-        workspace: {addOpener() {return new api.Disposable();}},
+        workspace: {addOpener(handler) {opener = handler; return new api.Disposable(() => { if (opener === handler) opener = null; });}},
       };
       const main = require(${JSON.stringify(path.join(root, "lib/index.js"))});
       assert.equal(main.__esModule, undefined);
@@ -78,6 +80,15 @@ describe("github-panel lazy bootstrap", () => {
       assert.equal(runtimeLoads, 0);
       assert.equal(registrations, 1);
       assert.equal(typeof commands['github-panel:publish-repository'].didDispatch, 'function');
+      assert.equal(opener('file:///unrelated.txt'), undefined);
+      assert.equal(runtimeLoads, 0);
+      const issueUri = 'lumine-github://issueish/github.com/lumine-code/lumine/1?workdir=';
+      assert.deepEqual(opener(issueUri), {kind: 'issueish', uri: issueUri});
+      assert.equal(runtimeLoads, 1);
+      assert.equal(activations, 1);
+      const reviewsUri = 'lumine-github://reviews/github.com/lumine-code/lumine/1?workdir=';
+      assert.deepEqual(opener(reviewsUri), {kind: 'reviews', uri: reviewsUri});
+      assert.equal(activations, 1);
       
       assert.equal(commands['github-panel:show-rate-limit'].description.length > 0, true);
       lease.dispose();
@@ -95,6 +106,7 @@ describe("github-panel lazy bootstrap", () => {
       (async () => {
         await main.deactivate();
         assert.equal(registrations, 0);
+        assert.equal(opener, null);
         main.activate({marker: 'context'});
         assert.equal(runtimeLoads, 1);
         assert.equal(activations, 2);
