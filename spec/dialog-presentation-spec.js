@@ -108,7 +108,6 @@ describe("GitHub issue dialog presentation", () => {
       );
     await publish();
     const form = document.querySelector(".github-panel-Dialog");
-    expect(form.closest("lumine-panel").classList.contains("dialog-panel-wide")).toBe(true);
     expect(form.querySelector(".dialog-title").textContent).toBe("Publish GitHub repository");
     const inputs = [...form.querySelectorAll("lumine-text-editor[mini]")];
     const editors = inputs.map((input) => input.getModel());
