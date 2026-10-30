@@ -55,79 +55,6 @@
   background-color: var(--background-color-highlight);
 }
 
-/* dialog.css */
-.github-panel-Dialog {
-  /* A trick to trap keyboard focus within this DOM element.
-   * In JavaScript, attach an event handler to the onTransitionEnd event and reassign focus to the initial element
-   * within the dialog. */
-}
-.github-panel-DialogPrompt {
-  margin: var(--ui-spacing);
-  text-align: center;
-  font-size: 1.2em;
-  user-select: none;
-}
-.github-panel-DialogForm {
-  display: flex;
-  flex-direction: column;
-  padding: calc(var(--ui-spacing) / 2);
-}
-.github-panel-DialogLabel {
-  flex: 1;
-  margin: calc(var(--ui-spacing) / 2);
-  position: relative;
-  line-height: 2;
-}
-.github-panel-DialogLabel--horizontal {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-}
-.github-panel-DialogLabel--horizontal input {
-  margin: 0 var(--ui-spacing);
-}
-.github-panel-DialogLabel--horizontal input[type="text"],
-.github-panel-DialogLabel--horizontal input[type="password"] {
-  width: 85%;
-}
-.github-panel-DialogLabel .github-panel-LumineTextEditor-container {
-  margin-top: calc(var(--ui-spacing) / 2);
-}
-.github-panel-DialogFooter {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.github-panel-DialogInfo {
-  display: inline-block;
-  flex-grow: 1;
-  margin: calc(var(--ui-spacing) / 2);
-  padding: calc(var(--ui-spacing) / 2);
-}
-.github-panel-DialogInfo li {
-  display: inline-block;
-}
-.github-panel-DialogButtons {
-  flex-grow: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding: calc(var(--ui-spacing) / 2);
-}
-/* Switch button order on Windows */
-.platform-win32 .github-panel-DialogButtons {
-  flex-direction: row-reverse;
-  justify-content: flex-start;
-}
-.github-panel-DialogButtons .btn {
-  margin: calc(var(--ui-spacing) / 2);
-}
-.github-panel-DialogButtons-leftItem,
-.github-panel-DialogButtons-leftItem.btn {
-  margin: calc(var(--ui-spacing) / 2);
-  margin-right: auto;
-}
 .github-panel-Dialog--insetButton {
   position: absolute;
   background: transparent;
@@ -145,32 +72,14 @@
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
-.github-panel-DialogSpinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--ui-spacing);
-}
-.github-panel-DialogSpinner .loading {
-  margin: var(--ui-spacing);
-}
 .github-panel-Dialog-row {
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  gap: calc(var(--ui-spacing) / 2);
 }
 .github-panel-Dialog-row .github-panel-LumineTextEditor-container {
   flex: 1;
-}
-.github-panel-Dialog lumine-text-editor[mini].editor {
-  margin: 0;
-}
-.github-panel-Dialog lumine-text-editor[mini].editor[readOnly] {
-  color: var(--text-color-subtle);
-}
-.github-panel-Dialog:not(:focus-within) {
-  padding-bottom: 1px;
-  transition: padding-bottom 0.01s;
 }
 .github-panel-TabbableWrapper {
   display: flex;
@@ -237,9 +146,6 @@
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
 }
-.github-panel-RemoteConfiguration-details main {
-  padding-top: var(--ui-spacing);
-}
 .github-panel-RemoteConfiguration-protocol {
   display: inline-flex;
   align-items: center;
@@ -257,18 +163,6 @@
 .github-panel-RemoteConfiguration-protocolOption:has(:focus-visible) {
   border: solid 1px var(--accent-indicator-color);
   border-radius: 4px;
-}
-.github-panel-RemoteConfiguration-sourceRemote {
-  width: 60%;
-}
-.github-panel-RemoteConfiguration-sourceRemote label {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-.github-panel-RemoteConfiguration-sourceRemote label .github-panel-LumineTextEditor-container {
-  flex: 1;
-  margin-left: var(--ui-spacing);
 }
 .github-panel-Create-visibility {
   display: inline-flex;
