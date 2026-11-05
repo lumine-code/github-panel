@@ -26,4 +26,20 @@ describe("LumineTextEditor", () => {
       "text.plain",
     );
   });
+
+  it("keeps explicit wrap bounds when scoped settings change", async () => {
+    await flushViews(async () =>
+      root.update(
+        <LumineTextEditor softWrapped={true} softWrapMinColumn={80} softWrapMaxColumn={80} />,
+      ),
+    );
+    const editor = container.querySelector("lumine-text-editor").getModel();
+    expect(editor.getSoftWrapColumn()).toBe(80);
+
+    lumine.config.set("editor.softWrapMinColumn", 10, { scopeSelector: ".text.plain" });
+    lumine.config.set("editor.softWrapMaxColumn", 20, { scopeSelector: ".text.plain" });
+    await globalThis.flushMicrotasks();
+
+    expect(editor.getSoftWrapColumn()).toBe(80);
+  });
 });
