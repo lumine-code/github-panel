@@ -5,8 +5,40 @@ import EditorCommentDecorationsController from "../lib/controllers/editor-commen
 import { BareCommentDecorationsController } from "../lib/controllers/comment-decorations-controller.js";
 import ReviewsView from "../lib/views/reviews-view.js";
 import { checkoutStates } from "../lib/controllers/pr-checkout-controller.js";
+import path from "node:path";
 
 describe("review comments positioned in an editor", () => {
+  it("requests positions only for commented files open in an eligible editor", () => {
+    const workdir = path.resolve("review-positions-worktree");
+    const fork = { owner: { login: "owner" }, name: "repo" };
+    const opened = { comments: [{ path: "src/open.txt" }], thread: { id: "open" } };
+    const closed = { comments: [{ path: "src/closed.txt" }], thread: { id: "closed" } };
+    const renderPositions = jasmine.createSpy("renderPositions");
+    const controller = createViewModel(BareCommentDecorationsController, {
+      renderPositions,
+      workspace: { getTextEditors: () => [] },
+      commentThreads: [opened, closed],
+      pullRequests: [{ number: 1, headRepository: fork, repository: fork, headRefName: "branch" }],
+      repoData: {
+        workingDirectoryPath: workdir,
+        branches: {
+          getHeadBranch: () => ({
+            getPush: () => ({ getRemoteName: () => "origin", getShortRemoteRef: () => "branch" }),
+          }),
+        },
+        remotes: { withName: () => ({ getOwner: () => "owner", getRepo: () => "repo" }) },
+      },
+    });
+    controller.render();
+    expect(renderPositions).not.toHaveBeenCalled();
+
+    controller.state.openEditors = [
+      { getPath: () => path.join(workdir, "src", "open.txt"), getGrammar: () => ({}) },
+    ];
+    controller.render();
+    expect(renderPositions.calls.mostRecent().args[0]).toEqual([opened]);
+  });
+
   it("omits source editor decorations for None", async () => {
     const pkg = await lumine.packages.activatePackage("language-text");
     await pkg.resourceLoadPromise;

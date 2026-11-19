@@ -1,8 +1,10 @@
 /** @babel */
 import { createViewModel } from "./helpers/etch.js";
 import CommentPositioningContainer from "../lib/containers/comment-positioning-container.js";
-import ObserveModel from "../lib/views/observe-model.js";
+import LocalRepository from "../lib/local-repository.js";
 import { toNativePathSep } from "../lib/helpers.js";
+import nodePath from "node:path";
+import { Disposable } from "lumine";
 
 function threadsAt(path, positions) {
   return positions.map((position) => ({ comments: [{ path, position }] }));
@@ -160,32 +162,51 @@ describe("comment position snapshots", () => {
 describe("comment position local diff fetching", () => {
   const path = "src/example.js";
   const nativePath = toNativePathSep(path);
-  let container, observer, requests, repository;
+  const workdir = nodePath.resolve("comment-position-worktree");
+  let container, requests, repository, notify;
 
   function setProps(props) {
     container.props = { ...container.props, ...props };
     container.state = reconcile(container.state, container.props.commentThreads);
+    container.didUpdate();
   }
 
-  function syncObserver() {
-    const previous = observer.props;
-    observer.props = container.render().props;
-    observer.didUpdate(previous);
+  function translations() {
+    container.render();
+    return container.props.children.calls.mostRecent().args[0];
   }
 
-  beforeEach(() => {
+  function resolve(index) {
+    const request = requests[index];
+    request.resolve(new Map(request.paths.map((filePath) => [filePath, []])));
+    return Promise.resolve();
+  }
+
+  beforeEach(async () => {
     requests = [];
     repository = {
-      onDidUpdate: () => ({ dispose() {} }),
-      getDiffsForFilePath: jasmine.createSpy("getDiffsForFilePath").and.callFake(() => {
-        let resolve;
-        const promise = new Promise((resolvePromise) => {
-          resolve = resolvePromise;
-        });
-        requests.push({ resolve });
-        return promise;
-      }),
+      core: {},
+      getWorkingDirectoryPath: () => workdir,
+      onDidUpdate: jasmine.createSpy("onDidUpdate"),
+      getDiffsForFilePaths: jasmine
+        .createSpy("getDiffsForFilePaths")
+        .and.callFake((paths, revision, { signal }) => {
+          let resolve;
+          const promise = new Promise((resolvePromise) => (resolve = resolvePromise));
+          requests.push({ paths, revision, signal, resolve });
+          return promise;
+        }),
     };
+    spyOn(lumine.fileWatchClient, "watchDirectory").and.callFake(() => ({
+      ready: Promise.resolve(),
+      onDidChange(callback) {
+        notify = callback;
+        return new Disposable();
+      },
+      onDidInvalidate: () => new Disposable(),
+      onDidError: () => new Disposable(),
+      dispose() {},
+    }));
     container = createViewModel(CommentPositioningContainer, {
       ...CommentPositioningContainer.defaultProps,
       commentThreads: threadsAt(path, [1]),
@@ -195,78 +216,119 @@ describe("comment position local diff fetching", () => {
       children: jasmine.createSpy("children").and.callFake((translations) => translations),
     });
     container.state = reconcile(container.state, container.props.commentThreads);
-    observer = createViewModel(ObserveModel, container.render().props);
-    spyOn(observer, "updateState").and.callFake((state) => {
-      observer.state = { ...observer.state, ...state };
-    });
-    observer.didMount();
+    container.didMount();
+    await Promise.resolve();
   });
 
-  afterEach(() => {
-    observer.willDestroy();
-    container.willDestroy();
-  });
+  afterEach(() => container.willDestroy());
 
-  it("keeps fetch paths stable across renders and comment position changes", () => {
-    const originalPaths = observer.props.fetchParams[0];
-    syncObserver();
-    expect(observer.props.fetchParams[0]).toBe(originalPaths);
-    expect(observer.modelObserver.hasPendingUpdate()).toBe(false);
+  it("keeps fetch paths stable across renders and comment position changes", async () => {
+    await resolve(0);
+    expect(translations().get(nativePath).diffToFilePosition.get(1)).toBe(10);
 
     setProps({ commentThreads: threadsAt(path, [1, 2]) });
-    syncObserver();
-    expect(observer.props.fetchParams[0]).toBe(originalPaths);
-    expect(observer.modelObserver.hasPendingUpdate()).toBe(false);
-    expect(repository.getDiffsForFilePath.calls.count()).toBe(1);
+    expect(translations().get(nativePath).rawPositions.size).toBe(2);
+    expect(requests.length).toBe(1);
+    expect(repository.onDidUpdate).not.toHaveBeenCalled();
   });
 
-  it("waits for current-SHA diffs without publishing a queued older result", async () => {
-    const oldRefresh = observer.modelObserver.getLastModelDataRefreshPromise();
+  it("cancels old-SHA diffs and waits for the current comparison", async () => {
     setProps({
       prCommitSha: "new-sha",
       multiFilePatch: visiblePatch({ hunks: [{ newStartLine: 20, lines: [" twenty"] }] }),
     });
-    syncObserver();
-    expect(observer.modelObserver.hasPendingUpdate()).toBe(true);
-
-    requests[0].resolve([]);
-    await oldRefresh;
-    expect(observer.state.data).toBeNull();
-    expect(repository.getDiffsForFilePath.calls.argsFor(1)).toEqual([nativePath, "new-sha"]);
-    expect(observer.props.children(observer.state.data)).toBeNull();
+    expect(requests[0].signal.aborted).toBe(true);
+    await resolve(0);
+    expect(requests[1].revision).toBe("new-sha");
+    expect(translations().has(nativePath)).toBe(false);
     expect(container.state.translationsByFile.get(nativePath).digest).toBeNull();
-
-    requests[1].resolve([]);
-    await observer.modelObserver.getLastModelDataRefreshPromise();
-    const translations = observer.props.children(observer.state.data);
-    expect(translations.get(nativePath).diffToFilePosition.get(1)).toBe(20);
+    await resolve(1);
+    expect(translations().get(nativePath).diffToFilePosition.get(1)).toBe(20);
   });
 
-  it("waits for current paths when an earlier file-set fetch completes", async () => {
-    const oldRefresh = observer.modelObserver.getLastModelDataRefreshPromise();
+  it("cancels a comparison whose entire file set is no longer required", async () => {
     const nextPath = "src/other.js";
     setProps({ commentThreads: threadsAt(nextPath, [1]) });
-    syncObserver();
-    requests[0].resolve([]);
-    await oldRefresh;
-
-    expect(observer.props.children(observer.state.data)).toBeNull();
-    expect(repository.getDiffsForFilePath.calls.argsFor(1)).toEqual([
-      toNativePathSep(nextPath),
-      "old-sha",
-    ]);
-    requests[1].resolve([]);
-    await observer.modelObserver.getLastModelDataRefreshPromise();
-    expect(observer.props.children(observer.state.data).has(toNativePathSep(nextPath))).toBe(true);
+    expect(requests[0].signal.aborted).toBe(true);
+    await resolve(0);
+    expect(translations().size).toBe(0);
+    expect(requests[1].paths).toEqual([toNativePathSep(nextPath)]);
+    await resolve(1);
+    expect(translations().has(toNativePathSep(nextPath))).toBe(true);
   });
 
-  it("rejects a snapshot from a different local repository", async () => {
-    requests[0].resolve([]);
-    await observer.modelObserver.getLastModelDataRefreshPromise();
-    const oldSnapshot = observer.state.data;
-    const nextRepository = { ...repository };
-    setProps({ localRepository: nextRepository });
-    const nextView = container.render();
-    expect(nextView.props.children(oldSnapshot)).toBeNull();
+  it("drops the previous repository results while the new repository loads", async () => {
+    await resolve(0);
+    expect(translations().size).toBe(1);
+    setProps({ localRepository: { ...repository } });
+    expect(translations().size).toBe(0);
+    expect(requests.length).toBe(1);
+    await Promise.resolve();
+    expect(requests.length).toBe(2);
+  });
+
+  it("refreshes only affected comment paths after a worktree change", async () => {
+    await resolve(0);
+    const otherPath = toNativePathSep("src/other.js");
+    setProps({ commentThreads: [...threadsAt(path, [1]), ...threadsAt(otherPath, [1])] });
+    expect(requests[1].paths).toEqual([otherPath]);
+    await resolve(1);
+    const otherTranslation = translations().get(otherPath);
+
+    notify([{ action: "updated", path: nodePath.join(workdir, "unrelated.js") }]);
+    expect(requests.length).toBe(2);
+    notify([{ action: "updated", path: nodePath.join(workdir, nativePath) }]);
+    expect(requests[2].paths).toEqual([nativePath]);
+    expect(translations().get(otherPath)).toBe(otherTranslation);
+    await resolve(2);
+
+    notify([
+      {
+        action: "renamed",
+        path: nodePath.join(workdir, "lib"),
+        oldPath: nodePath.join(workdir, "src"),
+      },
+    ]);
+    expect(requests[3].paths).toEqual([nativePath, otherPath]);
+    container.willDestroy();
+    expect(requests[3].signal.aborted).toBe(true);
+  });
+});
+
+describe("working-tree comment diff batches", () => {
+  it("isolates an oversized file and still attaches other diffs to their literal paths", async () => {
+    const largePath = toNativePathSep("src/large.js");
+    const smallPath = toNativePathSep("src/[small].js");
+    const small = { oldPath: null, newPath: "src/[small].js", hunks: [] };
+    const oversized = Object.assign(new Error("Diff exceeds its budget"), {
+      code: "ERR_GIT_DIFF_TOO_LARGE",
+    });
+    const core = {
+      isDestroyed: () => false,
+      getDiff: jasmine.createSpy("getDiff").and.callFake(async ({ paths }) => {
+        if (paths.includes(largePath)) throw oversized;
+        return { files: [small] };
+      }),
+    };
+    const repository = new LocalRepository("/repo", core);
+    const { signal } = new AbortController();
+
+    try {
+      const result = await repository.getDiffsForFilePaths([largePath, smallPath], "head", {
+        signal,
+      });
+      expect(core.getDiff.calls.allArgs().map(([options]) => options.paths)).toEqual([
+        [largePath, smallPath],
+        [largePath],
+        [smallPath],
+      ]);
+      expect(core.getDiff.calls.mostRecent().args[0]).toEqual(
+        jasmine.objectContaining({ signal, detectRenames: false, format: "structured" }),
+      );
+      expect(result.get(largePath)).toEqual([]);
+      expect(result.get(smallPath)).toEqual([small]);
+    } finally {
+      repository.destroy();
+    }
   });
 });

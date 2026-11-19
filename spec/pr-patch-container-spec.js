@@ -1,6 +1,7 @@
 /** @babel */
 import { createRequire } from "node:module";
 import { createViewModel } from "./helpers/etch.js";
+import { toNativePathSep } from "../lib/helpers.js";
 
 const require = createRequire(import.meta.url);
 function deferred() {
@@ -87,6 +88,35 @@ describe("PullRequestPatchContainer fetching", () => {
   afterEach(() => {
     container.willDestroy();
     holder.setDiffService(previousProvider);
+  });
+
+  it("indexes comment positions without constructing a renderable patch", () => {
+    const filePath = "src/file.txt";
+    const omitted = "src/omitted.txt";
+    const content = { oldPath: filePath, newPath: null, status: "deleted", oldMode: "100644" };
+    const buildMultiFilePatch = jasmine.createSpy("buildMultiFilePatch");
+    holder.setDiffService({
+      filterDiff: () => ({ filtered: "diff", removed: [omitted] }),
+      parseDiff: () => [
+        content,
+        { oldPath: null, newPath: filePath, status: "added", newMode: "120000" },
+      ],
+      buildMultiFilePatch,
+    });
+    container.buildPatch.and.callThrough();
+    container.props = { ...container.props, positionsOnly: true };
+
+    const index = container.buildPatch("diff");
+    expect(index.getPatchForPath(toNativePathSep(filePath)).getRawContentPatch()).toEqual({
+      ...content,
+      oldPath: toNativePathSep(filePath),
+    });
+    expect(index.getPatchForPath(toNativePathSep(omitted)).getRenderStatus().isVisible()).toBe(
+      false,
+    );
+    expect(buildMultiFilePatch).not.toHaveBeenCalled();
+    index.dispose();
+    expect(index.isDisposed()).toBe(true);
   });
 
   it("reuses the ETag for the same URL and settles a 304 with its cached patch", async () => {
