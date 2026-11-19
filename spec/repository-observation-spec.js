@@ -212,6 +212,23 @@ describe("GitHub repository observation ownership", () => {
     expect(pool.counts.get("/repository")).toBe(0);
   });
 
+  it("reuses the current observation when switching within the same repository", async () => {
+    const pool = poolFixture(["/repository"]);
+    const issue = view(IssueishDetailItem, {
+      workingDirectory: "/repository",
+      workdirContextPool: pool,
+      owner: "owner",
+      repo: "repo",
+      issueishNumber: 1,
+    });
+
+    await issue.switchToIssueish("owner", "repo", 2);
+    expect(issue.state.issueishNumber).toBe(2);
+    expect(pool.retain).toHaveBeenCalledOnceWith("/repository");
+    expect(pool.getMatchingContext).not.toHaveBeenCalled();
+    expect(pool.counts.get("/repository")).toBe(1);
+  });
+
   it("releases a pending issue switch immediately when the item closes", async () => {
     const pool = poolFixture(["/first", "/next"]);
     pool.contexts.get("/first").repository.hasGitHubRemote.and.resolveTo(false);

@@ -23,6 +23,7 @@ function coreRepository(directory, url) {
       .and.resolveTo({ initialized: true }),
     refreshRefsSnapshot: jasmine.createSpy("refreshRefsSnapshot").and.resolveTo(snapshot),
     ensureRefsSnapshot: jasmine.createSpy("ensureRefsSnapshot").and.resolveTo(snapshot),
+    readRemotes: jasmine.createSpy("readRemotes").and.resolveTo(snapshot.remotes),
     snapshot,
   };
 }
@@ -41,6 +42,12 @@ describe("GitHub core repository projections", () => {
     spyOn(lumine.repositories, "getForPath").and.returnValue(null);
     const context = await pool.getMatchingContext("github.com", "owner", "repo");
     expect(context.getRepository().core).toBe(match);
+    expect(pool.contexts.size).toBe(1);
+    for (const repository of [match, other]) {
+      expect(repository.readRemotes).toHaveBeenCalledTimes(1);
+      expect(repository.refreshRefsSnapshot).not.toHaveBeenCalled();
+      expect(repository.ensureRefsSnapshot).not.toHaveBeenCalled();
+    }
   });
 
   it("returns an absent projection when several repositories match the remote", async () => {
@@ -53,15 +60,39 @@ describe("GitHub core repository projections", () => {
     expect(context.getRepository()).toBe(pool.getAbsentRepository());
   });
 
+  it("shares concurrent lookups and observes external changes at the next lookup", async () => {
+    const first = coreRepository("/first", "https://github.com/owner/first.git");
+    const second = coreRepository("/second", "git@github.com:owner/second.git");
+    const firstRead = deferred();
+    first.readRemotes.and.returnValue(firstRead.promise);
+    spyOn(lumine.repositories, "getRepositories").and.returnValue([first, second]);
+    spyOn(lumine.repositories, "getForPath").and.returnValue(null);
+
+    const firstMatch = pool.getMatchingContext("github.com", "owner", "first");
+    const secondMatch = pool.getMatchingContext("GITHUB.COM", "owner", "second");
+    expect(first.readRemotes).toHaveBeenCalledTimes(1);
+    expect(second.readRemotes).toHaveBeenCalledTimes(1);
+    firstRead.resolve(first.snapshot.remotes);
+    expect((await firstMatch).getRepository().core).toBe(first);
+    expect((await secondMatch).getRepository().core).toBe(second);
+
+    first.readRemotes.and.resolveTo(second.snapshot.remotes);
+    const updated = await pool.getMatchingContext("github.com", "owner", "second");
+    expect(updated.getRepository()).toBe(pool.getAbsentRepository());
+    expect(first.readRemotes).toHaveBeenCalledTimes(2);
+    expect(second.readRemotes).toHaveBeenCalledTimes(2);
+  });
+
   it("drops a matching result that completes after the projection pool is cleared", async () => {
     const core = coreRepository("/repository", "https://github.com/owner/repo.git");
     const read = deferred();
-    core.refreshRefsSnapshot.and.returnValue(read.promise);
+    core.readRemotes.and.returnValue(read.promise);
     spyOn(lumine.repositories, "getRepositories").and.returnValue([core]);
     spyOn(lumine.repositories, "getForPath").and.returnValue(null);
     const matching = pool.getMatchingContext("github.com", "owner", "repo");
     pool.clear();
-    read.resolve(core.snapshot);
+    expect(core.readRemotes.calls.mostRecent().args[0].signal.aborted).toBe(true);
+    read.resolve(core.snapshot.remotes);
     const context = await matching;
     expect(context.getRepository()).toBe(pool.getAbsentRepository());
     expect(pool.contexts.size).toBe(0);
