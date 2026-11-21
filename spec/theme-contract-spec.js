@@ -17,6 +17,31 @@ describe("GitHub panel theme roles", () => {
     stylesheet.dispose();
   });
 
+  it("paints the commit avatar stack's theme colors around the images", async () => {
+    const module = require("../lib/views/timeline-items/commit-view");
+    const commit = new module.BareCommitView({
+      commit: {
+        sha: "0123456789abcdef",
+        messageHeadlineHTML: "Update the project",
+        author: { name: "Author" },
+        committer: { name: "Committer" },
+      },
+    });
+    container.className = "github-panel-PrTimeline";
+    container.style.setProperty("--base-background-color", "rgb(10,20,30)");
+    container.appendChild(commit.element);
+
+    try {
+      const images = container.querySelectorAll(".commit-author > .author-avatar > img");
+      expect([...images].map((image) => image.title)).toEqual(["Author", "Committer"]);
+      expect(getComputedStyle(images[0].parentElement).boxShadow).toContain("rgb(10, 20, 30)");
+      expect(getComputedStyle(images[0]).boxShadow).toBe("none");
+      expect(getComputedStyle(images[0]).backgroundColor).toBe("rgba(0, 0, 0, 0)");
+    } finally {
+      await commit.destroy();
+    }
+  });
+
   it("keeps resolved review references readable without fading their child controls", () => {
     container.style.setProperty("--text-color-subtle", "rgb(100,110,120)");
     container.innerHTML =
